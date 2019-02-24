@@ -8,3 +8,5 @@ Po wystrzeleniu obraca się, przecina wrogów i wbija się w ścianę. Żeby gra
 Wybuchają po rzuceniu lub po uderzeniu w nie Skills->Eksplozja.
 - zielone gluty\
 Chwilę zatrzymują przeciwników w miejscu.
+- ostry przedmiot\
+Można go wbić w ścianę i na nim stanąć.

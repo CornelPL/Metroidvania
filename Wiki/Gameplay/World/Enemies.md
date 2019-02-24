@@ -1,7 +1,15 @@
 # Enemies
 
 ## Normal enemies
-Probably they all will be one-hit.
+
+### Chodzący prawo-lewo
+
+### Chodzący po ścianie góra-dół
+
+### Latający
+
+### Nieruchomy strzelający
+
+### Pływający (jeżeli będzie możliwość pływania)
 
 ## Bosses
-Not one-hit of course.

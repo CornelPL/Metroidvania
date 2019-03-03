@@ -13,13 +13,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        input = new InputController();
+        input = InputController.instance;
     }
 
     private void Update()
     {
-        input.OnUpdate();
-
         if (input.right) horizontalSpeed = movementSpeed;
         else if (input.left) horizontalSpeed = -movementSpeed;
         else horizontalSpeed = 0f;

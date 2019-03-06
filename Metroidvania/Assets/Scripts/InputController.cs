@@ -16,7 +16,7 @@ public class InputController : MonoBehaviour
     public bool lmb { get; private set; }
     public bool rmb { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         if (instance == null)
             instance = this;

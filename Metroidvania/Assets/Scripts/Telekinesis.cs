@@ -4,29 +4,56 @@ public class Telekinesis : MonoBehaviour
 {
     [SerializeField] private float range = 10f;
     [SerializeField] private float radius = 1f;
-    [SerializeField] private LayerMask itemsLayer;
+    [SerializeField] private float pullSpeed = 2f;
+    [SerializeField] private float maxPullSpeed = 20f;
+    [SerializeField] private float shootPower = 10f;
+    [SerializeField] private Transform holdingItemPlace = null;
+    public LayerMask itemsLayer;
 
-    private Camera _camera = null;
-    private GameObject closestItem = null;
+    private Camera _camera;
+    private GameObject closestItem;
+    private InputController input;
+    private PlayerState state;
+    private Vector2 cursorPosition;
 
     void Start()
     {
         _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        input = InputController.instance;
+        state = PlayerState.instance;
     }
 
     void Update()
     {
-        Vector2 cursorPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+        cursorPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Vector2.Distance(cursorPosition, transform.position) < range)
+        if (!state.isHoldingItemState && !state.isPullingItemState)
         {
-            FindClosestItem(cursorPosition);
+            if (Vector2.Distance(cursorPosition, transform.position) < range)
+            {
+                FindClosestItem();
+
+                // Light up closest item
+            }
+
+            if (closestItem != null && input.rmb)
+            {
+                closestItem.AddComponent<ItemHandling>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed);
+            }
+        }
+
+        if (state.isHoldingItemState)
+        {
+            if (input.lmb)
+            {
+                ShootItem();
+            }
         }
     }
 
-    void FindClosestItem(Vector2 position)
+    void FindClosestItem()
     {
-        Collider2D[] items = Physics2D.OverlapCircleAll(position, radius, itemsLayer);
+        Collider2D[] items = Physics2D.OverlapCircleAll(cursorPosition, radius, itemsLayer);
 
         if (items.Length == 0)
         {
@@ -45,5 +72,18 @@ public class Telekinesis : MonoBehaviour
                 closestItem = items[i].gameObject;
             }
         }
+    }
+
+    void ShootItem()
+    {
+        Vector2 shootDirection = cursorPosition - (Vector2)transform.position;
+        shootDirection.Normalize();
+        closestItem.transform.SetParent(null);
+        Rigidbody2D closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
+        closestItemRigidbody.velocity = Vector2.zero;
+        closestItemRigidbody.angularVelocity = 0f;
+        closestItemRigidbody.bodyType = RigidbodyType2D.Dynamic;
+        closestItemRigidbody.AddForce(shootDirection * shootPower);
+        state.isHoldingItemState = false;
     }
 }

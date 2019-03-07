@@ -4,11 +4,11 @@ public class InputController : MonoBehaviour
 {
     public static InputController instance = null;
 
-    [SerializeField] private KeyCode rightKey;
-    [SerializeField] private KeyCode leftKey;
-    [SerializeField] private KeyCode jumpKey;
-    [SerializeField] private KeyCode lmbKey;
-    [SerializeField] private KeyCode rmbKey;
+    public KeyCode rightKey;
+    public KeyCode leftKey;
+    public KeyCode jumpKey;
+    public KeyCode lmbKey;
+    public KeyCode rmbKey;
 
     public bool right { get; private set; }
     public bool left { get; private set; }

@@ -9,10 +9,12 @@ public class PlayerState : MonoBehaviour
     [HideInInspector] public bool isHoldingItemState = false;
     [HideInInspector] public bool isPullingItemState = false;
     [HideInInspector] public bool isJumpingState = false;
+    [HideInInspector] public bool isDashingState = false;
 
     // Skills
 
     public bool hasDoubleJump = false;
+    public bool hasDash = false;
 
     void Awake()
     {

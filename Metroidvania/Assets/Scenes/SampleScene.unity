@@ -547,6 +547,8 @@ MonoBehaviour:
   _rigidbody: {fileID: 613379613}
   movementSpeed: 5
   jumpSpeed: 20
+  dashSpeed: 30
+  slowingAfterDashSpeed: 2
 --- !u!212 &613379610
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -694,7 +696,9 @@ MonoBehaviour:
   isHoldingItemState: 0
   isPullingItemState: 0
   isJumpingState: 0
+  isDashingState: 0
   hasDoubleJump: 1
+  hasDash: 1
 --- !u!1 &799801370
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,6 +945,8 @@ MonoBehaviour:
   jumpKey: 32
   lmbKey: 323
   rmbKey: 324
+  dashRightKey: 101
+  dashLeftKey: 113
 --- !u!4 &1206594831
 Transform:
   m_ObjectHideFlags: 0

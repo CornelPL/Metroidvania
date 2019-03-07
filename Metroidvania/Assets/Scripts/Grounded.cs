@@ -30,6 +30,7 @@ public class Grounded : MonoBehaviour
         if (collision.gameObject.layer == groundLayer)
         {
             isGrounded = true;
+            PlayerState.instance.isJumpingState = false;
             if (!invoked)
             {
                 OnGrounded.Invoke();

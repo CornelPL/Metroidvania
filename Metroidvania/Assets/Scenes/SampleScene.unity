@@ -693,6 +693,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHoldingItemState: 0
   isPullingItemState: 0
+  isJumpingState: 0
+  hasDoubleJump: 1
 --- !u!1 &799801370
 GameObject:
   m_ObjectHideFlags: 0

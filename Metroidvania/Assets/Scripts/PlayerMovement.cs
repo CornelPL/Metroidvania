@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float slowingAfterDashSpeed = 1f;
 
+    private int id = -1;
+
     private void Start()
     {
         input = InputController.instance;
@@ -43,7 +45,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckJump()
     {
-        verticalSpeed = _rigidbody.velocity.y;
+        if (!(id > 0 && LeanTween.isTweening(id)))
+        {
+            verticalSpeed = _rigidbody.velocity.y;
+        }
 
         if (input.jumpDown)
         {
@@ -59,9 +64,9 @@ public class PlayerMovement : MonoBehaviour
                 doubleJumped = true;
             }
         }
-        else if (input.jumpUp && verticalSpeed > 0f)
+        else if (input.jumpUp && verticalSpeed > 1f)
         {
-            verticalSpeed = 0f;
+            id =  LeanTween.value(verticalSpeed, 0f, 0.1f).setOnUpdate( (float v) => { verticalSpeed = v; }).id;
         }
     }
 

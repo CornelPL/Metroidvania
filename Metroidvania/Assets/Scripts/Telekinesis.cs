@@ -8,6 +8,7 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float maxPullSpeed = 20f;
     [SerializeField] private float shootPower = 10f;
     [SerializeField] private Transform holdingItemPlace = null;
+    [SerializeField] private float slowmoTimeScale = 0.1f;
     public LayerMask itemsLayer;
 
     private Camera _camera;
@@ -44,8 +45,13 @@ public class Telekinesis : MonoBehaviour
 
         if (state.isHoldingItemState)
         {
-            if (input.lmb)
+            if (input.lmbDown)
             {
+                SlowModeOn();
+            }
+            else if (input.lmbUp)
+            {
+                SlowModeOff();
                 ShootItem();
             }
         }
@@ -85,5 +91,19 @@ public class Telekinesis : MonoBehaviour
         closestItemRigidbody.bodyType = RigidbodyType2D.Dynamic;
         closestItemRigidbody.AddForce(shootDirection * shootPower);
         state.isHoldingItemState = false;
+    }
+
+    void SlowModeOn()
+    {
+        Time.timeScale = slowmoTimeScale;
+        Debug.Log(Time.fixedDeltaTime);
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        Debug.Log(Time.fixedDeltaTime);
+    }
+
+    void SlowModeOff()
+    {
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
 }

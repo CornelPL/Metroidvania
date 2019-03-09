@@ -16,7 +16,8 @@ public class InputController : MonoBehaviour
     public bool left { get; private set; }
     public bool jumpDown { get; private set; }
     public bool jumpUp { get; private set; }
-    public bool lmb { get; private set; }
+    public bool lmbDown { get; private set; }
+    public bool lmbUp { get; private set; }
     public bool rmb { get; private set; }
     public bool dashRight { get; private set; }
     public bool dashLeft { get; private set; }
@@ -35,7 +36,8 @@ public class InputController : MonoBehaviour
         left = Input.GetKey(leftKey);
         jumpDown = Input.GetKeyDown(jumpKey);
         jumpUp = Input.GetKeyUp(jumpKey);
-        lmb = Input.GetKeyDown(lmbKey);
+        lmbDown = Input.GetKeyDown(lmbKey);
+        lmbUp = Input.GetKeyUp(lmbKey);
         rmb = Input.GetKeyDown(rmbKey);
         dashRight = Input.GetKeyDown(dashRightKey);
         dashLeft = Input.GetKeyDown(dashLeftKey);

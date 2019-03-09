@@ -11,7 +11,7 @@ public class Grounded : MonoBehaviour
     [SerializeField] private UnityEvent OnGrounded = null;
     [SerializeField] private UnityEvent OnGroundedOff = null;
 
-    private void Awake()
+    private void Start()
     {
         groundLayer = LayerMask.NameToLayer("Ground");
         state = PlayerState.instance;
@@ -21,8 +21,6 @@ public class Grounded : MonoBehaviour
     {
         if (collision.gameObject.layer == groundLayer)
         {
-            state.isGroundedState = true;
-            state.isJumpingState = false;
             if (!invoked)
             {
                 OnGrounded.Invoke();

@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private float verticalSpeed = 0f;
     private float direction = 1;
     private bool doubleJumped = false;
+    private bool dashedInAir = false;
 
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private float jumpSpeed = 20f;
@@ -24,16 +25,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        #region Movement
+        CheckMovement();
 
+        CheckJump();
+
+        CheckDash();
+
+        ApplyMovement();
+    }
+
+    private void CheckMovement()
+    {
         if (input.right) horizontalSpeed = movementSpeed;
         else if (input.left) horizontalSpeed = -movementSpeed;
         else horizontalSpeed = 0f;
+    }
 
-        #endregion
-
-        #region Jump
-
+    private void CheckJump()
+    {
         verticalSpeed = _rigidbody.velocity.y;
 
         if (input.jump)
@@ -50,24 +59,27 @@ public class PlayerMovement : MonoBehaviour
                 doubleJumped = true;
             }
         }
+    }
 
-        #endregion
-
-        #region Dash
-
-        if (input.dashRight && state.hasDash && !state.isDashingState)
+    private void CheckDash()
+    {
+        if ((input.dashRight || input.dashLeft) && state.hasDash && !state.isDashingState)
         {
-            _rigidbody.AddForce(Vector2.right * dashSpeed, ForceMode2D.Impulse);
-            state.isDashingState = true;
-        }
-        else if (input.dashLeft && state.hasDash && !state.isDashingState)
-        {
-            _rigidbody.AddForce(Vector2.left * dashSpeed, ForceMode2D.Impulse);
-            state.isDashingState = true;
-        }
+            if (!dashedInAir)
+                Dash(input.dashRight ? Vector2.right : Vector2.left);
 
-        #endregion
+            dashedInAir = state.isGroundedState ? false : true;
+        }
+    }
 
+    private void Dash(Vector2 direction)
+    {
+        _rigidbody.AddForce(direction * dashSpeed, ForceMode2D.Impulse);
+        state.isDashingState = true;
+    }
+
+    private void ApplyMovement()
+    {
         direction = Mathf.Sign(_rigidbody.velocity.x);
 
         if (state.isDashingState)
@@ -81,5 +93,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         _rigidbody.velocity = new Vector2(horizontalSpeed, verticalSpeed);
+    }
+
+    public void OnGrounded()
+    {
+        state.isGroundedState = true;
+        state.isJumpingState = false;
+        dashedInAir = false;
     }
 }

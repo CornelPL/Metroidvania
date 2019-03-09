@@ -4,33 +4,25 @@ using UnityEngine.Events;
 [ExecuteInEditMode]
 public class Grounded : MonoBehaviour
 {
-    public static Grounded instance = null;
-
     private int groundLayer;
+    private PlayerState state;
+    private bool invoked = false;
 
     [SerializeField] private UnityEvent OnGrounded = null;
     [SerializeField] private UnityEvent OnGroundedOff = null;
 
-    public bool isGrounded { get; private set; }
-
-    private bool invoked = false;
-
-    private void Start()
+    private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(this);
-
         groundLayer = LayerMask.NameToLayer("Ground");
+        state = PlayerState.instance;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.layer == groundLayer)
         {
-            isGrounded = true;
-            PlayerState.instance.isJumpingState = false;
+            state.isGroundedState = true;
+            state.isJumpingState = false;
             if (!invoked)
             {
                 OnGrounded.Invoke();
@@ -41,9 +33,9 @@ public class Grounded : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (isGrounded == true && collider.gameObject.layer == groundLayer)
+        if (state.isGroundedState && collider.gameObject.layer == groundLayer)
         {
-            isGrounded = false;
+            state.isGroundedState = false;
             OnGroundedOff.Invoke();
             invoked = false;
         }

@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (input.jump)
         {
-            if (Grounded.instance.isGrounded)
+            if (state.isGroundedState)
             {
                 verticalSpeed = jumpSpeed;
                 state.isJumpingState = true;

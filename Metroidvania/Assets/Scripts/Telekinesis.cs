@@ -8,7 +8,6 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float maxPullSpeed = 20f;
     [SerializeField] private float shootPower = 10f;
     [SerializeField] private Transform holdingItemPlace = null;
-    [SerializeField] private float slowmoTimeScale = 0.1f;
     public LayerMask itemsLayer;
 
     private Camera _camera;
@@ -16,6 +15,7 @@ public class Telekinesis : MonoBehaviour
     private InputController input;
     private PlayerState state;
     private Vector2 cursorPosition;
+    private bool isHoldingLMB;
 
     void Start()
     {
@@ -47,12 +47,14 @@ public class Telekinesis : MonoBehaviour
         {
             if (input.lmbDown)
             {
-                SlowModeOn();
+                TimeManager.instance.TurnSlowmoOn();
+                isHoldingLMB = true;
             }
-            else if (input.lmbUp)
+            else if (input.lmbUp && isHoldingLMB)
             {
-                SlowModeOff();
+                TimeManager.instance.TurnSlowmoOff();
                 ShootItem();
+                isHoldingLMB = false;
             }
         }
     }
@@ -89,21 +91,7 @@ public class Telekinesis : MonoBehaviour
         closestItemRigidbody.velocity = Vector2.zero;
         closestItemRigidbody.angularVelocity = 0f;
         closestItemRigidbody.bodyType = RigidbodyType2D.Dynamic;
-        closestItemRigidbody.AddForce(shootDirection * shootPower);
+        closestItemRigidbody.AddForce(shootDirection * shootPower, ForceMode2D.Impulse);
         state.isHoldingItemState = false;
-    }
-
-    void SlowModeOn()
-    {
-        Time.timeScale = slowmoTimeScale;
-        Debug.Log(Time.fixedDeltaTime);
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
-        Debug.Log(Time.fixedDeltaTime);
-    }
-
-    void SlowModeOff()
-    {
-        Time.timeScale = 1f;
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
 }

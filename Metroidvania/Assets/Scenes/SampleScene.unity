@@ -224,7 +224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6858119}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.7782774, y: 1.2784392, z: 0}
+  m_LocalPosition: {x: 3.07, y: -2.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -433,7 +433,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 250553237}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.26, y: 1.17, z: 0}
+  m_LocalPosition: {x: 4.89, y: 8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -687,7 +687,7 @@ MonoBehaviour:
   radius: 1
   pullSpeed: 5
   maxPullSpeed: 20
-  shootPower: 1000
+  shootPower: 20
   holdingItemPlace: {fileID: 1532942443}
   itemsLayer:
     serializedVersion: 2
@@ -933,6 +933,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1206594831}
   - component: {fileID: 1206594830}
+  - component: {fileID: 1206594832}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -973,6 +974,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1206594832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206594829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e60e77398d23a0544ad27abe9c002eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowmoTimeScale: 0.1
+  timeChangeDecreaseSpeed: 3
+  timeChangeIncreaseSpeed: 5
 --- !u!1 &1532942442
 GameObject:
   m_ObjectHideFlags: 0

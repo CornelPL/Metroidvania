@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     {
         verticalSpeed = _rigidbody.velocity.y;
 
-        if (input.jump)
+        if (input.jumpDown)
         {
             if (state.isGroundedState)
             {
@@ -58,6 +58,10 @@ public class PlayerMovement : MonoBehaviour
                 verticalSpeed = jumpSpeed;
                 doubleJumped = true;
             }
+        }
+        else if (input.jumpUp && verticalSpeed > 0f)
+        {
+            verticalSpeed = 0f;
         }
     }
 

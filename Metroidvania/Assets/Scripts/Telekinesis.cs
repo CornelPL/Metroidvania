@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Telekinesis : MonoBehaviour
@@ -9,6 +10,7 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float maxPullSpeed = 20f;
     [SerializeField] private float shootPower = 10f;
     [SerializeField] private float itemFreezeTime = 10f;
+    [SerializeField] private int maxStableItems = 5;
     [SerializeField] private Transform holdingItemPlace = null;
     [SerializeField] private string itemsLayerS = "Items";
     [SerializeField] private string groundLayerS = "Ground";
@@ -21,6 +23,7 @@ public class Telekinesis : MonoBehaviour
     private Vector2 cursorPosition;
     private bool isHoldingLMB;
     private string stableItemsTag = "StableItem";
+    private List<GameObject> stableItems = new List<GameObject>();
 
     void Start()
     {
@@ -63,21 +66,21 @@ public class Telekinesis : MonoBehaviour
             }
             else if (input.rmb)
             {
-                closestItem.transform.SetParent(null);
-                Rigidbody2D closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
-                closestItemRigidbody.velocity = Vector2.zero;
-                closestItemRigidbody.angularVelocity = 0f;
-                state.isHoldingItemState = false;
+                ReleaseItem();                
 
                 if (closestItem.CompareTag(stableItemsTag))
                 {
-                    closestItemRigidbody.simulated = true;
-                    StartCoroutine(SetStableItem(closestItemRigidbody, false, 0f));
-                    StartCoroutine(SetStableItem(closestItemRigidbody, true, itemFreezeTime));
-                }
-                else
-                {
-                    closestItemRigidbody.simulated = true;
+                    if(stableItems.Count < maxStableItems)
+                    {
+                        StartCoroutine(SetStableItem(closestItem, true, 0f));
+                        StartCoroutine(SetStableItem(closestItem, false, itemFreezeTime));
+                    }
+                    else
+                    {
+                        StartCoroutine(SetStableItem(stableItems[0], false, 0f));
+                        StartCoroutine(SetStableItem(closestItem, true, 0f));
+                        StartCoroutine(SetStableItem(closestItem, false, itemFreezeTime));
+                    }
                 }
             }
         }
@@ -110,20 +113,35 @@ public class Telekinesis : MonoBehaviour
     {
         Vector2 shootDirection = cursorPosition - (Vector2)transform.position;
         shootDirection.Normalize();
+        ReleaseItem();
+        closestItem.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootPower, ForceMode2D.Impulse);
+    }
+
+    IEnumerator SetStableItem(GameObject go, bool b, float t)
+    {
+        yield return new WaitForSeconds(t);
+        if (b)
+        {
+            stableItems.Add(go);
+        }
+        else
+        {
+            stableItems.RemoveAt(0);
+        }
+
+        Rigidbody2D rbody = go.GetComponent<Rigidbody2D>();
+        rbody.velocity = Vector2.zero;
+        rbody.bodyType = b ? RigidbodyType2D.Kinematic : RigidbodyType2D.Dynamic;
+        rbody.gameObject.layer = b ? LayerMask.NameToLayer(groundLayerS) : LayerMask.NameToLayer(itemsLayerS);
+    }
+
+    void ReleaseItem()
+    {
         closestItem.transform.SetParent(null);
         Rigidbody2D closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
         closestItemRigidbody.velocity = Vector2.zero;
         closestItemRigidbody.angularVelocity = 0f;
         closestItemRigidbody.simulated = true;
-        closestItemRigidbody.AddForce(shootDirection * shootPower, ForceMode2D.Impulse);
         state.isHoldingItemState = false;
-    }
-
-    IEnumerator SetStableItem(Rigidbody2D rbody, bool b, float t)
-    {
-        yield return new WaitForSeconds(t);
-        rbody.velocity = Vector2.zero;
-        rbody.bodyType = b ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
-        rbody.gameObject.layer = b ? LayerMask.NameToLayer(itemsLayerS) : LayerMask.NameToLayer(groundLayerS);
     }
 }

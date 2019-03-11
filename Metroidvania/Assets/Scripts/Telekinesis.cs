@@ -72,14 +72,12 @@ public class Telekinesis : MonoBehaviour
                 {
                     if(stableItems.Count < maxStableItems)
                     {
-                        StartCoroutine(SetStableItem(closestItem, true, 0f));
-                        StartCoroutine(SetStableItem(closestItem, false, itemFreezeTime));
+                        SetStableItem(closestItem, true, itemFreezeTime);
                     }
                     else
                     {
-                        StartCoroutine(SetStableItem(stableItems[0], false, 0f));
-                        StartCoroutine(SetStableItem(closestItem, true, 0f));
-                        StartCoroutine(SetStableItem(closestItem, false, itemFreezeTime));
+                        SetStableItem(stableItems[0], false);
+                        SetStableItem(closestItem, true, itemFreezeTime);
                     }
                 }
             }
@@ -117,22 +115,25 @@ public class Telekinesis : MonoBehaviour
         closestItem.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootPower, ForceMode2D.Impulse);
     }
 
-    IEnumerator SetStableItem(GameObject go, bool b, float t)
+    void SetStableItem(GameObject go, bool b, float t = 0f)
     {
-        yield return new WaitForSeconds(t);
+        StableItemHandling sih = go.GetComponent<StableItemHandling>();
+        if (sih == null)
+        {
+            sih = go.AddComponent<StableItemHandling>();
+            sih.telekinesis = this;
+        }
+
         if (b)
         {
             stableItems.Add(go);
+            sih.SetStable(LayerMask.NameToLayer(groundLayerS));
+            sih.SetUnstableAfter(t, LayerMask.NameToLayer(itemsLayerS));
         }
         else
         {
-            stableItems.RemoveAt(0);
+            sih.SetUnstableAfter(t, LayerMask.NameToLayer(itemsLayerS));
         }
-
-        Rigidbody2D rbody = go.GetComponent<Rigidbody2D>();
-        rbody.velocity = Vector2.zero;
-        rbody.bodyType = b ? RigidbodyType2D.Kinematic : RigidbodyType2D.Dynamic;
-        rbody.gameObject.layer = b ? LayerMask.NameToLayer(groundLayerS) : LayerMask.NameToLayer(itemsLayerS);
     }
 
     void ReleaseItem()
@@ -143,5 +144,10 @@ public class Telekinesis : MonoBehaviour
         closestItemRigidbody.angularVelocity = 0f;
         closestItemRigidbody.simulated = true;
         state.isHoldingItemState = false;
+    }
+
+    public void RemoveStableItem()
+    {
+        stableItems.RemoveAt(0);
     }
 }

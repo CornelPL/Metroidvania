@@ -115,7 +115,7 @@ public class Telekinesis : MonoBehaviour
         closestItem.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootPower, ForceMode2D.Impulse);
     }
 
-    void SetStableItem(GameObject go, bool b, float t = 0f)
+    void SetStableItem(GameObject go, bool toStable, float t = 0f)
     {
         StableItemHandling sih = go.GetComponent<StableItemHandling>();
         if (sih == null)
@@ -124,7 +124,7 @@ public class Telekinesis : MonoBehaviour
             sih.telekinesis = this;
         }
 
-        if (b)
+        if (toStable)
         {
             stableItems.Add(go);
             sih.SetStable(LayerMask.NameToLayer(groundLayerS));

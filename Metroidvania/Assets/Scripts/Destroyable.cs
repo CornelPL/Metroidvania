@@ -8,7 +8,7 @@ public class Destroyable : MonoBehaviour
     [SerializeField] private float minForce = 5f;
     [SerializeField] private float maxForce = 15f;
 
-    void CustomDestroy()
+    public void CustomDestroy()
     {
         // explosion particles
 
@@ -27,5 +27,7 @@ public class Destroyable : MonoBehaviour
 
             instantiated.GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
         }
+
+        Destroy(gameObject);
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Telekinesis : MonoBehaviour
@@ -16,29 +15,24 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private string groundLayerS = "Ground";
     public LayerMask itemsLayer;
 
-    private Camera _camera;
     private GameObject closestItem;
     private InputController input;
     private PlayerState state;
-    private Vector2 cursorPosition;
     private bool isHoldingLMB;
     private string stableItemsTag = "StableItem";
     private List<GameObject> stableItems = new List<GameObject>();
 
     void Start()
     {
-        _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         input = InputController.instance;
         state = PlayerState.instance;
     }
 
     void Update()
     {
-        cursorPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-
         if (!state.isHoldingItemState && !state.isPullingItemState)
         {
-            if (Vector2.Distance(cursorPosition, transform.position) < range)
+            if (Vector2.Distance(input.cursorPosition, transform.position) < range)
             {
                 FindClosestItem();
 
@@ -86,7 +80,7 @@ public class Telekinesis : MonoBehaviour
 
     void FindClosestItem()
     {
-        Collider2D[] items = Physics2D.OverlapCircleAll(cursorPosition, radius, itemsLayer);
+        Collider2D[] items = Physics2D.OverlapCircleAll(input.cursorPosition, radius, itemsLayer);
 
         if (items.Length == 0)
         {
@@ -109,7 +103,7 @@ public class Telekinesis : MonoBehaviour
 
     void ShootItem()
     {
-        Vector2 shootDirection = cursorPosition - (Vector2)transform.position;
+        Vector2 shootDirection = input.cursorPosition - (Vector2)transform.position;
         shootDirection.Normalize();
         ReleaseItem();
         closestItem.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootPower, ForceMode2D.Impulse);

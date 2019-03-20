@@ -22,12 +22,21 @@ public class InputController : MonoBehaviour
     public bool dashRight { get; private set; }
     public bool dashLeft { get; private set; }
 
+    public Vector2 cursorPosition;
+
+    private Camera _camera;
+
     private void Awake()
     {
         if (instance == null)
             instance = this;
         else if (instance != this)
             Destroy(this);
+    }
+
+    private void Start()
+    {
+        _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     private void Update()
@@ -41,5 +50,7 @@ public class InputController : MonoBehaviour
         rmb = Input.GetKeyDown(rmbKey);
         dashRight = Input.GetKeyDown(dashRightKey);
         dashLeft = Input.GetKeyDown(dashLeftKey);
+
+        cursorPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
     }
 }

@@ -536,6 +536,7 @@ GameObject:
   - component: {fileID: 613379615}
   - component: {fileID: 613379609}
   - component: {fileID: 613379614}
+  - component: {fileID: 613379616}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -715,6 +716,24 @@ MonoBehaviour:
   isDashingState: 0
   hasDoubleJump: 1
   hasDash: 1
+  hasExplosion: 1
+--- !u!114 &613379616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613379608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f5b90fab4c94b42bc2712a073204a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityProjectile: {fileID: 3487007209605572723, guid: 2366ed7b85919d04d85dc8521d792fec,
+    type: 3}
+  startPos: {fileID: 1532942443}
+  shotPower: 10
+  waitTime: 2
 --- !u!1 &799801370
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,6 +946,55 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 1.28}
   m_EdgeRadius: 0
+--- !u!1 &1034376623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1034376625}
+  - component: {fileID: 1034376624}
+  m_Layer: 0
+  m_Name: Destroyable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1034376624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034376623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5beb02e4155473441bfee2cc973ee02e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToInstantiate:
+  - {fileID: 6858119}
+  nMinObjects: 2
+  nMaxObjects: 5
+  minForce: 5
+  maxForce: 15
+--- !u!4 &1034376625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034376623}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7082088, w: 0.7060031}
+  m_LocalPosition: {x: -2.2000003, y: 0.29, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.179}
 --- !u!1 &1053165796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,6 +1160,7 @@ MonoBehaviour:
   rmbKey: 324
   dashRightKey: 101
   dashLeftKey: 113
+  cursorPosition: {x: 0, y: 0}
 --- !u!4 &1206594831
 Transform:
   m_ObjectHideFlags: 0

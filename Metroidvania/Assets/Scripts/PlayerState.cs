@@ -16,6 +16,7 @@ public class PlayerState : MonoBehaviour
 
     public bool hasDoubleJump = false;
     public bool hasDash = false;
+    public bool hasExplosion = false;
 
     void Awake()
     {

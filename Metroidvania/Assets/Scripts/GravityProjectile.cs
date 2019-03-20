@@ -2,8 +2,8 @@
 
 public class GravityProjectile : MonoBehaviour
 {
+    public LayerMask explosionMask;
     [SerializeField] private float explosionRange = 5f;
-    [SerializeField] private LayerMask explosionMask;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

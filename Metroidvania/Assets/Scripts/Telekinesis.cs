@@ -92,7 +92,7 @@ public class Telekinesis : MonoBehaviour
 
         for (int i = 0; i < items.Length; i++)
         {
-            float distanceToItem = Vector2.Distance(items[i].transform.position, transform.position);
+            float distanceToItem = Vector2.Distance(items[i].transform.position, input.cursorPosition);
             if (distanceToItem < smallestDistance)
             {
                 smallestDistance = distanceToItem;

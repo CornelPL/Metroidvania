@@ -574,7 +574,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 613379613}
   movementSpeed: 5
+  runningMultiplier: 1.5
   jumpSpeed: 20
+  flyingSpeed: 2
   dashSpeed: 30
   slowingAfterDashSpeed: 2
 --- !u!212 &613379610
@@ -729,9 +731,13 @@ MonoBehaviour:
   isPullingItemState: 0
   isGroundedState: 0
   isJumpingState: 0
+  isFlyingState: 0
+  isFallingState: 0
   isDashingState: 0
+  isRunningState: 0
   hasDoubleJump: 1
   hasDash: 1
+  hasFlying: 1
   hasExplosion: 1
 --- !u!114 &613379616
 MonoBehaviour:
@@ -1266,11 +1272,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightKey: 100
   leftKey: 97
-  jumpKey: 32
-  lmbKey: 323
-  rmbKey: 324
+  runningKey: 304
   dashRightKey: 101
   dashLeftKey: 113
+  jumpKey: 32
+  flyingKey: 306
+  lmbKey: 323
+  rmbKey: 324
   cursorPosition: {x: 0, y: 0}
 --- !u!4 &1206594831
 Transform:

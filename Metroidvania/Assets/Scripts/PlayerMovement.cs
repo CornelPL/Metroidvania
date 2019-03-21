@@ -56,10 +56,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 verticalSpeed = jumpSpeed;
                 state.isJumpingState = true;
-                doubleJumped = false;
             }
-            else if (state.isJumpingState && state.hasDoubleJump && !doubleJumped)
+            else if ((state.isJumpingState || state.isFallingState) && state.hasDoubleJump && !doubleJumped)
             {
+                state.isJumpingState = true;
                 verticalSpeed = jumpSpeed;
                 doubleJumped = true;
             }
@@ -109,5 +109,6 @@ public class PlayerMovement : MonoBehaviour
         state.isGroundedState = true;
         state.isJumpingState = false;
         dashedInAir = false;
+        doubleJumped = false;
     }
 }

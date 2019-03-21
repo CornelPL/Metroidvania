@@ -10,13 +10,16 @@ public class PlayerState : MonoBehaviour
     [HideInInspector] public bool isPullingItemState = false;
     [HideInInspector] public bool isGroundedState = false;
     [HideInInspector] public bool isJumpingState = false;
+    [HideInInspector] public bool isFlyingState = false;
     [HideInInspector] public bool isFallingState = false;
     [HideInInspector] public bool isDashingState = false;
+    [HideInInspector] public bool isRunningState = false;
 
     // Skills
 
     public bool hasDoubleJump = false;
     public bool hasDash = false;
+    public bool hasFlying = false;
     public bool hasExplosion = false;
 
     // Helpers

@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private float jumpSpeed = 20f;
+    [SerializeField] private float flyingSpeed = 2f;
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float slowingAfterDashSpeed = 1f;
 
@@ -28,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         CheckMovement();
+
+        CheckFlying();
 
         CheckJump();
 
@@ -45,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckJump()
     {
-        if (!(id > 0 && LeanTween.isTweening(id)))
+        if (!(id > 0 && LeanTween.isTweening(id)) && !state.isFlyingState)
         {
             verticalSpeed = _rigidbody.velocity.y;
         }
@@ -64,9 +67,24 @@ public class PlayerMovement : MonoBehaviour
                 doubleJumped = true;
             }
         }
-        else if (input.jumpUp && verticalSpeed > 1f)
+        else if (input.jumpUp && verticalSpeed > 0f)
         {
-            id =  LeanTween.value(verticalSpeed, 0f, 0.1f).setOnUpdate( (float v) => { verticalSpeed = v; }).id;
+            id = LeanTween.value(verticalSpeed, 0f, 0.1f)
+                .setOnUpdate((float v) => { verticalSpeed = v; })
+                .setOnComplete(() => { id = -1; }).id;
+        }
+    }
+
+    private void CheckFlying()
+    {
+        if (state.hasFlying && input.flying && _rigidbody.velocity.y < 0f)
+        {
+            state.isFlyingState = true;
+            verticalSpeed = -flyingSpeed;
+        }
+        else
+        {
+            state.isFlyingState = false;
         }
     }
 

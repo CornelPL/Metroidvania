@@ -30,4 +30,9 @@ public class Destroyable : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    private void OnDrawGizmos()
+    {
+        DrawArrow.ForGizmo(transform.position, transform.up * 2f, Color.red);
+    }
 }

@@ -112,8 +112,9 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Dash(int direction)
     {
         state.isDashingState = true;
-        
-        // shrink player
+
+        // better shrink player
+        transform.localScale = new Vector2(0.3f, 0.3f);
 
         while (state.isDashingState)
         {
@@ -121,6 +122,8 @@ public class PlayerMovement : MonoBehaviour
 
             yield return null;
         }
+
+        transform.localScale = new Vector2(1f, 1f);
     }
 
     private void ApplyMovement()

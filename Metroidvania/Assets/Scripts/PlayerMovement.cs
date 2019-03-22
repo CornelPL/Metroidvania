@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,16 +9,15 @@ public class PlayerMovement : MonoBehaviour
     private PlayerState state;
     private float horizontalSpeed = 0f;
     private float verticalSpeed = 0f;
-    private float direction = 1;
     private bool doubleJumped = false;
-    private bool dashedInAir = false;
+    private bool canDashRight = false;
+    private bool canDashLeft = false;
 
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private float runningMultiplier = 1.5f;
     [SerializeField] private float jumpSpeed = 20f;
     [SerializeField] private float flyingSpeed = 2f;
     [SerializeField] private float dashSpeed = 10f;
-    [SerializeField] private float slowingAfterDashSpeed = 1f;
 
     private int id = -1;
 
@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckMovement()
     {
+        if (state.isDashingState) return;
+
         if (input.right) horizontalSpeed = movementSpeed;
         else if (input.left) horizontalSpeed = -movementSpeed;
         else horizontalSpeed = 0f;
@@ -101,43 +103,60 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckDash()
     {
-        if ((input.dashRight || input.dashLeft) && state.hasDash && !state.isDashingState)
+        if (((input.dashRight && canDashRight) || (input.dashLeft && canDashLeft)) && state.hasDash && !state.isDashingState)
         {
-            if (!dashedInAir)
-                Dash(input.dashRight ? Vector2.right : Vector2.left);
-
-            dashedInAir = state.isGroundedState ? false : true;
+            StartCoroutine(Dash(input.dashRight ? 1 : -1));
         }
     }
 
-    private void Dash(Vector2 direction)
+    IEnumerator Dash(int direction)
     {
-        _rigidbody.AddForce(direction * dashSpeed, ForceMode2D.Impulse);
         state.isDashingState = true;
+        
+        // shrink player
+
+        while (state.isDashingState)
+        {
+            horizontalSpeed = direction * dashSpeed;
+
+            yield return null;
+        }
     }
 
     private void ApplyMovement()
     {
-        direction = Mathf.Sign(_rigidbody.velocity.x);
-
-        if (state.isDashingState)
-        {
-            horizontalSpeed = _rigidbody.velocity.x - direction * slowingAfterDashSpeed;
-
-            if (Mathf.Abs(_rigidbody.velocity.x) < movementSpeed)
-            {
-                state.isDashingState = false;
-            }
-        }
-
         _rigidbody.velocity = new Vector2(horizontalSpeed, verticalSpeed);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Trigger"))
+        {
+            if (collision.GetComponent<DashTrigger>().direction > 0)
+            {
+                canDashLeft = true;
+            }
+            else
+            {
+                canDashRight = true;
+            }
+
+            if (state.isDashingState) state.isDashingState = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Trigger"))
+        {
+            canDashLeft = canDashRight = false;
+        }
     }
 
     public void OnGrounded()
     {
         state.isGroundedState = true;
         state.isJumpingState = false;
-        dashedInAir = false;
         doubleJumped = false;
     }
 }

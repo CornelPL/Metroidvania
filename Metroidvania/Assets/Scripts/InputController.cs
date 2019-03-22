@@ -28,6 +28,7 @@ public class InputController : MonoBehaviour
     public bool jumpDown { get; private set; }
     public bool jumpUp { get; private set; }
     public bool flying { get; private set; }
+    public bool flyingUp { get; private set; }
 
     public bool lmbDown { get; private set; }
     public bool lmbUp { get; private set; }
@@ -61,6 +62,7 @@ public class InputController : MonoBehaviour
         jumpDown = Input.GetKeyDown(jumpKey);
         jumpUp = Input.GetKeyUp(jumpKey);
         flying = Input.GetKey(flyingKey);
+        flyingUp = Input.GetKeyUp(flyingKey);
 
         lmbDown = Input.GetKeyDown(lmbKey);
         lmbUp = Input.GetKeyUp(lmbKey);

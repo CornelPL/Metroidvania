@@ -61,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckJump()
     {
+        if (state.isDashingState) return;
+
         if (!(id > 0 && LeanTween.isTweening(id)) && !state.isFlyingState)
         {
             verticalSpeed = _rigidbody.velocity.y;
@@ -90,12 +92,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckFlying()
     {
+        if (state.isDashingState) return;
+
         if (state.hasFlying && input.flying && _rigidbody.velocity.y < 0f)
         {
             state.isFlyingState = true;
             verticalSpeed = -flyingSpeed;
         }
-        else
+        
+        if (input.flyingUp)
         {
             state.isFlyingState = false;
         }

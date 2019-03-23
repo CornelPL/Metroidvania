@@ -14,6 +14,7 @@ public class Telekinesis : MonoBehaviour
     public LayerMask itemsLayer;
 
     private GameObject closestItem;
+    private GameObject closestStableItem;
     private InputController input;
     private PlayerState state;
     private bool isHoldingLMB;
@@ -28,21 +29,22 @@ public class Telekinesis : MonoBehaviour
 
     void Update()
     {
-        if (!state.isHoldingItemState && !state.isPullingItemState)
+        if (Vector2.Distance(input.cursorPosition, transform.position) < range)
         {
-            if (Vector2.Distance(input.cursorPosition, transform.position) < range)
-            {
-                FindClosestItem();
+            FindClosestItem();
 
-                // Light up closest item
-            }
-
-            if (closestItem != null && input.rmb && !closestItem.CompareTag(stableItemsTag))
-            {
-                closestItem.AddComponent<ItemHandling>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed);
-            }
+            // Light up closest item
         }
-        
+
+        if (!state.isHoldingItemState &&
+            !state.isPullingItemState &&
+            closestItem != null &&
+            input.rmb &&
+            !closestItem.CompareTag(stableItemsTag))
+        {
+            closestItem.AddComponent<ItemHandling>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed);
+        }
+
         if (state.isHoldingItemState)
         {
             if (input.lmbDown)
@@ -58,16 +60,16 @@ public class Telekinesis : MonoBehaviour
             }
         }
 
-        if (input.rmb && closestItem != null && closestItem.CompareTag(stableItemsTag))
+        if (input.rmb && closestStableItem != null)
         {
             if (stableItems.Count < maxStableItems)
             {
-                SetStableItem(closestItem, true, itemFreezeTime);
+                SetStableItem(closestStableItem, true, itemFreezeTime);
             }
             else
             {
                 SetStableItem(stableItems[0], false);
-                SetStableItem(closestItem, true, itemFreezeTime);
+                SetStableItem(closestStableItem, true, itemFreezeTime);
             }
         }
     }
@@ -76,21 +78,26 @@ public class Telekinesis : MonoBehaviour
     {
         Collider2D[] items = Physics2D.OverlapCircleAll(input.cursorPosition, radius, itemsLayer);
 
-        if (items.Length == 0)
-        {
+        if (!state.isHoldingItemState && !state.isPullingItemState)
             closestItem = null;
-            return;
-        }
+
+        closestStableItem = null;
 
         float smallestDistance = Mathf.Infinity;
 
         for (int i = 0; i < items.Length; i++)
         {
-            float distanceToItem = Vector2.Distance(items[i].transform.position, input.cursorPosition);
-            if (distanceToItem < smallestDistance)
+            if (items[i].CompareTag(stableItemsTag))
+                closestStableItem = items[i].gameObject;
+
+            if (!state.isHoldingItemState && !state.isPullingItemState)
             {
-                smallestDistance = distanceToItem;
-                closestItem = items[i].gameObject;
+                float distanceToItem = Vector2.Distance(items[i].transform.position, input.cursorPosition);
+                if (distanceToItem < smallestDistance)
+                {
+                    smallestDistance = distanceToItem;
+                    closestItem = items[i].gameObject;
+                }
             }
         }
     }

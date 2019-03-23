@@ -13,8 +13,7 @@ Nie jest to teraz ważne. Dodać później gdy będzie świat/fabuła.
 ### Telekinesis
 
 Całą telekinezę obsługuje się myszką. Bohater może podnosić przedmioty, które leżą luzem w określonej odległości. Po podniesieniu przedmiot przylatuje do gracza, a ten może nim rzucić.\
-~~Tak jak w Ori and the Blind Forest w momencie rozpoczęcia rzucania spowalnia czas i pokazuje się strzałka w którą stronę możemy rzucić przedmiotem.~~\
-Prawdopodobnie będzie tu problem z klawiszologią (trzebaby przytrzymać lewy przycisk myszy, żeby spowolnił czas i puścić, żeby wystrzelić w kierunku strzałki). Lepszym pomysłem jest natychmiastowe strzelanie w kierunku kursora (może z małym spowolnieniem dla efektu). Przetestować obie opcje.
+Tak jak w Ori and the Blind Forest w momencie rozpoczęcia rzucania spowalnia czas i pokazuje się strzałka w którą stronę możemy rzucić przedmiotem.\
 Przedmioty zachowują się różnie w zależności od typu (czyt. Przedmioty). Na początku gracz może wziąć tylko jeden przedmiot na raz. Wstępnie brak ograniczeń rzucania przedmiotami w stylu energii.
 
 ### Other skills
@@ -25,17 +24,16 @@ Bohater odpycha się od powietrza wyrzucając pod siebie energię i skacze wyże
 
 #### Dash
 
-Bohater obraca się, aby być prostopadle do podłoża i odpycha się od powietrza wyrzucając energię odpowiednio w prawo lub lewo i wykonuje nagły ruch. Dzięki obrotowi jest niższy i może przelecieć przez wąskie dziury w ścianie.\
-W powietrzu może użyć tylko raz - dopóki nie dotknie podłoża. Jeżeli jest na ziemi to ma ograniczenie np. 1 sekundy, żeby nie używać tego cały czas.
+Bohater obraca się, aby być prostopadle do podłoża i odpycha się od powietrza wyrzucając energię odpowiednio w prawo lub lewo i wykonuje nagły ruch. Dzięki obrotowi jest niższy i może przelecieć przez wąskie dziury w ścianie. Może używać tylko na triggerach umieszczonych właście w takich miejscach.
 
 #### Eksplozja
 
-W wybranym miejscu zwiększamy grawitację rozwalając otoczenie oraz przedmioty.
+Wyrzucamy pocisk grawitacyjny, który w miejscu eksplozji zwiększa grawitację rozwalając otoczenie oraz przedmioty.
 
 #### Ustawienie przedmiotu w powietrzu
 
-Gracz może wziąć przedmiot i ustawić go w powietrzu na określony czas (wyłączyć mu działanie grawitacji). Może wtedy na niego wejść. Przedmioty same spadają po tym czasie.\
-Maksymalnie można ustawić w powietrzu x przedmiotów. Po ustawieniu x+1 przedmiotu pierwszy przedmiot spada (kończy nam się siła na utrzymywanie ich wszystkich na raz). Ogranicza to tworzenie pułapek-lawin z mnóstwa przedmiotów ustawionych w powietrzu np. na bossa.
+Gracz spotka na swojej drodze przedmioty zawieszone w polu grawitacyjnym na które normalnie nie można wskoczyć. Po uzyskaniu umiejętności można te przedmioty "opanować" na określony czas (wyłączyć im działanie grawitacji). Można wtedy na nie wejść. Przedmioty przestają być "opanowane" po określonym czasie.\
+Maksymalnie można panować x przedmiotami na raz. Po opanowaniu x+1 przedmiotu pierwszy przedmiot przestaje być opanowany (kończy nam się siła na utrzymywanie ich wszystkich na raz).
 
 #### Podnoszenie ciężkich przedmiotów
 

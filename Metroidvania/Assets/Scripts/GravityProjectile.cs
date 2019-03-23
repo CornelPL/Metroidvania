@@ -17,7 +17,7 @@ public class GravityProjectile : MonoBehaviour
             {
                 // deal dmg to enemy
             }
-            else
+            else if (!colliders[i].CompareTag("StableItem"))
             {
                 CustomDestroy cd = colliders[i].GetComponent<CustomDestroy>();
                 if (cd)

@@ -11,8 +11,6 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float itemFreezeTime = 10f;
     [SerializeField] private int maxStableItems = 5;
     [SerializeField] private Transform holdingItemPlace = null;
-    [SerializeField] private string itemsLayerS = "Items";
-    [SerializeField] private string groundLayerS = "Ground";
     public LayerMask itemsLayer;
 
     private GameObject closestItem;
@@ -39,12 +37,12 @@ public class Telekinesis : MonoBehaviour
                 // Light up closest item
             }
 
-            if (closestItem != null && input.rmb)
+            if (closestItem != null && input.rmb && !closestItem.CompareTag(stableItemsTag))
             {
                 closestItem.AddComponent<ItemHandling>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed);
             }
         }
-
+        
         if (state.isHoldingItemState)
         {
             if (input.lmbDown)
@@ -58,22 +56,18 @@ public class Telekinesis : MonoBehaviour
                 ShootItem();
                 isHoldingLMB = false;
             }
-            else if (input.rmb)
-            {
-                ReleaseItem();                
+        }
 
-                if (closestItem.CompareTag(stableItemsTag))
-                {
-                    if(stableItems.Count < maxStableItems)
-                    {
-                        SetStableItem(closestItem, true, itemFreezeTime);
-                    }
-                    else
-                    {
-                        SetStableItem(stableItems[0], false);
-                        SetStableItem(closestItem, true, itemFreezeTime);
-                    }
-                }
+        if (input.rmb && closestItem != null && closestItem.CompareTag(stableItemsTag))
+        {
+            if (stableItems.Count < maxStableItems)
+            {
+                SetStableItem(closestItem, true, itemFreezeTime);
+            }
+            else
+            {
+                SetStableItem(stableItems[0], false);
+                SetStableItem(closestItem, true, itemFreezeTime);
             }
         }
     }
@@ -109,24 +103,20 @@ public class Telekinesis : MonoBehaviour
         closestItem.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootPower, ForceMode2D.Impulse);
     }
 
-    void SetStableItem(GameObject go, bool toStable, float t = 0f)
+    void SetStableItem(GameObject go, bool toStable, float time = 0f)
     {
         StableItemHandling sih = go.GetComponent<StableItemHandling>();
-        if (sih == null)
-        {
-            sih = go.AddComponent<StableItemHandling>();
-            sih.telekinesis = this;
-        }
+        sih.telekinesis = this;
 
         if (toStable)
         {
             stableItems.Add(go);
-            sih.SetStable(LayerMask.NameToLayer(groundLayerS));
-            sih.SetUnstableAfter(t, LayerMask.NameToLayer(itemsLayerS));
+            sih.SetStable();
+            sih.SetUnstable(time);
         }
         else
         {
-            sih.SetUnstableAfter(t, LayerMask.NameToLayer(itemsLayerS));
+            sih.SetUnstable(time);
         }
     }
 

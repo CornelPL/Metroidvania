@@ -1,48 +1,69 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class StableItemHandling : MonoBehaviour
 {
     [HideInInspector] public Telekinesis telekinesis = null;
 
-    private Rigidbody2D rbody;
     private float timeToUnstable = 0f;
     private int itemsLayer;
+    private int groundLayer;
+    private Coroutine coroutine;
+    private bool isCoroutineRunning = false;
 
-    private void Awake()
-    {
-        rbody = GetComponent<Rigidbody2D>();
-    }
+    [SerializeField] private BoxCollider2D _collider = null;
+    [SerializeField] private SpriteRenderer _renderer = null;
+    [SerializeField] private Color unstableColor = Color.white;
+    [SerializeField] private Color stableColor = Color.white;
+    [SerializeField] private string itemsLayerS = "Items";
+    [SerializeField] private string groundLayerS = "Ground";
 
-    private void Update()
+    private void Start()
     {
-        if (timeToUnstable >= 0f)
-        {
-            timeToUnstable -= Time.deltaTime;
-        }
-        else
-        {
-            SetUnstable();
-        }
+        groundLayer = LayerMask.NameToLayer(groundLayerS);
+        itemsLayer = LayerMask.NameToLayer(itemsLayerS);
     }
 
     private void SetUnstable()
     {
-        rbody.bodyType = RigidbodyType2D.Dynamic;
-        rbody.gameObject.layer = itemsLayer;            
+        // Disappear animation
+        _renderer.color = unstableColor;
+        _collider.isTrigger = true;
         telekinesis.RemoveStableItem();
-        Destroy(this);
+        gameObject.layer = itemsLayer;
+        if (isCoroutineRunning)
+        {
+            StopCoroutine(coroutine);
+            isCoroutineRunning = false;
+        }
     }
 
-    public void SetStable(int groundLayer)
+    private IEnumerator Timer()
     {
-        rbody.velocity = Vector2.zero;
-        rbody.bodyType = RigidbodyType2D.Kinematic;
-        rbody.gameObject.layer = groundLayer;
+        isCoroutineRunning = true;
+
+        while (timeToUnstable >= 0f)
+        {
+            timeToUnstable -= Time.deltaTime;
+            yield return null;
+        }
+
+        SetUnstable();
+
+        isCoroutineRunning = false;
     }
 
-    public void SetUnstableAfter(float time, int _itemsLayer)
+    public void SetStable()
+    {
+        // Appear animation
+        _renderer.color = stableColor;
+        _collider.isTrigger = false;
+        gameObject.layer = groundLayer;
+    }
+
+    public void SetUnstable(float time)
     {
         timeToUnstable = time;
-        itemsLayer = _itemsLayer;
+        coroutine = StartCoroutine(Timer());
     }
 }

@@ -4,18 +4,18 @@ public class PlayerState : MonoBehaviour
 {
     public static PlayerState instance = null;
 
-    // States
+    [Header("States")]
 
-    [HideInInspector] public bool isHoldingItemState = false;
-    [HideInInspector] public bool isPullingItemState = false;
-    [HideInInspector] public bool isGroundedState = false;
-    [HideInInspector] public bool isJumpingState = false;
-    [HideInInspector] public bool isFlyingState = false;
-    [HideInInspector] public bool isFallingState = false;
-    [HideInInspector] public bool isDashingState = false;
-    [HideInInspector] public bool isRunningState = false;
+    public bool isHoldingItemState = false;
+    public bool isPullingItemState = false;
+    public bool isGroundedState = false;
+    public bool isJumpingState = false;
+    public bool isFlyingState = false;
+    public bool isFallingState = false;
+    public bool isDashingState = false;
+    public bool isRunningState = false;
 
-    // Skills
+    [Header("Skills")]
 
     public bool hasDoubleJump = false;
     public bool hasDash = false;

@@ -24,7 +24,7 @@ Bohater odpycha się od powietrza wyrzucając pod siebie energię i skacze wyże
 
 #### Dash
 
-Bohater obraca się, aby być prostopadle do podłoża i odpycha się od powietrza wyrzucając energię odpowiednio w prawo lub lewo i wykonuje nagły ruch. Dzięki obrotowi jest niższy i może przelecieć przez wąskie dziury w ścianie. Może używać tylko na triggerach umieszczonych właście w takich miejscach.
+Bohater obraca się, aby być prostopadle do podłoża i odpycha się od powietrza wyrzucając energię odpowiednio w prawo lub lewo i wykonuje nagły ruch. Dzięki obrotowi jest niższy i może przelecieć przez wąskie dziury w ścianie. Może używać tylko na triggerach umieszczonych właśnie w takich miejscach.
 
 #### Eksplozja
 

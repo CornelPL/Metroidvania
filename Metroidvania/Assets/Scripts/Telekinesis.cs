@@ -12,6 +12,7 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private int maxStableItems = 5;
     [SerializeField] private Transform holdingItemPlace = null;
     public LayerMask itemsLayer;
+    public LayerMask collisionLayer;
 
     private GameObject closestItem;
     private GameObject closestStableItem;
@@ -42,7 +43,8 @@ public class Telekinesis : MonoBehaviour
             input.rmb &&
             !closestItem.CompareTag(stableItemsTag))
         {
-            closestItem.AddComponent<ItemHandling>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed);
+            closestItem.AddComponent<ItemHandling>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed, collisionLayer);
+            state.isPullingItemState = true;
         }
 
         if (state.isHoldingItemState)
@@ -57,6 +59,15 @@ public class Telekinesis : MonoBehaviour
                 TimeManager.instance.TurnSlowmoOff();
                 ShootItem();
                 isHoldingLMB = false;
+            }
+        }
+
+        if (input.rmb && (state.isHoldingItemState || state.isPullingItemState))
+        {
+            ReleaseItem();
+            if (state.isPullingItemState)
+            {
+                closestItem.GetComponent<ItemHandling>().StopPulling();
             }
         }
 
@@ -131,9 +142,13 @@ public class Telekinesis : MonoBehaviour
     {
         closestItem.transform.SetParent(null);
         Rigidbody2D closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
-        closestItemRigidbody.velocity = Vector2.zero;
-        closestItemRigidbody.angularVelocity = 0f;
+        if (state.isHoldingItemState)
+        {
+            closestItemRigidbody.velocity = Vector2.zero;
+            closestItemRigidbody.angularVelocity = 0f;
+        }
         closestItemRigidbody.simulated = true;
+        state.isPullingItemState = false;
         state.isHoldingItemState = false;
     }
 

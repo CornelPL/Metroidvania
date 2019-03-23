@@ -77,6 +77,11 @@ public class PlayerMovement : MonoBehaviour
             }
             else if ((state.isJumpingState || state.isFallingState) && state.hasDoubleJump && !doubleJumped)
             {
+                if (id > 0 && LeanTween.isTweening(id))
+                {
+                    LeanTween.cancel(id);
+                    id = -1;
+                }
                 state.isJumpingState = true;
                 verticalSpeed = jumpSpeed;
                 doubleJumped = true;

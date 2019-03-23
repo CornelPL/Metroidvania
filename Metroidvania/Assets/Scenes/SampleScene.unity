@@ -770,6 +770,9 @@ MonoBehaviour:
   itemsLayer:
     serializedVersion: 2
     m_Bits: 2560
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 16640
 --- !u!114 &613379615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,12 +829,12 @@ PrefabInstance:
     - target: {fileID: 6417654320457713543, guid: 33057ab5e8b0e0d47a77f04442e743c4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.3059916
+      value: 13.4
       objectReference: {fileID: 0}
     - target: {fileID: 6417654320457713543, guid: 33057ab5e8b0e0d47a77f04442e743c4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.13322312
+      value: 13.1
       objectReference: {fileID: 0}
     - target: {fileID: 6417654320457713543, guid: 33057ab5e8b0e0d47a77f04442e743c4,
         type: 3}
@@ -891,7 +894,7 @@ GameObject:
   - component: {fileID: 664140572}
   - component: {fileID: 664140571}
   - component: {fileID: 664140570}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -997,7 +1000,7 @@ GameObject:
   - component: {fileID: 799801373}
   - component: {fileID: 799801372}
   - component: {fileID: 799801371}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

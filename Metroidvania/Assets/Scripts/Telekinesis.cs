@@ -37,14 +37,37 @@ public class Telekinesis : MonoBehaviour
             // Light up closest item
         }
 
-        if (!state.isHoldingItemState &&
+        if (input.rmb)
+        {
+            if (!state.isHoldingItemState &&
             !state.isPullingItemState &&
             closestItem != null &&
-            input.rmb &&
             !closestItem.CompareTag(stableItemsTag))
-        {
-            closestItem.AddComponent<ItemHandling>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed, collisionLayer);
-            state.isPullingItemState = true;
+            {
+                closestItem.AddComponent<ItemHandling>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed, collisionLayer);
+                state.isPullingItemState = true;
+            }
+            else if (state.isHoldingItemState || state.isPullingItemState)
+            {
+                if (state.isPullingItemState)
+                {
+                    closestItem.GetComponent<ItemHandling>().StopPulling();
+                }
+                ReleaseItem();
+            }
+
+            if (closestStableItem != null)
+            {
+                if (stableItems.Count < maxStableItems)
+                {
+                    SetStableItem(closestStableItem, true, itemFreezeTime);
+                }
+                else
+                {
+                    SetStableItem(stableItems[0], false);
+                    SetStableItem(closestStableItem, true, itemFreezeTime);
+                }
+            }
         }
 
         if (state.isHoldingItemState)
@@ -59,28 +82,6 @@ public class Telekinesis : MonoBehaviour
                 TimeManager.instance.TurnSlowmoOff();
                 ShootItem();
                 isHoldingLMB = false;
-            }
-        }
-
-        if (input.rmb && (state.isHoldingItemState || state.isPullingItemState))
-        {
-            ReleaseItem();
-            if (state.isPullingItemState)
-            {
-                closestItem.GetComponent<ItemHandling>().StopPulling();
-            }
-        }
-
-        if (input.rmb && closestStableItem != null)
-        {
-            if (stableItems.Count < maxStableItems)
-            {
-                SetStableItem(closestStableItem, true, itemFreezeTime);
-            }
-            else
-            {
-                SetStableItem(stableItems[0], false);
-                SetStableItem(closestStableItem, true, itemFreezeTime);
             }
         }
     }

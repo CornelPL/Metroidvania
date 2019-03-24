@@ -20,7 +20,6 @@ public class Walker_Horizontal : MonoBehaviour
     {
         previousPosition = transform.position;
 
-        Debug.Log(Vector2.Distance(previousPosition, currentPosition));
         if (Vector2.Distance(previousPosition, currentPosition) < minDistance)
         {
             ChangeDirection();

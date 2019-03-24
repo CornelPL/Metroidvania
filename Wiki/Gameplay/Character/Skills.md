@@ -37,12 +37,12 @@ Wyrzucamy pocisk grawitacyjny, który w miejscu eksplozji zwiększa grawitację 
 #### Ustawienie przedmiotu w powietrzu
 
 Gracz spotka na swojej drodze przedmioty zawieszone w polu grawitacyjnym na które normalnie nie można wskoczyć. Po uzyskaniu umiejętności można te przedmioty "opanować" na określony czas (wyłączyć im działanie grawitacji). Można wtedy na nie wejść. Przedmioty przestają być "opanowane" po określonym czasie.\
-Maksymalnie można panować x przedmiotami na raz. Po opanowaniu x+1 przedmiotu pierwszy przedmiot przestaje być opanowany (kończy nam się siła na utrzymywanie ich wszystkich na raz).
+Maksymalnie można panować x przedmiotami na raz. Po opanowaniu x+1 przedmiotu pierwszy przedmiot przestaje być opanowany (kończy nam się siła na utrzymywanie ich wszystkich na raz).\
 **Można przejść w niedostępne za pomocą żadnej innej umiejętności obszary**
 
 #### Podnoszenie ciężkich przedmiotów
 
-Trzeba być przy samym przedmiocie, żeby siła była największa. Można wtedy przytrzymać ~~LPM~~ F, aby przedmiot podnieść (jeżeli są to np. ciężkie drzwi) lub lekko przepchnąć (jeżeli np. trzeba przesunąć duży kamień).
+Trzeba być przy samym przedmiocie, żeby siła była największa. Można wtedy przytrzymać ~~LPM~~ F, aby przedmiot podnieść (jeżeli są to np. ciężkie drzwi) lub lekko przepchnąć (jeżeli np. trzeba przesunąć duży kamień).\
 **Możne przechodzić przez drzwi podnosząc je do góry**
 
 ### Additional skills

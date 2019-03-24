@@ -20,6 +20,6 @@ public class GravityProjectile : MonoBehaviour
                 Destroy(colliders[i].gameObject);
         }
 
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

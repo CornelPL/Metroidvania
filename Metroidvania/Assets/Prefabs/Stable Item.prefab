@@ -124,5 +124,5 @@ MonoBehaviour:
   _renderer: {fileID: 8995052386362342900}
   unstableColor: {r: 1, g: 1, b: 1, a: 0.39215687}
   stableColor: {r: 1, g: 1, b: 1, a: 1}
-  itemsLayerS: Items
+  itemsLayerS: StableItems
   groundLayerS: Ground

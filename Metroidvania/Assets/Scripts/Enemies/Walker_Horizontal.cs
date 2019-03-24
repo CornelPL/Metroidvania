@@ -37,4 +37,12 @@ public class Walker_Horizontal : MonoBehaviour
     {
         direction = direction > 0 ? -1 : 1;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("StopMark"))
+        {
+            ChangeDirection();
+        }
+    }
 }

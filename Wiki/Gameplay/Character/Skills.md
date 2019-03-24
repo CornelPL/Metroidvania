@@ -30,7 +30,7 @@ Bohater obraca się, aby być prostopadle do podłoża i odpycha się od powietr
 
 #### Eksplozja
 
-Wyrzucamy pocisk grawitacyjny, który w miejscu eksplozji zwiększa grawitację rozwalając otoczenie oraz przedmioty.
+Wyrzucamy pocisk grawitacyjny, który w miejscu eksplozji zwiększa grawitację rozwalając otoczenie oraz przedmioty.\
 **Można rozwalać zagrodzone przejścia**\
 **Dostarcza przedmioty do rzucania**
 

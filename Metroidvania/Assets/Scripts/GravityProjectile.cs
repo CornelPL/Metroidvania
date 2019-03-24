@@ -13,18 +13,11 @@ public class GravityProjectile : MonoBehaviour
 
         for (int i = 0; i < colliders.Length; i++)
         {
-            if (colliders[i].CompareTag("Enemy"))
-            {
-                // deal dmg to enemy
-            }
+            CustomDestroy cd = colliders[i].GetComponent<CustomDestroy>();
+            if (cd)
+                cd.Destroy();
             else
-            {
-                CustomDestroy cd = colliders[i].GetComponent<CustomDestroy>();
-                if (cd)
-                    cd.Destroy();
-                else
-                    Destroy(colliders[i].gameObject);
-            }
+                Destroy(colliders[i].gameObject);
         }
 
         Destroy(this.gameObject);

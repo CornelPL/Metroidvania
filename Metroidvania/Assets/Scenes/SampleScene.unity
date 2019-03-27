@@ -428,7 +428,7 @@ PrefabInstance:
     - target: {fileID: 638782903279524911, guid: fdc0070a79eecd5429da7280ff75088b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 638782903279524911, guid: fdc0070a79eecd5429da7280ff75088b,
         type: 3}
@@ -704,7 +704,8 @@ MonoBehaviour:
   runningMultiplier: 1.5
   jumpSpeed: 23
   flyingSpeed: 2
-  dashSpeed: 15
+  dashSpeed: 30
+  dashTime: 0.25
 --- !u!212 &613379610
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1056,7 +1057,7 @@ Transform:
   m_LocalScale: {x: 16.065, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &785124207
 GameObject:
@@ -1305,7 +1306,7 @@ Transform:
   m_LocalScale: {x: 16.065, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &863861326
 GameObject:

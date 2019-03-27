@@ -12,12 +12,15 @@ public class PlayerMovement : MonoBehaviour
     private bool doubleJumped = false;
     private bool canDashRight = false;
     private bool canDashLeft = false;
+    private bool isDashingThroughWall = false;
+    private bool dashedInAir = false;
 
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private float runningMultiplier = 1.5f;
     [SerializeField] private float jumpSpeed = 20f;
     [SerializeField] private float flyingSpeed = 2f;
     [SerializeField] private float dashSpeed = 10f;
+    [SerializeField] private float dashTime = 0.5f;
 
     private int id = -1;
 
@@ -113,8 +116,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckDash()
     {
-        if (((input.dashRight && canDashRight) || (input.dashLeft && canDashLeft)) && state.hasDash && !state.isDashingState)
+        if (((input.dashRight && canDashRight) || (input.dashLeft && canDashLeft)) &&
+            state.hasDash &&
+            !state.isDashingState)
         {
+            isDashingThroughWall = true;
+            StartCoroutine(Dash(input.dashRight ? 1 : -1));
+        }
+        else if ((input.dashRight || input.dashLeft) && state.hasDash && !state.isDashingState && !dashedInAir)
+        {
+            dashedInAir = state.isGroundedState ? false : true;
+            isDashingThroughWall = false;
             StartCoroutine(Dash(input.dashRight ? 1 : -1));
         }
     }
@@ -128,14 +140,20 @@ public class PlayerMovement : MonoBehaviour
 
         float gravityScaleCopy = _rigidbody.gravityScale;
         _rigidbody.gravityScale = 0f;
+        verticalSpeed = 0f;
 
-        while (state.isDashingState)
+        float t = dashTime;
+
+        while (state.isDashingState && t > 0f)
         {
             horizontalSpeed = direction * dashSpeed;
+
+            if (!isDashingThroughWall) t -= Time.deltaTime;
 
             yield return null;
         }
 
+        state.isDashingState = false;
         _rigidbody.gravityScale = gravityScaleCopy;
         transform.localScale = new Vector2(1f, 1f);
     }
@@ -175,5 +193,6 @@ public class PlayerMovement : MonoBehaviour
         state.isGroundedState = true;
         state.isJumpingState = false;
         doubleJumped = false;
+        dashedInAir = false;
     }
 }

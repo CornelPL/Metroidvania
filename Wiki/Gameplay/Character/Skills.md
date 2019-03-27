@@ -25,8 +25,9 @@ Bohater odpycha się od powietrza wyrzucając pod siebie energię i skacze wyże
 
 #### Dash
 
-Bohater obraca się, aby być prostopadle do podłoża i odpycha się od powietrza wyrzucając energię odpowiednio w prawo lub lewo i wykonuje nagły ruch. Dzięki obrotowi jest niższy i może przelecieć przez wąskie dziury w ścianie. Może używać tylko na triggerach umieszczonych właśnie w takich miejscach.\
+Bohater obraca się, aby być prostopadle do podłoża i odpycha się od powietrza wyrzucając energię odpowiednio w prawo lub lewo i wykonuje nagły ruch. Dzięki obrotowi jest niższy i może przelecieć przez wąskie dziury w ścianie. Jeżeli użyje przy ścianie to będzie leciał do końca. Jeżeli użyje na ziemii lub w powietrzu to przeleci jakiś kawałek.\
 **Pozwala na przechodzenie przez ściany**
+**Podczas dasha jest niewrażliwy na ataki**
 
 #### Eksplozja
 
@@ -42,8 +43,12 @@ Maksymalnie można panować x przedmiotami na raz. Po opanowaniu x+1 przedmiotu 
 
 #### Podnoszenie ciężkich przedmiotów
 
-Trzeba być przy samym przedmiocie, żeby siła była największa. Można wtedy przytrzymać ~~LPM~~ F, aby przedmiot podnieść (jeżeli są to np. ciężkie drzwi) lub lekko przepchnąć (jeżeli np. trzeba przesunąć duży kamień).\
+Trzeba być przy samym przedmiocie, żeby siła była największa. Można wtedy przytrzymać ~~LPM~~ F, aby przedmiot podnieść (jeżeli są to np. ciężkie drzwi).\
 **Możne przechodzić przez drzwi podnosząc je do góry**
+
+#### Uderzenie w ziemię
+
+Odrzuca przeciwników, powoduje trzęsienie ziemii, rozwala przejścia w dół.
 
 ### Additional skills
 

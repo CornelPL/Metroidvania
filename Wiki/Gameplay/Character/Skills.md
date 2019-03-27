@@ -26,7 +26,7 @@ Bohater odpycha się od powietrza wyrzucając pod siebie energię i skacze wyże
 #### Dash
 
 Bohater obraca się, aby być prostopadle do podłoża i odpycha się od powietrza wyrzucając energię odpowiednio w prawo lub lewo i wykonuje nagły ruch. Dzięki obrotowi jest niższy i może przelecieć przez wąskie dziury w ścianie. Jeżeli użyje przy ścianie to będzie leciał do końca. Jeżeli użyje na ziemii lub w powietrzu to przeleci jakiś kawałek.\
-**Pozwala na przechodzenie przez ściany**
+**Pozwala na przechodzenie przez ściany**\
 **Podczas dasha jest niewrażliwy na ataki**
 
 #### Eksplozja

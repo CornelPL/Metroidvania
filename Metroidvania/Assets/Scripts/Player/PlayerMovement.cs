@@ -126,6 +126,9 @@ public class PlayerMovement : MonoBehaviour
         // better shrink player
         transform.localScale = new Vector2(0.3f, 0.3f);
 
+        float gravityScaleCopy = _rigidbody.gravityScale;
+        _rigidbody.gravityScale = 0f;
+
         while (state.isDashingState)
         {
             horizontalSpeed = direction * dashSpeed;
@@ -133,6 +136,7 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
+        _rigidbody.gravityScale = gravityScaleCopy;
         transform.localScale = new Vector2(1f, 1f);
     }
 

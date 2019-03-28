@@ -57,7 +57,7 @@ public class ItemHandling : MonoBehaviour
         isBeingPulled = false;
         PlayerState.instance.isPullingItemState = false;
         transform.SetParent(holdingItemPlace);
-        GetComponent<Rigidbody2D>().simulated = false;
+        rb.simulated = false;
         PlayerState.instance.isHoldingItemState = true;
         Destroy(this);
     }

@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 214221131}
   m_Layer: 13
   m_Name: GroundCheck
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 613379616}
   m_Layer: 10
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -703,9 +703,14 @@ MonoBehaviour:
   movementSpeed: 7
   jumpSpeed: 23
   flyingSpeed: 2
-  slamSpeed: 2
+  slamSpeed: 30
   dashSpeed: 30
   dashTime: 0.25
+  slamRange: 5
+  slamKnockbackForce: 15
+  slamMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!212 &613379610
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -867,7 +872,7 @@ MonoBehaviour:
   hasDash: 1
   hasFlying: 1
   hasExplosion: 1
-  hasSlam: 0
+  hasSlam: 1
 --- !u!114 &613379616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1772,7 +1777,7 @@ MonoBehaviour:
   dashLeftKey: 113
   jumpKey: 32
   flyingKey: 306
-  downKey: 0
+  downKey: 115
   lmbKey: 323
   rmbKey: 324
   cursorPosition: {x: 0, y: 0}
@@ -1991,7 +1996,7 @@ GameObject:
   - component: {fileID: 1532942443}
   m_Layer: 10
   m_Name: holdingItemPlace
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

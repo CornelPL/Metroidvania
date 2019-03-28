@@ -21,14 +21,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float slamSpeed = 2f;
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float dashTime = 0.5f;
+    [SerializeField] private float slamRange = 5f;
+    [SerializeField] private float slamKnockbackForce = 10f;
+    public LayerMask slamMask;
 
-    private int id = -1;
+    private int LeanTweenID = -1;
+
 
     private void Start()
     {
         input = InputController.instance;
         state = PlayerState.instance;
     }
+
 
     private void Update()
     {
@@ -48,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         ApplyMovement();
     }
 
+
     private void CheckMovement()
     {
         if (input.right) horizontalSpeed = movementSpeed;
@@ -55,9 +61,10 @@ public class PlayerMovement : MonoBehaviour
         else horizontalSpeed = 0f;
     }
 
+
     private void CheckJump()
     {
-        if (!(id > 0 && LeanTween.isTweening(id)) && !state.isFlyingState)
+        if (!(LeanTweenID > 0 && LeanTween.isTweening(LeanTweenID)) && !state.isFlyingState)
         {
             verticalSpeed = _rigidbody.velocity.y;
         }
@@ -71,10 +78,10 @@ public class PlayerMovement : MonoBehaviour
             }
             else if ((state.isJumpingState || state.isFallingState) && state.hasDoubleJump && !doubleJumped)
             {
-                if (id > 0 && LeanTween.isTweening(id))
+                if (LeanTweenID > 0 && LeanTween.isTweening(LeanTweenID))
                 {
-                    LeanTween.cancel(id);
-                    id = -1;
+                    LeanTween.cancel(LeanTweenID);
+                    LeanTweenID = -1;
                 }
                 state.isJumpingState = true;
                 verticalSpeed = jumpSpeed;
@@ -83,11 +90,12 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (input.jumpUp && verticalSpeed > 0f)
         {
-            id = LeanTween.value(verticalSpeed, 0f, 0.1f)
+            LeanTweenID = LeanTween.value(verticalSpeed, 0f, 0.1f)
                 .setOnUpdate((float v) => { verticalSpeed = v; })
-                .setOnComplete(() => { id = -1; }).id;
+                .setOnComplete(() => { LeanTweenID = -1; }).id;
         }
     }
+
 
     private void CheckFlying()
     {
@@ -103,14 +111,29 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     private void CheckSlam()
     {
         if(input.down && (state.isJumpingState || state.isFallingState) && state.hasSlam)
         {
             state.isSlammingState = true;
-            verticalSpeed = slamSpeed;
         }
     }
+
+
+    private void Slam()
+    {
+        Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, slamRange, slamMask);
+
+        for (int i = 0; i < objectsInRange.Length; i++)
+        {
+            Vector2 direction = objectsInRange[i].transform.position - transform.position;
+            direction.Normalize();
+            direction.y += 0.5f;
+            objectsInRange[i].attachedRigidbody.AddForce(direction * slamKnockbackForce, ForceMode2D.Impulse);
+        }
+    }
+
 
     private void CheckDash()
     {
@@ -126,6 +149,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash(input.dashRight ? 1 : -1));
         }
     }
+
 
     IEnumerator Dash(int direction)
     {
@@ -152,10 +176,13 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = new Vector2(1f, 1f);
     }
 
+
     private void ApplyMovement()
     {
+        if (state.isSlammingState) verticalSpeed = -slamSpeed;
         _rigidbody.velocity = new Vector2(horizontalSpeed, verticalSpeed);
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -174,6 +201,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Trigger"))
@@ -181,6 +209,7 @@ public class PlayerMovement : MonoBehaviour
             canDashLeft = canDashRight = false;
         }
     }
+
 
     public void OnGrounded()
     {
@@ -192,7 +221,8 @@ public class PlayerMovement : MonoBehaviour
         if (state.isSlammingState)
         {
             state.isSlammingState = false;
-            // SLAM!
+            verticalSpeed = 0f;
+            Slam();
         }
     }
 }

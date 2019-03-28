@@ -62,7 +62,7 @@ public class InputController : MonoBehaviour
         jumpUp = Input.GetKeyUp(jumpKey);
         flying = Input.GetKey(flyingKey);
         flyingUp = Input.GetKeyUp(flyingKey);
-        down = Input.GetKey(downKey);
+        down = Input.GetKeyDown(downKey);
 
         lmbDown = Input.GetKeyDown(lmbKey);
         lmbUp = Input.GetKeyUp(lmbKey);

@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Trigger
   - StopMark
+  - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - StableItems
   - Destroyable
   - GroundCheck
-  - Environment
+  - Wall
   - Enemy
   - 
   - 

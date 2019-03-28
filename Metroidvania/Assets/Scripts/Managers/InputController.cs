@@ -7,7 +7,6 @@ public class InputController : MonoBehaviour
     [Header("Movement")]
     public KeyCode rightKey;
     public KeyCode leftKey;
-    public KeyCode runningKey;
     public KeyCode dashRightKey;
     public KeyCode dashLeftKey;
 
@@ -22,7 +21,6 @@ public class InputController : MonoBehaviour
 
     public bool right { get; private set; }
     public bool left { get; private set; }
-    public bool running { get; private set; }
     public bool dashLeft { get; private set; }
     public bool dashRight { get; private set; }
 
@@ -57,7 +55,6 @@ public class InputController : MonoBehaviour
     {
         right = Input.GetKey(rightKey);
         left = Input.GetKey(leftKey);
-        running = Input.GetKey(runningKey);
         dashRight = Input.GetKeyDown(dashRightKey);
         dashLeft = Input.GetKeyDown(dashLeftKey);
 

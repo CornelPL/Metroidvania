@@ -14,7 +14,6 @@ public class PlayerState : MonoBehaviour
     public bool isFallingState = false;
     public bool isSlammingState = false;
     public bool isDashingState = false;
-    public bool isRunningState = false;
 
     [Header("Skills")]
 

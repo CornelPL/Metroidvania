@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     private bool dashedInAir = false;
 
     [SerializeField] private float movementSpeed = 5f;
-    [SerializeField] private float runningMultiplier = 1.5f;
     [SerializeField] private float jumpSpeed = 20f;
     [SerializeField] private float flyingSpeed = 2f;
     [SerializeField] private float slamSpeed = 2f;
@@ -54,16 +53,6 @@ public class PlayerMovement : MonoBehaviour
         if (input.right) horizontalSpeed = movementSpeed;
         else if (input.left) horizontalSpeed = -movementSpeed;
         else horizontalSpeed = 0f;
-
-        if (input.running && state.isGroundedState)
-        {
-            horizontalSpeed *= runningMultiplier;
-            state.isRunningState = true;
-        }
-        else
-        {
-            state.isRunningState = false;
-        }
     }
 
     private void CheckJump()

@@ -127,9 +127,8 @@ public class PlayerMovement : MonoBehaviour
 
         for (int i = 0; i < objectsInRange.Length; i++)
         {
-            Vector2 direction = objectsInRange[i].transform.position - transform.position;
+            Vector2 direction = objectsInRange[i].transform.position - new Vector3(transform.position.x, transform.position.y - 1f);
             direction.Normalize();
-            direction.y += 0.5f;
             objectsInRange[i].attachedRigidbody.AddForce(direction * slamKnockbackForce, ForceMode2D.Impulse);
         }
     }

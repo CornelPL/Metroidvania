@@ -710,7 +710,7 @@ MonoBehaviour:
   slamKnockbackForce: 15
   slamMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 33280
 --- !u!212 &613379610
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1078,9 +1078,9 @@ GameObject:
   - component: {fileID: 785124212}
   - component: {fileID: 785124211}
   - component: {fileID: 785124208}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1207,7 +1207,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &799801370
 GameObject:
   m_ObjectHideFlags: 0

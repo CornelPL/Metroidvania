@@ -30,63 +30,31 @@ public class Telekinesis : MonoBehaviour
 
     void Update()
     {
+        CheckForItems();
+
+        if (input.rmb)
+        {
+            CheckItem();
+
+            CheckStableItem();
+        }
+
+        CheckShoot();
+    }
+
+    
+    private void CheckForItems()
+    {
         if (Vector2.Distance(input.cursorPosition, transform.position) < range)
         {
             FindClosestItem();
 
             // Light up closest item
         }
-
-        if (input.rmb)
-        {
-            if (!state.isHoldingItemState &&
-            !state.isPullingItemState &&
-            closestItem != null &&
-            !closestItem.CompareTag(stableItemsTag))
-            {
-                closestItem.AddComponent<ItemHandling>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed, collisionLayer);
-                state.isPullingItemState = true;
-            }
-            else if (state.isHoldingItemState || state.isPullingItemState)
-            {
-                if (state.isPullingItemState)
-                {
-                    closestItem.GetComponent<ItemHandling>().StopPulling();
-                }
-                ReleaseItem();
-            }
-
-            if (closestStableItem != null)
-            {
-                if (stableItems.Count < maxStableItems)
-                {
-                    SetStableItem(closestStableItem, true, itemFreezeTime);
-                }
-                else
-                {
-                    SetStableItem(stableItems[0], false);
-                    SetStableItem(closestStableItem, true, itemFreezeTime);
-                }
-            }
-        }
-
-        if (state.isHoldingItemState)
-        {
-            if (input.lmbDown)
-            {
-                TimeManager.instance.TurnSlowmoOn();
-                isHoldingLMB = true;
-            }
-            else if (input.lmbUp && isHoldingLMB)
-            {
-                TimeManager.instance.TurnSlowmoOff();
-                ShootItem();
-                isHoldingLMB = false;
-            }
-        }
     }
 
-    void FindClosestItem()
+
+    private void FindClosestItem()
     {
         Collider2D[] items = Physics2D.OverlapCircleAll(input.cursorPosition, radius, itemsLayer);
 
@@ -115,7 +83,66 @@ public class Telekinesis : MonoBehaviour
         }
     }
 
-    void ShootItem()
+
+    private void CheckItem()
+    {
+        if (!state.isHoldingItemState &&
+            !state.isPullingItemState &&
+            closestItem != null &&
+            !closestItem.CompareTag(stableItemsTag))
+        {
+            closestItem.AddComponent<ItemHandling>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed, collisionLayer);
+            state.isPullingItemState = true;
+        }
+        else if (state.isHoldingItemState || state.isPullingItemState)
+        {
+            if (state.isPullingItemState)
+            {
+                closestItem.GetComponent<ItemHandling>().StopPulling();
+            }
+
+            ReleaseItem();
+        }
+    }
+
+
+    private void CheckStableItem()
+    {
+        if (closestStableItem != null)
+        {
+            if (stableItems.Count < maxStableItems)
+            {
+                SetStableItem(closestStableItem, true, itemFreezeTime);
+            }
+            else
+            {
+                SetStableItem(stableItems[0], false);
+                SetStableItem(closestStableItem, true, itemFreezeTime);
+            }
+        }
+    }
+
+
+    private void CheckShoot()
+    {
+        if (state.isHoldingItemState)
+        {
+            if (input.lmbDown)
+            {
+                TimeManager.instance.TurnSlowmoOn();
+                isHoldingLMB = true;
+            }
+            else if (input.lmbUp && isHoldingLMB)
+            {
+                TimeManager.instance.TurnSlowmoOff();
+                ShootItem();
+                isHoldingLMB = false;
+            }
+        }
+    }
+
+
+    private void ShootItem()
     {
         Vector2 shootDirection = input.cursorPosition - (Vector2)transform.position;
         shootDirection.Normalize();
@@ -123,7 +150,8 @@ public class Telekinesis : MonoBehaviour
         closestItem.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootPower, ForceMode2D.Impulse);
     }
 
-    void SetStableItem(GameObject go, bool toStable, float time = 0f)
+
+    private void SetStableItem(GameObject go, bool toStable, float time = 0f)
     {
         StableItemHandling sih = go.GetComponent<StableItemHandling>();
         sih.telekinesis = this;
@@ -140,7 +168,8 @@ public class Telekinesis : MonoBehaviour
         }
     }
 
-    void ReleaseItem()
+
+    private void ReleaseItem()
     {
         closestItem.transform.SetParent(null);
         Rigidbody2D closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
@@ -153,6 +182,7 @@ public class Telekinesis : MonoBehaviour
         state.isPullingItemState = false;
         state.isHoldingItemState = false;
     }
+
 
     public void RemoveStableItem()
     {

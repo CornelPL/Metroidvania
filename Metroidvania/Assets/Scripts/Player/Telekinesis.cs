@@ -44,6 +44,11 @@ public class Telekinesis : MonoBehaviour
     
     private void CheckForItems()
     {
+        if (!state.isHoldingItemState && !state.isPullingItemState)
+            closestItem = null;
+
+        closestStableItem = null;
+
         if (Vector2.Distance(input.cursorPosition, transform.position) < range)
         {
             FindClosestItem();
@@ -56,11 +61,6 @@ public class Telekinesis : MonoBehaviour
     private void FindClosestItem()
     {
         Collider2D[] items = Physics2D.OverlapCircleAll(input.cursorPosition, radius, itemsLayer);
-
-        if (!state.isHoldingItemState && !state.isPullingItemState)
-            closestItem = null;
-
-        closestStableItem = null;
 
         float smallestDistance = Mathf.Infinity;
 

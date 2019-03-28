@@ -183,11 +183,20 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Trigger"))
+        if (state.isDashingState && (collision.collider.CompareTag("Wall") || collision.collider.CompareTag("Ground")))
         {
-            if (collision.GetComponent<DashTrigger>().direction > 0)
+            state.isDashingState = false;
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Trigger"))
+        {
+            if (collider.GetComponent<DashTrigger>().direction > 0)
             {
                 canDashLeft = true;
             }
@@ -201,9 +210,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collision.CompareTag("Trigger"))
+        if (collider.CompareTag("Trigger"))
         {
             canDashLeft = canDashRight = false;
         }

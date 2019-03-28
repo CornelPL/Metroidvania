@@ -4,10 +4,9 @@ public class ItemHandling : MonoBehaviour
 {
     private bool isBeingPulled = false;
     private Transform holdingItemPlace;
-    private Vector2 desiredVector;      
+    private Vector2 direction;      
     private Rigidbody2D rb;
-    private float pullSpeed;
-    private float maxPullSpeed;
+    private float pullForce;
     private LayerMask mask;
 
     void Start()
@@ -19,11 +18,10 @@ public class ItemHandling : MonoBehaviour
     {
         if (isBeingPulled)
         {
-            desiredVector = holdingItemPlace.position - transform.position;
-            desiredVector.Normalize();
-            if(pullSpeed < maxPullSpeed)
-                pullSpeed *= 1.1f;
-            rb.velocity = desiredVector * pullSpeed;
+            direction = holdingItemPlace.position - transform.position;
+            direction.Normalize();
+
+            rb.AddForce(direction * pullForce, ForceMode2D.Force);
 
             // Check if object is in place
             if (Vector2.Distance(transform.position, holdingItemPlace.position) < 0.5f)
@@ -41,13 +39,12 @@ public class ItemHandling : MonoBehaviour
         }
     }
 
-    public void Pull(Transform t, float p, float maxp, LayerMask _mask)
+    public void Pull(Transform t, float p, LayerMask _mask)
     {
         PlayerState.instance.isPullingItemState = true;
         isBeingPulled = true;
         holdingItemPlace = t;
-        pullSpeed = p;
-        maxPullSpeed = maxp;
+        pullForce = p;
         mask = _mask;
     }
 

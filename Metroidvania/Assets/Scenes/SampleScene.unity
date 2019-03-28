@@ -836,8 +836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 10
   radius: 1
-  pullSpeed: 5
-  maxPullSpeed: 20
+  pullForce: 75
   shootPower: 20
   itemFreezeTime: 5
   maxStableItems: 1

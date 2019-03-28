@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float runningMultiplier = 1.5f;
     [SerializeField] private float jumpSpeed = 20f;
     [SerializeField] private float flyingSpeed = 2f;
+    [SerializeField] private float slamSpeed = 2f;
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float dashTime = 0.5f;
 
@@ -32,21 +33,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        CheckMovement();
+        if (!state.isDashingState && !state.isSlammingState)
+        {
+            CheckMovement();
 
-        CheckFlying();
+            CheckFlying();
 
-        CheckJump();
+            CheckJump();
 
-        CheckDash();
+            CheckSlam();
+
+            CheckDash();
+        }
 
         ApplyMovement();
     }
 
     private void CheckMovement()
     {
-        if (state.isDashingState) return;
-
         if (input.right) horizontalSpeed = movementSpeed;
         else if (input.left) horizontalSpeed = -movementSpeed;
         else horizontalSpeed = 0f;
@@ -64,8 +68,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckJump()
     {
-        if (state.isDashingState) return;
-
         if (!(id > 0 && LeanTween.isTweening(id)) && !state.isFlyingState)
         {
             verticalSpeed = _rigidbody.velocity.y;
@@ -100,8 +102,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckFlying()
     {
-        if (state.isDashingState) return;
-
         if (state.hasFlying && input.flying && _rigidbody.velocity.y < 0f)
         {
             state.isFlyingState = true;
@@ -114,19 +114,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void CheckSlam()
+    {
+        if(input.down && (state.isJumpingState || state.isFallingState) && state.hasSlam)
+        {
+            state.isSlammingState = true;
+            verticalSpeed = slamSpeed;
+        }
+    }
+
     private void CheckDash()
     {
-        if (((input.dashRight && canDashRight) || (input.dashLeft && canDashLeft)) &&
-            state.hasDash &&
-            !state.isDashingState)
+        if (((input.dashRight && canDashRight) || (input.dashLeft && canDashLeft)) && state.hasDash)
         {
             isDashingThroughWall = true;
             StartCoroutine(Dash(input.dashRight ? 1 : -1));
         }
-        else if ((input.dashRight || input.dashLeft) && state.hasDash && !state.isDashingState && !dashedInAir)
+        else if ((input.dashRight || input.dashLeft) && state.hasDash && !dashedInAir)
         {
-            dashedInAir = state.isGroundedState ? false : true;
             isDashingThroughWall = false;
+            dashedInAir = state.isGroundedState ? false : true;
             StartCoroutine(Dash(input.dashRight ? 1 : -1));
         }
     }
@@ -134,15 +141,13 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Dash(int direction)
     {
         state.isDashingState = true;
+        verticalSpeed = 0f;
+        float gravityScaleCopy = _rigidbody.gravityScale;
+        _rigidbody.gravityScale = 0f;
+        float t = dashTime;
 
         // better shrink player
         transform.localScale = new Vector2(0.3f, 0.3f);
-
-        float gravityScaleCopy = _rigidbody.gravityScale;
-        _rigidbody.gravityScale = 0f;
-        verticalSpeed = 0f;
-
-        float t = dashTime;
 
         while (state.isDashingState && t > 0f)
         {
@@ -194,5 +199,11 @@ public class PlayerMovement : MonoBehaviour
         state.isJumpingState = false;
         doubleJumped = false;
         dashedInAir = false;
+
+        if (state.isSlammingState)
+        {
+            state.isSlammingState = false;
+            // SLAM!
+        }
     }
 }

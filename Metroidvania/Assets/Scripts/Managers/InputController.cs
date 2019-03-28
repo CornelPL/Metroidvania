@@ -14,6 +14,7 @@ public class InputController : MonoBehaviour
     [Header("Air")]
     public KeyCode jumpKey;
     public KeyCode flyingKey;
+    public KeyCode downKey;
 
     [Header("Mouse")]
     public KeyCode lmbKey;
@@ -29,6 +30,7 @@ public class InputController : MonoBehaviour
     public bool jumpUp { get; private set; }
     public bool flying { get; private set; }
     public bool flyingUp { get; private set; }
+    public bool down { get; private set; }
 
     public bool lmbDown { get; private set; }
     public bool lmbUp { get; private set; }
@@ -63,6 +65,7 @@ public class InputController : MonoBehaviour
         jumpUp = Input.GetKeyUp(jumpKey);
         flying = Input.GetKey(flyingKey);
         flyingUp = Input.GetKeyUp(flyingKey);
+        down = Input.GetKey(downKey);
 
         lmbDown = Input.GetKeyDown(lmbKey);
         lmbUp = Input.GetKeyUp(lmbKey);

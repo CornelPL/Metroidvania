@@ -12,6 +12,7 @@ public class PlayerState : MonoBehaviour
     public bool isJumpingState = false;
     public bool isFlyingState = false;
     public bool isFallingState = false;
+    public bool isSlammingState = false;
     public bool isDashingState = false;
     public bool isRunningState = false;
 
@@ -21,6 +22,7 @@ public class PlayerState : MonoBehaviour
     public bool hasDash = false;
     public bool hasFlying = false;
     public bool hasExplosion = false;
+    public bool hasSlam = false;
 
     // Helpers
     private Rigidbody2D _rigidbody;

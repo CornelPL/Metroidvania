@@ -701,9 +701,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 613379613}
   movementSpeed: 7
-  runningMultiplier: 1.5
   jumpSpeed: 23
   flyingSpeed: 2
+  slamSpeed: 2
   dashSpeed: 30
   dashTime: 0.25
 --- !u!212 &613379610
@@ -861,12 +861,13 @@ MonoBehaviour:
   isJumpingState: 0
   isFlyingState: 0
   isFallingState: 0
+  isSlammingState: 0
   isDashingState: 0
-  isRunningState: 0
   hasDoubleJump: 1
   hasDash: 1
   hasFlying: 1
   hasExplosion: 1
+  hasSlam: 0
 --- !u!114 &613379616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,12 +900,12 @@ PrefabInstance:
     - target: {fileID: 6417654320457713543, guid: 33057ab5e8b0e0d47a77f04442e743c4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.4
+      value: 21.2
       objectReference: {fileID: 0}
     - target: {fileID: 6417654320457713543, guid: 33057ab5e8b0e0d47a77f04442e743c4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.1
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6417654320457713543, guid: 33057ab5e8b0e0d47a77f04442e743c4,
         type: 3}
@@ -1767,11 +1768,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightKey: 100
   leftKey: 97
-  runningKey: 304
   dashRightKey: 101
   dashLeftKey: 113
   jumpKey: 32
   flyingKey: 306
+  downKey: 0
   lmbKey: 323
   rmbKey: 324
   cursorPosition: {x: 0, y: 0}
@@ -2487,12 +2488,12 @@ PrefabInstance:
     - target: {fileID: 6417654320457713543, guid: 33057ab5e8b0e0d47a77f04442e743c4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.4
+      value: 24.6
       objectReference: {fileID: 0}
     - target: {fileID: 6417654320457713543, guid: 33057ab5e8b0e0d47a77f04442e743c4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.9
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: 6417654320457713543, guid: 33057ab5e8b0e0d47a77f04442e743c4,
         type: 3}

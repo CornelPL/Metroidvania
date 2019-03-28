@@ -100,9 +100,10 @@ public class Telekinesis : MonoBehaviour
         for (int i = 0; i < items.Length; i++)
         {
             if (items[i].CompareTag(stableItemsTag))
+            {
                 closestStableItem = items[i].gameObject;
-
-            if (!state.isHoldingItemState && !state.isPullingItemState)
+            }
+            else if (!state.isHoldingItemState && !state.isPullingItemState)
             {
                 float distanceToItem = Vector2.Distance(items[i].transform.position, input.cursorPosition);
                 if (distanceToItem < smallestDistance)

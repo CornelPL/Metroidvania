@@ -1772,8 +1772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightKey: 100
   leftKey: 97
-  dashRightKey: 101
-  dashLeftKey: 113
+  dashKey: 304
   jumpKey: 32
   flyingKey: 306
   downKey: 115

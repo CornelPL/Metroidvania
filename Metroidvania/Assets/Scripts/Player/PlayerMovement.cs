@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canDashRight = false;
     private bool canDashLeft = false;
     private bool isDashingThroughWall = false;
+    private bool isDashingRight = false;
     private bool dashedInAir = false;
 
     [SerializeField] private float movementSpeed = 5f;
@@ -139,12 +140,14 @@ public class PlayerMovement : MonoBehaviour
         if (((input.dashRight && canDashRight) || (input.dashLeft && canDashLeft)) && state.hasDash)
         {
             isDashingThroughWall = true;
+            isDashingRight = input.dashRight ? true : false;
             StartCoroutine(Dash(input.dashRight ? 1 : -1));
         }
         else if ((input.dashRight || input.dashLeft) && state.hasDash && !dashedInAir)
         {
             isDashingThroughWall = false;
             dashedInAir = state.isGroundedState ? false : true;
+            isDashingRight = input.dashRight ? true : false;
             StartCoroutine(Dash(input.dashRight ? 1 : -1));
         }
     }
@@ -196,16 +199,30 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collider.CompareTag("Trigger"))
         {
-            if (collider.GetComponent<DashTrigger>().direction > 0)
+            if (collider.GetComponent<DashTrigger>().isRight)
             {
+                if (state.isDashingState)
+                {
+                    if (!isDashingRight)
+                        isDashingThroughWall = true;
+                    else
+                        state.isDashingState = false;
+                }
+
                 canDashLeft = true;
             }
             else
             {
+                if (state.isDashingState)
+                {
+                    if (isDashingRight)
+                        isDashingThroughWall = true;
+                    else
+                        state.isDashingState = false;
+                }
+
                 canDashRight = true;
             }
-
-            if (state.isDashingState) state.isDashingState = false;
         }
     }
 

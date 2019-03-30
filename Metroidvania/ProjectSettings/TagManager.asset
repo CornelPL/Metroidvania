@@ -10,6 +10,7 @@ TagManager:
   - StopMark
   - Ground
   - Wall
+  - Boundary
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,7 @@ public class ItemHandling : MonoBehaviour
     private Rigidbody2D rb;
     private float pullForce;
     private LayerMask mask;
+    private int damage;
 
     void Start()
     {
@@ -31,11 +32,11 @@ public class ItemHandling : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isBeingPulled && !collision.gameObject.GetComponent<Rigidbody2D>())
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            //StopPulling();
+            collision.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
         }
     }
 

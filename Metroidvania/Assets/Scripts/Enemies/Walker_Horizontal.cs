@@ -4,6 +4,7 @@ public class Walker_Horizontal : MonoBehaviour
 {
     [SerializeField] private float speed = 3f;
     [SerializeField] private float minDistance = 0.1f;
+    [SerializeField] private int damage = 20;
 
     private Rigidbody2D _rigidbody;
     private int direction = 1;
@@ -43,6 +44,10 @@ public class Walker_Horizontal : MonoBehaviour
         if (collision.gameObject.CompareTag("StopMark"))
         {
             ChangeDirection();
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.GetComponent<HealthManager>().TakeDamage(damage);
         }
     }
 }

@@ -12,6 +12,8 @@ public class HoldingItemPlacePosition : MonoBehaviour
 
     private void Update()
     {
+        if (PlayerState.instance.isPullingItemState) return;
+
         ChooseOffset();
 
         UpdateCameraPosition();

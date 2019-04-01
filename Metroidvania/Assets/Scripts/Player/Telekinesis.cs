@@ -6,6 +6,9 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float range = 10f;
     [SerializeField] private float radius = 1f;
     [SerializeField] private float pullForce = 75f;
+    [SerializeField] private float maxPullForce = 50f;
+    [SerializeField] private float pullSpeed = 50f;
+    [SerializeField] private float maxPullSpeed = 50f;
     [SerializeField] private float shootPower = 10f;
     [SerializeField] private float itemFreezeTime = 10f;
     [SerializeField] private int maxStableItems = 5;
@@ -90,7 +93,7 @@ public class Telekinesis : MonoBehaviour
             closestItem != null &&
             !closestItem.CompareTag(stableItemsTag))
         {
-            closestItem.AddComponent<ItemHandling>().Pull(holdingItemPlace, pullForce, collisionLayer);
+            closestItem.AddComponent<ItemHandling>().Pull(holdingItemPlace, pullForce, maxPullForce, pullSpeed, maxPullSpeed, collisionLayer);
             state.isPullingItemState = true;
         }
         else if (state.isHoldingItemState || state.isPullingItemState)

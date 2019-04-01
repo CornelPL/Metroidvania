@@ -836,8 +836,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 10
   radius: 1
-  pullForce: 150
-  shootPower: 20
+  pullForce: 400
+  maxPullForce: 50
+  pullSpeed: 50
+  maxPullSpeed: 50
+  shootPower: 50
   itemFreezeTime: 5
   maxStableItems: 1
   holdingItemPlace: {fileID: 1532942443}
@@ -968,6 +971,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6417654320457713545, guid: 33057ab5e8b0e0d47a77f04442e743c4,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33057ab5e8b0e0d47a77f04442e743c4, type: 3}
@@ -2750,6 +2758,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 32.733
+      objectReference: {fileID: 0}
+    - target: {fileID: 6417654320457713545, guid: 33057ab5e8b0e0d47a77f04442e743c4,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33057ab5e8b0e0d47a77f04442e743c4, type: 3}

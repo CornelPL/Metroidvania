@@ -146,7 +146,7 @@ public class Telekinesis : MonoBehaviour
 
     private void ShootItem()
     {
-        Vector2 shootDirection = input.cursorPosition - (Vector2)transform.position;
+        Vector2 shootDirection = input.cursorPosition - (Vector2)holdingItemPlace.position;
         shootDirection.Normalize();
         ReleaseItem();
         closestItem.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootPower, ForceMode2D.Impulse);

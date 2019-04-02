@@ -3,7 +3,7 @@
 public class Walker_Horizontal : MonoBehaviour
 {
     [SerializeField] private float speed = 3f;
-    [SerializeField] private float minDistance = 0.1f;
+    [SerializeField] private float minSpeed = 0.5f;
     [SerializeField] private int damage = 20;
 
     private Rigidbody2D _rigidbody;
@@ -22,8 +22,7 @@ public class Walker_Horizontal : MonoBehaviour
     private void FixedUpdate()
     {
         previousPosition = transform.position;
-
-        if (Vector2.Distance(previousPosition, currentPosition) < minDistance)
+        if (Mathf.Abs(_rigidbody.velocity.x) < minSpeed)
         {
             ChangeDirection();
         }

@@ -841,6 +841,7 @@ MonoBehaviour:
   pullSpeed: 20
   maxPullSpeed: 50
   shootPower: 30
+  slowmoMaxTime: 2
   stableItemFreezeTime: 5
   maxStableItems: 2
   holdingItemPlace: {fileID: 1532942443}
@@ -1119,7 +1120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  minDistance: 0.03
+  minSpeed: 0.5
   damage: 20
 --- !u!212 &785124209
 SpriteRenderer:
@@ -1177,7 +1178,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785124207}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.1, y: 9.9, z: -0.11597392}
+  m_LocalPosition: {x: 27.52, y: 8.6, z: -0.11597392}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2739,12 +2740,12 @@ PrefabInstance:
     - target: {fileID: 638782903279524911, guid: fdc0070a79eecd5429da7280ff75088b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.64
+      value: 24.63
       objectReference: {fileID: 0}
     - target: {fileID: 638782903279524911, guid: fdc0070a79eecd5429da7280ff75088b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.3
+      value: 8.23
       objectReference: {fileID: 0}
     - target: {fileID: 638782903279524911, guid: fdc0070a79eecd5429da7280ff75088b,
         type: 3}

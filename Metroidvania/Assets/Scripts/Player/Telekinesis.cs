@@ -10,7 +10,7 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float pullSpeed = 50f;
     [SerializeField] private float maxPullSpeed = 50f;
     [SerializeField] private float shootPower = 10f;
-    [SerializeField] private float itemFreezeTime = 10f;
+    [SerializeField] private float stableItemFreezeTime = 5f;
     [SerializeField] private int maxStableItems = 5;
     [SerializeField] private Transform holdingItemPlace = null;
     public LayerMask itemsLayer;
@@ -114,12 +114,12 @@ public class Telekinesis : MonoBehaviour
         {
             if (stableItems.Count < maxStableItems)
             {
-                SetStableItem(closestStableItem, true, itemFreezeTime);
+                SetStableItem(closestStableItem, true, stableItemFreezeTime);
             }
             else
             {
                 SetStableItem(stableItems[0], false);
-                SetStableItem(closestStableItem, true, itemFreezeTime);
+                SetStableItem(closestStableItem, true, stableItemFreezeTime);
             }
         }
     }

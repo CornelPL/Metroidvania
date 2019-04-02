@@ -12,17 +12,18 @@ public class ItemHandling : MonoBehaviour
     private float maxPullSpeed;
     private float pullingTime = 0f;
     private LayerMask mask;
-    private int damage;
     private float gravityScaleCopy;
     private bool isColliding = false;
 
-    void Awake()
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         gravityScaleCopy = rb.gravityScale;
     }
 
-    void Update()
+
+    private void Update()
     {
         if (isBeingPulled)
         {
@@ -55,23 +56,32 @@ public class ItemHandling : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            collision.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
-        }
-    }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         isColliding = true;
     }
 
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         isColliding = false;
     }
+
+
+    private void PullingComplete()
+    {
+        rb.velocity = Vector2.zero;
+        isBeingPulled = false;
+        PlayerState.instance.isPullingItemState = false;
+        transform.SetParent(holdingItemPlace);
+        transform.position = holdingItemPlace.position;
+        rb.gravityScale = gravityScaleCopy;
+        rb.simulated = false;
+        PlayerState.instance.isHoldingItemState = true;
+        Destroy(this);
+    }
+
 
     public void Pull(Transform t, float f, float mf, float s, float ms, LayerMask _mask)
     {
@@ -85,18 +95,7 @@ public class ItemHandling : MonoBehaviour
         mask = _mask;
         rb.gravityScale = 0f;
     }
-
-    void PullingComplete()
-    {
-        rb.velocity = Vector2.zero;
-        isBeingPulled = false;
-        PlayerState.instance.isPullingItemState = false;
-        transform.SetParent(holdingItemPlace);
-        rb.gravityScale = gravityScaleCopy;
-        rb.simulated = false;
-        PlayerState.instance.isHoldingItemState = true;
-        Destroy(this);
-    }
+    
 
     public void StopPulling()
     {

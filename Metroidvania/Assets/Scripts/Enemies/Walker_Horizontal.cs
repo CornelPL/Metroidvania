@@ -12,12 +12,14 @@ public class Walker_Horizontal : MonoBehaviour
     private Vector2 currentPosition;
     private bool isBeingKnockbacked = false;
 
-    void Start()
+
+    private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate()
+
+    private void FixedUpdate()
     {
         previousPosition = transform.position;
 
@@ -34,10 +36,12 @@ public class Walker_Horizontal : MonoBehaviour
         currentPosition = transform.position;
     }
 
+
     private void ChangeDirection()
     {
         direction = direction > 0 ? -1 : 1;
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -45,9 +49,14 @@ public class Walker_Horizontal : MonoBehaviour
         {
             ChangeDirection();
         }
-        else if (collision.gameObject.CompareTag("Player"))
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
-            collision.GetComponent<HealthManager>().TakeDamage(damage);
+            collision.collider.GetComponent<HealthManager>().TakeDamage(damage);
         }
     }
 }

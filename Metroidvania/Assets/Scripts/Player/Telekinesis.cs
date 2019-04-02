@@ -10,6 +10,7 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float pullSpeed = 50f;
     [SerializeField] private float maxPullSpeed = 50f;
     [SerializeField] private float shootPower = 10f;
+    [SerializeField] private float slowmoMaxTime = 2f;
     [SerializeField] private float stableItemFreezeTime = 5f;
     [SerializeField] private int maxStableItems = 5;
     [SerializeField] private Transform holdingItemPlace = null;
@@ -23,6 +24,7 @@ public class Telekinesis : MonoBehaviour
     private bool isHoldingLMB;
     private string stableItemsTag = "StableItem";
     private List<GameObject> stableItems = new List<GameObject>();
+    private float t = 0f;
 
     void Start()
     {
@@ -134,11 +136,19 @@ public class Telekinesis : MonoBehaviour
                 TimeManager.instance.TurnSlowmoOn();
                 isHoldingLMB = true;
             }
-            else if (input.lmbUp && isHoldingLMB)
+            else if (isHoldingLMB)
             {
-                TimeManager.instance.TurnSlowmoOff();
-                ShootItem();
-                isHoldingLMB = false;
+                if (input.lmbUp || t >= slowmoMaxTime)
+                {
+                    TimeManager.instance.TurnSlowmoOff();
+                    ShootItem();
+                    isHoldingLMB = false;
+                    t = 0f;
+                }
+                else
+                {
+                    t += Time.unscaledDeltaTime;
+                }
             }
         }
     }

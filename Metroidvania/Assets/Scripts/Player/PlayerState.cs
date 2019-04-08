@@ -26,9 +26,9 @@ public class PlayerState : MonoBehaviour
 
     [Header("Helpers")]
 
-    public PolygonCollider2D normalCollider = null;
-    public PolygonCollider2D invulnerableCollider = null;
-    private Rigidbody2D _rigidbody;
+    [SerializeField] private PolygonCollider2D normalCollider = null;
+    [SerializeField] private PolygonCollider2D invulnerableCollider = null;
+    [SerializeField] private Rigidbody2D _rigidbody;
 
 
     private void Awake()
@@ -37,12 +37,6 @@ public class PlayerState : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(this);
-    }
-
-
-    private void Start()
-    {
-        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
 

@@ -1231,6 +1231,7 @@ MonoBehaviour:
   hasSlam: 1
   normalCollider: {fileID: 613379612}
   invulnerableCollider: {fileID: 1039574097}
+  _rigidbody: {fileID: 613379613}
 --- !u!114 &613379616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1619,6 +1620,8 @@ MonoBehaviour:
   speed: 3
   minSpeed: 0.5
   damage: 20
+  _rigidbody: {fileID: 785124212}
+  healthManager: {fileID: 785124213}
 --- !u!212 &785124209
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1737,14 +1740,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 785124207}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956ec8f6aba64d34489daf770469bca8, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e02d1c9aa928f04aaaaf4cadb80304c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHP: 30
-  knockbackForce: 100
+  initialHP: 100
+  knockbackForce: 700
   knockbackTime: 0.5
-  invulnerabilityTime: 1
-  _rigidbody: {fileID: 0}
+  _rigidbody: {fileID: 785124212}
+  isBeingKnockbacked: 0
 --- !u!1 &794329768
 GameObject:
   m_ObjectHideFlags: 0

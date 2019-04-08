@@ -5,34 +5,23 @@ public class Walker_Horizontal : MonoBehaviour
     [SerializeField] private float speed = 3f;
     [SerializeField] private float minSpeed = 0.5f;
     [SerializeField] private int damage = 20;
+    [SerializeField] private Rigidbody2D _rigidbody = null;
+    [SerializeField] private EnemyHealthManager healthManager = null;
 
-    private Rigidbody2D _rigidbody;
     private int direction = 1;
-    private Vector2 previousPosition;
-    private Vector2 currentPosition;
-    private bool isBeingKnockbacked = false;
-
-
-    private void Start()
-    {
-        _rigidbody = GetComponent<Rigidbody2D>();
-    }
 
 
     private void FixedUpdate()
     {
-        previousPosition = transform.position;
         if (Mathf.Abs(_rigidbody.velocity.x) < minSpeed)
         {
             ChangeDirection();
         }
 
-        if (!isBeingKnockbacked)
+        if (!healthManager.isBeingKnockbacked)
         {
             _rigidbody.velocity = new Vector2(speed * direction, _rigidbody.velocity.y);
         }
-
-        currentPosition = transform.position;
     }
 
 
@@ -55,7 +44,7 @@ public class Walker_Horizontal : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.collider.GetComponent<HealthManager>().TakeDamage(damage, transform.position.x);
+            collision.collider.GetComponent<PlayerHealthManager>().TakeDamage(damage, transform.position.x);
         }
     }
 }

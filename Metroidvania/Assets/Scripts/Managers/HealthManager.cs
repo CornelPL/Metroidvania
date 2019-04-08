@@ -14,7 +14,7 @@ public class HealthManager : MonoBehaviour
 
     private void Death()
     {
-
+        // Implement Death
     }
 
 
@@ -29,7 +29,11 @@ public class HealthManager : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (PlayerState.instance.isDashingState) return;
+
         HP -= damage;
+
+        // Knockback
 
         if (HP < 0)
         {

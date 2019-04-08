@@ -807,6 +807,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 613379613}
+  polygonCollider: {fileID: 613379612}
+  dashingCollider: {fileID: 1039574097}
   movementSpeed: 7
   jumpSpeed: 23
   flyingSpeed: 2
@@ -878,6 +880,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 214221129}
+  - {fileID: 1039574096}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1730,7 +1733,7 @@ GameObject:
   - component: {fileID: 891359816}
   - component: {fileID: 891359815}
   - component: {fileID: 891359814}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: DashTrigger (1)
   m_TagString: Trigger
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -1784,7 +1787,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891359813}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 83.09, y: 8.41, z: -0.3125}
+  m_LocalPosition: {x: 83.08, y: 8.51, z: -0.3125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2040,6 +2043,76 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1039574095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1039574096}
+  - component: {fileID: 1039574097}
+  m_Layer: 16
+  m_Name: dashingCollider
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1039574096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039574095}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 613379611}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &1039574097
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039574095}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.64, y: 3.4}
+    newSize: {x: 2.7, y: 2.7}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.4981972, y: 0.19000006}
+      - {x: 0.39141905, y: 0.71789527}
+      - {x: 0.39, y: 2.26}
+      - {x: 0.55, y: 2.4099998}
+      - {x: 0.82, y: 2.6299999}
+      - {x: 0.82367057, y: 3.0289884}
+      - {x: 0.70099163, y: 3.262542}
+      - {x: 0.51, y: 3.3999999}
+      - {x: 0.19303484, y: 3.414682}
+      - {x: -0.15898846, y: 3.152023}
+      - {x: -0.7199584, y: 2.136158}
+      - {x: -0.69, y: 1.630208}
+      - {x: -0.69400835, y: 1.1398337}
+      - {x: -0.7502637, y: 0.18951488}
 --- !u!1 &1206594829
 GameObject:
   m_ObjectHideFlags: 0
@@ -2879,7 +2952,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1689402667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.9, y: 9.33, z: 0}
+  m_LocalPosition: {x: 72.9, y: 9.94, z: 0}
   m_LocalScale: {x: 13.2410755, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2985,7 +3058,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709225419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.9, y: 7.11, z: 0}
+  m_LocalPosition: {x: 72.9, y: 6.84, z: 0}
   m_LocalScale: {x: 13.2410755, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3177,7 +3250,7 @@ GameObject:
   - component: {fileID: 2018968527}
   - component: {fileID: 2018968526}
   - component: {fileID: 2018968525}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: DashTrigger
   m_TagString: Trigger
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}

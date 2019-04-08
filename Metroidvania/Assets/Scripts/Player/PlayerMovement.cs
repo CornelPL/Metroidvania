@@ -4,6 +4,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody = null;
+    [SerializeField] private PolygonCollider2D polygonCollider = null;
+    [SerializeField] private PolygonCollider2D dashingCollider = null;
 
     private InputController input;
     private PlayerState state;
@@ -159,10 +161,12 @@ public class PlayerMovement : MonoBehaviour
         verticalSpeed = 0f;
         float gravityScaleCopy = _rigidbody.gravityScale;
         _rigidbody.gravityScale = 0f;
+        polygonCollider.enabled = false;
+        dashingCollider.enabled = true;
         float t = dashTime;
 
         // better shrink player
-        transform.localScale = new Vector2(0.3f, 0.3f);
+        transform.localScale = new Vector3(0.3f, 0.3f, 1f);
 
         while (state.isDashingState && t > 0f)
         {
@@ -175,7 +179,9 @@ public class PlayerMovement : MonoBehaviour
 
         state.isDashingState = false;
         _rigidbody.gravityScale = gravityScaleCopy;
-        transform.localScale = new Vector2(1f, 1f);
+        transform.localScale = Vector3.one;
+        polygonCollider.enabled = true;
+        dashingCollider.enabled = false;
     }
 
 

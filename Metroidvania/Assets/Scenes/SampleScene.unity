@@ -1198,7 +1198,7 @@ MonoBehaviour:
   holdingItemPlace: {fileID: 1532942443}
   arcRenderer: {fileID: 613379618}
   arcResolution: 10
-  maxArcDistance: 20
+  arcLength: 8
   itemsLayer:
     serializedVersion: 2
     m_Bits: 2560

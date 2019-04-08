@@ -14,10 +14,14 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float stableItemFreezeTime = 5f;
     [SerializeField] private int maxStableItems = 5;
     [SerializeField] private Transform holdingItemPlace = null;
+    [SerializeField] private LineRenderer arcRenderer = null;
+    [SerializeField] private int arcResolution = 10;
+    [SerializeField] private float arcLength = 8f;
     public LayerMask itemsLayer;
     public LayerMask collisionLayer;
 
     private GameObject closestItem;
+    private Rigidbody2D closestItemRigidbody;
     private GameObject closestStableItem;
     private InputController input;
     private PlayerState state;
@@ -82,6 +86,7 @@ public class Telekinesis : MonoBehaviour
                 {
                     smallestDistance = distanceToItem;
                     closestItem = items[i].gameObject;
+                    closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
                 }
             }
         }
@@ -127,19 +132,57 @@ public class Telekinesis : MonoBehaviour
     }
 
 
+    private void ShowArc()
+    {
+        arcRenderer.positionCount = arcResolution + 1;
+        arcRenderer.SetPositions(CalculateArcPositions());
+    }
+
+
+    private Vector3[] CalculateArcPositions()
+    {
+        Vector3[] positions = new Vector3[arcResolution + 1];
+
+        Vector2 throwVector = input.cursorPosition - (Vector2)holdingItemPlace.position;
+        throwVector = throwVector.normalized * arcLength;
+        float radianAngle = Mathf.Atan2(throwVector.y, throwVector.x);
+
+        for (int i = 0; i <= arcResolution; i++)
+        {
+            float t = (float)i / (float)arcResolution * Mathf.Sign(throwVector.x);
+            positions[i] = CalculateArcPoint(t, throwVector, radianAngle);
+        }
+
+        return positions;
+    }
+
+
+    private Vector3 CalculateArcPoint(float t, Vector2 throwVector, float radianAngle)
+    {
+        float x = holdingItemPlace.position.x + t * Mathf.Abs(throwVector.x);
+        float xy = t * Mathf.Abs(throwVector.x);
+        float y = holdingItemPlace.position.y + xy * Mathf.Tan(radianAngle) - -Physics2D.gravity.y * closestItemRigidbody.gravityScale * xy * xy / 2f / shootPower / shootPower / Mathf.Cos(radianAngle) / Mathf.Cos(radianAngle);
+        return new Vector3(x, y);
+    }
+
+
     private void CheckShoot()
     {
         if (state.isHoldingItemState)
         {
             if (input.lmbDown)
             {
+                arcRenderer.enabled = true;
+                ShowArc();
                 TimeManager.instance.TurnSlowmoOn();
                 isHoldingLMB = true;
             }
             else if (isHoldingLMB)
             {
+                ShowArc();
                 if (input.lmbUp || t >= slowmoMaxTime)
                 {
+                    arcRenderer.enabled = false;
                     TimeManager.instance.TurnSlowmoOff();
                     ShootItem();
                     isHoldingLMB = false;

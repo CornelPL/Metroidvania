@@ -4,8 +4,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody = null;
-    [SerializeField] private PolygonCollider2D polygonCollider = null;
-    [SerializeField] private PolygonCollider2D dashingCollider = null;
 
     private InputController input;
     private PlayerState state;
@@ -40,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!state.isDashingState && !state.isSlammingState)
+        if (!state.isDashingState && !state.isSlammingState && !state.isKnockbackedState)
         {
             CheckMovement();
 
@@ -161,8 +159,7 @@ public class PlayerMovement : MonoBehaviour
         verticalSpeed = 0f;
         float gravityScaleCopy = _rigidbody.gravityScale;
         _rigidbody.gravityScale = 0f;
-        polygonCollider.enabled = false;
-        dashingCollider.enabled = true;
+        state.EnableInvulnerability();
         float t = dashTime;
 
         // better shrink player
@@ -180,14 +177,14 @@ public class PlayerMovement : MonoBehaviour
         state.isDashingState = false;
         _rigidbody.gravityScale = gravityScaleCopy;
         transform.localScale = Vector3.one;
-        polygonCollider.enabled = true;
-        dashingCollider.enabled = false;
+        state.DisableInvulnerability();
     }
 
 
     private void ApplyMovement()
     {
         if (state.isSlammingState) verticalSpeed = -slamSpeed;
+        if (state.isKnockbackedState) return;
         _rigidbody.velocity = new Vector2(horizontalSpeed, verticalSpeed);
     }
 

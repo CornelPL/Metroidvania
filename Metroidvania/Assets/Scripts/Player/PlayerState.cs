@@ -14,6 +14,7 @@ public class PlayerState : MonoBehaviour
     public bool isFallingState = false;
     public bool isSlammingState = false;
     public bool isDashingState = false;
+    public bool isKnockbackedState = false;
 
     [Header("Skills")]
 
@@ -23,8 +24,12 @@ public class PlayerState : MonoBehaviour
     public bool hasExplosion = false;
     public bool hasSlam = false;
 
-    // Helpers
+    [Header("Helpers")]
+
+    public PolygonCollider2D normalCollider = null;
+    public PolygonCollider2D invulnerableCollider = null;
     private Rigidbody2D _rigidbody;
+
 
     private void Awake()
     {
@@ -34,13 +39,29 @@ public class PlayerState : MonoBehaviour
             Destroy(this);
     }
 
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
+
     private void Update()
     {
         isFallingState = _rigidbody.velocity.y < 0 ? true : false;
+    }
+
+
+    public void EnableInvulnerability()
+    {
+        normalCollider.enabled = false;
+        invulnerableCollider.enabled = true;
+    }
+
+
+    public void DisableInvulnerability()
+    {
+        normalCollider.enabled = true;
+        invulnerableCollider.enabled = false;
     }
 }

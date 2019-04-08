@@ -12,7 +12,7 @@ public class ItemDamage : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") && rb.velocity.magnitude > minSpeedToDamage)
         {
             int damage = (int)(baseDamage * rb.velocity.magnitude / 10 * rb.mass);
-            collision.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
+            //collision.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
         }
     }
 }

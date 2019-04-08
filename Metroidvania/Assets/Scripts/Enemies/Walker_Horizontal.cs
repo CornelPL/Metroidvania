@@ -55,7 +55,7 @@ public class Walker_Horizontal : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.collider.GetComponent<HealthManager>().TakeDamage(damage);
+            collision.collider.GetComponent<HealthManager>().TakeDamage(damage, transform.position.x);
         }
     }
 }

@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Telekinesis : MonoBehaviour
 {
+    #region Editor variables
+
+    [Header("Telekinesis")]
     [SerializeField] private float range = 10f;
     [SerializeField] private float radius = 1f;
     [SerializeField] private float pullForce = 75f;
@@ -11,14 +14,24 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float maxPullSpeed = 50f;
     [SerializeField] private float shootPower = 10f;
     [SerializeField] private float slowmoMaxTime = 2f;
+    [SerializeField] private Transform holdingItemPlace = null;
+
+    [Header("Stable items")]
     [SerializeField] private float stableItemFreezeTime = 5f;
     [SerializeField] private int maxStableItems = 5;
-    [SerializeField] private Transform holdingItemPlace = null;
+
+    [Header("Trajectory")]
     [SerializeField] private LineRenderer arcRenderer = null;
     [SerializeField] private int arcResolution = 10;
     [SerializeField] private float arcLength = 8f;
+
+    [Header("Collision masks")]
     public LayerMask itemsLayer;
     public LayerMask collisionLayer;
+
+    #endregion
+
+    #region Private variables
 
     private GameObject closestItem;
     private Rigidbody2D closestItemRigidbody;
@@ -29,6 +42,8 @@ public class Telekinesis : MonoBehaviour
     private string stableItemsTag = "StableItem";
     private List<GameObject> stableItems = new List<GameObject>();
     private float t = 0f;
+
+    #endregion
 
     void Start()
     {

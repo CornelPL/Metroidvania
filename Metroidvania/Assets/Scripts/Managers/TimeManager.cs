@@ -44,7 +44,8 @@ public class TimeManager : MonoBehaviour
         isSlowingDown = true;
         while (Time.timeScale > slowmoTimeScale)
         {
-            Time.timeScale -= timeChangeDecreaseSpeed * Time.unscaledDeltaTime;
+            float t = Time.timeScale - timeChangeDecreaseSpeed * Time.unscaledDeltaTime;
+            Time.timeScale = t > 0f ? t : 0f;
             Time.fixedDeltaTime = Time.timeScale * 0.02f;
             yield return null;
         }

@@ -51,7 +51,7 @@ public class Walker_Horizontal : MonoBehaviour
         {
             collision.collider.GetComponent<PlayerHealthManager>().TakeDamage(damage, transform.position.x);
         }
-        else if (healthManager.isBeingKnockbacked)
+        else if (healthManager.isBeingKnockbacked && !collision.gameObject.CompareTag("Item"))
         {
             healthManager.isBeingKnockbacked = false;
         }

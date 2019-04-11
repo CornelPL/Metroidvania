@@ -1725,7 +1725,7 @@ Rigidbody2D:
   m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1744,7 +1744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHP: 100
-  knockbackForce: 10
+  knockbackForce: 5000
   knockbackTime: 0.5
   _rigidbody: {fileID: 785124212}
   isBeingKnockbacked: 0

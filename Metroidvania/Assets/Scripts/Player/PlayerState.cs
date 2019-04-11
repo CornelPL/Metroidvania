@@ -28,7 +28,7 @@ public class PlayerState : MonoBehaviour
 
     [SerializeField] private PolygonCollider2D normalCollider = null;
     [SerializeField] private PolygonCollider2D invulnerableCollider = null;
-    [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private Rigidbody2D _rigidbody = null;
 
 
     private void Awake()

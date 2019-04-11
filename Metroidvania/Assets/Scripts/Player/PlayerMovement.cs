@@ -141,7 +141,6 @@ public class PlayerMovement : MonoBehaviour
             if (objectsInRange[i].CompareTag("Item"))
             {
                 objectsInRange[i].attachedRigidbody.AddForce(direction * itemsKnockbackForce, ForceMode2D.Impulse);
-                objectsInRange[i].GetComponent<ItemDamage>().isShooted = true;
             }
             else if (objectsInRange[i].CompareTag("Enemy"))
             {

@@ -1449,7 +1449,7 @@ MonoBehaviour:
   dashTime: 0.25
   slamSpeed: 30
   slamRange: 5
-  itemsKnockbackForce: 30
+  itemsKnockbackForce: 15
   enemiesKnockbackForce: 8000
   slamMask:
     serializedVersion: 2

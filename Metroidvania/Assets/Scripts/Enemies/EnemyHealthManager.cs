@@ -33,11 +33,23 @@ public class EnemyHealthManager : MonoBehaviour
     }
 
 
-    private IEnumerator Knockback(float xPos)
+    public IEnumerator Knockback(float xPos)
     {
         isBeingKnockbacked = true;
 
         _rigidbody.AddForce(new Vector2(0.5f * Mathf.Sign(transform.position.x - xPos), 1f) * knockbackForce);
+
+        yield return new WaitForSeconds(knockbackTime);
+
+        isBeingKnockbacked = false;
+    }
+
+
+    public IEnumerator Knockback(float xPos, float force)
+    {
+        isBeingKnockbacked = true;
+
+        _rigidbody.AddForce(new Vector2(0.5f * Mathf.Sign(transform.position.x - xPos), 1f) * force);
 
         yield return new WaitForSeconds(knockbackTime);
 

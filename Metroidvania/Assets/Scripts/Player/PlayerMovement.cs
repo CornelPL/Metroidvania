@@ -19,11 +19,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private float jumpSpeed = 20f;
     [SerializeField] private float flyingSpeed = 2f;
-    [SerializeField] private float slamSpeed = 2f;
+
+    [Header("Dash")]
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float dashTime = 0.5f;
+
+    [Header("Slam")]
+    [SerializeField] private float slamSpeed = 2f;
     [SerializeField] private float slamRange = 5f;
-    [SerializeField] private float slamKnockbackForce = 10f;
+    [SerializeField] private float itemsKnockbackForce = 10f;
+    [SerializeField] private float enemiesKnockbackForce = 10f;
     public LayerMask slamMask;
 
     private int LeanTweenID = -1;
@@ -130,7 +135,15 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 direction = objectsInRange[i].transform.position - new Vector3(transform.position.x, transform.position.y - 1f);
             direction.Normalize();
-            objectsInRange[i].attachedRigidbody.AddForce(direction * slamKnockbackForce, ForceMode2D.Impulse);
+            if (objectsInRange[i].CompareTag("Item"))
+            {
+                objectsInRange[i].attachedRigidbody.AddForce(direction * itemsKnockbackForce, ForceMode2D.Impulse);
+                objectsInRange[i].GetComponent<ItemDamage>().isShooted = true;
+            }
+            else if (objectsInRange[i].CompareTag("Enemy"))
+            {
+                StartCoroutine(objectsInRange[i].GetComponent<EnemyHealthManager>().Knockback(transform.position.x, enemiesKnockbackForce));
+            }
         }
     }
 

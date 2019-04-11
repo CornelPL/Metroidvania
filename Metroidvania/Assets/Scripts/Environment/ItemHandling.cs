@@ -2,9 +2,8 @@
 
 public class ItemHandling : MonoBehaviour
 {
-    private bool isBeingPulled = false;
     private Transform holdingItemPlace;
-    private Vector2 direction;      
+    private Vector2 direction;
     private Rigidbody2D rb;
     private float pullForce;
     private float maxPullForce;
@@ -25,34 +24,31 @@ public class ItemHandling : MonoBehaviour
 
     private void Update()
     {
-        if (isBeingPulled)
+        pullingTime += Time.deltaTime;
+
+        direction = holdingItemPlace.position - transform.position;
+        direction.Normalize();
+
+        float distance = Vector2.Distance(transform.position, holdingItemPlace.position);
+
+        if (isColliding)
         {
-            pullingTime += Time.deltaTime;
+            rb.AddForce(direction * pullForce, ForceMode2D.Force);
+        }
+        else
+        {
+            float speed = rb.velocity.magnitude;
 
-            direction = holdingItemPlace.position - transform.position;
-            direction.Normalize();
+            if (speed < maxPullSpeed)
+                speed += pullSpeed * pullingTime;
 
-            float distance = Vector2.Distance(transform.position, holdingItemPlace.position);
+            rb.velocity = direction * speed;
+        }
 
-            if (isColliding)
-            {
-                rb.AddForce(direction * pullForce, ForceMode2D.Force);
-            }
-            else
-            {
-                float speed = rb.velocity.magnitude;
-
-                if (speed < maxPullSpeed)
-                    speed += pullSpeed * pullingTime;
-
-                rb.velocity = direction * speed;
-            }
-
-            // Check if object is in place
-            if (distance < 1f)
-            {
-                PullingComplete();
-            }
+        // Check if object is in place
+        if (distance < 1f)
+        {
+            PullingComplete();
         }
     }
 
@@ -72,21 +68,26 @@ public class ItemHandling : MonoBehaviour
     private void PullingComplete()
     {
         rb.velocity = Vector2.zero;
-        isBeingPulled = false;
         PlayerState.instance.isPullingItemState = false;
         transform.SetParent(holdingItemPlace);
         transform.position = holdingItemPlace.position;
         rb.gravityScale = gravityScaleCopy;
         rb.simulated = false;
         PlayerState.instance.isHoldingItemState = true;
+        GetComponent<ItemDamage>().isShooted = false;
         Destroy(this);
+    }
+
+
+    private void OnDestroy()
+    {
+        StopPulling();
     }
 
 
     public void Pull(Transform t, float f, float mf, float s, float ms, LayerMask _mask)
     {
         PlayerState.instance.isPullingItemState = true;
-        isBeingPulled = true;
         holdingItemPlace = t;
         pullForce = f;
         maxPullForce = mf;
@@ -94,14 +95,15 @@ public class ItemHandling : MonoBehaviour
         maxPullSpeed = ms;
         mask = _mask;
         rb.gravityScale = 0f;
+        GetComponent<ItemDamage>().isShooted = true;
     }
-    
+
 
     public void StopPulling()
     {
-        isBeingPulled = false;
         PlayerState.instance.isPullingItemState = false;
         rb.gravityScale = gravityScaleCopy;
+        GetComponent<ItemDamage>().isShooted = false;
         Destroy(this);
     }
 }

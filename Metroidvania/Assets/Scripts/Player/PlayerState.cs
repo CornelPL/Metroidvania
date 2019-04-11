@@ -22,7 +22,6 @@ public class PlayerState : MonoBehaviour
     public bool hasDoubleJump = false;
     public bool hasDash = false;
     public bool hasFlying = false;
-    public bool hasExplosion = false;
     public bool hasSlam = false;
 
     [Header("Helpers")]

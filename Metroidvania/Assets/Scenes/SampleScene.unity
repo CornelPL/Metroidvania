@@ -1420,7 +1420,6 @@ GameObject:
   - component: {fileID: 613379615}
   - component: {fileID: 613379609}
   - component: {fileID: 613379614}
-  - component: {fileID: 613379616}
   - component: {fileID: 613379617}
   - component: {fileID: 613379612}
   m_Layer: 10
@@ -1643,28 +1642,10 @@ MonoBehaviour:
   hasDoubleJump: 1
   hasDash: 1
   hasFlying: 1
-  hasExplosion: 1
   hasSlam: 1
   normalCollider: {fileID: 613379612}
   invulnerableCollider: {fileID: 1039574097}
   _rigidbody: {fileID: 613379613}
---- !u!114 &613379616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613379608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9f5b90fab4c94b42bc2712a073204a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravityProjectile: {fileID: 3487007209605572723, guid: 2366ed7b85919d04d85dc8521d792fec,
-    type: 3}
-  startPos: {fileID: 1532942443}
-  shotPower: 20
-  waitTime: 2
 --- !u!114 &613379617
 MonoBehaviour:
   m_ObjectHideFlags: 0

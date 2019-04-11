@@ -13,7 +13,11 @@ public class GravityProjectile : MonoBehaviour
 
         for (int i = 0; i < colliders.Length; i++)
         {
-            Destroy(colliders[i].gameObject);
+            CustomDestroy cd = colliders[i].GetComponent<CustomDestroy>();
+            if (cd)
+                cd.Destroy();
+            else
+                Destroy(colliders[i].gameObject);
         }
 
         Destroy(gameObject);

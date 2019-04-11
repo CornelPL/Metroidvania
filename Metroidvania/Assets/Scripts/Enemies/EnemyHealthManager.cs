@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyHealthManager : MonoBehaviour
 {
+    private const float knockbackForce = 5000f;
+
     [SerializeField] private int initialHP = 100;
-    [SerializeField] private float knockbackForce = 100f;
     [SerializeField] private float knockbackTime = 0.5f;
     [SerializeField] private Rigidbody2D _rigidbody = null;
     public bool isBeingKnockbacked = false;
@@ -33,27 +33,11 @@ public class EnemyHealthManager : MonoBehaviour
     }
 
 
-    public IEnumerator Knockback(float xPos)
-    {
-        isBeingKnockbacked = true;
-
-        _rigidbody.AddForce(new Vector2(0.5f * Mathf.Sign(transform.position.x - xPos), 1f) * knockbackForce);
-
-        yield return new WaitForSeconds(knockbackTime);
-
-        isBeingKnockbacked = false;
-    }
-
-
-    public IEnumerator Knockback(float xPos, float force)
+    public void Knockback(float xPos, float force = knockbackForce)
     {
         isBeingKnockbacked = true;
 
         _rigidbody.AddForce(new Vector2(0.5f * Mathf.Sign(transform.position.x - xPos), 1f) * force);
-
-        yield return new WaitForSeconds(knockbackTime);
-
-        isBeingKnockbacked = false;
     }
 
 
@@ -61,7 +45,7 @@ public class EnemyHealthManager : MonoBehaviour
     {
         HP -= damage;
 
-        StartCoroutine(Knockback(xPos));
+        Knockback(xPos);
 
         if (HP < 0)
         {

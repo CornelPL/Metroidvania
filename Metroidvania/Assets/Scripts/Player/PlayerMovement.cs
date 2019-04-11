@@ -123,12 +123,15 @@ public class PlayerMovement : MonoBehaviour
         if(input.down && (state.isJumpingState || state.isFallingState) && state.hasSlam)
         {
             state.isSlammingState = true;
+            state.EnableInvulnerability();
         }
     }
 
 
     private void Slam()
     {
+        Invoke("OnSlamEnd", 0.5f);
+
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, slamRange, slamMask);
 
         for (int i = 0; i < objectsInRange.Length; i++)
@@ -142,9 +145,15 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (objectsInRange[i].CompareTag("Enemy"))
             {
-                StartCoroutine(objectsInRange[i].GetComponent<EnemyHealthManager>().Knockback(transform.position.x, enemiesKnockbackForce));
+                objectsInRange[i].GetComponent<EnemyHealthManager>().Knockback(transform.position.x, enemiesKnockbackForce);
             }
         }
+    }
+
+
+    private void OnSlamEnd()
+    {
+        state.DisableInvulnerability();
     }
 
 

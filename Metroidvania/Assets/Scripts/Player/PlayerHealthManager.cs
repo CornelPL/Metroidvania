@@ -42,8 +42,7 @@ public class PlayerHealthManager : MonoBehaviour
         yield return new WaitForSeconds(knockbackTime);
         PlayerState.instance.isKnockbackedState = false;
 
-        yield return new WaitForSeconds(invulnerabilityTime);
-        PlayerState.instance.DisableInvulnerability();
+        PlayerState.instance.DisableInvulnerability(invulnerabilityTime);
     }
 
 

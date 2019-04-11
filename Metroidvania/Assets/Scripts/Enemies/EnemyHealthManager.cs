@@ -5,7 +5,6 @@ public class EnemyHealthManager : MonoBehaviour
     private const float knockbackForce = 5000f;
 
     [SerializeField] private int initialHP = 100;
-    [SerializeField] private float knockbackTime = 0.5f;
     [SerializeField] private Rigidbody2D _rigidbody = null;
     public bool isBeingKnockbacked = false;
 

@@ -15,6 +15,7 @@ public class PlayerState : MonoBehaviour
     public bool isSlammingState = false;
     public bool isDashingState = false;
     public bool isKnockbackedState = false;
+    public bool isInvulnerable = false;
 
     [Header("Skills")]
 
@@ -29,6 +30,7 @@ public class PlayerState : MonoBehaviour
     [SerializeField] private PolygonCollider2D normalCollider = null;
     [SerializeField] private PolygonCollider2D invulnerableCollider = null;
     [SerializeField] private Rigidbody2D _rigidbody = null;
+    private float t = 0f;
 
 
     private void Awake()
@@ -43,6 +45,18 @@ public class PlayerState : MonoBehaviour
     private void Update()
     {
         isFallingState = _rigidbody.velocity.y < 0 ? true : false;
+
+        if (isInvulnerable)
+        {
+            if (t > 0f)
+                t -= Time.deltaTime;
+            else
+            {
+                normalCollider.enabled = true;
+                invulnerableCollider.enabled = false;
+                isInvulnerable = false;
+            }
+        }
     }
 
 
@@ -50,12 +64,13 @@ public class PlayerState : MonoBehaviour
     {
         normalCollider.enabled = false;
         invulnerableCollider.enabled = true;
+        isInvulnerable = true;
+        t = 999f;
     }
 
 
-    public void DisableInvulnerability()
+    public void DisableInvulnerability(float after = 0f)
     {
-        normalCollider.enabled = true;
-        invulnerableCollider.enabled = false;
+        t = after;
     }
 }

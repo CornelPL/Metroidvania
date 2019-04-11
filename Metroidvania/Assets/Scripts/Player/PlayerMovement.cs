@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Slam()
     {
-        Invoke("OnSlamEnd", 0.5f);
+        state.DisableInvulnerability(0.5f);
 
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, slamRange, slamMask);
 
@@ -148,12 +148,6 @@ public class PlayerMovement : MonoBehaviour
                 objectsInRange[i].GetComponent<EnemyHealthManager>().Knockback(transform.position.x, enemiesKnockbackForce);
             }
         }
-    }
-
-
-    private void OnSlamEnd()
-    {
-        state.DisableInvulnerability();
     }
 
 
@@ -199,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
         state.isDashingState = false;
         _rigidbody.gravityScale = gravityScaleCopy;
         transform.localScale = Vector3.one;
-        state.DisableInvulnerability();
+        state.DisableInvulnerability(dashTime);
     }
 
 

@@ -6,8 +6,8 @@ public class PlayerState : MonoBehaviour
 
     [Header("States")]
 
-    public bool isHoldingItemState = false;
     public bool isPullingItemState = false;
+    public bool isHoldingItemState = false;
     public bool isGroundedState = false;
     public bool isJumpingState = false;
     public bool isFlyingState = false;

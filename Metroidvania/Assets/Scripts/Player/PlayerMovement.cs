@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float slamRange = 5f;
     [SerializeField] private float itemsKnockbackForce = 10f;
     [SerializeField] private float enemiesKnockbackForce = 10f;
+    [SerializeField] private Vector2Event earthquakeEvent = null;
     public LayerMask slamMask;
 
     private int LeanTweenID = -1;
@@ -131,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
     private void Slam()
     {
         state.DisableInvulnerability(0.5f);
+        earthquakeEvent.Broadcast(gameObject, transform.position);
 
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, slamRange, slamMask);
 

@@ -254,7 +254,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void OnGrounded()
+    public void OnGrounded(GameObject go = null)
     {
         state.isGroundedState = true;
         state.isJumpingState = false;
@@ -266,6 +266,10 @@ public class PlayerMovement : MonoBehaviour
             state.isSlammingState = false;
             verticalSpeed = 0f;
             Slam();
+            if (go.CompareTag("DestroyableGround"))
+            {
+                go.GetComponent<CustomDestroy>().Destroy();
+            }
         }
     }
 }

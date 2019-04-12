@@ -12,6 +12,7 @@ TagManager:
   - Wall
   - Boundary
   - Item
+  - DestroyableGround
   layers:
   - Default
   - TransparentFX

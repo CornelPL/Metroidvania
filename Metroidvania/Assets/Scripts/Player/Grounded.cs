@@ -7,7 +7,7 @@ public class Grounded : MonoBehaviour
     private PlayerState state;
     private bool invoked = false;
 
-    [SerializeField] private UnityEvent OnGrounded = null;
+    [SerializeField] private UnityEventGameObject OnGrounded = null;
     [SerializeField] private UnityEvent OnGroundedOff = null;
 
     private void Start()
@@ -19,7 +19,7 @@ public class Grounded : MonoBehaviour
     {
         if (!invoked)
         {
-            OnGrounded.Invoke();
+            OnGrounded.Invoke(collision.gameObject);
             invoked = true;
         }
     }

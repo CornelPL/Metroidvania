@@ -21,6 +21,7 @@ public class PlayerState : MonoBehaviour
 
     public bool hasDoubleJump = false;
     public bool hasDash = false;
+    public bool hasUpgradedDash = false;
     public bool hasFlying = false;
     public bool hasSlam = false;
 

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ItemHandling : MonoBehaviour
+public class ItemPull : MonoBehaviour
 {
     private Transform holdingItemPlace;
     private Vector2 direction;
@@ -74,7 +74,7 @@ public class ItemHandling : MonoBehaviour
         rb.gravityScale = gravityScaleCopy;
         rb.simulated = false;
         PlayerState.instance.isHoldingItemState = true;
-        GetComponent<ItemDamage>().isShooted = false;
+        GetComponent<ItemShoot>().isShooted = false;
         Destroy(this);
     }
 
@@ -95,7 +95,7 @@ public class ItemHandling : MonoBehaviour
         maxPullSpeed = ms;
         mask = _mask;
         rb.gravityScale = 0f;
-        GetComponent<ItemDamage>().isShooted = true;
+        GetComponent<ItemShoot>().isShooted = true;
     }
 
 
@@ -103,7 +103,7 @@ public class ItemHandling : MonoBehaviour
     {
         PlayerState.instance.isPullingItemState = false;
         rb.gravityScale = gravityScaleCopy;
-        GetComponent<ItemDamage>().isShooted = false;
+        GetComponent<ItemShoot>().isShooted = false;
         Destroy(this);
     }
 }

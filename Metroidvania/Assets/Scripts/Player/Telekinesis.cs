@@ -115,13 +115,13 @@ public class Telekinesis : MonoBehaviour
             closestItem != null &&
             !closestItem.CompareTag(stableItemsTag))
         {
-            closestItem.AddComponent<ItemHandling>().Pull(holdingItemPlace, pullForce, maxPullForce, pullSpeed, maxPullSpeed, collisionLayer);
+            closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullForce, maxPullForce, pullSpeed, maxPullSpeed, collisionLayer);
         }
         else if (state.isHoldingItemState || state.isPullingItemState)
         {
             if (state.isPullingItemState)
             {
-                closestItem.GetComponent<ItemHandling>().StopPulling();
+                closestItem.GetComponent<ItemPull>().StopPulling();
             }
 
             ReleaseItem();
@@ -217,7 +217,7 @@ public class Telekinesis : MonoBehaviour
         shootDirection.Normalize();
         ReleaseItem();
         closestItem.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootPower, ForceMode2D.Impulse);
-        closestItem.GetComponent<ItemDamage>().isShooted = true;
+        closestItem.GetComponent<ItemShoot>().isShooted = true;
     }
 
 

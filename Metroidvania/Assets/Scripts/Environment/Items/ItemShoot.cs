@@ -72,9 +72,14 @@ public class ItemShoot : MonoBehaviour
         {
             int item = Random.Range(0, itemsToSpawn.Count);
             int i = Random.Range(1, maxItemsToSpawn);
+
             for(int a = 0; a < i; a++)
             {
-                Instantiate(itemsToSpawn[item], transform.position, transform.rotation);
+                Vector3 randomRotation = transform.eulerAngles;
+                randomRotation.z = Random.Range(0f, 360f);
+                GameObject inst = Instantiate(itemsToSpawn[item], transform.position + (Vector3)Random.insideUnitCircle, transform.rotation);
+                inst.transform.eulerAngles = randomRotation;
+                inst.GetComponent<Rigidbody2D>().velocity = rb.velocity;
             }
         }
 

@@ -27,7 +27,6 @@ public class Telekinesis : MonoBehaviour
 
     [Header("Collision masks")]
     public LayerMask itemsLayer;
-    public LayerMask collisionLayer;
 
     #endregion
 
@@ -115,7 +114,7 @@ public class Telekinesis : MonoBehaviour
             closestItem != null &&
             !closestItem.CompareTag(stableItemsTag))
         {
-            closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullForce, maxPullForce, pullSpeed, maxPullSpeed, collisionLayer);
+            closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullForce, maxPullForce, pullSpeed, maxPullSpeed);
         }
         else if (state.isHoldingItemState || state.isPullingItemState)
         {

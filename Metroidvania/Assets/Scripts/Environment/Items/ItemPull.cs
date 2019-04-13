@@ -10,7 +10,6 @@ public class ItemPull : MonoBehaviour
     private float pullSpeed;
     private float maxPullSpeed;
     private float pullingTime = 0f;
-    private LayerMask mask;
     private float gravityScaleCopy;
     private bool isColliding = false;
 
@@ -75,6 +74,8 @@ public class ItemPull : MonoBehaviour
         rb.simulated = false;
         PlayerState.instance.isHoldingItemState = true;
         GetComponent<ItemShoot>().isShooted = false;
+        if (GetComponent<ItemShoot>().itemType == ItemShoot.ItemType.plank)
+            gameObject.layer = LayerMask.NameToLayer("Items");
         Destroy(this);
     }
 
@@ -85,15 +86,15 @@ public class ItemPull : MonoBehaviour
     }
 
 
-    public void Pull(Transform t, float f, float mf, float s, float ms, LayerMask _mask)
+    public void Pull(Transform t, float f, float mf, float s, float ms)
     {
+        rb.bodyType = RigidbodyType2D.Dynamic;
         PlayerState.instance.isPullingItemState = true;
         holdingItemPlace = t;
         pullForce = f;
         maxPullForce = mf;
         pullSpeed = s;
         maxPullSpeed = ms;
-        mask = _mask;
         rb.gravityScale = 0f;
         GetComponent<ItemShoot>().isShooted = true;
     }
@@ -104,6 +105,8 @@ public class ItemPull : MonoBehaviour
         PlayerState.instance.isPullingItemState = false;
         rb.gravityScale = gravityScaleCopy;
         GetComponent<ItemShoot>().isShooted = false;
+        if (GetComponent<ItemShoot>().itemType == ItemShoot.ItemType.plank)
+            gameObject.layer = LayerMask.NameToLayer("Items");
         Destroy(this);
     }
 }

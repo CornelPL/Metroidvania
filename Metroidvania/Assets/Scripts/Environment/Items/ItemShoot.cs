@@ -10,7 +10,7 @@ public class ItemShoot : MonoBehaviour
         saw
     }
 
-    [SerializeField] ItemType itemType = ItemType.rock;
+    public ItemType itemType = ItemType.rock;
     [SerializeField] private int baseDamage = 10;
     [SerializeField] private Rigidbody2D rb = null;
     public bool isShooted = false;
@@ -26,13 +26,22 @@ public class ItemShoot : MonoBehaviour
                 CustomDestroy();
             }
 
-            if (itemType == ItemType.plank)
+            if (itemType == ItemType.rock)
             {
-                if (collision.gameObject.CompareTag("Wall"))
+                CustomDestroy();
+            }
+            else if (itemType == ItemType.plank)
+            {
+                if (collision.gameObject.CompareTag("SoftWall"))
                 {
                     rb.velocity = Vector2.zero;
-                    rb.simulated = false;
-                    gameObject.layer = LayerMask.NameToLayer("Ground");
+                    rb.bodyType = RigidbodyType2D.Static;
+                    gameObject.layer = LayerMask.NameToLayer("Planks");
+                    transform.rotation = Quaternion.identity;
+                }
+                else if (!collision.gameObject.CompareTag("Player"))
+                {
+                    CustomDestroy();
                 }
             }
         }

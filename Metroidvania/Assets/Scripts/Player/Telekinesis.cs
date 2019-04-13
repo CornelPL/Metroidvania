@@ -116,7 +116,7 @@ public class Telekinesis : MonoBehaviour
         {
             closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullForce, maxPullForce, pullSpeed, maxPullSpeed);
         }
-        else if (state.isHoldingItemState || state.isPullingItemState)
+        else if ((state.isHoldingItemState || state.isPullingItemState) && !isHoldingLMB)
         {
             if (state.isPullingItemState)
             {

@@ -14,6 +14,7 @@ public class ItemShoot : MonoBehaviour
     [SerializeField] private int baseDamage = 10;
     [SerializeField] private Rigidbody2D rb = null;
     public bool isShooted = false;
+    [SerializeField] private int plankHealth = 3;
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -34,6 +35,8 @@ public class ItemShoot : MonoBehaviour
             {
                 if (collision.gameObject.CompareTag("SoftWall"))
                 {
+                    plankHealth--;
+                    if (plankHealth == 0) CustomDestroy();
                     rb.velocity = Vector2.zero;
                     rb.bodyType = RigidbodyType2D.Static;
                     gameObject.layer = LayerMask.NameToLayer("Planks");

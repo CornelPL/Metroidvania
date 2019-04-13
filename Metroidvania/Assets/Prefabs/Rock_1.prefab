@@ -158,6 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfb7ce45f9f7384c8a8541d1aaddf2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemType: 0
   baseDamage: 10
   rb: {fileID: 6417654320457713545}
   isShooted: 0
+  plankHealth: 3

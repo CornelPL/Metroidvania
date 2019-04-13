@@ -97,6 +97,8 @@ public class ItemPull : MonoBehaviour
         maxPullSpeed = ms;
         rb.gravityScale = 0f;
         GetComponent<ItemShoot>().isShooted = true;
+        if (GetComponent<ItemShoot>().itemType == ItemShoot.ItemType.plank)
+            gameObject.layer = LayerMask.NameToLayer("Planks");
     }
 
 

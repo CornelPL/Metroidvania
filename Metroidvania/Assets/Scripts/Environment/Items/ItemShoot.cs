@@ -47,7 +47,7 @@ public class ItemShoot : MonoBehaviour
                     if (plankHealth == 0) CustomDestroy();
                     rb.velocity = Vector2.zero;
                     rb.bodyType = RigidbodyType2D.Static;
-                    gameObject.layer = LayerMask.NameToLayer("Planks");
+                    gameObject.layer = LayerMask.NameToLayer("PlanksGround");
                     transform.rotation = Quaternion.identity;
                 }
                 else if (!collision.gameObject.CompareTag("Player"))

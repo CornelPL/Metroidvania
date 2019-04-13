@@ -28,23 +28,23 @@ public class ItemShoot : MonoBehaviour
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 DoDamage(collision.gameObject);
-                CustomDestroy();
+                CustomDestroy(collision.relativeVelocity);
             }
 
             if (itemType == ItemType.rock)
             {
-                CustomDestroy();
+                CustomDestroy(collision.relativeVelocity);
             }
             else if (itemType == ItemType.crate)
             {
-                CustomDestroy();
+                CustomDestroy(collision.relativeVelocity);
             }
             else if (itemType == ItemType.plank)
             {
                 if (collision.gameObject.CompareTag("SoftWall"))
                 {
                     plankHealth--;
-                    if (plankHealth == 0) CustomDestroy();
+                    if (plankHealth == 0) CustomDestroy(collision.relativeVelocity);
                     rb.velocity = Vector2.zero;
                     rb.bodyType = RigidbodyType2D.Static;
                     gameObject.layer = LayerMask.NameToLayer("PlanksGround");
@@ -52,7 +52,7 @@ public class ItemShoot : MonoBehaviour
                 }
                 else if (!collision.gameObject.CompareTag("Player"))
                 {
-                    CustomDestroy();
+                    CustomDestroy(collision.relativeVelocity);
                 }
             }
         }
@@ -66,7 +66,7 @@ public class ItemShoot : MonoBehaviour
     }
 
 
-    private void CustomDestroy()
+    private void CustomDestroy(Vector2 collisionVelocity)
     {
         if (itemType == ItemType.crate)
         {
@@ -79,7 +79,7 @@ public class ItemShoot : MonoBehaviour
                 randomRotation.z = Random.Range(0f, 360f);
                 GameObject inst = Instantiate(itemsToSpawn[item], transform.position + (Vector3)Random.insideUnitCircle, transform.rotation);
                 inst.transform.eulerAngles = randomRotation;
-                inst.GetComponent<Rigidbody2D>().velocity = rb.velocity;
+                inst.GetComponent<Rigidbody2D>().velocity = -collisionVelocity;
             }
         }
 

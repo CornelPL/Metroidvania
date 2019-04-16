@@ -11,4 +11,4 @@ Chwilę zatrzymują przeciwników w miejscu.
 - skrzynki\
 Po zniszczeniu powstają z nich deski.
 - deski\
-Można je wbić w ścianę i na nich stanąć. Mogą się też wbić w przeciwników (?).
+Można je wbić w ścianę i na nich stanąć.

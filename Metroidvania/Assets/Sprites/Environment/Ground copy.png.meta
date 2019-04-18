@@ -2,8 +2,11 @@ fileFormatVersion: 2
 guid: 3db4ac2222114b9478425149ad643578
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Ground copy_0
+    21300000: left_top_corner
     21300002: Ground copy_1
+    21300004: ground
+    21300006: wall
+    21300008: Fill
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -86,15 +89,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ground copy_0
+      name: left_top_corner
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 624
+        width: 204
         height: 204
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -106,21 +109,41 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground copy_1
+      name: ground
       rect:
         serializedVersion: 2
-        x: 624
-        y: 0
+        x: 0
+        y: 204
         width: 624
-        height: 196
+        height: 204
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92d698c36ad5f0c42a7befcb509e0983
+      spriteID: 8170a018dc0bf234f822a1938fe3e724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 204
+        width: 624
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dba3c689f4b2714ca54424041c25c4c
       vertices: []
       indices: 
       edges: []

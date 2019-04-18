@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Order: 0
     m_Sprites:
     - {fileID: 21300006, guid: 3db4ac2222114b9478425149ad643578, type: 3}
-  m_FillTexture: {fileID: 2800000, guid: 0ee80720fa24cf647a196c08d996ec43, type: 3}
+  m_FillTexture: {fileID: 2800000, guid: ab52ed72cb5b1cc42a527cb4249a63ba, type: 3}
   m_CornerSprites:
   - m_CornerType: 0
     m_Sprites:
@@ -52,6 +52,6 @@ MonoBehaviour:
   m_FillPixelPerUnit: 100
   m_BevelSize: 0
   m_BevelCutoff: 0
-  m_FillOffset: 0
+  m_FillOffset: -0.5
   m_WorldSpaceUV: 0
   m_UseSpriteBorders: 1

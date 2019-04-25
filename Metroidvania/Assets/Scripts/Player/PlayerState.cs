@@ -10,7 +10,6 @@ public class PlayerState : MonoBehaviour
     public bool isHoldingItemState = false;
     public bool isGroundedState = false;
     public bool isJumpingState = false;
-    public bool isFlyingState = false;
     public bool isFallingState = false;
     public bool isSlammingState = false;
     public bool isDashingState = false;
@@ -22,7 +21,6 @@ public class PlayerState : MonoBehaviour
     public bool hasDoubleJump = false;
     public bool hasDash = false;
     public bool hasUpgradedDash = false;
-    public bool hasFlying = false;
     public bool hasSlam = false;
 
     [Header("Helpers")]

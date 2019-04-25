@@ -29,12 +29,6 @@ Bohater obraca się, aby być prostopadle do podłoża i odpycha się od powietr
 **Pozwala na przechodzenie przez ściany**\
 **Podczas dasha jest niewrażliwy na ataki**
 
-#### Eksplozja
-
-Wyrzucamy pocisk grawitacyjny, który w miejscu eksplozji zwiększa grawitację rozwalając otoczenie oraz przedmioty.\
-**Można rozwalać zagrodzone przejścia**\
-**Dostarcza przedmioty do rzucania**
-
 #### Ustawienie przedmiotu w powietrzu
 
 Gracz spotka na swojej drodze przedmioty zawieszone w polu grawitacyjnym na które normalnie nie można wskoczyć. Po uzyskaniu umiejętności można te przedmioty "opanować" na określony czas (wyłączyć im działanie grawitacji). Można wtedy na nie wejść. Przedmioty przestają być "opanowane" po określonym czasie.\
@@ -46,7 +40,7 @@ Maksymalnie można panować x przedmiotami na raz. Po opanowaniu x+1 przedmiotu 
 Trzeba być przy samym przedmiocie, żeby siła była największa. Można wtedy przytrzymać ~~LPM~~ F, aby przedmiot podnieść (jeżeli są to np. ciężkie drzwi).\
 **Możne przechodzić przez drzwi podnosząc je do góry**
 
-#### Uderzenie w ziemię
+#### Uderzenie w ziemię (Slam)
 
 Odrzuca przeciwników, powoduje trzęsienie ziemii, rozwala przejścia w dół.
 
@@ -59,5 +53,3 @@ Można podnieść wiele przedmiotów i rzucić wszystkimi na raz.
 ### Maybe later
 
 #### Pływanie
-
-#### Latanie

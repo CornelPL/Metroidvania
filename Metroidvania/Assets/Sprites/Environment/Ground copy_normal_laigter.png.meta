@@ -1,28 +1,13 @@
 fileFormatVersion: 2
-guid: 3db4ac2222114b9478425149ad643578
+guid: 66b5da460dba69b418241016e8e64725
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 21300000
-    second: left_top_corner
-  - first:
-      213: 21300002
-    second: Ground copy_1
-  - first:
-      213: 21300004
-    second: ground
-  - first:
-      213: 21300006
-    second: wall
-  - first:
-      213: 21300008
-    second: Fill
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
-    sRGBTexture: 1
+    sRGBTexture: 0
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -55,18 +40,18 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 1
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
@@ -108,74 +93,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: left_top_corner
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 204
-        height: 204
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a5235e6abe0233444a4098c95008d4d4
-      internalID: 21300000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ground
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 204
-        width: 624
-        height: 204
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8170a018dc0bf234f822a1938fe3e724
-      internalID: 21300004
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wall
-      rect:
-        serializedVersion: 2
-        x: 624
-        y: 204
-        width: 624
-        height: 204
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8dba3c689f4b2714ca54424041c25c4c
-      internalID: 21300006
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ccb5e7c682f7cd84a89636ce16644c5b
+    spriteID: 5da517de159b3f54cb8dd8c56f296926
     internalID: 0
     vertices: []
     indices: 

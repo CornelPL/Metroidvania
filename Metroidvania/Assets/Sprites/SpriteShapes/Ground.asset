@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Ground
   m_EditorClassIdentifier: 
   m_Angles:
-  - m_Start: -30
-    m_End: 30
+  - m_Start: -45
+    m_End: 45
     m_Order: 0
     m_Sprites:
     - {fileID: 21300004, guid: 3db4ac2222114b9478425149ad643578, type: 3}
@@ -49,9 +49,5 @@ MonoBehaviour:
   - m_CornerType: 7
     m_Sprites:
     - {fileID: 0}
-  m_FillPixelPerUnit: 100
-  m_BevelSize: 0
-  m_BevelCutoff: 0
   m_FillOffset: -0.5
-  m_WorldSpaceUV: 0
   m_UseSpriteBorders: 1

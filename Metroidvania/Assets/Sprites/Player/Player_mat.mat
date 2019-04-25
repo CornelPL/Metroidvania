@@ -83,10 +83,10 @@ Material:
     - PixelSnap: 1
     - _BlendAmount: 0
     - _Brightness: 1
-    - _BumpScale: 0.5
+    - _BumpScale: 0.47
     - _Cull: 0
     - _CustomRenderQueue: 0
-    - _Cutoff: 0
+    - _Cutoff: 0.24
     - _DetailNormalMapScale: 1
     - _Dissolve: 0
     - _DissolveEdgePower: 0.1
@@ -95,7 +95,7 @@ Material:
     - _EmissionPower: 1
     - _EnableExternalAlpha: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.4
     - _GlossyReflections: 1
     - _Hue: 0
     - _Metallic: 0

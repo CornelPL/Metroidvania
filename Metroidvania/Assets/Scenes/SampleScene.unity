@@ -1582,7 +1582,6 @@ MonoBehaviour:
   _rigidbody: {fileID: 613379613}
   movementSpeed: 7
   jumpSpeed: 23
-  flyingSpeed: 2
   dashSpeed: 30
   dashTime: 0.25
   slamSpeed: 50
@@ -1747,6 +1746,7 @@ MonoBehaviour:
   shootPower: 40
   slowmoMaxTime: 2
   holdingItemPlace: {fileID: 1532942443}
+  rockToSpawn: {fileID: 1860542986}
   stableItemFreezeTime: 5
   maxStableItems: 2
   arcRenderer: {fileID: 794329769}
@@ -1755,6 +1755,9 @@ MonoBehaviour:
   itemsLayer:
     serializedVersion: 2
     m_Bits: 657920
+  rocksLayer:
+    serializedVersion: 2
+    m_Bits: 16640
 --- !u!114 &613379615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1771,7 +1774,6 @@ MonoBehaviour:
   isHoldingItemState: 0
   isGroundedState: 0
   isJumpingState: 0
-  isFlyingState: 0
   isFallingState: 0
   isSlammingState: 0
   isDashingState: 0
@@ -1780,7 +1782,6 @@ MonoBehaviour:
   hasDoubleJump: 1
   hasDash: 1
   hasUpgradedDash: 1
-  hasFlying: 1
   hasSlam: 1
   normalCollider: {fileID: 613379612}
   invulnerableCollider: {fileID: 1039574097}
@@ -3272,16 +3273,15 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.6
   m_Points:
-  - {x: 66.68498, y: -9.057627}
-  - {x: -0.50824976, y: -11.739123}
-  - {x: -2.1913886, y: -11.774745}
-  - {x: -2.2070763, y: 0.83200026}
-  - {x: 64.98506, y: 0.832}
-  - {x: 66.60238, y: -8.616715}
-  - {x: 66.66332, y: -8.942021}
-  - {x: 66.68498, y: -9.057627}
+  - {x: 64.919846, y: -9.239333}
+  - {x: -1.377429, y: -11.77373}
+  - {x: -1.3921028, y: 0.018040165}
+  - {x: 64.98711, y: 0.015985614}
+  - {x: 64.922714, y: -9.121428}
+  - {x: 64.92189, y: -9.239347}
+  - {x: 64.919846, y: -9.239333}
 --- !u!114 &1057039288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3298,7 +3298,7 @@ MonoBehaviour:
   m_Spline:
     m_IsOpenEnded: 0
     m_ControlPoints:
-    - position: {x: 66.68498, y: -9.057627, z: 0}
+    - position: {x: 64.919846, y: -9.239333, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -3333,7 +3333,7 @@ MonoBehaviour:
       bevelCutoff: 0
       bevelSize: 0
       spriteIndex: 0
-      corner: 0
+      corner: 1
   m_SpriteShape: {fileID: 11400000, guid: c66397d5fa0845f45abab91830e2bfe1, type: 2}
   m_FillPixelPerUnit: 0
   m_StretchTiling: 1
@@ -3342,8 +3342,8 @@ MonoBehaviour:
   m_StretchUV: 0
   m_WorldSpaceUV: 0
   m_ColliderDetail: 4
-  m_ColliderOffset: 0.4
-  m_UpdateCollider: 1
+  m_ColliderOffset: 0
+  m_UpdateCollider: 0
   m_OptimizeCollider: 1
 --- !u!1971053207 &1057039289
 SpriteShapeRenderer:
@@ -3388,6 +3388,7 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300004, guid: 3db4ac2222114b9478425149ad643578, type: 3}
   - {fileID: 21300006, guid: 3db4ac2222114b9478425149ad643578, type: 3}
+  - {fileID: 21300006, guid: 3db4ac2222114b9478425149ad643578, type: 3}
   - {fileID: 21300000, guid: 3db4ac2222114b9478425149ad643578, type: 3}
   - {fileID: 0}
   - {fileID: 0}
@@ -3397,8 +3398,8 @@ SpriteShapeRenderer:
   - {fileID: 0}
   - {fileID: 0}
   m_LocalAABB:
-    m_Center: {x: 32.138096, y: -5.3694997, z: -0.00501}
-    m_Extent: {x: 34.546883, y: 6.4055, z: 0.00501}
+    m_Center: {x: 31.798124, y: -5.3694997, z: -0.00501}
+    m_Extent: {x: 34.206913, y: 6.4055, z: 0.00501}
 --- !u!4 &1057039290
 Transform:
   m_ObjectHideFlags: 0
@@ -4290,7 +4291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1532942443
 Transform:
   m_ObjectHideFlags: 0
@@ -4880,7 +4881,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686121655}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 194.98717, y: 29, z: 0}
+  m_LocalPosition: {x: 198.3, y: 29.5, z: 0}
   m_LocalScale: {x: 16.065, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5905,6 +5906,12 @@ Transform:
   m_Father: {fileID: 146387615}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1860542986 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6417654320457713547, guid: 33057ab5e8b0e0d47a77f04442e743c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6417654319967113071}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2018968524
 GameObject:
   m_ObjectHideFlags: 0

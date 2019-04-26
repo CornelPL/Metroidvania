@@ -1,5 +1,6 @@
-# Flow of the game
-Typowa Metroidvania. Zaczynamy bez umiejętności (**co na początku możemy robić?**) i po kolei zdobywamy kolejne (**jakie? ile? co nam dają? w jaki sposób je zdobywamy?** *np. zabicie jakiegoś bossa*). Nowe umiejętności pozwalają nam się dostać do nowych miejsc (**jakich miejsc? w jaki sposób? co oferują nowe miejsca? czym się różnią od poprzednich?**). Pierwszą umiejętnością jest Telekineza - nasza główna broń (**jak działa? co możemy nią robić od razu? co dopiero gdy się rozwinie?**). Przeszkodami na drodze są proste zagadki (**jakie?** *żeby gracz nie tylko chodził i zabijał*) i przeciwnicy (**jacy? jak mogą nam zaszkodzić? jak się poruszają? jak można ich zabić?**).
+# Demo level
 
-
-Na początku gracz może się poruszać i wykonywać pojedynczy skok. Poznaje przez chwilę świat (**jaki świat?**) i natrafia na power-up - eksplozję. Wyskakuje info (obrazek z myszką) jak używać tej umiejętności. Żeby przejść dalej musi użyć eksplozji do rozwalenia destructibli. Uczy się w ten sposób jak pozyskiwać nowe rzeczy do rzucania (mimo, że na razie nie może ich podnosić). Spotyka pierwszego najprostszego wroga. Uczy się go omijać i ewentualnie sam dowiaduje się, że eksplozja nie rani przeciwników.
+- Small boss
+- 3 enemies
+- double jump, slam
+- 3-5 items

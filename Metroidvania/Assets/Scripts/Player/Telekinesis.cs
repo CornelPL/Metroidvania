@@ -15,6 +15,7 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float shootPower = 10f;
     [SerializeField] private float slowmoMaxTime = 2f;
     [SerializeField] private Transform holdingItemPlace = null;
+    [SerializeField] private GameObject rockToSpawn = null;
 
     [Header("Stable items")]
     [SerializeField] private float stableItemFreezeTime = 5f;
@@ -25,8 +26,11 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private int arcResolution = 10;
     [SerializeField] private float arcLength = 8f;
 
-    [Header("Collision masks")]
+    [Header("Masks")]
+    [Tooltip("Layers of all items player can pick up.")]
     public LayerMask itemsLayer;
+    [Tooltip("Layers from where player can get rocks.")]
+    public LayerMask rocksLayer;
 
     #endregion
 
@@ -41,6 +45,7 @@ public class Telekinesis : MonoBehaviour
     private string stableItemsTag = "StableItem";
     private List<GameObject> stableItems = new List<GameObject>();
     private float t = 0f;
+    private bool canGetRockFromGround = false;
 
     #endregion
 
@@ -71,6 +76,7 @@ public class Telekinesis : MonoBehaviour
             closestItem = null;
 
         closestStableItem = null;
+        canGetRockFromGround = false;
 
         if (Vector2.Distance(input.cursorPosition, transform.position) < range)
         {
@@ -104,17 +110,29 @@ public class Telekinesis : MonoBehaviour
                 }
             }
         }
+
+        if (closestItem == null && Physics2D.OverlapCircle(input.cursorPosition, radius, rocksLayer))
+        {
+            canGetRockFromGround = true;
+        }
     }
 
 
     private void CheckItem()
     {
         if (!state.isHoldingItemState &&
-            !state.isPullingItemState &&
-            closestItem != null &&
-            !closestItem.CompareTag(stableItemsTag))
+            !state.isPullingItemState)
         {
-            closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullForce, maxPullForce, pullSpeed, maxPullSpeed);
+            if (closestItem != null && !closestItem.CompareTag(stableItemsTag))
+            {
+                closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullForce, maxPullForce, pullSpeed, maxPullSpeed);
+            }
+            else if (canGetRockFromGround)
+            {
+                closestItem = Instantiate(rockToSpawn, input.cursorPosition, transform.rotation);
+                closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
+                closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullForce, maxPullForce, pullSpeed, maxPullSpeed);
+            }
         }
         else if ((state.isHoldingItemState || state.isPullingItemState) && !isHoldingLMB)
         {

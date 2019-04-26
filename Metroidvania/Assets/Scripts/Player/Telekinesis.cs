@@ -130,6 +130,7 @@ public class Telekinesis : MonoBehaviour
             else if (canGetRockFromGround)
             {
                 closestItem = Instantiate(rockToSpawn, input.cursorPosition, transform.rotation);
+                closestItem.layer = LayerMask.NameToLayer("IgnoreCollisions");
                 closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
                 closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullForce, maxPullForce, pullSpeed, maxPullSpeed);
             }

@@ -93,7 +93,7 @@ public class ItemPull : MonoBehaviour
         rb.gravityScale = 0f;
         if (GetComponent<ItemShoot>().itemType == ItemShoot.ItemType.plank)
             gameObject.layer = LayerMask.NameToLayer("Planks");
-        else
+        else if (gameObject.layer != LayerMask.NameToLayer("IgnoreCollisions"))
             gameObject.layer = LayerMask.NameToLayer("PullingItem");
     }
 

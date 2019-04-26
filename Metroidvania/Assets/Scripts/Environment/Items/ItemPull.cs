@@ -67,16 +67,11 @@ public class ItemPull : MonoBehaviour
     private void PullingComplete()
     {
         rb.velocity = Vector2.zero;
-        PlayerState.instance.isPullingItemState = false;
         transform.SetParent(holdingItemPlace);
         transform.position = holdingItemPlace.position;
-        rb.gravityScale = gravityScaleCopy;
         rb.simulated = false;
         PlayerState.instance.isHoldingItemState = true;
-        GetComponent<ItemShoot>().isShooted = false;
-        if (GetComponent<ItemShoot>().itemType == ItemShoot.ItemType.plank)
-            gameObject.layer = LayerMask.NameToLayer("Items");
-        Destroy(this);
+        StopPulling();
     }
 
 
@@ -96,9 +91,10 @@ public class ItemPull : MonoBehaviour
         pullSpeed = s;
         maxPullSpeed = ms;
         rb.gravityScale = 0f;
-        GetComponent<ItemShoot>().isShooted = true;
         if (GetComponent<ItemShoot>().itemType == ItemShoot.ItemType.plank)
             gameObject.layer = LayerMask.NameToLayer("Planks");
+        else
+            gameObject.layer = LayerMask.NameToLayer("PullingItem");
     }
 
 
@@ -106,9 +102,7 @@ public class ItemPull : MonoBehaviour
     {
         PlayerState.instance.isPullingItemState = false;
         rb.gravityScale = gravityScaleCopy;
-        GetComponent<ItemShoot>().isShooted = false;
-        if (GetComponent<ItemShoot>().itemType == ItemShoot.ItemType.plank)
-            gameObject.layer = LayerMask.NameToLayer("Items");
+        gameObject.layer = LayerMask.NameToLayer("Items");
         Destroy(this);
     }
 }

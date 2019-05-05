@@ -20,13 +20,13 @@ public class PlayerHealthManager : MonoBehaviour
 
     private void Death()
     {
-        // Implement Death
+        Debug.Log("DEAD");
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Boundary"))
+        if (collision.gameObject.CompareTag("Spikes"))
         {
             Death();
         }

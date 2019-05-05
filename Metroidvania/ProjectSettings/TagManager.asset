@@ -10,11 +10,12 @@ TagManager:
   - StopMark
   - Ground
   - Wall
-  - Boundary
   - Item
   - DestroyableGround
   - DestroyableWall
   - SoftWall
+  - DestroyablePlanks
+  - Spikes
   layers:
   - Default
   - TransparentFX

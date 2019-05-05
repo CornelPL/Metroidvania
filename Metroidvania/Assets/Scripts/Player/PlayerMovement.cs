@@ -196,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 state.isDashingState = false;
             }
-            if (state.hasUpgradedDash && collision.collider.CompareTag("DestroyableWall"))
+            else if (state.hasUpgradedDash && collision.collider.CompareTag("DestroyableWall"))
             {
                 collision.collider.GetComponent<CustomDestroy>().Destroy();
             }

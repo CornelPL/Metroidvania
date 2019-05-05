@@ -30,6 +30,10 @@ public class ItemShoot : MonoBehaviour
                 DoDamage(collision.gameObject);
                 CustomDestroy(collision.relativeVelocity);
             }
+            else if (collision.gameObject.CompareTag("DestroyablePlanks"))
+            {
+                collision.gameObject.GetComponent<CustomDestroy>().Destroy();
+            }
 
             if (itemType == ItemType.rock)
             {

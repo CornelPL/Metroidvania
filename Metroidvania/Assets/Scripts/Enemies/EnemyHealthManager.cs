@@ -19,13 +19,13 @@ public class EnemyHealthManager : MonoBehaviour
 
     private void Death()
     {
-        // Implement Death
+        Debug.Log("Enemy dead");
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Boundary"))
+        if (collision.CompareTag("Spikes"))
         {
             Death();
         }

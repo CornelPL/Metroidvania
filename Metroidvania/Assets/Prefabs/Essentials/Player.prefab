@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 6838834047338178264}
-  movementSpeed: 9
+  movementSpeed: 10
   jumpSpeed: 32
   dashSpeed: 30
   dashTime: 0.25

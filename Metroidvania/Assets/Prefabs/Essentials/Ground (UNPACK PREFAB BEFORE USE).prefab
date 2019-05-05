@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1901162795097940659}
   - component: {fileID: 1901162795097940668}
   m_Layer: 8
-  m_Name: Ground
+  m_Name: Ground (UNPACK PREFAB BEFORE USE)
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_WorldSpaceUV: 0
   m_ColliderDetail: 4
   m_ColliderOffset: 0
-  m_UpdateCollider: 0
+  m_UpdateCollider: 1
   m_OptimizeCollider: 1
 --- !u!68 &1901162795097940668
 EdgeCollider2D:

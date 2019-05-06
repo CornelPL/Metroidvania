@@ -25,8 +25,8 @@ public class PlayerState : MonoBehaviour
 
     [Header("Helpers")]
 
-    [SerializeField] private PolygonCollider2D normalCollider = null;
-    [SerializeField] private PolygonCollider2D invulnerableCollider = null;
+    [SerializeField] private Collider2D normalCollider = null;
+    [SerializeField] private Collider2D invulnerableCollider = null;
     [SerializeField] private Rigidbody2D _rigidbody = null;
     private float t = 0f;
 

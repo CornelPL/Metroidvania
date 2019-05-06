@@ -190,16 +190,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (state.isDashingState)
+        if (collision.collider.CompareTag("Platform"))
         {
-            if (collision.collider.CompareTag("Wall") || collision.collider.CompareTag("Ground"))
-            {
-                state.isDashingState = false;
-            }
-            else if (state.hasUpgradedDash && collision.collider.CompareTag("DestroyableWall"))
-            {
-                collision.collider.GetComponent<CustomDestroy>().Destroy();
-            }
+            return;
+        }
+
+        state.isDashingState = false;
+        if (state.isDashingState && state.hasUpgradedDash && collision.collider.CompareTag("DestroyableWall"))
+        {
+            collision.collider.GetComponent<CustomDestroy>().Destroy();
         }
     }
 

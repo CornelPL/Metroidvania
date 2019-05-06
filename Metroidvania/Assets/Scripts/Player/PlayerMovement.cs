@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody = null;
+    [SerializeField] private FreeParallax parallax = null;
 
     private InputController input;
     private PlayerState state;
@@ -185,6 +186,7 @@ public class PlayerMovement : MonoBehaviour
         if (state.isSlammingState) verticalSpeed = -slamSpeed;
         if (state.isKnockbackedState) return;
         _rigidbody.velocity = new Vector2(horizontalSpeed, verticalSpeed);
+        parallax.Speed = horizontalSpeed;
     }
 
 

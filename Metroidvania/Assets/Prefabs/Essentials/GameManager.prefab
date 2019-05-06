@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5261183433287557951}
   - component: {fileID: 5261183433287557950}
   - component: {fileID: 5261183433287557920}
+  - component: {fileID: 4239671879953109426}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -68,3 +69,20 @@ MonoBehaviour:
   slowmoTimeScale: 0.1
   timeChangeDecreaseSpeed: 3
   timeChangeIncreaseSpeed: 5
+--- !u!114 &4239671879953109426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5261183433287557949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b364d8d33b03664a9e424c330da18d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parallaxCamera: {fileID: 0}
+  Speed: 2
+  Elements: []
+  IsHorizontal: 1
+  WrapOverlap: 0

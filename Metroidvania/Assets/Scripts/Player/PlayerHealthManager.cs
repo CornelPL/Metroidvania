@@ -37,7 +37,8 @@ public class PlayerHealthManager : MonoBehaviour
     {
         PlayerState.instance.isKnockbackedState = true;
         PlayerState.instance.EnableInvulnerability();
-        _rigidbody.AddForce(new Vector2(0.5f * Mathf.Sign(transform.position.x - xPos), 1f) * knockbackForce);
+        _rigidbody.velocity = Vector2.zero;
+        _rigidbody.AddForce(new Vector2(0.5f * Mathf.Sign(transform.position.x - xPos), 1f) * knockbackForce, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(knockbackTime);
         PlayerState.instance.isKnockbackedState = false;

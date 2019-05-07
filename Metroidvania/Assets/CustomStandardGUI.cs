@@ -43,7 +43,6 @@ namespace UnityEditor
             public static GUIContent heightMapText = new GUIContent("Height Map", "Height Map (G)");
             public static GUIContent occlusionText = new GUIContent("Occlusion", "Occlusion (G)");
             public static GUIContent emissionText = new GUIContent("Color", "Emission (RGB)");
-            public static GUIContent sizeText = new GUIContent("Size", "Size of blur");
 
             public static string primaryMapsText = "Main Maps";
             public static string forwardText = "Forward Rendering Options";
@@ -154,6 +153,8 @@ namespace UnityEditor
                 if (EditorGUI.EndChangeCheck())
                     emissionMap.textureScaleAndOffset = albedoMap.textureScaleAndOffset; // Apply the main texture scale and offset to the emission texture as well, for Enlighten's sake
 
+                EditorGUILayout.Space();
+                m_MaterialEditor.RangeProperty(size, "Size");
                 EditorGUILayout.Space();
 
                 // Third properties
@@ -277,7 +278,6 @@ namespace UnityEditor
             {
                 hasGlossMap = metallicMap.textureValue != null;
                 m_MaterialEditor.TexturePropertySingleLine(Styles.metallicMapText, metallicMap, hasGlossMap ? null : metallic);
-                m_MaterialEditor.RangeProperty(size, "Size");
             }
 
             bool showSmoothnessScale = hasGlossMap;

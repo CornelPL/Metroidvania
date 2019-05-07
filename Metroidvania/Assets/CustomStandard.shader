@@ -1,4 +1,6 @@
-﻿// Unity built-in shader source. Copyright (c) 2016 Unity Technologies. MIT license (see license.txt)
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Unity built-in shader source. Copyright (c) 2016 Unity Technologies. MIT license (see license.txt)
 
 Shader "CustomStandard"
 {
@@ -6,6 +8,8 @@ Shader "CustomStandard"
 	{
 		_Color("Color", Color) = (1,1,1,1)
 		_MainTex("Albedo", 2D) = "white" {}
+		_BumpAmt("Distortion", Range(0,128)) = 10
+		_Size("Size", Range(0, 20)) = 1
 
 		_Cutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
 
@@ -31,15 +35,6 @@ Shader "CustomStandard"
 		_EmissionColor("Color", Color) = (0,0,0)
 		_EmissionMap("Emission", 2D) = "white" {}
 
-		_DetailMask("Detail Mask", 2D) = "white" {}
-
-		_DetailAlbedoMap("Detail Albedo x2", 2D) = "grey" {}
-		_DetailNormalMapScale("Scale", Float) = 1.0
-		[Normal] _DetailNormalMap("Normal Map", 2D) = "bump" {}
-
-		[Enum(UV0,0,UV1,1)] _UVSec("UV Set for secondary textures", Float) = 0
-
-
 			// Blending state
 			[HideInInspector] _Mode("__mode", Float) = 0.0
 			[HideInInspector] _SrcBlend("__src", Float) = 1.0
@@ -57,6 +52,200 @@ Shader "CustomStandard"
 			//Tags { "RenderType" = "Opaque" "PerformanceChecks" = "False" }
 			LOD 300
 
+			// Horizontal blur
+			GrabPass{
+				Tags { "LightMode" = "Always" }
+		}
+			Pass{
+				Tags { "LightMode" = "Always" }
+
+				CGPROGRAM
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma fragmentoption ARB_precision_hint_fastest
+				#include "UnityCG.cginc"
+
+				struct appdata_t {
+					float4 vertex : POSITION;
+					float2 texcoord: TEXCOORD0;
+				};
+
+				struct v2f {
+					float4 vertex : POSITION;
+					float4 uvgrab : TEXCOORD0;
+				};
+
+				v2f vert(appdata_t v)
+				{
+					v2f o;
+					o.vertex = UnityObjectToClipPos(v.vertex);
+#if UNITY_UV_STARTS_AT_TOP
+					float scale = -1.0;
+#else
+					float scale = 1.0;
+#endif
+					o.uvgrab.xy = (float2(o.vertex.x, o.vertex.y*scale) + o.vertex.w) * 0.5;
+					o.uvgrab.zw = o.vertex.zw;
+					return o;
+				}
+
+sampler2D _GrabTexture;
+float4 _GrabTexture_TexelSize;
+float _Size;
+
+half4 frag(v2f i) : COLOR {
+	//                  half4 col = tex2Dproj( _GrabTexture, UNITY_PROJ_COORD(i.uvgrab));
+	//                  return col;
+
+		half4 sum = half4(0,0,0,0);
+
+		#define GRABPIXEL(weight,kernelx) tex2Dproj( _GrabTexture, UNITY_PROJ_COORD(float4(i.uvgrab.x + _GrabTexture_TexelSize.x * kernelx*_Size, i.uvgrab.y, i.uvgrab.z, i.uvgrab.w))) * weight
+
+		sum += GRABPIXEL(0.05, -4.0);
+		sum += GRABPIXEL(0.09, -3.0);
+		sum += GRABPIXEL(0.12, -2.0);
+		sum += GRABPIXEL(0.15, -1.0);
+		sum += GRABPIXEL(0.18,  0.0);
+		sum += GRABPIXEL(0.15, +1.0);
+		sum += GRABPIXEL(0.12, +2.0);
+		sum += GRABPIXEL(0.09, +3.0);
+		sum += GRABPIXEL(0.05, +4.0);
+
+		return sum;
+	}
+	ENDCG
+		}
+
+			// Vertical blur
+		GrabPass{
+			Tags { "LightMode" = "Always" }
+	}
+		Pass{
+			Tags { "LightMode" = "Always" }
+
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			#pragma fragmentoption ARB_precision_hint_fastest
+			#include "UnityCG.cginc"
+
+			struct appdata_t {
+				float4 vertex : POSITION;
+				float2 texcoord: TEXCOORD0;
+			};
+
+			struct v2f {
+				float4 vertex : POSITION;
+				float4 uvgrab : TEXCOORD0;
+			};
+
+			v2f vert(appdata_t v)
+		{
+		v2f o;
+		o.vertex = UnityObjectToClipPos(v.vertex);
+		#if UNITY_UV_STARTS_AT_TOP
+		float scale = -1.0;
+		#else
+		float scale = 1.0;
+		#endif
+		o.uvgrab.xy = (float2(o.vertex.x, o.vertex.y*scale) + o.vertex.w) * 0.5;
+		o.uvgrab.zw = o.vertex.zw;
+		return o;
+		}
+
+		sampler2D _GrabTexture;
+		float4 _GrabTexture_TexelSize;
+		float _Size;
+
+		half4 frag(v2f i) : COLOR {
+			//                  half4 col = tex2Dproj( _GrabTexture, UNITY_PROJ_COORD(i.uvgrab));
+			//                  return col;
+
+			half4 sum = half4(0,0,0,0);
+
+			#define GRABPIXEL(weight,kernely) tex2Dproj( _GrabTexture, UNITY_PROJ_COORD(float4(i.uvgrab.x, i.uvgrab.y + _GrabTexture_TexelSize.y * kernely*_Size, i.uvgrab.z, i.uvgrab.w))) * weight
+
+			//G(X) = (1/(sqrt(2*PI*deviation*deviation))) * exp(-(x*x / (2*deviation*deviation)))
+
+			sum += GRABPIXEL(0.05, -4.0);
+			sum += GRABPIXEL(0.09, -3.0);
+			sum += GRABPIXEL(0.12, -2.0);
+			sum += GRABPIXEL(0.15, -1.0);
+			sum += GRABPIXEL(0.18,  0.0);
+			sum += GRABPIXEL(0.15, +1.0);
+			sum += GRABPIXEL(0.12, +2.0);
+			sum += GRABPIXEL(0.09, +3.0);
+			sum += GRABPIXEL(0.05, +4.0);
+
+			return sum;
+		}
+		ENDCG
+	}
+
+		// Distortion
+			GrabPass{
+				Tags { "LightMode" = "Always" }
+		}
+			Pass{
+				Tags { "LightMode" = "Always" }
+
+				CGPROGRAM
+				#pragma vertex vert
+				#pragma fragment frag
+				#pragma fragmentoption ARB_precision_hint_fastest
+				#include "UnityCG.cginc"
+
+				struct appdata_t {
+					float4 vertex : POSITION;
+					float2 texcoord: TEXCOORD0;
+				};
+
+				struct v2f {
+					float4 vertex : POSITION;
+					float4 uvgrab : TEXCOORD0;
+					float2 uvbump : TEXCOORD1;
+					float2 uvmain : TEXCOORD2;
+				};
+
+				float _BumpAmt;
+				float4 _BumpMap_ST;
+				float4 _MainTex_ST;
+
+				v2f vert(appdata_t v)
+				{
+					v2f o;
+					o.vertex = UnityObjectToClipPos(v.vertex);
+			#if UNITY_UV_STARTS_AT_TOP
+					float scale = -1.0;
+			#else
+					float scale = 1.0;
+			#endif
+					o.uvgrab.xy = (float2(o.vertex.x, o.vertex.y*scale) + o.vertex.w) * 0.5;
+					o.uvgrab.zw = o.vertex.zw;
+					o.uvbump = TRANSFORM_TEX(v.texcoord, _BumpMap);
+					o.uvmain = TRANSFORM_TEX(v.texcoord, _MainTex);
+					return o;
+				}
+
+			fixed4 _Color;
+			sampler2D _GrabTexture;
+			float4 _GrabTexture_TexelSize;
+			sampler2D _BumpMap;
+			sampler2D _MainTex;
+
+			half4 frag(v2f i) : COLOR{
+				// calculate perturbed coordinates
+				half2 bump = UnpackNormal(tex2D(_BumpMap, i.uvbump)).rg; // we could optimize this by just reading the x  y without reconstructing the Z
+				float2 offset = bump * _BumpAmt * _GrabTexture_TexelSize.xy;
+				i.uvgrab.xy = offset * i.uvgrab.z + i.uvgrab.xy;
+
+				half4 col = tex2Dproj(_GrabTexture, UNITY_PROJ_COORD(i.uvgrab));
+				half4 tint = tex2D(_MainTex, i.uvmain) * _Color;
+
+				return col * tint;
+			}
+			ENDCG
+		}
 
 			// ------------------------------------------------------------------
 			//  Base forward pass (directional light, emission, lightmaps, ...)
@@ -220,131 +409,134 @@ Shader "CustomStandard"
 				#include "UnityStandardMeta.cginc"
 				ENDCG
 			}
+
+			
 		}
 
-		/*	SubShader
-		{
-			Tags { "RenderType" = "Opaque" "PerformanceChecks" = "False" }
-			LOD 150
 
-			// ------------------------------------------------------------------
-			//  Base forward pass (directional light, emission, lightmaps, ...)
-			Pass
+			/*	SubShader
 			{
-				Name "FORWARD"
-				Tags { "LightMode" = "ForwardBase" }
+				Tags { "RenderType" = "Opaque" "PerformanceChecks" = "False" }
+				LOD 150
 
-				Blend[_SrcBlend][_DstBlend]
-				ZWrite[_ZWrite]
+				// ------------------------------------------------------------------
+				//  Base forward pass (directional light, emission, lightmaps, ...)
+				Pass
+				{
+					Name "FORWARD"
+					Tags { "LightMode" = "ForwardBase" }
 
-				CGPROGRAM
-				#pragma target 2.0
+					Blend[_SrcBlend][_DstBlend]
+					ZWrite[_ZWrite]
 
-				#pragma shader_feature _NORMALMAP
-				#pragma shader_feature_local _ _ALPHATEST_ON _ALPHABLEND_ON _ALPHAPREMULTIPLY_ON
-				#pragma shader_feature _EMISSION
-				#pragma shader_feature_local _METALLICGLOSSMAP
-				#pragma shader_feature_local _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-				#pragma shader_feature_local _SPECULARHIGHLIGHTS_OFF
-				#pragma shader_feature_local _GLOSSYREFLECTIONS_OFF
-			// SM2.0: NOT SUPPORTED shader_feature_local _DETAIL_MULX2
-			// SM2.0: NOT SUPPORTED shader_feature_local _PARALLAXMAP
+					CGPROGRAM
+					#pragma target 2.0
 
-			#pragma skip_variants SHADOWS_SOFT DIRLIGHTMAP_COMBINED
+					#pragma shader_feature _NORMALMAP
+					#pragma shader_feature_local _ _ALPHATEST_ON _ALPHABLEND_ON _ALPHAPREMULTIPLY_ON
+					#pragma shader_feature _EMISSION
+					#pragma shader_feature_local _METALLICGLOSSMAP
+					#pragma shader_feature_local _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+					#pragma shader_feature_local _SPECULARHIGHLIGHTS_OFF
+					#pragma shader_feature_local _GLOSSYREFLECTIONS_OFF
+				// SM2.0: NOT SUPPORTED shader_feature_local _DETAIL_MULX2
+				// SM2.0: NOT SUPPORTED shader_feature_local _PARALLAXMAP
 
-			#pragma multi_compile_fwdbase
-			#pragma multi_compile_fog
+				#pragma skip_variants SHADOWS_SOFT DIRLIGHTMAP_COMBINED
 
-			#pragma vertex vertBase
-			#pragma fragment fragBase
-			#include "UnityStandardCoreForward.cginc"
+				#pragma multi_compile_fwdbase
+				#pragma multi_compile_fog
 
-			ENDCG
-		}
-			// ------------------------------------------------------------------
-			//  Additive forward pass (one light per pass)
-			Pass
-			{
-				Name "FORWARD_DELTA"
-				Tags { "LightMode" = "ForwardAdd" }
-				Blend[_SrcBlend] One
-				Fog { Color(0,0,0,0) } // in additive pass fog should be black
-				ZWrite Off
-				ZTest LEqual
+				#pragma vertex vertBase
+				#pragma fragment fragBase
+				#include "UnityStandardCoreForward.cginc"
 
-				CGPROGRAM
-				#pragma target 2.0
+				ENDCG
+			}
+				// ------------------------------------------------------------------
+				//  Additive forward pass (one light per pass)
+				Pass
+				{
+					Name "FORWARD_DELTA"
+					Tags { "LightMode" = "ForwardAdd" }
+					Blend[_SrcBlend] One
+					Fog { Color(0,0,0,0) } // in additive pass fog should be black
+					ZWrite Off
+					ZTest LEqual
 
-				#pragma shader_feature _NORMALMAP
-				#pragma shader_feature_local _ _ALPHATEST_ON _ALPHABLEND_ON _ALPHAPREMULTIPLY_ON
-				#pragma shader_feature_local _METALLICGLOSSMAP
-				#pragma shader_feature_local _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-				#pragma shader_feature_local _SPECULARHIGHLIGHTS_OFF
-				#pragma shader_feature_local _DETAIL_MULX2
-			// SM2.0: NOT SUPPORTED shader_feature_local _PARALLAXMAP
-			#pragma skip_variants SHADOWS_SOFT
+					CGPROGRAM
+					#pragma target 2.0
 
-			#pragma multi_compile_fwdadd_fullshadows
-			#pragma multi_compile_fog
-
-			#pragma vertex vertAdd
-			#pragma fragment fragAdd
-			#include "UnityStandardCoreForward.cginc"
-
-			ENDCG
-		}
-			// ------------------------------------------------------------------
-			//  Shadow rendering pass
-			Pass {
-				Name "ShadowCaster"
-				Tags { "LightMode" = "ShadowCaster" }
-
-				ZWrite On ZTest LEqual
-
-				CGPROGRAM
-				#pragma target 2.0
-
-				#pragma shader_feature_local _ _ALPHATEST_ON _ALPHABLEND_ON _ALPHAPREMULTIPLY_ON
-				#pragma shader_feature_local _METALLICGLOSSMAP
-				#pragma shader_feature_local _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+					#pragma shader_feature _NORMALMAP
+					#pragma shader_feature_local _ _ALPHATEST_ON _ALPHABLEND_ON _ALPHAPREMULTIPLY_ON
+					#pragma shader_feature_local _METALLICGLOSSMAP
+					#pragma shader_feature_local _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+					#pragma shader_feature_local _SPECULARHIGHLIGHTS_OFF
+					#pragma shader_feature_local _DETAIL_MULX2
+				// SM2.0: NOT SUPPORTED shader_feature_local _PARALLAXMAP
 				#pragma skip_variants SHADOWS_SOFT
-				#pragma multi_compile_shadowcaster
 
-				#pragma vertex vertShadowCaster
-				#pragma fragment fragShadowCaster
+				#pragma multi_compile_fwdadd_fullshadows
+				#pragma multi_compile_fog
 
-				#include "UnityStandardShadow.cginc"
+				#pragma vertex vertAdd
+				#pragma fragment fragAdd
+				#include "UnityStandardCoreForward.cginc"
 
 				ENDCG
 			}
-			
-			// ------------------------------------------------------------------
-			// Extracts information for lightmapping, GI (emission, albedo, ...)
-			// This pass it not used during regular rendering.
-			Pass
-			{
-				Name "META"
-				Tags { "LightMode" = "Meta" }
+				// ------------------------------------------------------------------
+				//  Shadow rendering pass
+				Pass {
+					Name "ShadowCaster"
+					Tags { "LightMode" = "ShadowCaster" }
 
-				Cull Off
+					ZWrite On ZTest LEqual
 
-				CGPROGRAM
-				#pragma vertex vert_meta
-				#pragma fragment frag_meta
+					CGPROGRAM
+					#pragma target 2.0
 
-				#pragma shader_feature _EMISSION
-				#pragma shader_feature_local _METALLICGLOSSMAP
-				#pragma shader_feature_local _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-				#pragma shader_feature_local _DETAIL_MULX2
-				#pragma shader_feature EDITOR_VISUALIZATION
+					#pragma shader_feature_local _ _ALPHATEST_ON _ALPHABLEND_ON _ALPHAPREMULTIPLY_ON
+					#pragma shader_feature_local _METALLICGLOSSMAP
+					#pragma shader_feature_local _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+					#pragma skip_variants SHADOWS_SOFT
+					#pragma multi_compile_shadowcaster
 
-				#include "UnityStandardMeta.cginc"
-				ENDCG
-			}
-			
-		}*/
+					#pragma vertex vertShadowCaster
+					#pragma fragment fragShadowCaster
+
+					#include "UnityStandardShadow.cginc"
+
+					ENDCG
+				}
+
+				// ------------------------------------------------------------------
+				// Extracts information for lightmapping, GI (emission, albedo, ...)
+				// This pass it not used during regular rendering.
+				Pass
+				{
+					Name "META"
+					Tags { "LightMode" = "Meta" }
+
+					Cull Off
+
+					CGPROGRAM
+					#pragma vertex vert_meta
+					#pragma fragment frag_meta
+
+					#pragma shader_feature _EMISSION
+					#pragma shader_feature_local _METALLICGLOSSMAP
+					#pragma shader_feature_local _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+					#pragma shader_feature_local _DETAIL_MULX2
+					#pragma shader_feature EDITOR_VISUALIZATION
+
+					#include "UnityStandardMeta.cginc"
+					ENDCG
+				}
+
+			}*/
 
 
-			FallBack "VertexLit"
-			CustomEditor "StandardShaderGUI"
+				FallBack "VertexLit"
+				CustomEditor "CustomStandardGUI"
 }

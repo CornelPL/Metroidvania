@@ -4,7 +4,7 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 21300000
-    second: left_top_corner
+    second: left_up_outer_corner
   - first:
       213: 21300002
     second: Ground copy_1
@@ -13,10 +13,37 @@ TextureImporter:
     second: ground
   - first:
       213: 21300006
-    second: wall
+    second: left_wall
   - first:
       213: 21300008
     second: Fill
+  - first:
+      213: -6868278757527820434
+    second: right_wall
+  - first:
+      213: 2663872799219793044
+    second: ceiling
+  - first:
+      213: 4031365530078216392
+    second: right_up_outer_corner
+  - first:
+      213: 8875804956765757578
+    second: right_down_outer_corner
+  - first:
+      213: -8363320279559508896
+    second: left_down_outer_corner
+  - first:
+      213: -3658284142660259204
+    second: left_down_innter_corner
+  - first:
+      213: 7675058061096378693
+    second: right_down_inner_corner
+  - first:
+      213: -504056259087373072
+    second: right_up_inner_corner
+  - first:
+      213: 2489377650031025169
+    second: left_up_inner_corner
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -110,11 +137,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: left_top_corner
+      name: left_up_outer_corner
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 204
         width: 204
         height: 204
       alignment: 0
@@ -135,7 +162,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 204
+        y: 612
         width: 624
         height: 204
       alignment: 0
@@ -152,11 +179,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wall
+      name: left_wall
       rect:
         serializedVersion: 2
-        x: 623
-        y: 204
+        x: 624
+        y: 612
         width: 624
         height: 204
       alignment: 0
@@ -168,6 +195,195 @@ TextureImporter:
       bones: []
       spriteID: 8dba3c689f4b2714ca54424041c25c4c
       internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: right_wall
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 408
+        width: 624
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e92cd75e7e5ffb46b0c2cba0fde654c
+      internalID: -6868278757527820434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 408
+        width: 624
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed88086a36934e642b6ff31e3df9b3a1
+      internalID: 2663872799219793044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: right_up_outer_corner
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 204
+        width: 204
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5ed21f94b5ce914ab517bc46e0aab1d
+      internalID: 4031365530078216392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: right_down_outer_corner
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 204
+        width: 204
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 911ad0957493bdc4abd0987d273323ba
+      internalID: 8875804956765757578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: left_down_outer_corner
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 204
+        width: 204
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ffcb77de829c55438fd68cb10728dea
+      internalID: -8363320279559508896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: left_down_innter_corner
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 204
+        width: 204
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea7bafc6c70959a439c07be029c72eb8
+      internalID: -3658284142660259204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: right_down_inner_corner
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 204
+        width: 204
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42247a391f8cf3e4395ed65d712e35e7
+      internalID: 7675058061096378693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: right_up_inner_corner
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 204
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa61ef2fab6c131419f06d7b4476d542
+      internalID: -504056259087373072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: left_up_inner_corner
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 0
+        width: 204
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b02621758c634d44a214dfd4f5d1664
+      internalID: 2489377650031025169
       vertices: []
       indices: 
       edges: []

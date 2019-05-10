@@ -48,7 +48,7 @@ Shader "CustomStandard"
 
 	SubShader
 	{
-		Tags { "Queue" = "Transparent" "RenderType" = "Sprite" "AlphaDepth" = "False" "CanUseSpriteAtlas" = "True" "IgnoreProjector" = "True" }
+		Tags { "Queue" = "Transparent" /*"RenderType" = "Sprite"*/ "AlphaDepth" = "False" "CanUseSpriteAtlas" = "True" "IgnoreProjector" = "True" }
 		LOD 300
 
 		// Horizontal blur
@@ -423,6 +423,6 @@ Shader "CustomStandard"
 
 		}
 
-			FallBack "VertexLit"
-				CustomEditor "CustomStandardGUI"
+	FallBack "VertexLit"				// if everything fails - this shader will do the job
+	CustomEditor "CustomStandardGUI"
 }

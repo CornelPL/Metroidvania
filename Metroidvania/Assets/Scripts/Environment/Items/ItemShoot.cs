@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using System.Collections.Generic;
 
 public class ItemShoot : MonoBehaviour
@@ -14,11 +15,20 @@ public class ItemShoot : MonoBehaviour
 
     public ItemType itemType = ItemType.rock;
     [SerializeField] private int baseDamage = 10;
-    [SerializeField] private Rigidbody2D rb = null;
-    public bool isShooted = false;
+    [SerializeField] private Rigidbody2D _rigidbody = null;
+    [SerializeField] private Collider2D _collider = null;
     [SerializeField] private int plankHealth = 3;
     [SerializeField] private List<GameObject> itemsToSpawn = null;
     [SerializeField] private int maxItemsToSpawn = 3;
+
+    private bool isShooted = false;
+
+
+    private void Awake()
+    {
+        Assert.IsNotNull(_rigidbody);
+        Assert.IsNotNull(_collider);
+    }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -54,8 +64,8 @@ public class ItemShoot : MonoBehaviour
                 {
                     plankHealth--;
                     if (plankHealth == 0) CustomDestroy(collision.relativeVelocity);
-                    rb.velocity = Vector2.zero;
-                    rb.bodyType = RigidbodyType2D.Static;
+                    _rigidbody.velocity = Vector2.zero;
+                    _rigidbody.bodyType = RigidbodyType2D.Static;
                     gameObject.layer = LayerMask.NameToLayer("PlanksGround");
                     transform.rotation = Quaternion.identity;
                 }
@@ -70,7 +80,7 @@ public class ItemShoot : MonoBehaviour
 
     private void DoDamage(GameObject go)
     {
-        int damage = (int)(baseDamage * rb.velocity.magnitude / 10 * rb.mass);
+        int damage = (int)(baseDamage * _rigidbody.velocity.magnitude / 10 * _rigidbody.mass);
         go.GetComponent<EnemyHealthManager>().TakeDamage(damage, transform.position.x);
     }
 
@@ -93,5 +103,13 @@ public class ItemShoot : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+
+    public void Shoot(Vector2 direction, float power)
+    {
+        _rigidbody.AddForce(direction * power, ForceMode2D.Impulse);
+        _collider.enabled = true;
+        isShooted = true;
     }
 }

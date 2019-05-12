@@ -1,23 +1,26 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 
 public class ItemPull : MonoBehaviour
 {
     private Transform holdingItemPlace;
     private Vector2 direction;
-    private Rigidbody2D rb;
-    private float pullForce;
-    private float maxPullForce;
+    private Rigidbody2D _rigidbody;
+    private Collider2D _collider;
     private float pullSpeed;
     private float maxPullSpeed;
     private float pullingTime = 0f;
     private float gravityScaleCopy;
-    private bool isColliding = false;
 
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        gravityScaleCopy = rb.gravityScale;
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<Collider2D>();
+        gravityScaleCopy = _rigidbody.gravityScale;
+
+        Assert.IsNotNull(_rigidbody);
+        Assert.IsNotNull(_collider);
     }
 
 
@@ -30,19 +33,12 @@ public class ItemPull : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, holdingItemPlace.position);
 
-        if (isColliding)
-        {
-            rb.AddForce(direction * pullForce, ForceMode2D.Force);
-        }
-        else
-        {
-            float speed = rb.velocity.magnitude;
+        float speed = _rigidbody.velocity.magnitude;
 
-            if (speed < maxPullSpeed)
-                speed += pullSpeed * pullingTime;
+        if (speed < maxPullSpeed)
+            speed += pullSpeed * pullingTime;
 
-            rb.velocity = direction * speed;
-        }
+        _rigidbody.velocity = direction * speed;
 
         // Check if object is in place
         if (distance < 1f)
@@ -52,24 +48,12 @@ public class ItemPull : MonoBehaviour
     }
 
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        isColliding = true;
-    }
-
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        isColliding = false;
-    }
-
-
     private void PullingComplete()
     {
-        rb.velocity = Vector2.zero;
+        _rigidbody.velocity = Vector2.zero;
         transform.SetParent(holdingItemPlace);
         transform.position = holdingItemPlace.position;
-        rb.simulated = false;
+        _rigidbody.simulated = false;
         PlayerState.instance.isHoldingItemState = true;
         StopPulling();
     }
@@ -81,27 +65,25 @@ public class ItemPull : MonoBehaviour
     }
 
 
-    public void Pull(Transform t, float f, float mf, float s, float ms)
+    public void Pull(Transform t, float s, float ms)
     {
-        rb.bodyType = RigidbodyType2D.Dynamic;
+        _rigidbody.bodyType = RigidbodyType2D.Dynamic;
+        _collider.enabled = false;
         PlayerState.instance.isPullingItemState = true;
         holdingItemPlace = t;
-        pullForce = f;
-        maxPullForce = mf;
         pullSpeed = s;
         maxPullSpeed = ms;
-        rb.gravityScale = 0f;
+        _rigidbody.gravityScale = 0f;
         if (GetComponent<ItemShoot>().itemType == ItemShoot.ItemType.plank)
             gameObject.layer = LayerMask.NameToLayer("Planks");
-        else if (gameObject.layer != LayerMask.NameToLayer("IgnoreCollisions"))
-            gameObject.layer = LayerMask.NameToLayer("PullingItem");
     }
 
 
     public void StopPulling()
     {
         PlayerState.instance.isPullingItemState = false;
-        rb.gravityScale = gravityScaleCopy;
+        _rigidbody.gravityScale = gravityScaleCopy;
+        _collider.enabled = true;
         gameObject.layer = LayerMask.NameToLayer("Items");
         Destroy(this);
     }

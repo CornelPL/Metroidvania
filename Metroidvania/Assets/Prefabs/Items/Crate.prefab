@@ -144,8 +144,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   baseDamage: 10
-  rb: {fileID: 8234717095393098479}
-  isShooted: 0
+  _rigidbody: {fileID: 8234717095393098479}
+  _collider: {fileID: 8234717095393098476}
   plankHealth: 3
   itemsToSpawn:
   - {fileID: 889198975887940495, guid: f8d19b05942360b419279762745f63d9, type: 3}

@@ -143,8 +143,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 2
   baseDamage: 10
-  rb: {fileID: 3267184160927134353}
-  isShooted: 0
+  _rigidbody: {fileID: 3267184160927134353}
+  _collider: {fileID: 8613796951371322556}
   plankHealth: 3
   itemsToSpawn: []
   maxItemsToSpawn: 3

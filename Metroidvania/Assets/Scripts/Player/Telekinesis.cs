@@ -8,8 +8,6 @@ public class Telekinesis : MonoBehaviour
     [Header("Telekinesis")]
     [SerializeField] private float range = 10f;
     [SerializeField] private float radius = 1f;
-    [SerializeField] private float pullForce = 75f;
-    [SerializeField] private float maxPullForce = 50f;
     [SerializeField] private float pullSpeed = 50f;
     [SerializeField] private float maxPullSpeed = 50f;
     [SerializeField] private float shootPower = 10f;
@@ -49,13 +47,13 @@ public class Telekinesis : MonoBehaviour
 
     #endregion
 
-    void Start()
+    private void Start()
     {
         input = InputController.instance;
         state = PlayerState.instance;
     }
 
-    void Update()
+    private void Update()
     {
         CheckForItems();
 
@@ -125,14 +123,14 @@ public class Telekinesis : MonoBehaviour
         {
             if (closestItem != null && !closestItem.CompareTag(stableItemsTag))
             {
-                closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullForce, maxPullForce, pullSpeed, maxPullSpeed);
+                closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed);
             }
             else if (canGetRockFromGround)
             {
                 closestItem = Instantiate(rockToSpawn, input.cursorPosition, transform.rotation);
                 closestItem.layer = LayerMask.NameToLayer("IgnoreCollisions");
                 closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
-                closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullForce, maxPullForce, pullSpeed, maxPullSpeed);
+                closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed);
             }
         }
         else if ((state.isHoldingItemState || state.isPullingItemState) && !isHoldingLMB)
@@ -234,8 +232,7 @@ public class Telekinesis : MonoBehaviour
         Vector2 shootDirection = input.cursorPosition - (Vector2)holdingItemPlace.position;
         shootDirection.Normalize();
         ReleaseItem();
-        closestItem.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootPower, ForceMode2D.Impulse);
-        closestItem.GetComponent<ItemShoot>().isShooted = true;
+        closestItem.GetComponent<ItemShoot>().Shoot(shootDirection, shootPower);
     }
 
 

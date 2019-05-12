@@ -86,7 +86,7 @@
 				sum += GRABPIXELX(0.05, +4.0);
 
 				//fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * IN.color;
-				o.Albedo = sum.rgb;
+				o.Albedo = sum.rgb * IN.color.rgb;
 				o.Alpha = sum.a * IN.color.a;
 
 				half3 suma = half3(0, 0, 0);

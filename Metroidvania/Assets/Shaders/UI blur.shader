@@ -1,4 +1,4 @@
-﻿Shader "Custom/MaskedUIBlur" {
+﻿Shader "MyShaders/UI blur" {
 	Properties{
 		_Size("Blur", Range(0, 30)) = 1
 		[HideInInspector] _MainTex("Masking Texture", 2D) = "white" {}

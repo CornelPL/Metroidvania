@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5261183433287557951}
   - component: {fileID: 5261183433287557950}
   - component: {fileID: 5261183433287557920}
-  - component: {fileID: 4239671879953109426}
+  - component: {fileID: 6789902045631406304}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -69,7 +69,7 @@ MonoBehaviour:
   slowmoTimeScale: 0.1
   timeChangeDecreaseSpeed: 3
   timeChangeIncreaseSpeed: 5
---- !u!114 &4239671879953109426
+--- !u!114 &6789902045631406304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,11 +78,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5261183433287557949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b364d8d33b03664a9e424c330da18d8, type: 3}
+  m_Script: {fileID: 11500000, guid: a485f5ecc42c1ce40869fe1ea8174b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxCamera: {fileID: 0}
-  Speed: 2
-  Elements: []
-  IsHorizontal: 1
-  WrapOverlap: 0
+  camera: {fileID: 0}
+  speed: 1
+  minDistance: 30
+  maxOffset: 2

@@ -1198,18 +1198,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 224634469}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &251497276 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4239671879953109426, guid: 7324f89ff70c97c46949e95bf74437aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 579789549}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b364d8d33b03664a9e424c330da18d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &254353669
 GameObject:
   m_ObjectHideFlags: 0
@@ -2110,6 +2098,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789902045631406304, guid: 7324f89ff70c97c46949e95bf74437aa,
+        type: 3}
+      propertyPath: parallaxObjectsGroups.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789902045631406304, guid: 7324f89ff70c97c46949e95bf74437aa,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 283617111}
+    - target: {fileID: 6789902045631406304, guid: 7324f89ff70c97c46949e95bf74437aa,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 283617111}
+    - target: {fileID: 6789902045631406304, guid: 7324f89ff70c97c46949e95bf74437aa,
+        type: 3}
+      propertyPath: parallaxObjectsGroups.Array.data[0].parent
+      value: 
+      objectReference: {fileID: 1471093370}
+    - target: {fileID: 6789902045631406304, guid: 7324f89ff70c97c46949e95bf74437aa,
+        type: 3}
+      propertyPath: parallaxObjectsGroups.Array.data[0].speedRatio
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789902045631406304, guid: 7324f89ff70c97c46949e95bf74437aa,
+        type: 3}
+      propertyPath: parallaxObjectsGroups.Array.data[1].parent
+      value: 
+      objectReference: {fileID: 1175835793}
+    - target: {fileID: 6789902045631406304, guid: 7324f89ff70c97c46949e95bf74437aa,
+        type: 3}
+      propertyPath: parallaxObjectsGroups.Array.data[1].speedRatio
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7324f89ff70c97c46949e95bf74437aa, type: 3}
@@ -10031,7 +10054,7 @@ PrefabInstance:
         type: 3}
       propertyPath: parallax
       value: 
-      objectReference: {fileID: 251497276}
+      objectReference: {fileID: 0}
     - target: {fileID: 6838834047338178276, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: knockbackForce
@@ -10067,6 +10090,21 @@ PrefabInstance:
       propertyPath: OnGrounded.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6838834048005818766, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: OnGrounded.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838834048005818766, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: OnGrounded.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838834048005818766, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: OnGrounded.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1364458349}
     - target: {fileID: 239229437858044067, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: m_Enabled

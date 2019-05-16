@@ -57,8 +57,10 @@ public class Parallax : MonoBehaviour
             Vector2 distance = element.startPos - cam.position;
             if (distance.magnitude < maxDistance)
             {
-                float xOffset = Mathf.Abs(distance.x) * element.xSpeedRatio * speed;
-                float yOffset = Mathf.Abs(distance.y) * element.ySpeedRatio * speed;
+                float xSign = -Mathf.Sign(distance.x);
+                float ySign = -Mathf.Sign(distance.y);
+                float xOffset = Mathf.Abs(distance.x) * element.xSpeedRatio * speed * xSign;
+                float yOffset = Mathf.Abs(distance.y) * element.ySpeedRatio * speed * ySign;
                 element.transform.position = new Vector3(element.startPos.x + xOffset, element.startPos.y + yOffset, element.startPos.z);
             }
         }

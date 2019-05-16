@@ -15,6 +15,15 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private Transform holdingItemPlace = null;
     [SerializeField] private GameObject rockToSpawn = null;
 
+    [Header("Effects")]
+    [SerializeField] private Light _light = null;
+    [SerializeField] private float lightOnIntensity = 22f;
+    [SerializeField] private float lightOffIntensity = 10f;
+    [SerializeField] private SpriteRenderer lightCircle = null;
+    [SerializeField] private Color lightCircleOnColor = Color.clear;
+    [SerializeField] private Color lightCircleOffColor = Color.clear;
+    [SerializeField] private float tweenTime = 0.5f;
+
     [Header("Stable items")]
     [SerializeField] private float stableItemFreezeTime = 5f;
     [SerializeField] private int maxStableItems = 5;
@@ -51,6 +60,8 @@ public class Telekinesis : MonoBehaviour
     {
         input = InputController.instance;
         state = PlayerState.instance;
+        _light.intensity = lightOffIntensity;
+        lightCircle.color = lightCircleOffColor;
     }
 
     private void Update()
@@ -116,6 +127,22 @@ public class Telekinesis : MonoBehaviour
     }
 
 
+    private void PullItemFromGround()
+    {
+        closestItem = Instantiate(rockToSpawn, input.cursorPosition, transform.rotation);
+        closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
+        PullItem();
+    }
+
+
+    private void PullItem()
+    {
+        closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed);
+        LeanTween.value(_light.gameObject, _light.intensity, lightOnIntensity, tweenTime).setOnUpdate((float v) => _light.intensity = v);
+        LeanTween.value(_light.gameObject, lightCircle.color, lightCircleOnColor, tweenTime).setOnUpdate((Color c) => lightCircle.color = c);
+    }
+
+
     private void CheckItem()
     {
         if (!state.isHoldingItemState &&
@@ -123,13 +150,11 @@ public class Telekinesis : MonoBehaviour
         {
             if (closestItem != null && !closestItem.CompareTag(stableItemsTag))
             {
-                closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed);
+                PullItem();
             }
             else if (canGetRockFromGround)
             {
-                closestItem = Instantiate(rockToSpawn, input.cursorPosition, transform.rotation);
-                closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
-                closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed);
+                PullItemFromGround();
             }
         }
         else if ((state.isHoldingItemState || state.isPullingItemState) && !isHoldingLMB)
@@ -265,6 +290,8 @@ public class Telekinesis : MonoBehaviour
         closestItemRigidbody.simulated = true;
         state.isPullingItemState = false;
         state.isHoldingItemState = false;
+        LeanTween.value(_light.gameObject, _light.intensity, lightOffIntensity, tweenTime).setOnUpdate((float v) => _light.intensity = v);
+        LeanTween.value(_light.gameObject, lightCircle.color, lightCircleOffColor, tweenTime).setOnUpdate((Color c) => lightCircle.color = c);
     }
 
 

@@ -6,20 +6,23 @@ using UnityEngine;
 public class ElementsGroup
 {
     public GameObject parent;
-    public float speedRatio = 0f;
+    public float xSpeedRatio = 0f;
+    public float ySpeedRatio = 0f;
 }
 
 
 public class Element
 {
     public Transform transform;
-    public float speedRatio;
+    public float xSpeedRatio;
+    public float ySpeedRatio;
     public Vector3 startPos;
 
-    public Element(Transform t, float s, Vector3 v)
+    public Element(Transform t, float xs, float ys, Vector3 v)
     {
         transform = t;
-        speedRatio = s;
+        xSpeedRatio = xs;
+        ySpeedRatio = ys;
         startPos = v;
     }
 }
@@ -30,7 +33,6 @@ public class Parallax : MonoBehaviour
     [SerializeField] private Transform cam = null;
     [SerializeField] private float speed = 1f;
     [SerializeField] private float maxDistance = 30f;
-    [SerializeField] private float maxOffset = 2f;
     public List<ElementsGroup> parallaxObjectsGroups;
 
     private List<Element> elements = new List<Element>();
@@ -41,8 +43,8 @@ public class Parallax : MonoBehaviour
         {
             foreach(Transform child in parallaxObjectsGroups[i].parent.transform)
             {
-                float parentsSpeedRatio = parallaxObjectsGroups[i].speedRatio;
-                elements.Add(new Element(child, parentsSpeedRatio, child.position));
+                ElementsGroup parent = parallaxObjectsGroups[i];
+                elements.Add(new Element(child, parent.xSpeedRatio, parent.ySpeedRatio, child.position));
             }
         }
     }
@@ -52,16 +54,12 @@ public class Parallax : MonoBehaviour
         for (int i = 0; i < elements.Count; i++)
         {
             Element element = elements[i];
-            float distance = Vector2.Distance(cam.position, element.startPos);
-            if (distance < maxDistance)
+            Vector2 distance = element.startPos - cam.position;
+            if (distance.magnitude < maxDistance)
             {
-                float xDistance = element.startPos.x - cam.position.x;
-                float sign = Mathf.Sign(element.startPos.x - cam.position.x);
-                xDistance = Mathf.Abs(xDistance);
-                float o = xDistance * element.speedRatio * speed;
-                float offset = o < maxOffset ? o : maxOffset;
-                offset *= sign;
-                element.transform.position = new Vector3(element.startPos.x + offset, element.startPos.y, element.startPos.z);
+                float xOffset = Mathf.Abs(distance.x) * element.xSpeedRatio * speed;
+                float yOffset = Mathf.Abs(distance.y) * element.ySpeedRatio * speed;
+                element.transform.position = new Vector3(element.startPos.x + xOffset, element.startPos.y + yOffset, element.startPos.z);
             }
         }
     }

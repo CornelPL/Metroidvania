@@ -137,7 +137,7 @@ public class Telekinesis : MonoBehaviour
 
     private void PullItem()
     {
-        closestItem.AddComponent<ItemPull>().Pull(holdingItemPlace, pullSpeed, maxPullSpeed);
+        closestItem.GetComponent<ItemHandling>().PullItem(holdingItemPlace, pullSpeed, maxPullSpeed);
         LeanTween.value(_light.gameObject, _light.intensity, lightOnIntensity, tweenTime).setOnUpdate((float v) => _light.intensity = v);
         LeanTween.value(_light.gameObject, lightCircle.color, lightCircleOnColor, tweenTime).setOnUpdate((Color c) => lightCircle.color = c);
     }
@@ -161,7 +161,7 @@ public class Telekinesis : MonoBehaviour
         {
             if (state.isPullingItemState)
             {
-                closestItem.GetComponent<ItemPull>().StopPulling();
+                closestItem.GetComponent<ItemHandling>().StopPulling();
             }
 
             ReleaseItem();

@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Assertions;
 
 public class ItemPull : MonoBehaviour
 {
+    [SerializeField] private UnityEvent OnStartPulling = null;
+    [SerializeField] private UnityEvent OnStopPulling = null;
+    [SerializeField] private UnityEvent OnPullingComplete = null;
+
     private Transform holdingItemPlace;
     private Vector2 direction;
     private Rigidbody2D _rigidbody;
@@ -55,6 +60,8 @@ public class ItemPull : MonoBehaviour
         transform.position = holdingItemPlace.position;
         _rigidbody.simulated = false;
         PlayerState.instance.isHoldingItemState = true;
+        pullingTime = 0f;
+        OnPullingComplete.Invoke();
         StopPulling();
     }
 
@@ -67,6 +74,7 @@ public class ItemPull : MonoBehaviour
 
     public void Pull(Transform t, float s, float ms)
     {
+        OnStartPulling.Invoke();
         _rigidbody.bodyType = RigidbodyType2D.Dynamic;
         _collider.enabled = false;
         PlayerState.instance.isPullingItemState = true;
@@ -81,10 +89,11 @@ public class ItemPull : MonoBehaviour
 
     public void StopPulling()
     {
+        OnStopPulling.Invoke();
         PlayerState.instance.isPullingItemState = false;
         _rigidbody.gravityScale = gravityScaleCopy;
         _collider.enabled = true;
         gameObject.layer = LayerMask.NameToLayer("Items");
-        Destroy(this);
+        this.enabled = false;
     }
 }

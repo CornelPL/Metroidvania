@@ -4973,7 +4973,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPull: {fileID: 8800780912779798053}
-  particles: {fileID: 4116446809112793277}
+  OnStartPulling:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4116446809112793277}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnStopPulling:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnPullingComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7043718315856494840}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &5230624211792680476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5005,38 +5041,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43fa6c749173a9b4aab40e5cfc681ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnStartPulling:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4116446809112793277}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnStopPulling:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4116446809112793277}
-        m_MethodName: Stop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  _rigidbody: {fileID: 6417654320457713545}
+  _collider: {fileID: 8632387716685488110}
+  _itemHandling: {fileID: 6019423085865643738}
 --- !u!1 &8773064680071665000
 GameObject:
   m_ObjectHideFlags: 0

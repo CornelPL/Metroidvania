@@ -280,14 +280,7 @@ public class Telekinesis : MonoBehaviour
 
     private void ReleaseItem()
     {
-        closestItem.transform.SetParent(null);
-        Rigidbody2D closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
-        if (state.isHoldingItemState)
-        {
-            closestItemRigidbody.velocity = Vector2.zero;
-            closestItemRigidbody.angularVelocity = 0f;
-        }
-        closestItemRigidbody.simulated = true;
+        closestItem.GetComponent<ItemHandling>().SetFree();
         state.isPullingItemState = false;
         state.isHoldingItemState = false;
         LeanTween.value(_light.gameObject, _light.intensity, lightOffIntensity, tweenTime).setOnUpdate((float v) => _light.intensity = v);

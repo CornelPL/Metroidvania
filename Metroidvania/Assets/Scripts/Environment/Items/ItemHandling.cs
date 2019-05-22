@@ -1,16 +1,25 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class ItemHandling : MonoBehaviour
 {
+    public UnityEvent OnStartPulling = null;
+    public UnityEvent OnStopPulling = null;
+    public UnityEvent OnPullingComplete = null;
+
     [SerializeField] private ItemPull itemPull = null;
-    [SerializeField] private ParticleSystem particles = null;
-    [SerializeField] private ParticleSystem particles2 = null;
+    [SerializeField] private Rigidbody2D _rigidbody = null;
 
 
     private void Start()
     {
-        particles.Stop();
-        particles2.Stop();
+    }
+
+
+    public void SetFree()
+    {
+        transform.SetParent(null);
+        _rigidbody.simulated = true;
     }
 
 

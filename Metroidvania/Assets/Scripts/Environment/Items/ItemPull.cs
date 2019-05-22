@@ -1,17 +1,14 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Assertions;
 
 public class ItemPull : MonoBehaviour
 {
-    [SerializeField] private UnityEvent OnStartPulling = null;
-    [SerializeField] private UnityEvent OnStopPulling = null;
-    [SerializeField] private UnityEvent OnPullingComplete = null;
+    [SerializeField] private Rigidbody2D _rigidbody = null;
+    [SerializeField] private Collider2D _collider = null;
+    [SerializeField] private ItemHandling _itemHandling = null;
 
     private Transform holdingItemPlace;
     private Vector2 direction;
-    private Rigidbody2D _rigidbody;
-    private Collider2D _collider;
     private float pullSpeed;
     private float maxPullSpeed;
     private float pullingTime = 0f;
@@ -20,8 +17,6 @@ public class ItemPull : MonoBehaviour
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _collider = GetComponent<Collider2D>();
         gravityScaleCopy = _rigidbody.gravityScale;
 
         Assert.IsNotNull(_rigidbody);
@@ -56,12 +51,13 @@ public class ItemPull : MonoBehaviour
     private void PullingComplete()
     {
         _rigidbody.velocity = Vector2.zero;
+        _rigidbody.angularVelocity = 0f;
         transform.SetParent(holdingItemPlace);
         transform.position = holdingItemPlace.position;
         _rigidbody.simulated = false;
         PlayerState.instance.isHoldingItemState = true;
         pullingTime = 0f;
-        OnPullingComplete.Invoke();
+        _itemHandling.OnPullingComplete.Invoke();
         StopPulling();
     }
 
@@ -74,7 +70,7 @@ public class ItemPull : MonoBehaviour
 
     public void Pull(Transform t, float s, float ms)
     {
-        OnStartPulling.Invoke();
+        _itemHandling.OnStartPulling.Invoke();
         _rigidbody.bodyType = RigidbodyType2D.Dynamic;
         _collider.enabled = false;
         PlayerState.instance.isPullingItemState = true;
@@ -89,7 +85,7 @@ public class ItemPull : MonoBehaviour
 
     public void StopPulling()
     {
-        OnStopPulling.Invoke();
+        _itemHandling.OnStopPulling.Invoke();
         PlayerState.instance.isPullingItemState = false;
         _rigidbody.gravityScale = gravityScaleCopy;
         _collider.enabled = true;

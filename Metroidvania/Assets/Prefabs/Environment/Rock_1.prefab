@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4626679823979994755}
   - component: {fileID: 4626679823979994752}
   m_Layer: 0
-  m_Name: Rock
+  m_Name: Rock_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8e0b161fd9f9af94599ad0e49ad4178c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 74e6d297acbfd86489ea4f94fb7b86b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

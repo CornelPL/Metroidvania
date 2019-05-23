@@ -4,22 +4,18 @@ using UnityEngine.Events;
 public class ItemHandling : MonoBehaviour
 {
     public UnityEvent OnStartPulling = null;
-    public UnityEvent OnStopPulling = null;
     public UnityEvent OnPullingComplete = null;
+    public UnityEvent OnRelease = null;
 
     [SerializeField] private ItemPull itemPull = null;
     [SerializeField] private Rigidbody2D _rigidbody = null;
-
-
-    private void Start()
-    {
-    }
 
 
     public void SetFree()
     {
         transform.SetParent(null);
         _rigidbody.simulated = true;
+        OnRelease.Invoke();
     }
 
 

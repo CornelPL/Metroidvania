@@ -85,7 +85,6 @@ public class ItemPull : MonoBehaviour
 
     public void StopPulling()
     {
-        _itemHandling.OnStopPulling.Invoke();
         PlayerState.instance.isPullingItemState = false;
         _rigidbody.gravityScale = gravityScaleCopy;
         _collider.enabled = true;

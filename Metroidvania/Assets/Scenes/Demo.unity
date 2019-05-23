@@ -8664,11 +8664,6 @@ PrefabInstance:
       propertyPath: looping
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6019423085865643738, guid: 33057ab5e8b0e0d47a77f04442e743c4,
-        type: 3}
-      propertyPath: particles2
-      value: 
-      objectReference: {fileID: 353875322}
     - target: {fileID: 8800780912779798053, guid: 33057ab5e8b0e0d47a77f04442e743c4,
         type: 3}
       propertyPath: OnStopPulling.m_PersistentCalls.m_Calls.Array.size
@@ -12117,12 +12112,12 @@ PrefabInstance:
     - target: {fileID: 7996462740890672813, guid: ec636d8419fa03644bc054e26d6c47e0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.4790955
+      value: 1.4790878
       objectReference: {fileID: 0}
     - target: {fileID: 7996462740890672813, guid: ec636d8419fa03644bc054e26d6c47e0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.352169
+      value: 2.3522024
       objectReference: {fileID: 0}
     - target: {fileID: 7996462740890672813, guid: ec636d8419fa03644bc054e26d6c47e0,
         type: 3}

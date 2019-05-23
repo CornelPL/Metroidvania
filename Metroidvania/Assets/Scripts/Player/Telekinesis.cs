@@ -138,8 +138,7 @@ public class Telekinesis : MonoBehaviour
     private void PullItem()
     {
         closestItem.GetComponent<ItemHandling>().PullItem(holdingItemPlace, pullSpeed, maxPullSpeed);
-        LeanTween.value(_light.gameObject, _light.intensity, lightOnIntensity, tweenTime).setOnUpdate((float v) => _light.intensity = v);
-        LeanTween.value(_light.gameObject, lightCircle.color, lightCircleOnColor, tweenTime).setOnUpdate((Color c) => lightCircle.color = c);
+        TurnLights(true);
     }
 
 
@@ -173,15 +172,11 @@ public class Telekinesis : MonoBehaviour
     {
         if (closestStableItem != null)
         {
-            if (stableItems.Count < maxStableItems)
-            {
-                SetStableItem(closestStableItem, true, stableItemFreezeTime);
-            }
-            else
+            if (stableItems.Count >= maxStableItems)
             {
                 SetStableItem(stableItems[0], false);
-                SetStableItem(closestStableItem, true, stableItemFreezeTime);
             }
+            SetStableItem(closestStableItem, true, stableItemFreezeTime);
         }
     }
 
@@ -283,8 +278,14 @@ public class Telekinesis : MonoBehaviour
         closestItem.GetComponent<ItemHandling>().SetFree();
         state.isPullingItemState = false;
         state.isHoldingItemState = false;
-        LeanTween.value(_light.gameObject, _light.intensity, lightOffIntensity, tweenTime).setOnUpdate((float v) => _light.intensity = v);
-        LeanTween.value(_light.gameObject, lightCircle.color, lightCircleOffColor, tweenTime).setOnUpdate((Color c) => lightCircle.color = c);
+        TurnLights(false);
+    }
+
+
+    private void TurnLights(bool on)
+    {
+        LeanTween.value(_light.gameObject, _light.intensity, on ? lightOnIntensity : lightOffIntensity, tweenTime).setOnUpdate((float v) => _light.intensity = v);
+        LeanTween.value(_light.gameObject, lightCircle.color, on ? lightCircleOnColor : lightCircleOffColor, tweenTime).setOnUpdate((Color c) => lightCircle.color = c);
     }
 
 

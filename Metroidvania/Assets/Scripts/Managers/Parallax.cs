@@ -2,24 +2,17 @@
 using UnityEngine;
 
 
-[System.Serializable]
-public class ElementsGroup
-{
-    public GameObject parent;
-    public float xSpeedRatio = 0f;
-    public float ySpeedRatio = 0f;
-}
-
-
 public class Element
 {
+    public Transform parent;
     public Transform transform;
     public float xSpeedRatio;
     public float ySpeedRatio;
     public Vector3 startPos;
 
-    public Element(Transform t, float xs, float ys, Vector3 v)
+    public Element(Transform p, Transform t, float xs, float ys, Vector3 v)
     {
+        parent = p;
         transform = t;
         xSpeedRatio = xs;
         ySpeedRatio = ys;
@@ -30,24 +23,23 @@ public class Element
 
 public class Parallax : MonoBehaviour
 {
+    public static Parallax instance = null;
+
     [SerializeField] private Transform cam = null;
     [SerializeField] private float speed = 1f;
     [SerializeField] private float maxDistance = 30f;
-    public List<ElementsGroup> parallaxObjectsGroups;
 
     private List<Element> elements = new List<Element>();
 
-    private void Start()
+
+    private void Awake()
     {
-        for(int i = 0; i < parallaxObjectsGroups.Count; i++)
-        {
-            foreach(Transform child in parallaxObjectsGroups[i].parent.transform)
-            {
-                ElementsGroup parent = parallaxObjectsGroups[i];
-                elements.Add(new Element(child, parent.xSpeedRatio, parent.ySpeedRatio, child.position));
-            }
-        }
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(this);
     }
+
 
     private void Update()
     {
@@ -55,7 +47,7 @@ public class Parallax : MonoBehaviour
         {
             Element element = elements[i];
             Vector2 distance = element.startPos - cam.position;
-            if (distance.magnitude < maxDistance)
+            if (distance.x * distance.x + distance.y * distance.y < maxDistance * maxDistance)
             {
                 float xSign = -Mathf.Sign(distance.x);
                 float ySign = -Mathf.Sign(distance.y);
@@ -64,5 +56,20 @@ public class Parallax : MonoBehaviour
                 element.transform.position = new Vector3(element.startPos.x + xOffset, element.startPos.y + yOffset, element.startPos.z);
             }
         }
+    }
+
+
+    public void AddElements(Transform parent, float xSpeed, float ySpeed)
+    {
+        foreach (Transform child in parent)
+        {
+            elements.Add(new Element(parent, child, xSpeed, ySpeed, child.position));
+        }
+    }
+
+
+    public void RemoveElements(Transform parent)
+    {
+        elements.RemoveAll(x => x.parent == parent);
     }
 }

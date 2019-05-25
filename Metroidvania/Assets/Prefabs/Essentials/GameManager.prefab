@@ -81,7 +81,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a485f5ecc42c1ce40869fe1ea8174b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  cam: {fileID: 0}
   speed: 1
-  minDistance: 30
-  maxOffset: 2
+  maxDistance: 50

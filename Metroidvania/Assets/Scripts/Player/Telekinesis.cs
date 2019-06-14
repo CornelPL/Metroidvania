@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Telekinesis : MonoBehaviour
@@ -23,6 +24,9 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private Color lightCircleOnColor = Color.clear;
     [SerializeField] private Color lightCircleOffColor = Color.clear;
     [SerializeField] private float tweenTime = 0.5f;
+    [SerializeField] private ParticleSystem objectToPullHighlightParticles = null;
+    [SerializeField] private GameObject objectToPullHighlight = null;
+    [SerializeField] private GameObject pullEffects = null;
 
     [Header("Stable items")]
     [SerializeField] private float stableItemFreezeTime = 5f;
@@ -68,6 +72,8 @@ public class Telekinesis : MonoBehaviour
     {
         CheckForItems();
 
+        HighlightObjectToPull();
+
         if (input.rmb)
         {
             CheckItem();
@@ -76,13 +82,21 @@ public class Telekinesis : MonoBehaviour
         }
 
         CheckShoot();
+
+        //temporary
+        if (state.isHoldingItemState)
+        {
+            pullEffects.SetActive(false);
+        }
     }
 
     
     private void CheckForItems()
     {
         if (!state.isHoldingItemState && !state.isPullingItemState)
+        {
             closestItem = null;
+        }
 
         closestStableItem = null;
         canGetRockFromGround = false;
@@ -90,11 +104,36 @@ public class Telekinesis : MonoBehaviour
         if (Vector2.Distance(input.cursorPosition, transform.position) < range)
         {
             FindClosestItem();
-
-            // Light up closest item
         }
     }
 
+    private void HighlightObjectToPull()
+    {
+        if (state.isHoldingItemState || state.isPullingItemState)
+        {
+            objectToPullHighlight.SetActive(false);
+        }
+        else
+        {
+            if (closestItem)
+            {
+                if (!objectToPullHighlightParticles.isEmitting)
+                    objectToPullHighlight.SetActive(true);
+                Vector3 pos = new Vector3(closestItem.transform.position.x, closestItem.transform.position.y, closestItem.transform.position.z + 0.1f);
+                objectToPullHighlight.transform.position = pos;
+            }
+            else if (canGetRockFromGround)
+            {
+                if (!objectToPullHighlightParticles.isEmitting)
+                    objectToPullHighlight.SetActive(true);
+                objectToPullHighlight.transform.position = input.cursorPosition;
+            }
+            else
+            {
+                objectToPullHighlight.SetActive(false);
+            }
+        }
+    }
 
     private void FindClosestItem()
     {
@@ -138,7 +177,8 @@ public class Telekinesis : MonoBehaviour
     private void PullItem()
     {
         closestItem.GetComponent<ItemHandling>().PullItem(holdingItemPlace, pullSpeed, maxPullSpeed);
-        TurnLights(true);
+        SetPullEffectsActive(true);
+        pullEffects.SetActive(true);
     }
 
 
@@ -278,11 +318,11 @@ public class Telekinesis : MonoBehaviour
         closestItem.GetComponent<ItemHandling>().SetFree();
         state.isPullingItemState = false;
         state.isHoldingItemState = false;
-        TurnLights(false);
+        SetPullEffectsActive(false);
     }
 
 
-    private void TurnLights(bool on)
+    private void SetPullEffectsActive(bool on)
     {
         LeanTween.value(_light.gameObject, _light.intensity, on ? lightOnIntensity : lightOffIntensity, tweenTime).setOnUpdate((float v) => _light.intensity = v);
         LeanTween.value(_light.gameObject, lightCircle.color, on ? lightCircleOnColor : lightCircleOffColor, tweenTime).setOnUpdate((Color c) => lightCircle.color = c);

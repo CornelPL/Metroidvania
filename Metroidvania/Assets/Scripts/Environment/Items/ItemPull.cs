@@ -64,7 +64,7 @@ public class ItemPull : MonoBehaviour
 
     private void OnDestroy()
     {
-        StopPulling();
+        //StopPulling();
     }
 
 

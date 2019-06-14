@@ -1490,6 +1490,16 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[1].emitter
       value: 
       objectReference: {fileID: 119857114}
+    - target: {fileID: 1736202642179058006, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c,
+        type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8042302239554139433, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c,
+        type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3323887577986982807, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c,
         type: 3}
       propertyPath: m_IsActive

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Telekinesis : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private ParticleSystem objectToPullHighlightParticles = null;
     [SerializeField] private GameObject objectToPullHighlight = null;
     [SerializeField] private GameObject pullEffects = null;
+    [SerializeField] private GameObject shootEffects = null;
+    [SerializeField] private UnityEvent OnShoot = null;
 
     [Header("Stable items")]
     [SerializeField] private float stableItemFreezeTime = 5f;
@@ -288,8 +291,11 @@ public class Telekinesis : MonoBehaviour
 
     private void ShootItem()
     {
+        OnShoot.Invoke();
         Vector2 shootDirection = input.cursorPosition - (Vector2)holdingItemPlace.position;
         shootDirection.Normalize();
+        float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
+        shootEffects.transform.eulerAngles = Vector3.forward * angle;
         ReleaseItem();
         closestItem.GetComponent<ItemShoot>().Shoot(shootDirection, shootPower);
     }

@@ -5,7 +5,7 @@ public class HoldingItemPlacePosition : MonoBehaviour
     public Transform target;
     [SerializeField] private float smoothSpeed = 0.2f;
     [SerializeField] private float range = 2f;
-    [SerializeField] private Vector2 offset = Vector2.zero;
+    [SerializeField] private Vector3 offset = Vector3.zero;
 
     private Vector2 randomOffset = Vector2.zero;
 
@@ -34,6 +34,6 @@ public class HoldingItemPlacePosition : MonoBehaviour
         float desireX = Mathf.SmoothStep(transform.position.x, target.position.x + randomOffset.x + offset.x, smoothSpeed);
         float desireY = Mathf.SmoothStep(transform.position.y, target.position.y + randomOffset.y + offset.y, smoothSpeed);
 
-        transform.position = new Vector2(desireX, desireY);
+        transform.position = new Vector3(desireX, desireY, offset.z);
     }
 }

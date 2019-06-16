@@ -14,9 +14,9 @@ public class ClothSim2D : MonoBehaviour
     private Vector3[] normals;
     private int[] triangles;
 
-    void Start()
+    private void Start()
     {
-        mesh = meshFilter.mesh;
+        mesh = meshFilter.sharedMesh;
 
         constantPositions = mesh.vertices;
         vertices = mesh.vertices;
@@ -25,12 +25,12 @@ public class ClothSim2D : MonoBehaviour
         triangles = mesh.triangles;
     }
 
-    void Update()
+    private void Update()
     {
         UpdateSprite();
     }
 
-    void UpdateSprite()
+    private void UpdateSprite()
     {
         vertices = mesh.vertices;
 
@@ -40,32 +40,14 @@ public class ClothSim2D : MonoBehaviour
 
         for (int i = 0; i < vertices.Length; i++)
         {
-            float xChange = vertices[i].x - constantPositions[i].x;
-            float yChange = vertices[i].y - constantPositions[i].y;
-            vertices[i].x = constantPositions[i].x + spread * xChange;
-            vertices[i].y = constantPositions[i].y + spread * yChange;
+            vertices[i].x = constantPositions[i].x - spread * positionChange.x;
+            vertices[i].y = constantPositions[i].y - spread * positionChange.y;
         }
-
         mesh.vertices = vertices;
         mesh.uv = UVs;
         mesh.normals = normals;
         mesh.triangles = triangles;
 
         previousPosition = transform.position;
-    }
-
-    private void OnDrawGizmos()
-    {
-        int a, b, c;
-
-        for (int i = 0; i < vertices.Length; i++)
-        {
-            a = triangles[i];
-            b = triangles[i + 1];
-            c = triangles[i + 2];
-            Debug.DrawLine(vertices[a], vertices[b], Color.white, 100.0f);
-            Debug.DrawLine(vertices[b], vertices[c], Color.white, 100.0f);
-            Debug.DrawLine(vertices[c], vertices[a], Color.white, 100.0f);
-        }
     }
 }

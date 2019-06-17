@@ -3,8 +3,9 @@
 public class ClothSim2D : MonoBehaviour
 {
     [SerializeField] private int verticalNodesCount = 9;
-    [SerializeField] private Transform[] rope = new Transform[9];
-    [SerializeField] private Transform[] referencePoints = new Transform[9];
+    [SerializeField] private Transform anchor = null;
+    [SerializeField] private Transform[] rope = null;
+    [SerializeField] private Transform[] referencePoints = null;
 
     private Mesh mesh;
     private Vector2 currentPosition;
@@ -73,13 +74,38 @@ public class ClothSim2D : MonoBehaviour
         {
             Transform refPoint = referencePoints[i / 2];
             Transform ropePoint = rope[i / 2];
+
+            if (ropePoint.position.x > rope[verticalNodesCount - 1].position.x)
+            {
+                ropePoint.position = new Vector3(rope[verticalNodesCount - 1].position.x, ropePoint.position.y, ropePoint.position.z);
+            }
+        }
+
+        for (int i = verticalNodesCount - 1; i >= 0; i--)
+        {
+            if (i == verticalNodesCount - 1)
+            {
+                rope[i].position = anchor.position;
+            }
+            else
+            {
+                Vector2 direction = rope[i].position - rope[i + 1].position;
+                rope[i].position = (Vector2)rope[i + 1].position + direction.normalized * 0.25f;
+            }
+        }
+
+        for (int i = 0; i < vertices.Length; i += 2)
+        {
+            Transform refPoint = referencePoints[i / 2];
+            Transform ropePoint = rope[i / 2];
+
             Vector2 pos = ropePoint.position;
             Vector2 pos1 = pos + (Vector2)ropePoint.TransformDirection(-0.5f, 0f, 0f);
             Vector2 pos2 = pos + (Vector2)ropePoint.TransformDirection(0.5f, 0f, 0f);
             pos1 = refPoint.InverseTransformPoint(pos1);
             pos2 = refPoint.InverseTransformPoint(pos2);
-            pos1.y += (refPoint.localPosition.y - 0.25f) / 2f + 0.5f;
-            pos2.y += (refPoint.localPosition.y - 0.25f) / 2f + 0.5f;
+            pos1.y += (refPoint.localPosition.y) / 2f + 0.5f;
+            pos2.y += (refPoint.localPosition.y) / 2f + 0.5f;
 
             vertices[i] = pos1;
             vertices[i + 1] = pos2;

@@ -2,11 +2,9 @@
 
 public class ClothSim2D : MonoBehaviour
 {
-    [SerializeField] private int verticalNodesCount = 5;
-    [SerializeField] private float spread = 0.5f;
-    [SerializeField] private Transform line = null;
-    [SerializeField] private Transform[] rope = new Transform[5];
-    [SerializeField] private Transform[] referencePoints = new Transform[5];
+    [SerializeField] private int verticalNodesCount = 9;
+    [SerializeField] private Transform[] rope = new Transform[9];
+    [SerializeField] private Transform[] referencePoints = new Transform[9];
 
     private Mesh mesh;
     private Vector2 currentPosition;
@@ -20,7 +18,6 @@ public class ClothSim2D : MonoBehaviour
 
     private void Start()
     {
-        //mesh = GetComponent<MeshFilter>().sharedMesh;
         mesh = new Mesh();
 
         constantPositions = new Vector3[verticalNodesCount * 2];
@@ -57,12 +54,6 @@ public class ClothSim2D : MonoBehaviour
             triangles[i + 5] = v + 2;
         }
 
-        /*constantPositions = mesh.vertices;
-        vertices = mesh.vertices;
-        UVs = mesh.uv;
-        normals = mesh.normals;
-        triangles = mesh.triangles;*/
-
         mesh.vertices = vertices;
         mesh.uv = UVs;
         mesh.normals = normals;
@@ -78,44 +69,22 @@ public class ClothSim2D : MonoBehaviour
 
     private void UpdateSprite()
     {
-        /*vertices = mesh.vertices;
-
-        currentPosition = transform.position;
-
-        Vector2 positionChange = currentPosition - previousPosition;
-
         for (int i = 0; i < vertices.Length; i += 2)
         {
-            vertices[i].x = constantPositions[i].x - spread * positionChange.x / ((i + 1) / 5f);
-            vertices[i].y = constantPositions[i].y - spread * positionChange.y / ((i + 1) / 5f);
-            vertices[i + 1].x = constantPositions[i + 1].x - spread * positionChange.x / ((i + 1) / 5f);
-            vertices[i + 1].y = constantPositions[i + 1].y - spread * positionChange.y / ((i + 1) / 5f);
-        }
-        mesh.vertices = vertices;
-        mesh.uv = UVs;
-        mesh.normals = normals;
-        mesh.triangles = triangles;
+            Transform refPoint = referencePoints[i / 2];
+            Transform ropePoint = rope[i / 2];
+            Vector2 pos = ropePoint.position;
+            Vector2 pos1 = pos + (Vector2)ropePoint.TransformDirection(-0.5f, 0f, 0f);
+            Vector2 pos2 = pos + (Vector2)ropePoint.TransformDirection(0.5f, 0f, 0f);
+            pos1 = refPoint.InverseTransformPoint(pos1);
+            pos2 = refPoint.InverseTransformPoint(pos2);
+            pos1.y += (refPoint.localPosition.y - 0.25f) / 2f + 0.5f;
+            pos2.y += (refPoint.localPosition.y - 0.25f) / 2f + 0.5f;
 
-        previousPosition = transform.position;*/
-
-        for (int i = 0; i < vertices.Length; i += 2)
-        {
-            Vector2 pos = rope[i / 2].position;
-            Vector2 pos1 = pos + (Vector2)referencePoints[i / 2].TransformDirection(-0.5f, 0f, 0f);
-            Vector2 pos2 = pos + (Vector2)referencePoints[i / 2].TransformDirection(0.5f, 0f, 0f);
-            //pos1 = rope[i / 2].TransformPoint(pos1);
-            //pos2 = rope[i / 2].TransformPoint(pos2);
-            pos1 = referencePoints[i / 2].InverseTransformPoint(pos1);
-            pos2 = referencePoints[i / 2].InverseTransformPoint(pos2);
-            //pos1.y += (referencePoints[i / 2].localPosition.y - 0.5f) / 2f + 0.5f;
-            //pos2.y += (referencePoints[i / 2].localPosition.y - 0.5f) / 2f + 0.5f;
-
-            vertices[i].x = pos1.x;
-            vertices[i + 1].x = pos2.x;
-            /*vertices[i].x = childs[i].position.x -
-            vertices[i].y = constantPositions[i].y - spread * positionChange.y / ((i + 1) / 5f);
-            vertices[i + 1].x = constantPositions[i + 1].x - spread * positionChange.x / ((i + 1) / 5f);
-            vertices[i + 1].y = constantPositions[i + 1].y - spread * positionChange.y / ((i + 1) / 5f);*/
+            vertices[i] = pos1;
+            vertices[i + 1] = pos2;
+            UVs[i] = new Vector2(pos1.x + 0.5f, pos1.y + 0.5f);
+            UVs[i + 1] = new Vector2(pos2.x + 0.5f, pos2.y + 0.5f);
         }
 
         mesh.vertices = vertices;

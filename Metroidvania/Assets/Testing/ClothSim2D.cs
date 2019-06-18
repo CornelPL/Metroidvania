@@ -6,22 +6,31 @@ public class ClothSim2D : MonoBehaviour
     [SerializeField] private Transform anchor = null;
     [SerializeField] private Transform[] rope = null;
     [SerializeField] private Transform[] referencePoints = null;
+    [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private Vector2 gravity = new Vector2(0f, -100f);
+    [SerializeField] private float restDistance = 0.25f;
+    [SerializeField] private float damping = 0.5f;
 
     private Mesh mesh;
-    private Vector2 currentPosition;
-    private Vector2 previousPosition;
-    private Vector3[] constantPositions;
     private Vector3[] vertices;
     private Vector2[] UVs;
     private Vector3[] normals;
     private int[] triangles;
+    private Vector2[] previousRopePositions;
+
+    private Vector2 previousPosition;
 
 
     private void Start()
     {
         mesh = new Mesh();
 
-        constantPositions = new Vector3[verticalNodesCount * 2];
+        previousRopePositions = new Vector2[rope.Length];
+        for (int i = 0; i < previousRopePositions.Length; i++)
+        {
+            previousRopePositions[i] = rope[i].position;
+        }
+
         vertices = new Vector3[verticalNodesCount * 2];
         UVs = new Vector2[verticalNodesCount * 2];
         normals = new Vector3[verticalNodesCount * 2];
@@ -30,12 +39,10 @@ public class ClothSim2D : MonoBehaviour
         for (int i = 0; i < vertices.Length; i += 2)
         {
             float y = (float)i / (float)(verticalNodesCount - 1) / 2f;
-            constantPositions[i].x = -0.5f;
-            constantPositions[i].y = y - 0.5f;
-            constantPositions[i + 1].x = 0.5f;
-            constantPositions[i + 1].y = y - 0.5f;
-
-            vertices = constantPositions;
+            vertices[i].x = -0.5f;
+            vertices[i].y = y - 0.5f;
+            vertices[i + 1].x = 0.5f;
+            vertices[i + 1].y = y - 0.5f;
 
             UVs[i].x = 0f;
             UVs[i].y = y;
@@ -63,14 +70,64 @@ public class ClothSim2D : MonoBehaviour
         GetComponent<SkinnedMeshRenderer>().sharedMesh = mesh;
     }
 
+
     private void Update()
     {
         UpdateSprite();
     }
 
+
     private void UpdateSprite()
     {
-        for (int i = 0; i < vertices.Length; i += 2)
+        // first we need to rotate whole sprite with movement direction
+        Vector2 movementDirection = (Vector2)anchor.position - previousPosition;
+        if (movementDirection.magnitude > 0.05f)
+        {
+            float angle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg - 90f;
+            float curAngle = anchor.rotation.eulerAngles.z;
+            curAngle = curAngle > 180f ? curAngle - 360f : curAngle;
+            float angleDiff = angle - curAngle;
+            if (Mathf.Abs(angleDiff) > 5f)
+            {
+                anchor.Rotate(Vector3.forward * angleDiff * Time.deltaTime * rotationSpeed);
+            }
+        }
+        else
+        {
+            float angleDiff = anchor.eulerAngles.z - 180f;
+            if (angleDiff + 180f > 5f)
+            {
+                anchor.Rotate(Vector3.forward * angleDiff * Time.deltaTime * rotationSpeed);
+            }
+        }
+
+        // then we need to move rope points towards anchor
+        rope[verticalNodesCount - 1].position = anchor.position;
+
+        // we start from -2 because first point is on the anchor
+        for (int i = verticalNodesCount - 2; i >= 0; i--)
+        {
+            Transform r = rope[i];
+            Vector2 velocity = (Vector2)r.position - previousRopePositions[i];
+            float dt = Time.deltaTime;
+            float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+            Debug.Log(velocity);
+            Debug.Log(angle);
+            r.position = (Vector2)r.position + velocity * damping + gravity * dt * dt;
+
+            Vector2 direction = r.position - rope[i + 1].position;
+            r.position = (Vector2)rope[i + 1].position + direction.normalized * restDistance;
+
+            previousRopePositions[i] = r.position;
+        }
+
+        // then we need to rotate rope points towards edge between points
+
+        // then setup sprite as previous
+
+        previousPosition = anchor.position;
+
+        /*for (int i = 0; i < vertices.Length - 2; i += 2)
         {
             Transform refPoint = referencePoints[i / 2];
             Transform ropePoint = rope[i / 2];
@@ -113,6 +170,6 @@ public class ClothSim2D : MonoBehaviour
             UVs[i + 1] = new Vector2(pos2.x + 0.5f, pos2.y + 0.5f);
         }
 
-        mesh.vertices = vertices;
+        mesh.vertices = vertices;*/
     }
 }

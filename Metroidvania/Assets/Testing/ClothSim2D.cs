@@ -10,6 +10,7 @@ public class ClothSim2D : MonoBehaviour
     [SerializeField] private Vector2 gravity = new Vector2(0f, -100f);
     [SerializeField] private float restDistance = 0.25f;
     [SerializeField] private float damping = 0.5f;
+    [SerializeField] private float maxAngleDeviation = 10f;
 
     private Mesh mesh;
     private Vector3[] vertices;
@@ -79,6 +80,7 @@ public class ClothSim2D : MonoBehaviour
 
     private void UpdateSprite()
     {
+        // TODO: Add noise when moving
         // first we need to rotate whole sprite with movement direction
         Vector2 movementDirection = (Vector2)anchor.position - previousPosition;
         if (movementDirection.magnitude > 0.05f)
@@ -103,6 +105,7 @@ public class ClothSim2D : MonoBehaviour
 
         // then we need to move rope points towards anchor
         rope[verticalNodesCount - 1].position = anchor.position;
+        rope[verticalNodesCount - 1].rotation = anchor.rotation;
 
         // we start from -2 because first point is on the anchor
         for (int i = verticalNodesCount - 2; i >= 0; i--)
@@ -110,18 +113,41 @@ public class ClothSim2D : MonoBehaviour
             Transform r = rope[i];
             Vector2 velocity = (Vector2)r.position - previousRopePositions[i];
             float dt = Time.deltaTime;
-            float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-            Debug.Log(velocity);
-            Debug.Log(angle);
+            
+            previousRopePositions[i] = r.position;
+
             r.position = (Vector2)r.position + velocity * damping + gravity * dt * dt;
 
             Vector2 direction = r.position - rope[i + 1].position;
             r.position = (Vector2)rope[i + 1].position + direction.normalized * restDistance;
 
-            previousRopePositions[i] = r.position;
-        }
+            Vector2 difference = rope[i + 1].position - r.position;
+            float angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
+            float secondAngle = rope[i + 1].rotation.eulerAngles.z;
+            secondAngle = secondAngle > 180f ? secondAngle - 360f : secondAngle;
+            float angleDiff = angle - secondAngle;
 
-        // then we need to rotate rope points towards edge between points
+            if (angleDiff > maxAngleDeviation)
+            {
+                float a = (secondAngle + maxAngleDeviation) * Mathf.Deg2Rad;
+                Vector2 v = new Vector2(Mathf.Sin(a), -Mathf.Cos(a));
+                r.position = (Vector2)rope[i + 1].position + v * restDistance;
+
+                r.eulerAngles = new Vector3(0f, 0f, secondAngle + maxAngleDeviation);
+            }
+            else if (angleDiff < -maxAngleDeviation)
+            {
+                float a = (secondAngle - maxAngleDeviation) * Mathf.Deg2Rad;
+                Vector2 v = new Vector2(Mathf.Sin(a), -Mathf.Cos(a));
+                r.position = (Vector2)rope[i + 1].position + v * restDistance;
+
+                r.eulerAngles = new Vector3(0f, 0f, secondAngle - maxAngleDeviation);
+            }
+            else
+            {
+                r.eulerAngles = new Vector3(0f, 0f, angle);
+            }
+        }
 
         // then setup sprite as previous
 
@@ -136,20 +162,7 @@ public class ClothSim2D : MonoBehaviour
             {
                 ropePoint.position = new Vector3(rope[verticalNodesCount - 1].position.x, ropePoint.position.y, ropePoint.position.z);
             }
-        }
-
-        for (int i = verticalNodesCount - 1; i >= 0; i--)
-        {
-            if (i == verticalNodesCount - 1)
-            {
-                rope[i].position = anchor.position;
-            }
-            else
-            {
-                Vector2 direction = rope[i].position - rope[i + 1].position;
-                rope[i].position = (Vector2)rope[i + 1].position + direction.normalized * 0.25f;
-            }
-        }
+        }*/
 
         for (int i = 0; i < vertices.Length; i += 2)
         {
@@ -170,6 +183,6 @@ public class ClothSim2D : MonoBehaviour
             UVs[i + 1] = new Vector2(pos2.x + 0.5f, pos2.y + 0.5f);
         }
 
-        mesh.vertices = vertices;*/
+        mesh.vertices = vertices;
     }
 }

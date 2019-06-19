@@ -11,6 +11,7 @@ public class ClothSim2D : MonoBehaviour
     [SerializeField] private float restDistance = 0.25f;
     [SerializeField] private float damping = 0.5f;
     [SerializeField] private float maxAngleDeviation = 10f;
+    [SerializeField] private float noise = 3f;
 
     private Mesh mesh;
     private Vector3[] vertices;
@@ -80,7 +81,6 @@ public class ClothSim2D : MonoBehaviour
 
     private void UpdateSprite()
     {
-        // TODO: Add noise when moving
         // first we need to rotate whole sprite with movement direction
         Vector2 movementDirection = (Vector2)anchor.position - previousPosition;
         if (movementDirection.magnitude > 0.05f)
@@ -119,10 +119,21 @@ public class ClothSim2D : MonoBehaviour
             r.position = (Vector2)r.position + velocity * damping + gravity * dt * dt;
 
             Vector2 direction = r.position - rope[i + 1].position;
+            float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg - 90f;
+            if (angle < -45f && angle > -120f)
+            {
+                float rand = Random.Range(-noise, noise);
+                direction += new Vector2(0f, rand);
+            }
+            else if (angle < -120f)
+            {
+                float rand = Random.Range(-noise, noise);
+                direction += new Vector2(rand, 0f);
+            }
             r.position = (Vector2)rope[i + 1].position + direction.normalized * restDistance;
 
             Vector2 difference = rope[i + 1].position - r.position;
-            float angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
+            angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
             float secondAngle = rope[i + 1].rotation.eulerAngles.z;
             secondAngle = secondAngle > 180f ? secondAngle - 360f : secondAngle;
             float angleDiff = angle - secondAngle;

@@ -11,7 +11,10 @@ public class ClothSim2D : MonoBehaviour
     [SerializeField] private float restDistance = 0.25f;
     [SerializeField] private float damping = 0.5f;
     [SerializeField] private float maxAngleDeviation = 10f;
-    [SerializeField] private float noise = 3f;
+    [SerializeField] private float noiseFrequency = 3f;
+    [SerializeField] private float noiseMultiplier = 0.05f;
+    [SerializeField] private float moveNoiseFrequency = 5f;
+    [SerializeField] private float moveNoiseMultiplier = 0.3f;
 
     private Mesh mesh;
     private Vector3[] vertices;
@@ -122,17 +125,17 @@ public class ClothSim2D : MonoBehaviour
             float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg - 90f;
             if (angle > -45f)
             {
-                float rand = Random.Range(-noise, noise);
+                float rand = (Mathf.PerlinNoise(Time.time * noiseFrequency, 0f) - 0.5f) * noiseMultiplier;
                 direction += new Vector2(rand / 10f, 0f);
             }
             if (angle < -45f && angle > -120f)
             {
-                float rand = Random.Range(-noise, noise);
+                float rand = (Mathf.PerlinNoise(Time.time * moveNoiseFrequency, 0f) - 0.5f) * moveNoiseMultiplier;
                 direction += new Vector2(0f, rand);
             }
             else if (angle < -120f)
             {
-                float rand = Random.Range(-noise, noise);
+                float rand = (Mathf.PerlinNoise(Time.time * moveNoiseFrequency, 0f) - 0.5f) * moveNoiseMultiplier;
                 direction += new Vector2(rand, 0f);
             }
             r.position = (Vector2)rope[i + 1].position + direction.normalized * restDistance;

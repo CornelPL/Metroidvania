@@ -104,7 +104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2810104676108796580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.49666, y: 2.6689994, z: 0.1}
+  m_LocalPosition: {x: 0.177, y: 2.498, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 6838834047338178270}
@@ -537,6 +537,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  anchor: {fileID: 0}
+  shootEffectBlur: {fileID: 0}
+  shootEffectBlurSize: 1.5
+  shootEffectBlurTime: 0.1
   stableItemFreezeTime: 5
   maxStableItems: 2
   arcRenderer: {fileID: 6838834047492786796}
@@ -806,8 +810,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6838834048524252265}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.21, y: 1.54, z: 0}
-  m_LocalScale: {x: 0.7978125, y: 1.4125, z: 1}
+  m_LocalPosition: {x: -0.0128, y: 1.5165, z: 0}
+  m_LocalScale: {x: 0.53492755, y: 1.3890525, z: 1}
   m_Children: []
   m_Father: {fileID: 6838834047338178270}
   m_RootOrder: 3

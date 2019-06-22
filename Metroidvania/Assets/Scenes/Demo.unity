@@ -2782,9 +2782,9 @@ MonoBehaviour:
   damping: 0.6
   maxAngleDeviation: 10
   noiseFrequency: 3
-  noiseMultiplier: 3
-  moveNoiseFrequency: 5
-  moveNoiseMultiplier: 0.3
+  noiseMultiplier: 0.07
+  moveNoiseFrequency: 7
+  moveNoiseMultiplier: 0.07
 --- !u!137 &219309587
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -22499,9 +22499,9 @@ MonoBehaviour:
   damping: 0.6
   maxAngleDeviation: 10
   noiseFrequency: 3
-  noiseMultiplier: 3
-  moveNoiseFrequency: 5
-  moveNoiseMultiplier: 0.3
+  noiseMultiplier: 0.07
+  moveNoiseFrequency: 7
+  moveNoiseMultiplier: 0.07
 --- !u!137 &1944727830
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -25060,11 +25060,11 @@ PrefabInstance:
       propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 4904735410250177594, guid: f9b27274a5ec96b428c82bee720c1fc9,
+    - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: anchor2
+      value: 
+      objectReference: {fileID: 25749562}
     - target: {fileID: 3917641337856726122, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: m_IsActive

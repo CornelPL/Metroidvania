@@ -31,6 +31,7 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private GameObject shootEffects = null;
     [SerializeField] private UnityEvent OnShoot = null;
     [SerializeField] private Transform anchor = null;
+    [SerializeField] private Transform anchor2 = null;
     [SerializeField] private GameObject shootEffectBlur = null;
     [SerializeField] private float shootEffectBlurSize = 1.5f;
     [SerializeField] private float shootEffectBlurTime = 0.1f;
@@ -302,6 +303,7 @@ public class Telekinesis : MonoBehaviour
         if (tmp > -50f)
         {
             anchor.eulerAngles = new Vector3(0f, 0f, -50f);
+            anchor2.eulerAngles = new Vector3(0f, 0f, -50f);
         }
 
         LeanTween.value(shootEffectBlur, new Vector2(0f, 0f), new Vector2(shootEffectBlurSize, shootEffectBlurSize), shootEffectBlurTime).setOnUpdate((Vector2 v) => shootEffectBlur.transform.localScale = v).setOnComplete(() => shootEffectBlur.transform.localScale = new Vector2(0f, 0f));

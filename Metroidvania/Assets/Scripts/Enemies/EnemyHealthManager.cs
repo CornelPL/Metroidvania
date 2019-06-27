@@ -6,7 +6,8 @@ public class EnemyHealthManager : MonoBehaviour
 
     [SerializeField] private int initialHP = 100;
     [SerializeField] private Rigidbody2D _rigidbody = null;
-    public bool isBeingKnockbacked = false;
+
+    [HideInInspector] public bool isBeingKnockbacked = false;
 
     private int HP;
 

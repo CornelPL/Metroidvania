@@ -3,8 +3,7 @@
 public class ClothSim2D : MonoBehaviour
 {
     [SerializeField] private int verticalNodesCount = 9;
-    [SerializeField] private Transform anchor = null;
-    [SerializeField] private Transform[] rope = null;
+    [SerializeField] private Transform[] capePoints = null;
     [SerializeField] private Transform[] referencePoints = null;
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private Vector2 gravity = new Vector2(0f, -100f);
@@ -15,26 +14,38 @@ public class ClothSim2D : MonoBehaviour
     [SerializeField] private float noiseMultiplier = 0.05f;
     [SerializeField] private float moveNoiseFrequency = 5f;
     [SerializeField] private float moveNoiseMultiplier = 0.3f;
+    [SerializeField] private int relaxation = 5;
 
     private Mesh mesh;
     private Vector3[] vertices;
     private Vector2[] UVs;
     private Vector3[] normals;
     private int[] triangles;
-    private Vector2[] previousRopePositions;
-
-    private Vector2 previousPosition;
+    private Vector2[] previousCapePointsPositions;
+    private Transform anchor;
+    private Vector2 previousAnchorPosition;
 
 
     private void Start()
     {
-        mesh = new Mesh();
+        InitMesh();
+        InitCape();
+    }
 
-        previousRopePositions = new Vector2[rope.Length];
-        for (int i = 0; i < previousRopePositions.Length; i++)
-        {
-            previousRopePositions[i] = rope[i].position;
-        }
+
+    private void Update()
+    {
+        RotateWithMovement();
+        CalculatePositions();
+        CalculateAngles();
+        RelaxEdges();
+        UpdateSprite();
+    }
+
+
+    private void InitMesh()
+    {
+        mesh = new Mesh();
 
         vertices = new Vector3[verticalNodesCount * 2];
         UVs = new Vector2[verticalNodesCount * 2];
@@ -76,16 +87,22 @@ public class ClothSim2D : MonoBehaviour
     }
 
 
-    private void Update()
+    private void InitCape()
     {
-        UpdateSprite();
+        previousCapePointsPositions = new Vector2[capePoints.Length];
+        for (int i = 0; i < previousCapePointsPositions.Length; i++)
+        {
+            previousCapePointsPositions[i] = capePoints[i].position;
+        }
+
+        anchor = capePoints[0];
     }
 
 
-    private void UpdateSprite()
+    // Rotates sprite and reference points towards movement direction
+    private void RotateWithMovement()
     {
-        // first we need to rotate whole sprite with movement direction
-        Vector2 movementDirection = (Vector2)anchor.position - previousPosition;
+        Vector2 movementDirection = (Vector2)anchor.position - previousAnchorPosition;
         if (movementDirection.magnitude > 0.05f)
         {
             float angle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg - 90f;
@@ -105,25 +122,35 @@ public class ClothSim2D : MonoBehaviour
                 anchor.Rotate(Vector3.forward * angleDiff * Time.deltaTime * rotationSpeed);
             }
         }
+    }
 
-        // then we need to move rope points towards anchor
-        rope[verticalNodesCount - 1].position = anchor.position;
-        rope[verticalNodesCount - 1].rotation = anchor.rotation;
 
-        // we start from -2 because first point is on the anchor
-        for (int i = verticalNodesCount - 2; i >= 0; i--)
+    private void CalculatePositions()
+    {
+        for (int i = 1; i < verticalNodesCount; i++)
         {
-            Transform r = rope[i];
-            Vector2 velocity = (Vector2)r.position - previousRopePositions[i];
+            Transform r = capePoints[i];
+            Vector2 velocity = (Vector2)r.position - previousCapePointsPositions[i];
             float dt = Time.deltaTime;
-            
-            previousRopePositions[i] = r.position;
+
+            previousCapePointsPositions[i] = r.position;
 
             r.position = (Vector2)r.position + velocity * damping + gravity * dt * dt;
+        }
 
-            Vector2 direction = r.position - rope[i + 1].position;
-            float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg - 90f;
-            if (angle > -45f)
+        previousAnchorPosition = anchor.position;
+    }
+
+
+    private void CalculateAngles()
+    {
+        for (int i = 1; i < verticalNodesCount; i++)
+        {
+            Transform capePoint = capePoints[i];
+
+            //Vector2 direction = r.position - capePoints[i - 1].position;
+            //float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg - 90f;
+            /*if (angle > -45f)
             {
                 float rand = (Mathf.PerlinNoise(Time.time * noiseFrequency, 0f) - 0.5f) * noiseMultiplier;
                 direction += new Vector2(rand / 10f, 0f);
@@ -137,12 +164,14 @@ public class ClothSim2D : MonoBehaviour
             {
                 float rand = (Mathf.PerlinNoise(Time.time * moveNoiseFrequency, 0f) - 0.5f) * moveNoiseMultiplier;
                 direction += new Vector2(rand, 0f);
-            }
-            r.position = (Vector2)rope[i + 1].position + direction.normalized * restDistance;
+            }*/
 
-            Vector2 difference = rope[i + 1].position - r.position;
-            angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
-            float secondAngle = rope[i + 1].rotation.eulerAngles.z;
+
+            // Rotate points towards higher points and check if they don't cross max angle deviation
+
+            Vector2 difference = capePoints[i - 1].position - capePoint.position;
+            float angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
+            float secondAngle = capePoints[i - 1].rotation.eulerAngles.z;
             secondAngle = secondAngle > 180f ? secondAngle - 360f : secondAngle;
             float angleDiff = angle - secondAngle;
 
@@ -150,56 +179,70 @@ public class ClothSim2D : MonoBehaviour
             {
                 float a = (secondAngle + maxAngleDeviation) * Mathf.Deg2Rad;
                 Vector2 v = new Vector2(Mathf.Sin(a), -Mathf.Cos(a));
-                r.position = (Vector2)rope[i + 1].position + v * restDistance;
+                capePoint.position = (Vector2)capePoints[i - 1].position + v * difference.magnitude;
 
-                r.eulerAngles = new Vector3(0f, 0f, secondAngle + maxAngleDeviation);
+                capePoint.eulerAngles = new Vector3(0f, 0f, secondAngle + maxAngleDeviation);
             }
             else if (angleDiff < -maxAngleDeviation)
             {
                 float a = (secondAngle - maxAngleDeviation) * Mathf.Deg2Rad;
                 Vector2 v = new Vector2(Mathf.Sin(a), -Mathf.Cos(a));
-                r.position = (Vector2)rope[i + 1].position + v * restDistance;
+                capePoint.position = (Vector2)capePoints[i - 1].position + v * difference.magnitude;
 
-                r.eulerAngles = new Vector3(0f, 0f, secondAngle - maxAngleDeviation);
+                capePoint.eulerAngles = new Vector3(0f, 0f, secondAngle - maxAngleDeviation);
             }
             else
             {
-                r.eulerAngles = new Vector3(0f, 0f, angle);
+                capePoint.eulerAngles = new Vector3(0f, 0f, angle);
             }
         }
+    }
 
-        // then setup sprite as previous
 
-        previousPosition = anchor.position;
-
-        /*for (int i = 0; i < vertices.Length - 2; i += 2)
+    private void RelaxEdges()
+    {
+        for (int j = 0; j < relaxation; j++)
         {
-            Transform refPoint = referencePoints[i / 2];
-            Transform ropePoint = rope[i / 2];
-
-            if (ropePoint.position.x > rope[verticalNodesCount - 1].position.x)
+            for (int i = 1; i < verticalNodesCount; i++)
             {
-                ropePoint.position = new Vector3(rope[verticalNodesCount - 1].position.x, ropePoint.position.y, ropePoint.position.z);
+                Transform capePoint = capePoints[i];
+                Vector2 direction = capePoints[i - 1].position - capePoint.position;
+
+                if (i == 1)
+                {
+                    capePoint.position = (Vector2)capePoints[i - 1].position - direction.normalized * restDistance;
+                }
+                else
+                {
+                    float diff = direction.magnitude - restDistance;
+                    Debug.Log(diff);
+                    capePoint.position = (Vector2)capePoint.position + direction.normalized * diff * 0.5f;
+                    capePoints[i - 1].position = (Vector2)capePoints[i - 1].position - direction.normalized * diff * 0.5f;
+                }
             }
-        }*/
+        }
+    }
 
-        for (int i = 0; i < vertices.Length; i += 2)
+
+    private void UpdateSprite()
+    {
+        for (int i = 0, j = verticalNodesCount - 1; i < vertices.Length; i += 2, j--)
         {
-            Transform refPoint = referencePoints[i / 2];
-            Transform ropePoint = rope[i / 2];
+            Transform refPoint = referencePoints[j];
+            Transform capePoint = capePoints[j];
 
-            Vector2 pos = ropePoint.position;
-            Vector2 pos1 = pos + (Vector2)ropePoint.TransformDirection(-0.5f, 0f, 0f);
-            Vector2 pos2 = pos + (Vector2)ropePoint.TransformDirection(0.5f, 0f, 0f);
-            pos1 = refPoint.InverseTransformPoint(pos1);
-            pos2 = refPoint.InverseTransformPoint(pos2);
-            pos1.y += (refPoint.localPosition.y) / 2f + 0.5f;
-            pos2.y += (refPoint.localPosition.y) / 2f + 0.5f;
+            Vector2 capePos = capePoint.position;
+            Vector2 leftCapePos = capePos + (Vector2)capePoint.TransformDirection(-0.5f, 0f, 0f);
+            Vector2 rightCapePos = capePos + (Vector2)capePoint.TransformDirection(0.5f, 0f, 0f);
+            leftCapePos = refPoint.InverseTransformPoint(leftCapePos);
+            rightCapePos = refPoint.InverseTransformPoint(rightCapePos);
+            leftCapePos.y += (refPoint.localPosition.y) / 2f + 0.5f;
+            rightCapePos.y += (refPoint.localPosition.y) / 2f + 0.5f;
 
-            vertices[i] = pos1;
-            vertices[i + 1] = pos2;
-            UVs[i] = new Vector2(pos1.x + 0.5f, pos1.y + 0.5f);
-            UVs[i + 1] = new Vector2(pos2.x + 0.5f, pos2.y + 0.5f);
+            vertices[i] = leftCapePos;
+            vertices[i + 1] = rightCapePos;
+            UVs[i] = new Vector2(leftCapePos.x + 0.5f, leftCapePos.y + 0.5f);
+            UVs[i + 1] = new Vector2(rightCapePos.x + 0.5f, rightCapePos.y + 0.5f);
         }
 
         mesh.vertices = vertices;

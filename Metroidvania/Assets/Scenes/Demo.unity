@@ -2730,7 +2730,7 @@ MonoBehaviour:
   gravity: {x: 0, y: -80}
   restDistance: 0.25
   damping: 0.3
-  maxAngleDeviationHigh: 20
+  maxAngleDeviationHigh: 10
   maxAngleDeviationLow: 7
   noiseFrequency: 1.5
   noiseMultiplier: 0.003
@@ -22470,7 +22470,7 @@ MonoBehaviour:
   gravity: {x: 0, y: -100}
   restDistance: 0.25
   damping: 0.3
-  maxAngleDeviationHigh: 20
+  maxAngleDeviationHigh: 10
   maxAngleDeviationLow: 7
   noiseFrequency: 1.5
   noiseMultiplier: 0.003
@@ -25056,7 +25056,7 @@ PrefabInstance:
         type: 3}
       propertyPath: anchor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1384344046}
     - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: shootEffectBlur
@@ -25076,7 +25076,7 @@ PrefabInstance:
         type: 3}
       propertyPath: anchor2
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1783436899}
     - target: {fileID: 3917641337856726122, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: m_IsActive

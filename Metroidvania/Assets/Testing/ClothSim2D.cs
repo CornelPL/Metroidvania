@@ -5,16 +5,17 @@ public class ClothSim2D : MonoBehaviour
     [SerializeField] private int verticalNodesCount = 9;
     [SerializeField] private Transform[] capePoints = null;
     [SerializeField] private Transform[] referencePoints = null;
-    [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private float rotationSpeedMove = 2f;
+    [SerializeField] private float rotationSpeedStop = 1f;
     [SerializeField] private Vector2 gravity = new Vector2(0f, -100f);
     [SerializeField] private float restDistance = 0.25f;
     [SerializeField] private float damping = 0.5f;
-    [SerializeField] private float maxAngleDeviation = 10f;
+    [SerializeField] private float maxAngleDeviationHigh = 20f;
+    [SerializeField] private float maxAngleDeviationLow = 5f;
     [SerializeField] private float noiseFrequency = 3f;
     [SerializeField] private float noiseMultiplier = 0.05f;
     [SerializeField] private float moveNoiseFrequency = 5f;
     [SerializeField] private float moveNoiseMultiplier = 0.3f;
-    [SerializeField] private int relaxation = 5;
 
     private Mesh mesh;
     private Vector3[] vertices;
@@ -38,7 +39,6 @@ public class ClothSim2D : MonoBehaviour
         RotateWithMovement();
         CalculatePositions();
         CalculateAngles();
-        RelaxEdges();
         UpdateSprite();
     }
 
@@ -111,7 +111,7 @@ public class ClothSim2D : MonoBehaviour
             float angleDiff = angle - curAngle;
             if (Mathf.Abs(angleDiff) > 5f)
             {
-                anchor.Rotate(Vector3.forward * angleDiff * Time.deltaTime * rotationSpeed);
+                anchor.Rotate(Vector3.forward * angleDiff * Time.deltaTime * rotationSpeedMove);
             }
         }
         else
@@ -119,7 +119,7 @@ public class ClothSim2D : MonoBehaviour
             float angleDiff = anchor.eulerAngles.z - 180f;
             if (angleDiff + 180f > 5f)
             {
-                anchor.Rotate(Vector3.forward * angleDiff * Time.deltaTime * rotationSpeed);
+                anchor.Rotate(Vector3.forward * angleDiff * Time.deltaTime * rotationSpeedStop);
             }
         }
     }
@@ -127,18 +127,19 @@ public class ClothSim2D : MonoBehaviour
 
     private void CalculatePositions()
     {
+
         for (int i = 1; i < verticalNodesCount; i++)
         {
-            Transform r = capePoints[i];
-            Vector2 velocity = (Vector2)r.position - previousCapePointsPositions[i];
-            float dt = Time.deltaTime;
+            Transform capePoint = capePoints[i];
+            Vector2 velocity = (Vector2)capePoint.position - previousCapePointsPositions[i];
+            float dt = Time.fixedDeltaTime;
 
-            previousCapePointsPositions[i] = r.position;
+            previousCapePointsPositions[i] = capePoint.position;
 
-            r.position = (Vector2)r.position + velocity * damping + gravity * dt * dt;
+            capePoint.position = (Vector2)capePoint.position + velocity * damping + gravity * dt * dt;
         }
 
-        previousAnchorPosition = anchor.position;
+        previousAnchorPosition = previousCapePointsPositions[0] = anchor.position;
     }
 
 
@@ -148,12 +149,12 @@ public class ClothSim2D : MonoBehaviour
         {
             Transform capePoint = capePoints[i];
 
-            //Vector2 direction = r.position - capePoints[i - 1].position;
-            //float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg - 90f;
-            /*if (angle > -45f)
+            Vector2 direction = capePoint.position - capePoints[i - 1].position;
+            float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg - 90f;
+            if (angle > -45f)
             {
                 float rand = (Mathf.PerlinNoise(Time.time * noiseFrequency, 0f) - 0.5f) * noiseMultiplier;
-                direction += new Vector2(rand / 10f, 0f);
+                direction += new Vector2(rand, 0f);
             }
             if (angle < -45f && angle > -120f)
             {
@@ -164,22 +165,26 @@ public class ClothSim2D : MonoBehaviour
             {
                 float rand = (Mathf.PerlinNoise(Time.time * moveNoiseFrequency, 0f) - 0.5f) * moveNoiseMultiplier;
                 direction += new Vector2(rand, 0f);
-            }*/
+            }
+
+            capePoint.position = (Vector2)capePoints[i - 1].position + direction.normalized * restDistance;
 
 
             // Rotate points towards higher points and check if they don't cross max angle deviation
 
             Vector2 difference = capePoints[i - 1].position - capePoint.position;
-            float angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
+            angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
             float secondAngle = capePoints[i - 1].rotation.eulerAngles.z;
             secondAngle = secondAngle > 180f ? secondAngle - 360f : secondAngle;
             float angleDiff = angle - secondAngle;
+
+            float maxAngleDeviation = i > verticalNodesCount / 2 ? maxAngleDeviationLow : maxAngleDeviationHigh;
 
             if (angleDiff > maxAngleDeviation)
             {
                 float a = (secondAngle + maxAngleDeviation) * Mathf.Deg2Rad;
                 Vector2 v = new Vector2(Mathf.Sin(a), -Mathf.Cos(a));
-                capePoint.position = (Vector2)capePoints[i - 1].position + v * difference.magnitude;
+                capePoint.position = (Vector2)capePoints[i - 1].position + v * restDistance;
 
                 capePoint.eulerAngles = new Vector3(0f, 0f, secondAngle + maxAngleDeviation);
             }
@@ -187,38 +192,13 @@ public class ClothSim2D : MonoBehaviour
             {
                 float a = (secondAngle - maxAngleDeviation) * Mathf.Deg2Rad;
                 Vector2 v = new Vector2(Mathf.Sin(a), -Mathf.Cos(a));
-                capePoint.position = (Vector2)capePoints[i - 1].position + v * difference.magnitude;
+                capePoint.position = (Vector2)capePoints[i - 1].position + v * restDistance;
 
                 capePoint.eulerAngles = new Vector3(0f, 0f, secondAngle - maxAngleDeviation);
             }
             else
             {
                 capePoint.eulerAngles = new Vector3(0f, 0f, angle);
-            }
-        }
-    }
-
-
-    private void RelaxEdges()
-    {
-        for (int j = 0; j < relaxation; j++)
-        {
-            for (int i = 1; i < verticalNodesCount; i++)
-            {
-                Transform capePoint = capePoints[i];
-                Vector2 direction = capePoints[i - 1].position - capePoint.position;
-
-                if (i == 1)
-                {
-                    capePoint.position = (Vector2)capePoints[i - 1].position - direction.normalized * restDistance;
-                }
-                else
-                {
-                    float diff = direction.magnitude - restDistance;
-                    Debug.Log(diff);
-                    capePoint.position = (Vector2)capePoint.position + direction.normalized * diff * 0.5f;
-                    capePoints[i - 1].position = (Vector2)capePoints[i - 1].position - direction.normalized * diff * 0.5f;
-                }
             }
         }
     }

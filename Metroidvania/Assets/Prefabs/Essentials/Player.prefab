@@ -489,6 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 6838834047338178264}
   movementSpeed: 10
+  movementSpeedUp: 100
   jumpSpeed: 32
   dashSpeed: 30
   dashTime: 0.25
@@ -538,6 +539,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   anchor: {fileID: 0}
+  anchor2: {fileID: 0}
   shootEffectBlur: {fileID: 0}
   shootEffectBlurSize: 1.5
   shootEffectBlurTime: 0.1

@@ -119,7 +119,7 @@ public class ClothSim2D : MonoBehaviour
             float angleDiff = anchor.eulerAngles.z - 180f;
             if (angleDiff + 180f > 5f)
             {
-                anchor.Rotate(Vector3.forward * angleDiff * Time.deltaTime * rotationSpeedStop);
+                anchor.Rotate(Vector3.forward * (180f - angleDiff) * Time.deltaTime * rotationSpeedStop);
             }
         }
     }

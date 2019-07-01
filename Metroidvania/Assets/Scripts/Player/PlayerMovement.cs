@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private bool dashedInAir = false;
 
     [SerializeField] private float movementSpeed = 5f;
+    [SerializeField] private float movementSpeedUp = 5f;
     [SerializeField] private float jumpSpeed = 20f;
 
     [Header("Dash")]
@@ -60,9 +61,32 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckMovement()
     {
-        if (input.right) horizontalSpeed = movementSpeed;
-        else if (input.left) horizontalSpeed = -movementSpeed;
-        else horizontalSpeed = 0f;
+        if (input.right)
+        {
+            if (horizontalSpeed < movementSpeed)
+            {
+                horizontalSpeed += movementSpeedUp * Time.deltaTime;
+            }
+            else
+            {
+                horizontalSpeed = movementSpeed;
+            }
+        }
+        else if (input.left)
+        {
+            if (horizontalSpeed > -movementSpeed)
+            {
+                horizontalSpeed -= movementSpeedUp * Time.deltaTime;
+            }
+            else
+            {
+                horizontalSpeed = -movementSpeed;
+            }
+        }
+        else
+        {
+            horizontalSpeed = 0f;
+        }
     }
 
 

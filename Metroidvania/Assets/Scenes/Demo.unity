@@ -2726,7 +2726,7 @@ MonoBehaviour:
   - {fileID: 67609083}
   - {fileID: 715142935}
   rotationSpeedMove: 3
-  rotationSpeedStop: 0.5
+  rotationSpeedStop: 2
   gravity: {x: 0, y: -80}
   restDistance: 0.25
   damping: 0.3
@@ -22466,7 +22466,7 @@ MonoBehaviour:
   - {fileID: 58820113}
   - {fileID: 569606759}
   rotationSpeedMove: 3
-  rotationSpeedStop: 0.5
+  rotationSpeedStop: 2
   gravity: {x: 0, y: -100}
   restDistance: 0.25
   damping: 0.3

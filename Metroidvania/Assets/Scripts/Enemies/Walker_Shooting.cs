@@ -16,16 +16,18 @@ public class Walker_Shooting : MonoBehaviour
     private int direction = 1;
     private float timeWalkingTooSlow = 0f;
     private bool playerInRange = false;
+    private bool isShooting = false;
 
 
     private void Update()
     {
-        if (!healthManager.isBeingKnockbacked)
+        if (!healthManager.isBeingKnockbacked && !isShooting)
         {
             CheckPlayerInSight();
             if (playerInRange)
             {
-                Shoot();
+                Invoke("Shoot", 0.5f);
+                isShooting = true;
             }
             else
             {
@@ -63,11 +65,13 @@ public class Walker_Shooting : MonoBehaviour
         for (int i = 0; i < projectilesCount; i++)
         {
             dir = Random.insideUnitCircle;
-            dir.y = Mathf.Abs(dir.y);
+            dir.y = Mathf.Abs(dir.y) + 1f;
+            dir.Normalize();
 
-            GameObject proj = Instantiate(projectile);
+            GameObject proj = Instantiate(projectile, transform.position, transform.rotation);
             proj.GetComponent<Rigidbody2D>().AddForce(dir * projectilesForce, ForceMode2D.Impulse);
         }
+        isShooting = false;
     }
 
 

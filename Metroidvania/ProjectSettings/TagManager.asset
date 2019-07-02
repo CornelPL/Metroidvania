@@ -35,7 +35,7 @@ TagManager:
   - GroundCheck
   - Wall
   - Enemy
-  - DashingLayer
+  - InvulnerablePlayer
   - Planks
   - SoftWall
   - PlanksGround
@@ -46,7 +46,7 @@ TagManager:
   - Other light
   - Environment
   - EnemyProjectiles
-  - 
+  - EnemyExplosiveProjectiles
   - 
   - 
   - 

@@ -20,7 +20,7 @@ Walks from left to right and shoots five exploding projectiles around it when pl
 
 ### Charger
 
-Charges at player when he's in sight. Stops after a while or gets stunned when hitting obstacle. May cause earthquake on hitting obstacle. Can be harmed only by shooting at its back.=
+Charges at player when he's in sight. Stops after a while or gets stunned when hitting obstacle. May cause earthquake on hitting obstacle. Can be harmed only by shooting at its back.
 
 ### Shooting plant
 

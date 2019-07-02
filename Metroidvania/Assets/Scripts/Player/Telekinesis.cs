@@ -258,6 +258,7 @@ public class Telekinesis : MonoBehaviour
     {
         float x = holdingItemPlace.position.x + t * Mathf.Abs(throwVector.x);
         float xy = t * Mathf.Abs(throwVector.x);
+        // y = y0 + x*tg - g*x^2 / (2 * F^2 * cos^2)
         float y = holdingItemPlace.position.y + xy * Mathf.Tan(radianAngle) - -Physics2D.gravity.y * closestItemRigidbody.gravityScale * xy * xy / 2f / shootPower / shootPower / Mathf.Cos(radianAngle) / Mathf.Cos(radianAngle);
         return new Vector3(x, y);
     }

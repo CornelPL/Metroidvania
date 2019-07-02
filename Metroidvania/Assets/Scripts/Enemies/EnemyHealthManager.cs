@@ -5,6 +5,7 @@ public class EnemyHealthManager : MonoBehaviour
     private const float knockbackForce = 5000f;
 
     [SerializeField] private int initialHP = 100;
+    [SerializeField] private bool canBeKnockbacked = true;
     [SerializeField] private Rigidbody2D _rigidbody = null;
 
     [HideInInspector] public bool isBeingKnockbacked = false;
@@ -45,7 +46,10 @@ public class EnemyHealthManager : MonoBehaviour
     {
         HP -= damage;
 
-        Knockback(xPos);
+        if (canBeKnockbacked)
+        {
+            Knockback(xPos);
+        }
 
         if (HP < 0)
         {

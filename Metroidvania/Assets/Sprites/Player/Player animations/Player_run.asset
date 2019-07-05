@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c88e76926c9a64b92874e628e03a83, type: 3}
+  m_Name: Player_run
+  m_EditorClassIdentifier: 
+  m_Texture: {fileID: 2800000, guid: 28a8ac1edb5723a4fa753dbb525c7f18, type: 3}
+  m_Padding: 1
+  m_MaxSize: 4096
+  m_PackingMethod: 0
+  m_DefaultPivot: 7
+  m_DefaultCustomPivot: {x: 0.5, y: 0.5}
+  m_Sprites:
+  - source: {fileID: 21300000, guid: a9305510a6c0131409de20d912ff8006, type: 3}
+    targetSprite: {fileID: -5021433819413396077, guid: 28a8ac1edb5723a4fa753dbb525c7f18,
+      type: 3}
+  - source: {fileID: 21300000, guid: 0c695be31439a2c44924a0baed711564, type: 3}
+    targetSprite: {fileID: -3887043242576031680, guid: 28a8ac1edb5723a4fa753dbb525c7f18,
+      type: 3}
+  - source: {fileID: 21300000, guid: 3e95ae75a27bb4041b7c63798a544668, type: 3}
+    targetSprite: {fileID: 987391257552043870, guid: 28a8ac1edb5723a4fa753dbb525c7f18,
+      type: 3}
+  - source: {fileID: 21300000, guid: 018fca1a0c9dac74aa6997849ea4bd0c, type: 3}
+    targetSprite: {fileID: -4441674363479869266, guid: 28a8ac1edb5723a4fa753dbb525c7f18,
+      type: 3}
+  - source: {fileID: 21300000, guid: ac7032ba15f34aa4096cdf25c9571458, type: 3}
+    targetSprite: {fileID: -7733673181233055515, guid: 28a8ac1edb5723a4fa753dbb525c7f18,
+      type: 3}
+  - source: {fileID: 21300000, guid: de424eeba73305c44b9dfb1ff2223ca6, type: 3}
+    targetSprite: {fileID: 4587426700384098704, guid: 28a8ac1edb5723a4fa753dbb525c7f18,
+      type: 3}
+  - source: {fileID: 21300000, guid: f939e33c310c842439834c4e9cfe3de7, type: 3}
+    targetSprite: {fileID: -5322412377837812240, guid: 28a8ac1edb5723a4fa753dbb525c7f18,
+      type: 3}
+  - source: {fileID: 21300000, guid: a67ef81f4b251a94d8573d63fa4671b9, type: 3}
+    targetSprite: {fileID: 4983840460181069303, guid: 28a8ac1edb5723a4fa753dbb525c7f18,
+      type: 3}
+  m_PendingActions: []

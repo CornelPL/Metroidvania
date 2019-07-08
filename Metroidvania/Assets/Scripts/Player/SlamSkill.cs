@@ -19,12 +19,6 @@ public class SlamSkill : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        
-    }
-
-
     public void OnSlamStart()
     {
         state.isSlammingState = true;

@@ -2,8 +2,11 @@
 
 public class PlayerAnimationsController : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
+
     private PlayerState state;
-    private Animator animator;
+    private bool isRunningSet = false;
+    private bool isFallingSet = false;
 
 
     private void Start()
@@ -14,9 +17,26 @@ public class PlayerAnimationsController : MonoBehaviour
 
     private void Update()
     {
-        animator.SetBool("isRunning", state.isRunningState);
-        animator.SetBool("isGrounded", state.isGroundedState);
-        animator.SetBool("isJumping", state.isJumpingState);
-        animator.SetBool("isFalling", state.isFallingState);
+        if (state.isRunningState && !isRunningSet)
+        {
+            isRunningSet = true;
+            animator.SetBool("isRunning", isRunningSet);
+        }
+        else if (!state.isRunningState && isRunningSet)
+        {
+            isRunningSet = false;
+            animator.SetBool("isRunning", isRunningSet);
+        }
+
+        if (state.isFallingState && !isFallingSet)
+        {
+            isFallingSet = true;
+            animator.SetBool("isFalling", isFallingSet);
+        }
+        else if (!state.isFallingState && isFallingSet)
+        {
+            isFallingSet = false;
+            animator.SetBool("isFalling", isFallingSet);
+        }
     }
 }

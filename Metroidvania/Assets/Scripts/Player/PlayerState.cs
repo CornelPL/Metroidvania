@@ -29,6 +29,7 @@ public class PlayerState : MonoBehaviour
     [SerializeField] private Collider2D normalCollider = null;
     [SerializeField] private Collider2D invulnerableCollider = null;
     [SerializeField] private Rigidbody2D _rigidbody = null;
+    [SerializeField] private Animator animator = null;
     private float t = 0f;
 
 
@@ -43,8 +44,8 @@ public class PlayerState : MonoBehaviour
 
     private void Update()
     {
-        isFallingState = _rigidbody.velocity.y < 0 ? true : false;
-        isRunningState = Mathf.Abs(_rigidbody.velocity.x) > 0 ? true : false;
+        isFallingState = _rigidbody.velocity.y < -0.1f ? true : false;
+        isRunningState = Mathf.Abs(_rigidbody.velocity.x) > 1f ? true : false;
 
         if (isInvulnerable)
         {
@@ -72,5 +73,20 @@ public class PlayerState : MonoBehaviour
     public void DisableInvulnerability(float after = 0f)
     {
         t = after;
+    }
+
+
+    public void SetGroundedState(bool b)
+    {
+        isGroundedState = b;
+        animator.SetBool("isGrounded", b);
+
+        if (b)
+        {
+            isJumpingState = false;
+            isFallingState = false;
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isFalling", false);
+        }
     }
 }

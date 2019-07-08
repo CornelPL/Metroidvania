@@ -10,10 +10,12 @@ public class Grounded : MonoBehaviour
     [SerializeField] private UnityEventGameObject OnGrounded = null;
     [SerializeField] private UnityEvent OnGroundedOff = null;
 
+
     private void Start()
     {
         state = PlayerState.instance;
     }
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -23,6 +25,7 @@ public class Grounded : MonoBehaviour
             invoked = true;
         }
     }
+
 
     private void OnTriggerExit2D(Collider2D collider)
     {

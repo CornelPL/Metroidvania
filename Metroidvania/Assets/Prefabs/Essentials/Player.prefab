@@ -1124,6 +1124,7 @@ GameObject:
   - component: {fileID: 2688279590942930702}
   - component: {fileID: 3432850370135696382}
   - component: {fileID: 5845602597293220103}
+  - component: {fileID: 999434323144951175}
   m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
@@ -1212,6 +1213,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &999434323144951175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5378617878819047141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 174f9f15213618446a8c92551ff11ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5845602597293220103}
 --- !u!1 &5839613702270501531
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,6 +1438,7 @@ MonoBehaviour:
   normalCollider: {fileID: 1396123488922968512}
   invulnerableCollider: {fileID: 1669173208879235512}
   _rigidbody: {fileID: 6838834047338178264}
+  animator: {fileID: 5845602597293220103}
 --- !u!114 &6838834047338178268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1437,20 +1452,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 6838834047338178264}
+  animator: {fileID: 5845602597293220103}
   movementSpeed: 10
   movementSpeedUp: 100
   jumpSpeed: 32
   dashSpeed: 30
   dashTime: 0.25
   slam: {fileID: 3445858120292024893}
-  slamSpeed: 50
-  slamRange: 5
-  itemsKnockbackForce: 15
-  enemiesKnockbackForce: 8000
-  earthquakeEvent: {fileID: 11400000, guid: db75f749c9fd32d44bff23c94776704d, type: 2}
-  slamMask:
-    serializedVersion: 2
-    m_Bits: 33280
 --- !u!114 &6838834047338178267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1846,11 +1854,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 0
+      - m_Target: {fileID: 6838834047338178266}
+        m_MethodName: SetGroundedState
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEventGameObject, Assembly-CSharp-firstpass, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnGroundedOff:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6838834047338178266}
+        m_MethodName: SetGroundedState
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &516010806332690067

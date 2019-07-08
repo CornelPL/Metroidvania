@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody = null;
+    [SerializeField] private Animator animator = null;
 
     private InputController input;
     private PlayerState state;
@@ -25,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float dashTime = 0.5f;
 
-    [Header("Slam")]
+    [Space]
     [SerializeField] private SlamSkill slam = null;
 
     private int LeanTweenID = -1;
@@ -99,11 +100,15 @@ public class PlayerMovement : MonoBehaviour
         {
             if (state.isGroundedState)
             {
+                animator.SetBool("isJumping", true);
+
                 verticalSpeed = jumpSpeed;
                 state.isJumpingState = true;
             }
             else if ((state.isJumpingState || state.isFallingState) && state.hasDoubleJump && !doubleJumped)
             {
+                animator.SetBool("isJumping", true);
+
                 if (LeanTweenID > 0 && LeanTween.isTweening(LeanTweenID))
                 {
                     LeanTween.cancel(LeanTweenID);
@@ -244,8 +249,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnGrounded(GameObject go = null)
     {
-        state.isGroundedState = true;
-        state.isJumpingState = false;
         doubleJumped = false;
         dashedInAir = false;
 

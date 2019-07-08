@@ -2,6 +2,7 @@
 
 public class ClothSim2D : MonoBehaviour
 {
+    #region Inspector variables
     [SerializeField] private int verticalNodesCount = 9;
     [SerializeField] private Transform[] capePoints = null;
     [SerializeField] private Transform[] referencePoints = null;
@@ -18,7 +19,9 @@ public class ClothSim2D : MonoBehaviour
     [SerializeField] private float moveNoiseMultiplier = 0.3f;
     [SerializeField] private Transform idleAnchorPosition = null;
     [SerializeField] private Transform runAnchorPosition = null;
+    #endregion
 
+    #region Private variables
     private Mesh mesh;
     private Vector3[] vertices;
     private Vector2[] UVs;
@@ -29,6 +32,7 @@ public class ClothSim2D : MonoBehaviour
     private Vector2 previousAnchorPosition;
 
     private PlayerState state;
+    #endregion
 
 
     private void Start()
@@ -106,7 +110,6 @@ public class ClothSim2D : MonoBehaviour
     }
 
 
-    // Rotates sprite and reference points towards movement direction
     private void RotateWithMovement()
     {
         Vector2 movementDirection = (Vector2)anchor.position - previousAnchorPosition;

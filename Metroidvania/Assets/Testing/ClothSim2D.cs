@@ -16,6 +16,8 @@ public class ClothSim2D : MonoBehaviour
     [SerializeField] private float noiseMultiplier = 0.05f;
     [SerializeField] private float moveNoiseFrequency = 5f;
     [SerializeField] private float moveNoiseMultiplier = 0.3f;
+    [SerializeField] private Transform idleAnchorPosition = null;
+    [SerializeField] private Transform runAnchorPosition = null;
 
     private Mesh mesh;
     private Vector3[] vertices;
@@ -26,17 +28,22 @@ public class ClothSim2D : MonoBehaviour
     private Transform anchor;
     private Vector2 previousAnchorPosition;
 
+    private PlayerState state;
+
 
     private void Start()
     {
         InitMesh();
         InitCape();
+
+        state = PlayerState.instance;
     }
 
 
     private void Update()
     {
         RotateWithMovement();
+        SetAnchorPosition();
         CalculatePositions();
         CalculateAngles();
         UpdateSprite();
@@ -121,6 +128,19 @@ public class ClothSim2D : MonoBehaviour
             {
                 anchor.Rotate(Vector3.forward * (180f - angleDiff) * Time.deltaTime * rotationSpeedStop);
             }
+        }
+    }
+
+
+    private void SetAnchorPosition()
+    {
+        if (state.isRunningState)
+        {
+            anchor.position = runAnchorPosition.position;
+        }
+        else
+        {
+            anchor.position = idleAnchorPosition.position;
         }
     }
 

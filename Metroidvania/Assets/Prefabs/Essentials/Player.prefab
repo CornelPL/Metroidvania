@@ -808,6 +808,8 @@ MonoBehaviour:
   noiseMultiplier: 0.003
   moveNoiseFrequency: 7
   moveNoiseMultiplier: 0.07
+  idleAnchorPosition: {fileID: 2864659805003337438}
+  runAnchorPosition: {fileID: 7077235509578100433}
 --- !u!1 &4762555967620470946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,6 +1079,8 @@ MonoBehaviour:
   noiseMultiplier: 0.003
   moveNoiseFrequency: 7
   moveNoiseMultiplier: 0.07
+  idleAnchorPosition: {fileID: 8806703549388881700}
+  runAnchorPosition: {fileID: 5840490847433163421}
 --- !u!1 &5294229901077326768
 GameObject:
   m_ObjectHideFlags: 0

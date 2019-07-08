@@ -89,4 +89,11 @@ public class PlayerState : MonoBehaviour
             animator.SetBool("isFalling", false);
         }
     }
+
+
+    public void SetJumpingState()
+    {
+        isJumpingState = true;
+        animator.SetBool("isJumping", true);
+    }
 }

@@ -100,21 +100,19 @@ public class PlayerMovement : MonoBehaviour
         {
             if (state.isGroundedState)
             {
-                animator.SetBool("isJumping", true);
+                state.SetJumpingState();
 
                 verticalSpeed = jumpSpeed;
-                state.isJumpingState = true;
             }
             else if ((state.isJumpingState || state.isFallingState) && state.hasDoubleJump && !doubleJumped)
             {
-                animator.SetBool("isJumping", true);
+                state.SetJumpingState();
 
                 if (LeanTweenID > 0 && LeanTween.isTweening(LeanTweenID))
                 {
                     LeanTween.cancel(LeanTweenID);
                     LeanTweenID = -1;
                 }
-                state.isJumpingState = true;
                 verticalSpeed = jumpSpeed;
                 doubleJumped = true;
             }

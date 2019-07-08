@@ -9,6 +9,7 @@ public class PlayerState : MonoBehaviour
     public bool isPullingItemState = false;
     public bool isHoldingItemState = false;
     public bool isGroundedState = false;
+    public bool isRunningState = false;
     public bool isJumpingState = false;
     public bool isFallingState = false;
     public bool isSlammingState = false;
@@ -43,6 +44,7 @@ public class PlayerState : MonoBehaviour
     private void Update()
     {
         isFallingState = _rigidbody.velocity.y < 0 ? true : false;
+        isRunningState = Mathf.Abs(_rigidbody.velocity.x) > 0 ? true : false;
 
         if (isInvulnerable)
         {

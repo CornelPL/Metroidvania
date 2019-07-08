@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerState state;
     private float horizontalSpeed = 0f;
     private float verticalSpeed = 0f;
+    private float slamSpeed = 50f;
     private bool doubleJumped = false;
     private bool canDashRight = false;
     private bool canDashLeft = false;
@@ -25,12 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashTime = 0.5f;
 
     [Header("Slam")]
-    [SerializeField] private float slamSpeed = 2f;
-    [SerializeField] private float slamRange = 5f;
-    [SerializeField] private float itemsKnockbackForce = 10f;
-    [SerializeField] private float enemiesKnockbackForce = 10f;
-    [SerializeField] private Vector2Event earthquakeEvent = null;
-    public LayerMask slamMask;
+    [SerializeField] private SlamSkill slam = null;
 
     private int LeanTweenID = -1;
 
@@ -39,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     {
         input = InputController.instance;
         state = PlayerState.instance;
+
+        slamSpeed = slam.slamSpeed;
     }
 
 
@@ -129,31 +127,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(input.down && (state.isJumpingState || state.isFallingState) && state.hasSlam)
         {
-            state.isSlammingState = true;
-            state.EnableInvulnerability();
-        }
-    }
-
-
-    private void Slam()
-    {
-        state.DisableInvulnerability(0.5f);
-        earthquakeEvent.Broadcast(gameObject, transform.position);
-
-        Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, slamRange, slamMask);
-
-        for (int i = 0; i < objectsInRange.Length; i++)
-        {
-            Vector2 direction = objectsInRange[i].transform.position - new Vector3(transform.position.x, transform.position.y - 1f);
-            direction.Normalize();
-            if (objectsInRange[i].CompareTag("Item"))
-            {
-                objectsInRange[i].attachedRigidbody.AddForce(direction * itemsKnockbackForce, ForceMode2D.Impulse);
-            }
-            else if (objectsInRange[i].CompareTag("Enemy"))
-            {
-                objectsInRange[i].GetComponent<EnemyHealthManager>().Knockback(transform.position.x, enemiesKnockbackForce);
-            }
+            slam.OnSlamStart();
         }
     }
 
@@ -277,13 +251,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (state.isSlammingState)
         {
-            state.isSlammingState = false;
-            verticalSpeed = 0f;
-            Slam();
-            if (go.CompareTag("DestroyableGround"))
-            {
-                go.GetComponent<CustomDestroy>().Destroy();
-            }
+            slam.OnSlamEnd(go);
         }
     }
 }

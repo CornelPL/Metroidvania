@@ -30,8 +30,6 @@ public class ClothSim2D : MonoBehaviour
     private Vector2[] previousCapePointsPositions;
     private Transform anchor;
     private Vector2 previousAnchorPosition;
-
-    private PlayerState state;
     #endregion
 
 
@@ -39,15 +37,12 @@ public class ClothSim2D : MonoBehaviour
     {
         InitMesh();
         InitCape();
-
-        state = PlayerState.instance;
     }
 
 
     private void Update()
     {
         RotateWithMovement();
-        SetAnchorPosition();
         CalculatePositions();
         CalculateAngles();
         UpdateSprite();
@@ -131,19 +126,6 @@ public class ClothSim2D : MonoBehaviour
             {
                 anchor.Rotate(Vector3.forward * (180f - angleDiff) * Time.deltaTime * rotationSpeedStop);
             }
-        }
-    }
-
-
-    private void SetAnchorPosition()
-    {
-        if (state.isRunningState)
-        {
-            anchor.position = runAnchorPosition.position;
-        }
-        else
-        {
-            anchor.position = idleAnchorPosition.position;
         }
     }
 

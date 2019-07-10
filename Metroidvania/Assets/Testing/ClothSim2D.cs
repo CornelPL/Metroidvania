@@ -30,10 +30,13 @@ public class ClothSim2D : MonoBehaviour
     private Vector2[] previousCapePointsPositions;
     private Transform anchor;
     private Vector2 previousAnchorPosition;
+    private PlayerState state;
     #endregion
 
     private void Start()
     {
+        state = PlayerState.instance;
+
         InitMesh();
         InitCape();
     }
@@ -111,13 +114,17 @@ public class ClothSim2D : MonoBehaviour
         {
             float angle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg - 90f;
             angle = angle < -180f ? angle + 360f : angle;
+            if (angle == -180f && !state.isFacingRight)
+            {
+                angle = 180f;
+            }
+
             float curAngle = anchor.rotation.eulerAngles.z;
             curAngle = curAngle > 180f ? curAngle - 360f : curAngle;
             float angleDiff = angle - curAngle;
             // TODO: optimalization
             //if (Mathf.Abs(angleDiff) > 5f)
-            // TODO: not rotating when +170 is going to be -180
-                anchor.Rotate(Vector3.forward * angleDiff * Time.deltaTime * rotationSpeedMove);
+            anchor.Rotate(Vector3.forward * angleDiff * Time.deltaTime * rotationSpeedMove);
         }
         else
         {

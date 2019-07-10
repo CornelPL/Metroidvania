@@ -6,6 +6,7 @@ public class PlayerState : MonoBehaviour
 
     [Header("States")]
 
+    public bool isFacingRight = false;
     public bool isPullingItemState = false;
     public bool isHoldingItemState = false;
     public bool isGroundedState = false;
@@ -31,6 +32,8 @@ public class PlayerState : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private Animator animator = null;
     private float t = 0f;
+    private Vector2 currentPos;
+    private Vector2 previousPos;
 
 
     private void Awake()
@@ -42,10 +45,29 @@ public class PlayerState : MonoBehaviour
     }
 
 
+    private void Start()
+    {
+        previousPos = currentPos = transform.position;
+    }
+
+
     private void Update()
     {
-        isFallingState = _rigidbody.velocity.y < -0.1f ? true : false;
-        isRunningState = Mathf.Abs(_rigidbody.velocity.x) > 1f ? true : false;
+        currentPos = transform.position;
+        Vector2 velocity = (currentPos - previousPos) * 10f;
+        previousPos = currentPos;
+
+        isFallingState = velocity.y < -0.1f ? true : false;
+        isRunningState = Mathf.Abs(velocity.x) > 0.1f ? true : false;
+
+        if (velocity.x > 0.1f)
+        {
+            isFacingRight = true;
+        }
+        else if (velocity.x < -0.1f)
+        {
+            isFacingRight = false;
+        }
 
         if (isInvulnerable)
         {

@@ -32,7 +32,6 @@ public class ClothSim2D : MonoBehaviour
     private Vector2 previousAnchorPosition;
     #endregion
 
-
     private void Start()
     {
         InitMesh();
@@ -111,21 +110,21 @@ public class ClothSim2D : MonoBehaviour
         if (movementDirection.magnitude > 0.05f)
         {
             float angle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg - 90f;
+            angle = angle < -180f ? angle + 360f : angle;
             float curAngle = anchor.rotation.eulerAngles.z;
             curAngle = curAngle > 180f ? curAngle - 360f : curAngle;
             float angleDiff = angle - curAngle;
-            if (Mathf.Abs(angleDiff) > 5f)
-            {
+            // TODO: optimalization
+            //if (Mathf.Abs(angleDiff) > 5f)
+            // TODO: not rotating when +170 is going to be -180
                 anchor.Rotate(Vector3.forward * angleDiff * Time.deltaTime * rotationSpeedMove);
-            }
         }
         else
         {
-            float angleDiff = anchor.eulerAngles.z - 180f;
-            if (angleDiff + 180f > 5f)
-            {
-                anchor.Rotate(Vector3.forward * (180f - angleDiff) * Time.deltaTime * rotationSpeedStop);
-            }
+            float angleDiff = anchor.rotation.eulerAngles.z - 180f;
+            // TODO: optimalization
+            // if (Mathf.Abs(angleDiff) < 179f)
+            anchor.Rotate(Vector3.forward * (Mathf.Sign(angleDiff) * 180f - angleDiff) * Time.deltaTime * rotationSpeedStop);
         }
     }
 
@@ -154,19 +153,22 @@ public class ClothSim2D : MonoBehaviour
         {
             Transform capePoint = capePoints[i];
 
+            // TODO: split these 2 blocks in 2 functions for code clarity
+
             Vector2 direction = capePoint.position - capePoints[i - 1].position;
             float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg - 90f;
-            if (angle > -45f)
+            angle = angle < -180f ? angle + 360f : angle;
+            if (angle > -45f && angle < 45f)
             {
                 float rand = (Mathf.PerlinNoise(Time.time * noiseFrequency, 0f) - 0.5f) * noiseMultiplier;
                 direction += new Vector2(rand, 0f);
             }
-            if (angle < -45f && angle > -120f)
+            if ((angle < -45f && angle > -120f) || (angle > 45f && angle < 120f))
             {
                 float rand = (Mathf.PerlinNoise(Time.time * moveNoiseFrequency, 0f) - 0.5f) * moveNoiseMultiplier;
                 direction += new Vector2(0f, rand);
             }
-            else if (angle < -120f)
+            else if (angle < -120f || angle > 120f)
             {
                 float rand = (Mathf.PerlinNoise(Time.time * moveNoiseFrequency, 0f) - 0.5f) * moveNoiseMultiplier;
                 direction += new Vector2(rand, 0f);
@@ -177,8 +179,8 @@ public class ClothSim2D : MonoBehaviour
 
             // Rotate points towards higher points and check if they don't cross max angle deviation
 
-            Vector2 difference = capePoints[i - 1].position - capePoint.position;
-            angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
+            angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg - 90f;
+            angle = angle < -180f ? angle + 360f : angle;
             float secondAngle = capePoints[i - 1].rotation.eulerAngles.z;
             secondAngle = secondAngle > 180f ? secondAngle - 360f : secondAngle;
             float angleDiff = angle - secondAngle;

@@ -29,7 +29,6 @@ public class PlayerState : MonoBehaviour
 
     [SerializeField] private Collider2D normalCollider = null;
     [SerializeField] private Collider2D invulnerableCollider = null;
-    [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private Animator animator = null;
     private float t = 0f;
     private Vector2 currentPos;

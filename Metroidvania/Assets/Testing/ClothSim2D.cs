@@ -17,8 +17,6 @@ public class ClothSim2D : MonoBehaviour
     [SerializeField] private float noiseMultiplier = 0.05f;
     [SerializeField] private float moveNoiseFrequency = 5f;
     [SerializeField] private float moveNoiseMultiplier = 0.3f;
-    [SerializeField] private Transform idleAnchorPosition = null;
-    [SerializeField] private Transform runAnchorPosition = null;
     #endregion
 
     #region Private variables

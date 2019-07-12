@@ -1,0 +1,251 @@
+
+Player_animations_right_normals.png
+size: 2624,852
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Player_idle_right_normal0000
+  rotate: false
+  xy: 0, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0001
+  rotate: false
+  xy: 164, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0002
+  rotate: false
+  xy: 328, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0003
+  rotate: false
+  xy: 492, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0004
+  rotate: false
+  xy: 656, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0005
+  rotate: false
+  xy: 820, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0006
+  rotate: false
+  xy: 984, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0007
+  rotate: false
+  xy: 1148, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0008
+  rotate: false
+  xy: 1312, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0009
+  rotate: false
+  xy: 1476, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0010
+  rotate: false
+  xy: 1640, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0011
+  rotate: false
+  xy: 1804, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0012
+  rotate: false
+  xy: 1968, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0013
+  rotate: false
+  xy: 2132, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0014
+  rotate: false
+  xy: 2296, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_idle_right_normal0015
+  rotate: false
+  xy: 2460, 0
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_jump_right_normal0000
+  rotate: false
+  xy: 0, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_jump_right_normal0001
+  rotate: false
+  xy: 164, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_jump_right_normal0002
+  rotate: false
+  xy: 328, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_jump_right_normal0003
+  rotate: false
+  xy: 492, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_jump_right_normal0004
+  rotate: false
+  xy: 656, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_land_right_normal0000
+  rotate: false
+  xy: 820, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_land_right_normal0001
+  rotate: false
+  xy: 984, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_land_right_normal0002
+  rotate: false
+  xy: 1148, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_land_right_normal0003
+  rotate: false
+  xy: 1312, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_land_right_normal0004
+  rotate: false
+  xy: 1476, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_land_right_normal0005
+  rotate: false
+  xy: 1640, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_run_right_normal0000
+  rotate: false
+  xy: 1804, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_run_right_normal0001
+  rotate: false
+  xy: 1968, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_run_right_normal0002
+  rotate: false
+  xy: 2132, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_run_right_normal0003
+  rotate: false
+  xy: 2296, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_run_right_normal0004
+  rotate: false
+  xy: 2460, 284
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_run_right_normal0005
+  rotate: false
+  xy: 0, 568
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_run_right_normal0006
+  rotate: false
+  xy: 164, 568
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1
+Player_run_right_normal0007
+  rotate: false
+  xy: 328, 568
+  size: 164, 284
+  orig: 164, 284
+  offset: 0, 0
+  index: -1

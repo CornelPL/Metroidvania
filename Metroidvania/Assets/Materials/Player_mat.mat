@@ -31,7 +31,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 3ee2cb2dea1d60748904c8974aebaa34, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5b4c493bb12aa524d800fd4ef0e58595, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CelRamp:
@@ -83,7 +83,7 @@ Material:
     - _BlendAmount: 0
     - _Brightness: 1
     - _BumpAmt: 10
-    - _BumpScale: 0
+    - _BumpScale: 0.5
     - _Cull: 0
     - _CustomRenderQueue: 0
     - _Cutoff: 0.24

@@ -162,13 +162,10 @@ MonoBehaviour:
   minSpeed: 0.5
   damage: 20
   sightRange: 10
-  boost: 1.5
+  boost: 1.8
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 268502016
-  stopMarkLayerMask:
-    serializedVersion: 2
-    m_Bits: 268435456
   _rigidbody: {fileID: 8628843287280416399}
   healthManager: {fileID: 8628843287280416398}
   direction: 1

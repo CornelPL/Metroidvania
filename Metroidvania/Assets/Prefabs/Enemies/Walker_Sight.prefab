@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHP: 100
+  canBeKnockbacked: 1
   _rigidbody: {fileID: 8628843287280416399}
   isBeingKnockbacked: 0
 --- !u!114 &8628843287280416403
@@ -164,6 +165,10 @@ MonoBehaviour:
   boost: 1.5
   playerLayerMask:
     serializedVersion: 2
-    m_Bits: 66560
+    m_Bits: 268502016
+  stopMarkLayerMask:
+    serializedVersion: 2
+    m_Bits: 268435456
   _rigidbody: {fileID: 8628843287280416399}
   healthManager: {fileID: 8628843287280416398}
+  direction: 1

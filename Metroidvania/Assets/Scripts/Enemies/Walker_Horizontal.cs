@@ -7,8 +7,9 @@ public class Walker_Horizontal : MonoBehaviour
     [SerializeField] private int damage = 20;
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private EnemyHealthManager healthManager = null;
+    [Tooltip("1 - right; -1 - left")]
+    [SerializeField] private int direction = 1;
 
-    private int direction = 1;
     private float timeWalkingTooSlow = 0f;
 
 

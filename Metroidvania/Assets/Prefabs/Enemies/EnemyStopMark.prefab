@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 638782903279524911}
   - component: {fileID: 638782903279524910}
-  m_Layer: 0
-  m_Name: StopMark
+  m_Layer: 28
+  m_Name: EnemyStopMark
   m_TagString: StopMark
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

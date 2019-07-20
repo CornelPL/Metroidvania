@@ -10,8 +10,9 @@ public class Walker_Sight : MonoBehaviour
     [SerializeField] private LayerMask playerLayerMask = 0;
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private EnemyHealthManager healthManager = null;
+    [Tooltip("1 - right; -1 - left")]
+    [SerializeField] private int direction = 1;
 
-    private int direction = 1;
     private float timeWalkingTooSlow = 0f;
     private bool playerInRange = false;
 
@@ -46,8 +47,16 @@ public class Walker_Sight : MonoBehaviour
 
     private void CheckPlayerInSight()
     {
-        if (Physics2D.Raycast(transform.position, new Vector2(direction, 0f), sightRange, playerLayerMask))
+        RaycastHit2D hitr = Physics2D.Raycast(transform.position, new Vector2(direction, 0f), sightRange, playerLayerMask);
+        RaycastHit2D hitl = Physics2D.Raycast(transform.position, new Vector2(-direction, 0f), sightRange, playerLayerMask);
+
+        if (hitr && !hitr.transform.CompareTag("StopMark"))
         {
+            playerInRange = true;
+        }
+        else if (hitl && !hitl.transform.CompareTag("StopMark"))
+        {
+            ChangeDirection();
             playerInRange = true;
         }
         else
@@ -87,6 +96,7 @@ public class Walker_Sight : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawRay(transform.position, new Vector2(direction * sightRange, 0f));
+        Gizmos.DrawRay(transform.position, new Vector2(sightRange, 0f));
+        Gizmos.DrawRay(transform.position, new Vector2(-sightRange, 0f));
     }
 }

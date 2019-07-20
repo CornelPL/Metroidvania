@@ -8,7 +8,7 @@ Just walks from left to right.
 
 ### Walker with sight
 
-Walks from left to right but walks faster when player is in its sight.
+Walks from left to right but walks faster when player is in its sight. It looks left and right all the time.
 
 ### Shooting walker
 

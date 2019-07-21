@@ -1351,7 +1351,7 @@ MonoBehaviour:
   pullSpeed: 20
   maxPullSpeed: 50
   shootPower: 60
-  slowmoMaxTime: 2
+  slowmoMaxTime: 0.5
   holdingItemPlace: {fileID: 0}
   rockToSpawn: {fileID: 6417654320457713547, guid: 33057ab5e8b0e0d47a77f04442e743c4,
     type: 3}

@@ -35,11 +35,6 @@ public class ItemShoot : MonoBehaviour
     {
         if (isShooted)
         {
-            if (collision.gameObject.CompareTag("Platform"))
-            {
-                return;
-            }
-
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 DoDamage(collision.gameObject);

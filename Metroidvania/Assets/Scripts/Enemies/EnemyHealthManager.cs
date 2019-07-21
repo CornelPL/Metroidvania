@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyHealthManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class EnemyHealthManager : MonoBehaviour
     [SerializeField] private int initialHP = 100;
     [SerializeField] private bool canBeKnockbacked = true;
     [SerializeField] private Rigidbody2D _rigidbody = null;
+    [SerializeField] private UnityEvent OnDeath = null;
 
     [HideInInspector] public bool isBeingKnockbacked = false;
 
@@ -22,6 +24,7 @@ public class EnemyHealthManager : MonoBehaviour
     private void Death()
     {
         Debug.Log("Enemy dead");
+        OnDeath.Invoke();
     }
 
 

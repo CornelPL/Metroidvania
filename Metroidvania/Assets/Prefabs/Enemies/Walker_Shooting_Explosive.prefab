@@ -145,6 +145,9 @@ MonoBehaviour:
   initialHP: 100
   canBeKnockbacked: 1
   _rigidbody: {fileID: 6575175056992192088}
+  point: {fileID: 3365028966441827141, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
+  minPoints: 0
+  maxPoints: 5
   OnDeath:
     m_PersistentCalls:
       m_Calls: []

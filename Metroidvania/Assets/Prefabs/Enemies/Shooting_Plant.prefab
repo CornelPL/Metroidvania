@@ -145,20 +145,12 @@ MonoBehaviour:
   initialHP: 100
   canBeKnockbacked: 0
   _rigidbody: {fileID: 2892628564616168880}
+  point: {fileID: 3365028966441827141, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
+  minPoints: 3
+  maxPoints: 10
   OnDeath:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2892628564616168893}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   isBeingKnockbacked: 0

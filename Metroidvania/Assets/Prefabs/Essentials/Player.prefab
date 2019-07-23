@@ -1208,6 +1208,7 @@ GameObject:
   - component: {fileID: 3445858120292024893}
   - component: {fileID: 6838834047338178276}
   - component: {fileID: 2887670582435451143}
+  - component: {fileID: 560894362981388506}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -1463,11 +1464,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956ec8f6aba64d34489daf770469bca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHP: 100
+  maxHP: 5
   knockbackForce: 30
   knockbackTime: 0.5
   invulnerabilityTime: 1
   _rigidbody: {fileID: 6838834047338178264}
+  barsBackgrounds: []
+  bars: []
 --- !u!114 &2887670582435451143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1509,6 +1512,20 @@ MonoBehaviour:
     m_DirectionMode: 0
     m_DissipationMode: 2
     m_DissipationDistance: 1000
+--- !u!114 &560894362981388506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838834047338178269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a19f75e5e894bb41af3a5a462005d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  container: {fileID: 0}
+  containerCapacity: 50
 --- !u!1 &6838834047492786797
 GameObject:
   m_ObjectHideFlags: 0

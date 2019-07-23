@@ -1,20 +1,25 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealthManager : MonoBehaviour
 {
-    [SerializeField] private int initialHP = 100;
+    [SerializeField] private int maxHP = 5;
     [SerializeField] private float knockbackForce = 100f;
     [SerializeField] private float knockbackTime = 0.5f;
     [SerializeField] private float invulnerabilityTime = 1f;
     [SerializeField] private Rigidbody2D _rigidbody = null;
+    [SerializeField] private Image[] barsBackgrounds = null;
+    [SerializeField] private Image[] bars = null;
 
-    private int HP;
+    private int currentHP;
 
 
     private void Awake()
     {
-        HP = initialHP;
+        currentHP = maxHP;
+        UpdateBars();
+        UpdateBarsBackgrounds();
     }
 
 
@@ -29,6 +34,24 @@ public class PlayerHealthManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Spikes"))
         {
             Death();
+        }
+    }
+
+
+    private void UpdateBars()
+    {
+        for (int i = 0; i < bars.Length; i++)
+        {
+            bars[i].enabled = i < currentHP ? true : false;
+        }
+    }
+
+
+    private void UpdateBarsBackgrounds()
+    {
+        for (int i = 0; i < barsBackgrounds.Length; i++)
+        {
+            barsBackgrounds[i].enabled = i < maxHP ? true : false;
         }
     }
 
@@ -49,11 +72,12 @@ public class PlayerHealthManager : MonoBehaviour
 
     public void TakeDamage(int damage, float xPos)
     {
-        HP -= damage;
+        currentHP -= damage;
+        UpdateBars();
 
         StartCoroutine(Knockback(xPos));
 
-        if (HP < 0)
+        if (currentHP < 0)
         {
             Death();
         }

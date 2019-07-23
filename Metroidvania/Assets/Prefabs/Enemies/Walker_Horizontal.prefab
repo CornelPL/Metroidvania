@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   minSpeed: 0.5
-  damage: 20
+  damage: 1
   _rigidbody: {fileID: 492946502777295297}
   healthManager: {fileID: 492946502777295296}
   direction: 1

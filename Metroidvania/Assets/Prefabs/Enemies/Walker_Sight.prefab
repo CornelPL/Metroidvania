@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   minSpeed: 0.5
-  damage: 20
+  damage: 1
   sightRange: 10
   boost: 1.8
   playerLayerMask:

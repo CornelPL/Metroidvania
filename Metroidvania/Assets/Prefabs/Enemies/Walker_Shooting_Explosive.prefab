@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   minSpeed: 0.5
-  damage: 20
+  damage: 1
   sightRange: 8
   projectilesCount: 3
   projectilesForce: 20

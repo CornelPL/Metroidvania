@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875b61b955aa9914b9f6963da56a5449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 1
   timeToExplode: 2
   range: 1
   playerMask:

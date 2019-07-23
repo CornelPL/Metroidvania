@@ -8,6 +8,7 @@ public class PointsController : MonoBehaviour
 
     private int points = 0;
     private int pointsInContainer = 0;
+    [HideInInspector] public bool isContainerFull = false;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,6 +25,11 @@ public class PointsController : MonoBehaviour
                 points++;
             }
 
+            if (pointsInContainer == containerCapacity)
+            {
+                isContainerFull = true;
+            }
+
             Destroy(collision.gameObject);
         }
     }
@@ -32,5 +38,13 @@ public class PointsController : MonoBehaviour
     public void UpdateContainer()
     {
         container.fillAmount = (float)pointsInContainer / containerCapacity;
+    }
+
+
+    public void EmptyContainer()
+    {
+        pointsInContainer = 0;
+        isContainerFull = false;
+        UpdateContainer();
     }
 }

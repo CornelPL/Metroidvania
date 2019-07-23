@@ -16,7 +16,8 @@ public class PlayerState : MonoBehaviour
     public bool isSlammingState = false;
     public bool isDashingState = false;
     public bool isKnockbackedState = false;
-    public bool isInvulnerable = false;
+    public bool isInvulnerableState = false;
+    public bool isHealingState = false;
 
     [Header("Skills")]
 
@@ -68,7 +69,7 @@ public class PlayerState : MonoBehaviour
             isFacingRight = false;
         }
 
-        if (isInvulnerable)
+        if (isInvulnerableState)
         {
             if (t > 0f)
                 t -= Time.deltaTime;
@@ -76,7 +77,7 @@ public class PlayerState : MonoBehaviour
             {
                 normalCollider.enabled = true;
                 invulnerableCollider.enabled = false;
-                isInvulnerable = false;
+                isInvulnerableState = false;
             }
         }
     }
@@ -86,7 +87,7 @@ public class PlayerState : MonoBehaviour
     {
         normalCollider.enabled = false;
         invulnerableCollider.enabled = true;
-        isInvulnerable = true;
+        isInvulnerableState = true;
         t = 999f;
     }
 

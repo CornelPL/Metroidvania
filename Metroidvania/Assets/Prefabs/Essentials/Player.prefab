@@ -1307,7 +1307,8 @@ MonoBehaviour:
   isSlammingState: 0
   isDashingState: 0
   isKnockbackedState: 0
-  isInvulnerable: 0
+  isInvulnerableState: 0
+  isHealingState: 0
   hasDoubleJump: 0
   hasDash: 0
   hasUpgradedDash: 0
@@ -1468,7 +1469,9 @@ MonoBehaviour:
   knockbackForce: 30
   knockbackTime: 0.5
   invulnerabilityTime: 1
+  healChargeTime: 1
   _rigidbody: {fileID: 6838834047338178264}
+  pointsController: {fileID: 560894362981388506}
   barsBackgrounds: []
   bars: []
 --- !u!114 &2887670582435451143
@@ -1526,6 +1529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   container: {fileID: 0}
   containerCapacity: 50
+  isContainerFull: 0
 --- !u!1 &6838834047492786797
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,11 +8,16 @@ public class PlayerHealthManager : MonoBehaviour
     [SerializeField] private float knockbackForce = 100f;
     [SerializeField] private float knockbackTime = 0.5f;
     [SerializeField] private float invulnerabilityTime = 1f;
+    [SerializeField] private float healChargeTime = 1f;
     [SerializeField] private Rigidbody2D _rigidbody = null;
+    [SerializeField] private PointsController pointsController = null;
     [SerializeField] private Image[] barsBackgrounds = null;
     [SerializeField] private Image[] bars = null;
 
+    private InputController input;
+    private PlayerState state;
     private int currentHP;
+    private float healingTime = 0f;
 
 
     private void Awake()
@@ -20,6 +25,43 @@ public class PlayerHealthManager : MonoBehaviour
         currentHP = maxHP;
         UpdateBars();
         UpdateBarsBackgrounds();
+    }
+
+
+    private void Start()
+    {
+        input = InputController.instance;
+        state = PlayerState.instance;
+    }
+
+
+    private void Update()
+    {
+        if (input.healDown && pointsController.isContainerFull && currentHP < maxHP && state.isGroundedState && !state.isRunningState && !state.isKnockbackedState)
+        {
+            state.isHealingState = true;
+        }
+        if (input.healUp)
+        {
+            state.isHealingState = false;
+            healingTime = 0f;
+        }
+
+        if (state.isHealingState)
+        {
+            if (healingTime < healChargeTime)
+            {
+                healingTime += Time.deltaTime;
+            }
+            else
+            {
+                state.isHealingState = false;
+                healingTime = 0f;
+                pointsController.EmptyContainer();
+                currentHP++;
+                UpdateBars();
+            }
+        }
     }
 
 

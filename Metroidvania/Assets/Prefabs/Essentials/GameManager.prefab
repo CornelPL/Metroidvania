@@ -53,6 +53,7 @@ MonoBehaviour:
   downKey: 115
   lmbKey: 323
   rmbKey: 324
+  healKey: 101
   cursorPosition: {x: 0, y: 0}
 --- !u!114 &5261183433287557920
 MonoBehaviour:

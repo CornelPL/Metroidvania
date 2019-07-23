@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!state.isDashingState && !state.isSlammingState && !state.isKnockbackedState)
+        if (!state.isDashingState && !state.isSlammingState && !state.isKnockbackedState && !state.isHealingState)
         {
             CheckMovement();
 

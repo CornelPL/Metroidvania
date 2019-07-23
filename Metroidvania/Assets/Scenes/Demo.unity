@@ -36724,6 +36724,16 @@ PrefabInstance:
       propertyPath: container
       value: 
       objectReference: {fileID: 1765715757}
+    - target: {fileID: 1654533705398813729, guid: 80ab023b49b9d5d409a95d808ede5b48,
+        type: 3}
+      propertyPath: containerCapacity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654533705398813729, guid: 80ab023b49b9d5d409a95d808ede5b48,
+        type: 3}
+      propertyPath: isContainerFull
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8534379412243527455, guid: 80ab023b49b9d5d409a95d808ede5b48,
         type: 3}
       propertyPath: m_Name

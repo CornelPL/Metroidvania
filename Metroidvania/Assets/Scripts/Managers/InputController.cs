@@ -18,6 +18,9 @@ public class InputController : MonoBehaviour
     public KeyCode lmbKey;
     public KeyCode rmbKey;
 
+    [Header("Other")]
+    public KeyCode healKey;
+
     public bool right { get; private set; }
     public bool left { get; private set; }
     public bool dashRight { get; private set; }
@@ -30,6 +33,9 @@ public class InputController : MonoBehaviour
     public bool lmbDown { get; private set; }
     public bool lmbUp { get; private set; }
     public bool rmb { get; private set; }
+
+    public bool healDown { get; private set; }
+    public bool healUp { get; private set; }
 
     public Vector2 cursorPosition;
 
@@ -62,6 +68,9 @@ public class InputController : MonoBehaviour
         lmbDown = Input.GetKeyDown(lmbKey);
         lmbUp = Input.GetKeyUp(lmbKey);
         rmb = Input.GetKeyDown(rmbKey);
+
+        healDown = Input.GetKeyDown(healKey);
+        healUp = Input.GetKeyUp(healKey);
 
         cursorPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
     }

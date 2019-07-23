@@ -23,6 +23,7 @@ public class Walker_Horizontal : MonoBehaviour
 
     private void Move()
     {
+        // TODO: Change moving detection in all walkers to collision, not actual speed
         if (Mathf.Abs(_rigidbody.velocity.x) < minSpeed)
         {
             timeWalkingTooSlow += Time.fixedDeltaTime;

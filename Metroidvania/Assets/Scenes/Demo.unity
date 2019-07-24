@@ -2890,10 +2890,9 @@ MonoBehaviour:
   thirdMovementSpeed: 10
   projectile: {fileID: 8206545884806941566, guid: 4aa758788a05cab488441b3963a6c47a,
     type: 3}
-  minShootForce: 10
-  maxShootForce: 20
-  minAngle: 45
-  maxAngle: 80
+  forceVariation: 0.1
+  minAngle: 40
+  maxAngle: 50
   firstMinProjectiles: 5
   firstMaxProjectiles: 8
   secondMinProjectiles: 8

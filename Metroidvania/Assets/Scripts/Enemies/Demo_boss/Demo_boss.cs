@@ -74,7 +74,7 @@ public class Demo_boss : MonoBehaviour
     {
         if (phase == 1 || phase == 2)
         {
-            SetPhase(phase + 1);
+            StartCoroutine(Rage());
         }
         else
         {
@@ -92,16 +92,6 @@ public class Demo_boss : MonoBehaviour
     private void Update()
     {
         if (isRaging || isMoving || isCharging) return;
-
-        // TODO: REMOVE LATER
-        if (Input.GetKeyDown("2"))
-        {
-            SetPhase(2);
-        }
-        if (Input.GetKeyDown("3"))
-        {
-            SetPhase(3);
-        }
 
         if (isStunned)
         {
@@ -291,8 +281,7 @@ public class Demo_boss : MonoBehaviour
         isStunned = true;
     }
 
-
-    private void StartRage()
+    private IEnumerator Rage()
     {
         isRaging = true;
         direction = player.position.x < transform.position.x ? -1 : 1;
@@ -300,11 +289,6 @@ public class Demo_boss : MonoBehaviour
         if (phase == 1) rageProjectiles = firstRageProjectiles;
         else rageProjectiles = secondRageProjectiles;
 
-        StartCoroutine(Rage());
-    }
-
-    private IEnumerator Rage()
-    {
         while (shootingSequence < rageProjectiles)
         {
             float angle = Random.Range(minAngle, maxAngle) * Mathf.Deg2Rad;

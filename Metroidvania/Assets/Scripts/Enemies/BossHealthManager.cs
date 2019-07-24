@@ -8,7 +8,6 @@ public class BossHealthManager : HealthManager
         Debug.Log("Boss dead");
         OnDeath.Invoke();
         StartCoroutine(DropPoints());
-        Destroy(gameObject);
     }
 
 
@@ -23,6 +22,8 @@ public class BossHealthManager : HealthManager
             inst.GetComponent<Rigidbody2D>().AddForce(dropForce, ForceMode2D.Impulse);
             yield return new WaitForEndOfFrame();
         }
+
+        Destroy(gameObject);
     }
 
 

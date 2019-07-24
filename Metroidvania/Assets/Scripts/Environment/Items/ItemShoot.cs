@@ -31,36 +31,36 @@ public class ItemShoot : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         if (isShooted)
         {
-            GameObject go = collision.collider.gameObject;
+            GameObject go = collider.gameObject;
             if (go.CompareTag("Enemy"))
             {
                 Debug.Log(go.name);
                 go.GetComponent<HitManager>().TakeHit(baseDamage, transform.position.x);
-                CustomDestroy(collision.relativeVelocity);
+                CustomDestroy(_rigidbody.velocity);
             }
             else if (go.CompareTag("DestroyablePlanks"))
             {
-                collision.gameObject.GetComponent<CustomDestroy>().Destroy();
+                go.GetComponent<CustomDestroy>().Destroy();
             }
 
             if (itemType == ItemType.rock)
             {
-                CustomDestroy(collision.relativeVelocity);
+                CustomDestroy(_rigidbody.velocity);
             }
             else if (itemType == ItemType.crate)
             {
-                CustomDestroy(collision.relativeVelocity);
+                CustomDestroy(_rigidbody.velocity);
             }
             else if (itemType == ItemType.plank)
             {
                 if (go.CompareTag("SoftWall"))
                 {
                     plankHealth--;
-                    if (plankHealth == 0) CustomDestroy(collision.relativeVelocity);
+                    if (plankHealth == 0) CustomDestroy(_rigidbody.velocity);
                     _rigidbody.velocity = Vector2.zero;
                     _rigidbody.bodyType = RigidbodyType2D.Static;
                     gameObject.layer = LayerMask.NameToLayer("PlanksGround");
@@ -68,7 +68,7 @@ public class ItemShoot : MonoBehaviour
                 }
                 else if (!go.CompareTag("Player"))
                 {
-                    CustomDestroy(collision.relativeVelocity);
+                    CustomDestroy(_rigidbody.velocity);
                 }
             }
         }
@@ -100,6 +100,8 @@ public class ItemShoot : MonoBehaviour
     {
         _rigidbody.AddForce(direction * power, ForceMode2D.Impulse);
         _collider.enabled = true;
+        _collider.isTrigger = true;
         isShooted = true;
+        gameObject.layer = LayerMask.NameToLayer("ShootItem");
     }
 }

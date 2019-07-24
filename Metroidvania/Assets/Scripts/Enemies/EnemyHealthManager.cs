@@ -1,28 +1,13 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
-public class EnemyHealthManager : MonoBehaviour
+public class EnemyHealthManager : HealthManager
 {
     private const float knockbackForce = 5000f;
-    private const float pointsDropForce = 10f;
 
-    [SerializeField] private int initialHP = 100;
     [SerializeField] private bool canBeKnockbacked = true;
     [SerializeField] private Rigidbody2D _rigidbody = null;
-    [SerializeField] private Transform point = null;
-    [SerializeField] private int minPoints = 0;
-    [SerializeField] private int maxPoints = 5;
-    [SerializeField] private UnityEvent OnDeath = null;
 
     [HideInInspector] public bool isBeingKnockbacked = false;
-
-    private int HP;
-
-
-    private void Awake()
-    {
-        HP = initialHP;
-    }
 
 
     private void Death()
@@ -64,16 +49,11 @@ public class EnemyHealthManager : MonoBehaviour
     }
 
 
-    public void TakeDamage(int damage, float xPos)
+    override public void TakeDamage(int damage)
     {
-        HP -= damage;
+        currentHP -= damage;
 
-        if (canBeKnockbacked)
-        {
-            Knockback(xPos);
-        }
-
-        if (HP < 0)
+        if (currentHP < 0)
         {
             Death();
         }

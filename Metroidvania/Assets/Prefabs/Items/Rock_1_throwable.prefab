@@ -5035,7 +5035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
-  baseDamage: 50
+  baseDamage: 2
   _rigidbody: {fileID: 6417654320457713545}
   _collider: {fileID: 8632387716685488110}
   plankHealth: 3

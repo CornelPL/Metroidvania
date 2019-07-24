@@ -35,12 +35,14 @@ public class ItemShoot : MonoBehaviour
     {
         if (isShooted)
         {
-            if (collision.gameObject.CompareTag("Enemy"))
+            GameObject go = collision.collider.gameObject;
+            if (go.CompareTag("Enemy"))
             {
-                DoDamage(collision.gameObject);
+                Debug.Log(go.name);
+                go.GetComponent<HitManager>().TakeHit(baseDamage, transform.position.x);
                 CustomDestroy(collision.relativeVelocity);
             }
-            else if (collision.gameObject.CompareTag("DestroyablePlanks"))
+            else if (go.CompareTag("DestroyablePlanks"))
             {
                 collision.gameObject.GetComponent<CustomDestroy>().Destroy();
             }
@@ -55,7 +57,7 @@ public class ItemShoot : MonoBehaviour
             }
             else if (itemType == ItemType.plank)
             {
-                if (collision.gameObject.CompareTag("SoftWall"))
+                if (go.CompareTag("SoftWall"))
                 {
                     plankHealth--;
                     if (plankHealth == 0) CustomDestroy(collision.relativeVelocity);
@@ -64,19 +66,12 @@ public class ItemShoot : MonoBehaviour
                     gameObject.layer = LayerMask.NameToLayer("PlanksGround");
                     transform.rotation = Quaternion.identity;
                 }
-                else if (!collision.gameObject.CompareTag("Player"))
+                else if (!go.CompareTag("Player"))
                 {
                     CustomDestroy(collision.relativeVelocity);
                 }
             }
         }
-    }
-
-
-    private void DoDamage(GameObject go)
-    {
-        int damage = (int)(baseDamage * _rigidbody.velocity.magnitude / 10 * _rigidbody.mass);
-        go.GetComponent<EnemyHealthManager>().TakeDamage(damage, transform.position.x);
     }
 
 

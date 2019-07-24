@@ -4,7 +4,6 @@ public class EnemyHealthManager : HealthManager
 {
     private const float knockbackForce = 5000f;
 
-    [SerializeField] private bool canBeKnockbacked = true;
     [SerializeField] private Rigidbody2D _rigidbody = null;
 
     [HideInInspector] public bool isBeingKnockbacked = false;

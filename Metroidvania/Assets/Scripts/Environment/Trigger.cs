@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
-public class FightTrigger : MonoBehaviour
+public class Trigger : MonoBehaviour
 {
-    [SerializeField] private FightRoom fightRoom = null;
+    [SerializeField] private UnityEvent OnPlayerEnter = null;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            fightRoom.CloseRoom();
+            OnPlayerEnter.Invoke();
         }
     }
 }

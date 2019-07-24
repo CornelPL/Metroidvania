@@ -34,9 +34,7 @@ public class Demo_boss : MonoBehaviour
 
     [Header("Charge")]
     [SerializeField] private float stunTime = 2f;
-    [SerializeField] private float firstChargeSpeed = 10f;
-    [SerializeField] private float secondChargeSpeed = 10f;
-    [SerializeField] private float thirdChargeSpeed = 10f;
+    [SerializeField] private float chargeSpeed = 20f;
 
     [Header("Rage")]
     [SerializeField] private float timeBetweenRageProjectiles = 0.05f;
@@ -48,7 +46,6 @@ public class Demo_boss : MonoBehaviour
     private float moveDistance;
     private int minProjectiles;
     private int maxProjectiles;
-    private float chargeSpeed;
     private int rageProjectiles;
 
     [SerializeField] private Transform player;
@@ -125,7 +122,6 @@ public class Demo_boss : MonoBehaviour
             moveDistance = firstMoveDistance;
             minProjectiles = firstMinProjectiles;
             maxProjectiles = firstMaxProjectiles;
-            chargeSpeed = firstChargeSpeed;
         }
         else if (phaseNum == 2)
         {
@@ -133,14 +129,12 @@ public class Demo_boss : MonoBehaviour
             moveDistance = secondMoveDistance;
             minProjectiles = secondMinProjectiles;
             maxProjectiles = secondMaxProjectiles;
-            chargeSpeed = secondChargeSpeed;
         }
         else
         {
             movementSpeed = thirdMovementSpeed;
             minProjectiles = thirdMinProjectiles;
             maxProjectiles = thirdMaxProjectiles;
-            chargeSpeed = thirdChargeSpeed;
         }
     }
 

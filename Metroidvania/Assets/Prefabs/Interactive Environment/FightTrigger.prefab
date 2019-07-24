@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2439827431365033174}
   - component: {fileID: 2439827431365033172}
-  - component: {fileID: 2439827431365033175}
+  - component: {fileID: 1535016832386206206}
   m_Layer: 0
   m_Name: FightTrigger
   m_TagString: Untagged
@@ -58,7 +58,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2439827431365033175
+--- !u!114 &1535016832386206206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,4 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e8f056c6704bc4c82df7863ff74813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fightRoom: {fileID: 0}
+  OnPlayerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

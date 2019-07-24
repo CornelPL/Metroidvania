@@ -950,6 +950,7 @@ Transform:
   m_Children:
   - {fileID: 2790917372856939507}
   - {fileID: 450839540}
+  - {fileID: 616818023}
   - {fileID: 200892905}
   m_Father: {fileID: 0}
   m_RootOrder: 17
@@ -2861,7 +2862,7 @@ Transform:
   - {fileID: 424611381}
   - {fileID: 607478954}
   m_Father: {fileID: 59687901}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &200892906
 MonoBehaviour:
@@ -2884,25 +2885,23 @@ MonoBehaviour:
   chargeColliders: {fileID: 607478953}
   firstMovementSpeed: 5
   firstMoveDistance: 10
-  secondMovementSpeed: 6
+  secondMovementSpeed: 7
   secondMoveDistance: 15
-  thirdMovementSpeed: 7
+  thirdMovementSpeed: 10
   projectile: {fileID: 8206545884806941566, guid: 4aa758788a05cab488441b3963a6c47a,
     type: 3}
   minShootForce: 10
   maxShootForce: 20
-  minAngle: 30
+  minAngle: 45
   maxAngle: 80
   firstMinProjectiles: 5
-  firstMaxProjectiles: 10
-  secondMinProjectiles: 5
-  secondMaxProjectiles: 10
-  thirdMinProjectiles: 5
-  thirdMaxProjectiles: 10
+  firstMaxProjectiles: 8
+  secondMinProjectiles: 8
+  secondMaxProjectiles: 11
+  thirdMinProjectiles: 11
+  thirdMaxProjectiles: 15
   stunTime: 2
-  firstChargeSpeed: 10
-  secondChargeSpeed: 10
-  thirdChargeSpeed: 10
+  chargeSpeed: 0
   timeBetweenRageProjectiles: 0.05
   firstRageProjectiles: 20
   secondRageProjectiles: 30
@@ -6408,6 +6407,36 @@ PrefabInstance:
       propertyPath: fightRoom
       value: 
       objectReference: {fileID: 1875998779}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1875998779}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3c18b76f8013544488c487c9c2a7585, type: 3}
 --- !u!4 &376130308 stripped
@@ -6418,7 +6447,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &376130309 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2439827431365033175, guid: d3c18b76f8013544488c487c9c2a7585,
+  m_CorrespondingSourceObject: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
     type: 3}
   m_PrefabInstance: {fileID: 376130307}
   m_PrefabAsset: {fileID: 0}
@@ -8189,12 +8218,12 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: 53.012, y: -19.502}
-  - {x: 47.788002, y: -19.502}
-  - {x: 47.788002, y: -4.502002}
-  - {x: -1.9879982, y: -4.502001}
-  - {x: -1.9880004, y: -18.890001}
-  - {x: -3.016001, y: -19.502}
-  - {x: -6.6000214, y: -19.502}
+  - {x: 44.788002, y: -19.502}
+  - {x: 44.788002, y: -4.502002}
+  - {x: 0.011996418, y: -4.502001}
+  - {x: 0.011999607, y: -18.890001}
+  - {x: -0.89155495, y: -19.502003}
+  - {x: -6.6000137, y: -19.502}
   - {x: -7.211998, y: -18.673666}
   - {x: -7.212, y: -0.27800146}
   - {x: 53.012, y: -0.2780013}
@@ -8226,7 +8255,7 @@ MonoBehaviour:
       bevelSize: 0
       spriteIndex: 0
       corner: 1
-    - position: {x: 48.4, y: -18.890001, z: -0.35246468}
+    - position: {x: 45.4, y: -18.890001, z: -0.35246468}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -8235,7 +8264,7 @@ MonoBehaviour:
       bevelSize: 0
       spriteIndex: 0
       corner: 1
-    - position: {x: 48.4, y: -3.8900013, z: -0.47522163}
+    - position: {x: 45.4, y: -3.8900013, z: -0.47522163}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -8244,7 +8273,7 @@ MonoBehaviour:
       bevelSize: 0
       spriteIndex: 0
       corner: 1
-    - position: {x: -2.6000004, y: -3.8900013, z: -0.040337563}
+    - position: {x: -0.6000004, y: -3.8900013, z: -0.040337563}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -8253,7 +8282,7 @@ MonoBehaviour:
       bevelSize: 0
       spriteIndex: 0
       corner: 1
-    - position: {x: -2.6000004, y: -18.890001, z: -0.29268742}
+    - position: {x: -0.6000004, y: -18.890001, z: -0.29268742}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -11349,6 +11378,92 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 610248394}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &616818022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 616818023}
+  - component: {fileID: 616818025}
+  - component: {fileID: 616818024}
+  m_Layer: 0
+  m_Name: FightTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &616818023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616818022}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.14, y: 3.18, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 59687901}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &616818024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616818022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e8f056c6704bc4c82df7863ff74813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnPlayerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 616818025}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!61 &616818025
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616818022}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1.279541}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3.559082}
+  m_EdgeRadius: 0
 --- !u!1001 &620054571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17244,6 +17359,36 @@ PrefabInstance:
       propertyPath: fightRoom
       value: 
       objectReference: {fileID: 1889538433}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1889538433}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3c18b76f8013544488c487c9c2a7585, type: 3}
 --- !u!4 &1004109258 stripped
@@ -17254,7 +17399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1004109259 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2439827431365033175, guid: d3c18b76f8013544488c487c9c2a7585,
+  m_CorrespondingSourceObject: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
     type: 3}
   m_PrefabInstance: {fileID: 1004109257}
   m_PrefabAsset: {fileID: 0}
@@ -19817,6 +19962,36 @@ PrefabInstance:
       propertyPath: fightRoom
       value: 
       objectReference: {fileID: 1889538433}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1889538433}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3c18b76f8013544488c487c9c2a7585, type: 3}
 --- !u!4 &1216790301 stripped
@@ -19827,7 +20002,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1216790302 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2439827431365033175, guid: d3c18b76f8013544488c487c9c2a7585,
+  m_CorrespondingSourceObject: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
     type: 3}
   m_PrefabInstance: {fileID: 1216790300}
   m_PrefabAsset: {fileID: 0}
@@ -20107,6 +20282,36 @@ PrefabInstance:
       propertyPath: fightRoom
       value: 
       objectReference: {fileID: 1889538433}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1889538433}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3c18b76f8013544488c487c9c2a7585, type: 3}
 --- !u!4 &1223122193 stripped
@@ -20117,7 +20322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1223122194 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2439827431365033175, guid: d3c18b76f8013544488c487c9c2a7585,
+  m_CorrespondingSourceObject: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
     type: 3}
   m_PrefabInstance: {fileID: 1223122192}
   m_PrefabAsset: {fileID: 0}
@@ -28641,6 +28846,36 @@ PrefabInstance:
       propertyPath: fightRoom
       value: 
       objectReference: {fileID: 1875998779}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1875998779}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3c18b76f8013544488c487c9c2a7585, type: 3}
 --- !u!4 &1695471554 stripped
@@ -28651,7 +28886,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1695471555 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2439827431365033175, guid: d3c18b76f8013544488c487c9c2a7585,
+  m_CorrespondingSourceObject: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
     type: 3}
   m_PrefabInstance: {fileID: 1695471553}
   m_PrefabAsset: {fileID: 0}
@@ -28739,6 +28974,36 @@ PrefabInstance:
       propertyPath: fightRoom
       value: 
       objectReference: {fileID: 1875998779}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1875998779}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3c18b76f8013544488c487c9c2a7585, type: 3}
 --- !u!4 &1713123090 stripped
@@ -28749,7 +29014,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1713123091 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2439827431365033175, guid: d3c18b76f8013544488c487c9c2a7585,
+  m_CorrespondingSourceObject: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
     type: 3}
   m_PrefabInstance: {fileID: 1713123089}
   m_PrefabAsset: {fileID: 0}
@@ -31482,7 +31747,7 @@ MonoBehaviour:
   - {fileID: 1733130556}
   - {fileID: 2127098644}
   fightTriggers:
-  - {fileID: 2118348041}
+  - {fileID: 2439827431394595295}
   - {fileID: 1695471555}
   - {fileID: 376130309}
   - {fileID: 1713123091}
@@ -36482,18 +36747,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2439827431394595294}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2118348041 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2439827431365033175, guid: d3c18b76f8013544488c487c9c2a7585,
-    type: 3}
-  m_PrefabInstance: {fileID: 2439827431394595294}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8e8f056c6704bc4c82df7863ff74813, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2119337094
 GameObject:
   m_ObjectHideFlags: 0
@@ -39017,8 +39270,50 @@ PrefabInstance:
       propertyPath: fightRoom
       value: 
       objectReference: {fileID: 1875998779}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1875998779}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+        type: 3}
+      propertyPath: OnPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3c18b76f8013544488c487c9c2a7585, type: 3}
+--- !u!114 &2439827431394595295 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1535016832386206206, guid: d3c18b76f8013544488c487c9c2a7585,
+    type: 3}
+  m_PrefabInstance: {fileID: 2439827431394595294}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e8f056c6704bc4c82df7863ff74813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2497517862905069218
 GameObject:
   m_ObjectHideFlags: 0

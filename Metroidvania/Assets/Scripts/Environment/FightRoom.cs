@@ -3,7 +3,7 @@
 public class FightRoom : MonoBehaviour
 {
     [SerializeField] private Door[] doors = null;
-    [SerializeField] private FightTrigger[] fightTriggers = null;
+    [SerializeField] private Trigger[] fightTriggers = null;
     [SerializeField] private int enemiesCount = 5;
 
 
@@ -38,7 +38,7 @@ public class FightRoom : MonoBehaviour
 
     private void SetFightTriggersActive(bool b)
     {
-        foreach(FightTrigger trigger in fightTriggers)
+        foreach(Trigger trigger in fightTriggers)
         {
             trigger.gameObject.SetActive(b);
         }

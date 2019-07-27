@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 123fd3f9061ca134a8098b3747ae09d6, type: 2}
+  - {fileID: 2100000, guid: 05c2cd13fe5873f47ada784296c83f3b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 913cda810e747df4d8ac0f6f3aed1341, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f4dc316edfc81024cb33efd9dd6345ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,7 +121,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 1.6}
+    oldSize: {x: 1.8, y: 0.8}
     newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -143,8 +143,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHP: 100
-  canBeKnockbacked: 1
-  _rigidbody: {fileID: 8628843287280416399}
   point: {fileID: 3365028966441827141, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
   minPoints: 0
   maxPoints: 5
@@ -153,6 +151,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  currentHP: 0
+  _rigidbody: {fileID: 8628843287280416399}
   isBeingKnockbacked: 0
 --- !u!114 &8628843287280416403
 MonoBehaviour:

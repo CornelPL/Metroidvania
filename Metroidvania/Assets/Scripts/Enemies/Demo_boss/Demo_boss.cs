@@ -22,8 +22,7 @@ public class Demo_boss : MonoBehaviour
     [Header("Shooting")]
     [SerializeField] private Transform projectile = null;
     [SerializeField] private float forceVariation = 0.2f;
-    [SerializeField] private float minAngle = 30f;
-    [SerializeField] private float maxAngle = 80f;
+    [SerializeField] private float angleVariation = 0.2f;
     [SerializeField] private int firstMinProjectiles = 5;
     [SerializeField] private int firstMaxProjectiles = 10;
     [SerializeField] private int secondMinProjectiles = 5;
@@ -141,7 +140,10 @@ public class Demo_boss : MonoBehaviour
     private void ChooseAction()
     {
         direction = player.position.x < transform.position.x ? -1 : 1;
-
+        Shoot();
+        shootingSequence = 0;
+        isDeciding = false;
+        return;
         // PHASE 1
         if (phase == 1 && healthManager.currentHP > secondPhaseHP)
         {
@@ -239,18 +241,36 @@ public class Demo_boss : MonoBehaviour
     }
 
 
+    private void ShootProjectile()
+    {
+        Rigidbody2D rb = Instantiate(projectile, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
+        Vector2 vectorToPlayer = player.position - transform.position;
+
+        float angleToPlayer = Mathf.Atan2(vectorToPlayer.y, vectorToPlayer.x) * Mathf.Rad2Deg;
+        if (angleToPlayer < -90f)
+            angleToPlayer = -(180f + angleToPlayer);
+        else if (angleToPlayer > 90f)
+        {
+            angleToPlayer = 180f - angleToPlayer;
+        }
+        float angle = 45 + angleToPlayer / 2f;
+        angle *= Mathf.Deg2Rad;
+        angle = Random.Range(angle * (1f - angleVariation), angle * (1f + angleVariation));
+
+        Vector2 dir = new Vector2(Mathf.Cos(angle) * direction, Mathf.Sin(angle));
+        float distance = vectorToPlayer.magnitude;
+        float force = Mathf.Sqrt(-Physics2D.gravity.y * rb.gravityScale * distance / Mathf.Sin(2f * angle));
+        force = Random.Range(force * (1f - forceVariation), force * (1f + forceVariation));
+        rb.AddForce(dir * force, ForceMode2D.Impulse);
+    }
+
+
     private void Shoot()
     {
         int num = Random.Range(minProjectiles, maxProjectiles);
         for (int i = 0; i < num; i++)
         {
-            Rigidbody2D rb = Instantiate(projectile, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
-            float angle = Random.Range(minAngle, maxAngle) * Mathf.Deg2Rad;
-            Vector2 dir = new Vector2(Mathf.Cos(angle) * direction, Mathf.Sin(angle));
-            float distance = Mathf.Abs(player.position.x - transform.position.x);
-            float force = Mathf.Sqrt(-Physics2D.gravity.y * rb.gravityScale * distance / Mathf.Sin(Mathf.PI / 2f));
-            force = Random.Range(force * (1f - forceVariation), force * (1f + forceVariation));
-            rb.AddForce(dir * force, ForceMode2D.Impulse);
+            ShootProjectile();
         }
     }
 
@@ -286,13 +306,7 @@ public class Demo_boss : MonoBehaviour
 
         while (shootingSequence < rageProjectiles)
         {
-            Rigidbody2D rb = Instantiate(projectile, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
-            float angle = Random.Range(minAngle, maxAngle) * Mathf.Deg2Rad;
-            Vector2 dir = new Vector2(Mathf.Cos(angle) * direction, Mathf.Sin(angle));
-            float distance = Mathf.Abs(player.position.x - transform.position.x);
-            float force = Mathf.Sqrt(-Physics2D.gravity.y * rb.gravityScale * distance / Mathf.Sin(Mathf.PI / 2f));
-            force = Random.Range(force * (1f - forceVariation), force * (1f + forceVariation));
-            rb.AddForce(dir * force, ForceMode2D.Impulse);
+            ShootProjectile();
 
             shootingSequence++;
             yield return new WaitForSeconds(timeBetweenRageProjectiles);

@@ -244,11 +244,11 @@ public class Demo_boss : MonoBehaviour
         int num = Random.Range(minProjectiles, maxProjectiles);
         for (int i = 0; i < num; i++)
         {
+            Rigidbody2D rb = Instantiate(projectile, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
             float angle = Random.Range(minAngle, maxAngle) * Mathf.Deg2Rad;
             Vector2 dir = new Vector2(Mathf.Cos(angle) * direction, Mathf.Sin(angle));
-            Rigidbody2D rb = Instantiate(projectile, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
-            float distance = player.position.x - transform.position.x;
-            float force = Mathf.Sqrt(Physics2D.gravity.y * rb.gravityScale * distance / Mathf.Sin(Mathf.PI / 2f));
+            float distance = Mathf.Abs(player.position.x - transform.position.x);
+            float force = Mathf.Sqrt(-Physics2D.gravity.y * rb.gravityScale * distance / Mathf.Sin(Mathf.PI / 2f));
             force = Random.Range(force * (1f - forceVariation), force * (1f + forceVariation));
             rb.AddForce(dir * force, ForceMode2D.Impulse);
         }
@@ -286,10 +286,11 @@ public class Demo_boss : MonoBehaviour
 
         while (shootingSequence < rageProjectiles)
         {
+            Rigidbody2D rb = Instantiate(projectile, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
             float angle = Random.Range(minAngle, maxAngle) * Mathf.Deg2Rad;
             Vector2 dir = new Vector2(Mathf.Cos(angle) * direction, Mathf.Sin(angle));
-            Rigidbody2D rb = Instantiate(projectile, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
-            float force = Mathf.Sqrt(Physics2D.gravity.y * rb.gravityScale * distance / Mathf.Sin(Mathf.PI / 2f));
+            float distance = Mathf.Abs(player.position.x - transform.position.x);
+            float force = Mathf.Sqrt(-Physics2D.gravity.y * rb.gravityScale * distance / Mathf.Sin(Mathf.PI / 2f));
             force = Random.Range(force * (1f - forceVariation), force * (1f + forceVariation));
             rb.AddForce(dir * force, ForceMode2D.Impulse);
 

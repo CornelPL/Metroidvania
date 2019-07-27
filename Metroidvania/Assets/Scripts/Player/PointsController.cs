@@ -1,14 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PointsController : MonoBehaviour
 {
     [SerializeField] private Image container = null;
     [SerializeField] private int containerCapacity = 50;
+    [SerializeField] private TextMeshProUGUI pointsText = null;
 
     private int points = 0;
     private int pointsInContainer = 0;
     [HideInInspector] public bool isContainerFull = false;
+
+
+    private void Start()
+    {
+        UpdateContainer();
+        UpdatePoints();
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -23,6 +32,7 @@ public class PointsController : MonoBehaviour
             else
             {
                 points++;
+                UpdatePoints();
             }
 
             if (pointsInContainer == containerCapacity)
@@ -38,6 +48,12 @@ public class PointsController : MonoBehaviour
     public void UpdateContainer()
     {
         container.fillAmount = (float)pointsInContainer / containerCapacity;
+    }
+
+
+    private void UpdatePoints()
+    {
+        pointsText.SetText(points.ToString());
     }
 
 

@@ -11,7 +11,7 @@ abstract public class HealthManager : MonoBehaviour
     [SerializeField] protected int maxPoints = 5;
     [SerializeField] protected UnityEvent OnDeath = null;
 
-    [HideInInspector] public int currentHP;
+    public int currentHP;
 
     abstract public void TakeDamage(int damage);
     virtual public void Knockback(float xPosition) { }

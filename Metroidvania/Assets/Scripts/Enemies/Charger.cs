@@ -96,18 +96,15 @@ public class Charger : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isCharging)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            isCharging = false;
+            collision.collider.GetComponent<PlayerHealthManager>().TakeDamage(damage, transform.position.x);
 
-            if (collision.gameObject.CompareTag("Player"))
-            {
-                collision.collider.GetComponent<PlayerHealthManager>().TakeDamage(damage, transform.position.x);
-            }
-            else
-            {
-                isStunned = true;
-            }
+            if (isCharging) isCharging = false;
+        }
+        else if (isCharging)
+        {
+            isStunned = true;
         }
         else if (healthManager.isBeingKnockbacked && !collision.gameObject.CompareTag("Item"))
         {

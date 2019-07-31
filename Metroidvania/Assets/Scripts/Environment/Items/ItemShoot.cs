@@ -15,6 +15,7 @@ public class ItemShoot : MonoBehaviour
 
     public ItemType itemType = ItemType.rock;
     [SerializeField] private int baseDamage = 10;
+    [SerializeField] private float knockbackForce = 100f;
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private Collider2D _collider = null;
     [SerializeField] private int plankHealth = 3;
@@ -38,8 +39,7 @@ public class ItemShoot : MonoBehaviour
             GameObject go = collider.gameObject;
             if (go.CompareTag("Enemy"))
             {
-                Debug.Log(go.name);
-                go.GetComponent<HitManager>().TakeHit(baseDamage, transform.position.x);
+                go.GetComponent<HitManager>().TakeHit(baseDamage, transform.position.x, knockbackForce);
                 CustomDestroy(_rigidbody.velocity);
             }
             else if (go.CompareTag("DestroyablePlanks"))

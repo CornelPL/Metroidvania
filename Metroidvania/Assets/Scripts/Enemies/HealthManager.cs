@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 abstract public class HealthManager : MonoBehaviour
 {
-    protected const float pointsDropForce = 10f;
+    protected float pointsDropForce = 10f;
 
     [SerializeField] protected int initialHP = 100;
     [SerializeField] protected Transform point = null;
@@ -14,7 +14,7 @@ abstract public class HealthManager : MonoBehaviour
     public int currentHP;
 
     abstract public void TakeDamage(int damage);
-    virtual public void Knockback(float xPosition) { }
+    virtual public void Knockback(float xPosition, float force) { }
 
     private void Awake()
     {

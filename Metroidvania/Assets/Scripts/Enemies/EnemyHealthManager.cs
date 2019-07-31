@@ -2,8 +2,6 @@
 
 public class EnemyHealthManager : HealthManager
 {
-    private const float knockbackForce = 5000f;
-
     [SerializeField] private Rigidbody2D _rigidbody = null;
 
     [HideInInspector] public bool isBeingKnockbacked = false;
@@ -40,11 +38,11 @@ public class EnemyHealthManager : HealthManager
     }
 
 
-    public void Knockback(float xPos, float force = knockbackForce)
+    public override void Knockback(float xPos, float force)
     {
         isBeingKnockbacked = true;
 
-        _rigidbody.AddForce(new Vector2(0.5f * Mathf.Sign(transform.position.x - xPos), 1f) * force);
+        _rigidbody.AddForce(new Vector2(0.5f * Mathf.Sign(transform.position.x - xPos), 1f) * force, ForceMode2D.Impulse);
     }
 
 

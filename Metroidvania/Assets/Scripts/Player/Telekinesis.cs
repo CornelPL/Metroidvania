@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Experimental.Rendering.LWRP;
 
 public class Telekinesis : MonoBehaviour
 {
@@ -17,12 +18,9 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private GameObject rockToSpawn = null;
 
     [Header("Effects")]
-    [SerializeField] private Light _light = null;
-    [SerializeField] private float lightOnIntensity = 22f;
-    [SerializeField] private float lightOffIntensity = 10f;
-    [SerializeField] private SpriteRenderer lightCircle = null;
-    [SerializeField] private Color lightCircleOnColor = Color.clear;
-    [SerializeField] private Color lightCircleOffColor = Color.clear;
+    [SerializeField] private Light2D _light = null;
+    [SerializeField] private float lightOnIntensity = 1.5f;
+    [SerializeField] private float lightOffIntensity = 0.5f;
     [SerializeField] private float tweenTime = 0.5f;
     [SerializeField] private ParticleSystem objectToPullHighlightParticles = null;
     [SerializeField] private GameObject objectToPullHighlight = null;
@@ -72,7 +70,6 @@ public class Telekinesis : MonoBehaviour
         input = InputController.instance;
         state = PlayerState.instance;
         _light.intensity = lightOffIntensity;
-        lightCircle.color = lightCircleOffColor;
     }
 
     private void Update()
@@ -306,7 +303,9 @@ public class Telekinesis : MonoBehaviour
             anchorBack.eulerAngles = new Vector3(0f, 0f, -50f);
         }
 
-        LeanTween.value(shootEffectBlur, new Vector2(0f, 0f), new Vector2(shootEffectBlurSize, shootEffectBlurSize), shootEffectBlurTime).setOnUpdate((Vector2 v) => shootEffectBlur.transform.localScale = v).setOnComplete(() => shootEffectBlur.transform.localScale = new Vector2(0f, 0f));
+        LeanTween.value(shootEffectBlur, new Vector3(0f, 0f, 1f), new Vector3(shootEffectBlurSize, shootEffectBlurSize, 1f), shootEffectBlurTime).setOnUpdate((Vector3 v) => shootEffectBlur.transform.localScale = v).setOnComplete(() => shootEffectBlur.transform.localScale = new Vector3(0f, 0f, 1f));
+        SpriteRenderer renderer = shootEffectBlur.GetComponent<SpriteRenderer>();
+        LeanTween.value(shootEffectBlur, 1f, 0f, shootEffectBlurTime).setOnUpdate((float f) => renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, f));
 
         Vector2 shootDirection = input.cursorPosition - (Vector2)holdingItemPlace.position;
         shootDirection.Normalize();
@@ -347,7 +346,6 @@ public class Telekinesis : MonoBehaviour
     private void SetPullEffectsActive(bool on)
     {
         LeanTween.value(_light.gameObject, _light.intensity, on ? lightOnIntensity : lightOffIntensity, tweenTime).setOnUpdate((float v) => _light.intensity = v);
-        LeanTween.value(_light.gameObject, lightCircle.color, on ? lightCircleOnColor : lightCircleOffColor, tweenTime).setOnUpdate((Color c) => lightCircle.color = c);
     }
 
 

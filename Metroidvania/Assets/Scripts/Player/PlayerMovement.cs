@@ -74,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 horizontalSpeed = movementSpeed;
-                frame = 0;
             }
         }
         else if (input.left)

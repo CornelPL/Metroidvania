@@ -9,12 +9,12 @@ public class Element
     public float ySpeedRatio;
     public Vector3 startPos;
 
-    public Element(Transform t, float xs, float ys, Vector3 v)
+    public Element(Transform t, float xs, float ys)
     {
         transform = t;
         xSpeedRatio = xs;
         ySpeedRatio = ys;
-        startPos = v;
+        startPos = t.position;
     }
 }
 
@@ -55,7 +55,7 @@ public class Parallax : MonoBehaviour
 
     public void AddElement( Transform elementToAdd, float xSpeed, float ySpeed )
     {
-        elements.Add( new Element( elementToAdd, xSpeed, ySpeed, elementToAdd.position ) );
+        elements.Add( new Element( elementToAdd, xSpeed, ySpeed ) );
     }
 
 

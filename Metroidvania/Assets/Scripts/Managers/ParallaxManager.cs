@@ -14,12 +14,12 @@ public class ParallaxManager : MonoBehaviour
     
     public void AddToParallax()
     {
-        Parallax.instance.AddElement(transform, xSpeedRatio, ySpeedRatio);
+        Parallax.instance.AddElements(transform, xSpeedRatio, ySpeedRatio);
     }
 
 
     public void RemoveFromParallax()
     {
-        Parallax.instance.RemoveElement(transform);
+        Parallax.instance.RemoveElements(transform);
     }
 }

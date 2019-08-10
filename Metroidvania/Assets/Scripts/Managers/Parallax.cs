@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Element
 {
+    public Transform parent;
     public Transform transform;
     public float xSpeedRatio;
     public float ySpeedRatio;
     public Vector3 startPos;
 
-    public Element(Transform t, float xs, float ys)
+    public Element(Transform p, Transform t, float xs, float ys)
     {
+        parent = p;
         transform = t;
         xSpeedRatio = xs;
         ySpeedRatio = ys;
@@ -53,17 +55,22 @@ public class Parallax : MonoBehaviour
     }
 
 
-    public void AddElement( Transform elementToAdd, float xSpeed, float ySpeed )
+    public void AddElements( Transform parent, float xSpeed, float ySpeed )
     {
-        elements.Add( new Element( elementToAdd, xSpeed, ySpeed ) );
+        foreach ( Transform child in parent )
+        {
+            elements.Add( new Element( parent, child, xSpeed, ySpeed ) );
+        }
     }
 
 
-    public void RemoveElement( Transform elementToRemove )
+    public void RemoveElements( Transform parent )
     {
-        Element e = elements.Find( x => x.transform == elementToRemove );
-        e.transform.position = e.startPos;
-
-        elements.Remove( e );
+        List<Element> e = elements.FindAll( x => x.parent == parent );
+        foreach ( Element element in e )
+        {
+            element.transform.position = element.startPos;
+            elements.Remove( element );
+        }
     }
 }

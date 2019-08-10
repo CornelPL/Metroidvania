@@ -61,6 +61,9 @@ public class Parallax : MonoBehaviour
 
     public void RemoveElement( Transform elementToRemove )
     {
-        elements.RemoveAll( x => x.transform == elementToRemove );
+        Element e = elements.Find( x => x.transform == elementToRemove );
+        e.transform.position = e.startPos;
+
+        elements.Remove( e );
     }
 }

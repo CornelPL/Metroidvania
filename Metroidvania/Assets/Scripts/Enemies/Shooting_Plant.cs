@@ -10,8 +10,6 @@ public class Shooting_Plant : MonoBehaviour
     [SerializeField] private int projectilesCount = 1;
     [SerializeField] private float spread = 10f;
     [SerializeField] private LayerMask playerLayerMask = 0;
-    [SerializeField] private Rigidbody2D _rigidbody = null;
-    [SerializeField] private EnemyHealthManager healthManager = null;
     [SerializeField] private Vector2 aimOffset = Vector2.zero;
 
     private bool playerInRange = false;

@@ -61,6 +61,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -141,12 +142,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51560fb9f74c914408b0405078410957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  minSpeed: 0.5
   damage: 1
   sightRange: 10
   chargeSpeed: 10
   stunTime: 1
+  sightOffset: {x: 0, y: 0.7}
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 1024

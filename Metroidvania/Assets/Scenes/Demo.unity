@@ -38131,7 +38131,12 @@ PrefabInstance:
     - target: {fileID: 9207472750435514667, guid: 80ab023b49b9d5d409a95d808ede5b48,
         type: 3}
       propertyPath: orthographic size
-      value: 6
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 436084855753457768, guid: 80ab023b49b9d5d409a95d808ede5b48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8574084736786699594, guid: 80ab023b49b9d5d409a95d808ede5b48,
         type: 3}
@@ -38241,7 +38246,7 @@ PrefabInstance:
     - target: {fileID: 9207472750435514836, guid: 80ab023b49b9d5d409a95d808ede5b48,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.9399986
+      value: -2.7399988
       objectReference: {fileID: 0}
     - target: {fileID: 9207472750435514836, guid: 80ab023b49b9d5d409a95d808ede5b48,
         type: 3}
@@ -38266,7 +38271,7 @@ PrefabInstance:
     - target: {fileID: 1242615059820139626, guid: 80ab023b49b9d5d409a95d808ede5b48,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.539999
+      value: -12.339999
       objectReference: {fileID: 0}
     - target: {fileID: 1242615059820139626, guid: 80ab023b49b9d5d409a95d808ede5b48,
         type: 3}
@@ -38276,7 +38281,7 @@ PrefabInstance:
     - target: {fileID: 1242615059820139627, guid: 80ab023b49b9d5d409a95d808ede5b48,
         type: 3}
       propertyPath: m_Lens.OrthographicSize
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1242615059820139627, guid: 80ab023b49b9d5d409a95d808ede5b48,
         type: 3}
@@ -38399,11 +38404,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1199910647594222831, guid: 80ab023b49b9d5d409a95d808ede5b48,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 436084855753457768, guid: 80ab023b49b9d5d409a95d808ede5b48,
         type: 3}
       propertyPath: m_IsActive
       value: 1

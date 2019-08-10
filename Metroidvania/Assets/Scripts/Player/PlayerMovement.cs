@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private float movementSpeedUp = 5f;
+    [SerializeField] private float movementSlowDown = 5f;
     [SerializeField] private float jumpSpeed = 20f;
 
     [Header("Dash")]
@@ -62,18 +63,27 @@ public class PlayerMovement : MonoBehaviour
     {
         if (input.right)
         {
-            if (horizontalSpeed < movementSpeed)
+            if (horizontalSpeed < 0f )
+            {
+                horizontalSpeed *= -1f;
+            }
+            else if (horizontalSpeed < movementSpeed)
             {
                 horizontalSpeed += movementSpeedUp * Time.deltaTime;
             }
             else
             {
                 horizontalSpeed = movementSpeed;
+                frame = 0;
             }
         }
         else if (input.left)
         {
-            if (horizontalSpeed > -movementSpeed)
+            if ( horizontalSpeed > 0f )
+            {
+                horizontalSpeed *= -1f;
+            }
+            else if (horizontalSpeed > -movementSpeed)
             {
                 horizontalSpeed -= movementSpeedUp * Time.deltaTime;
             }
@@ -84,7 +94,16 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            horizontalSpeed = 0f;
+            if (horizontalSpeed > 0f )
+            {
+                horizontalSpeed -= movementSlowDown * Time.deltaTime;
+                if ( horizontalSpeed < 0f ) horizontalSpeed = 0f;
+            }
+            else if ( horizontalSpeed < 0f )
+            {
+                horizontalSpeed += movementSlowDown * Time.deltaTime;
+                if ( horizontalSpeed > 0f ) horizontalSpeed = 0f;
+            }
         }
     }
 

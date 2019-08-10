@@ -1152,7 +1152,8 @@ MonoBehaviour:
   _rigidbody: {fileID: 6838834047338178264}
   animator: {fileID: 5845602597293220103}
   movementSpeed: 10
-  movementSpeedUp: 100
+  movementSpeedUp: 50
+  movementSlowDown: 100
   jumpSpeed: 32
   dashSpeed: 30
   dashTime: 0.25

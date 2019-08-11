@@ -469,6 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verticalNodesCount: 9
+  player: {fileID: 0}
   capePoints:
   - {fileID: 3379213248802444538}
   - {fileID: 0}
@@ -496,6 +497,7 @@ MonoBehaviour:
   damping: 0.3
   maxAngleDeviationHigh: 10
   maxAngleDeviationLow: 7
+  maxAngleAllCape: 170
   noiseFrequency: 1.5
   noiseMultiplier: 0.003
   moveNoiseFrequency: 7
@@ -709,6 +711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verticalNodesCount: 9
+  player: {fileID: 0}
   capePoints:
   - {fileID: 4316189592397647427}
   - {fileID: 0}
@@ -736,6 +739,7 @@ MonoBehaviour:
   damping: 0.3
   maxAngleDeviationHigh: 10
   maxAngleDeviationLow: 7
+  maxAngleAllCape: 170
   noiseFrequency: 1.5
   noiseMultiplier: 0.003
   moveNoiseFrequency: 7
@@ -1136,6 +1140,10 @@ MonoBehaviour:
   hasSlam: 1
   normalCollider: {fileID: 1396123488922968512}
   invulnerableCollider: {fileID: 1669173208879235512}
+  holdingItemPosition: {fileID: 3956272965029147024}
+  spriteRenderer: {fileID: 0}
+  rightMaterial: {fileID: 0}
+  leftMaterial: {fileID: 0}
   animator: {fileID: 5845602597293220103}
 --- !u!114 &6838834047338178268
 MonoBehaviour:
@@ -1725,7 +1733,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8331660894586448356}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.89, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0.9, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6838834047338178270}

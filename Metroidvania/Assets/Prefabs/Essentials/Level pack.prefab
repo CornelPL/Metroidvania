@@ -531,14 +531,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4176205736516100580, guid: 810032cc2a9333d419904d0d8205d8a7,
         type: 3}
-      propertyPath: isFacingRight
+      propertyPath: isGroundedState
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4176205736516100580, guid: 810032cc2a9333d419904d0d8205d8a7,
         type: 3}
-      propertyPath: isGroundedState
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 4511842567833450245}
+    - target: {fileID: 4176205736516100580, guid: 810032cc2a9333d419904d0d8205d8a7,
+        type: 3}
+      propertyPath: rightMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 7bf8b85bdcf50d2478ed951da3d74f44, type: 2}
+    - target: {fileID: 4176205736516100580, guid: 810032cc2a9333d419904d0d8205d8a7,
+        type: 3}
+      propertyPath: leftMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: af846ae2e52422a4ba14290d919a255e, type: 2}
     - target: {fileID: 713138664572627473, guid: 810032cc2a9333d419904d0d8205d8a7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -610,6 +620,12 @@ Transform:
 --- !u!4 &5753010445753725477 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4176205736516100576, guid: 810032cc2a9333d419904d0d8205d8a7,
+    type: 3}
+  m_PrefabInstance: {fileID: 8512384355979400133}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &4511842567833450245 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5242005873283065024, guid: 810032cc2a9333d419904d0d8205d8a7,
     type: 3}
   m_PrefabInstance: {fileID: 8512384355979400133}
   m_PrefabAsset: {fileID: 0}

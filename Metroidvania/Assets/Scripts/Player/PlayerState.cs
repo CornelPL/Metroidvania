@@ -30,6 +30,7 @@ public class PlayerState : MonoBehaviour
 
     [SerializeField] private Collider2D normalCollider = null;
     [SerializeField] private Collider2D invulnerableCollider = null;
+    [SerializeField] private Transform holdingItemPosition = null;
     [SerializeField] private SpriteRenderer spriteRenderer = null;
     [SerializeField] private Material rightMaterial = null;
     [SerializeField] private Material leftMaterial = null;
@@ -65,15 +66,11 @@ public class PlayerState : MonoBehaviour
 
         if (velocity.x > 0.1f && !isFacingRight)
         {
-            isFacingRight = true;
-            animator.SetBool( "isFacingRight", true );
-            spriteRenderer.material = rightMaterial;
+            RotatePlayer( true );
         }
         else if (velocity.x < -0.1f && isFacingRight)
         {
-            isFacingRight = false;
-            animator.SetBool( "isFacingRight", false );
-            spriteRenderer.material = leftMaterial;
+            RotatePlayer( false );
         }
 
         if (isInvulnerableState)
@@ -87,6 +84,15 @@ public class PlayerState : MonoBehaviour
                 isInvulnerableState = false;
             }
         }
+    }
+
+
+    private void RotatePlayer( bool isRight )
+    {
+        isFacingRight = isRight;
+        animator.SetBool( "isFacingRight", isRight );
+        spriteRenderer.material = isRight ? rightMaterial : leftMaterial;
+        holdingItemPosition.localPosition *= new Vector2( -1f, 1f );
     }
 
 

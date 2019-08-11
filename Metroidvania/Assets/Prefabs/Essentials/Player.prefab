@@ -1028,7 +1028,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6838834047338178270}
   - component: {fileID: 6838834047338178264}
-  - component: {fileID: 1396123488922968512}
+  - component: {fileID: 7657262229719900732}
   - component: {fileID: 6838834047338178266}
   - component: {fileID: 6838834047338178268}
   - component: {fileID: 6838834047338178267}
@@ -1084,8 +1084,8 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &1396123488922968512
-BoxCollider2D:
+--- !u!60 &7657262229719900732
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1097,19 +1097,24 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06639099, y: 1.6566906}
+  m_Offset: {x: -0.07, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.64, y: 3.4}
-    newSize: {x: 2.7, y: 2.7}
-    adaptiveTilingThreshold: 0.5
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.2658081, y: 3.2693367}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.2266134, y: 2.8431246}
+      - {x: -0.3343683, y: 2.8470707}
+      - {x: -0.56591094, y: 0.14795613}
+      - {x: -0.31991476, y: 0.015741646}
+      - {x: 0.31286585, y: 0.022790909}
+      - {x: 0.5624095, y: 0.14795622}
 --- !u!114 &6838834047338178266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1122,7 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9172272b96a684a9f8ef04397a5554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFacingRight: 0
+  isFacingRight: 1
   isPullingItemState: 0
   isHoldingItemState: 0
   isGroundedState: 0
@@ -1138,7 +1143,7 @@ MonoBehaviour:
   hasDash: 0
   hasUpgradedDash: 0
   hasSlam: 1
-  normalCollider: {fileID: 1396123488922968512}
+  normalCollider: {fileID: 7657262229719900732}
   invulnerableCollider: {fileID: 1669173208879235512}
   holdingItemPosition: {fileID: 3956272965029147024}
   spriteRenderer: {fileID: 0}

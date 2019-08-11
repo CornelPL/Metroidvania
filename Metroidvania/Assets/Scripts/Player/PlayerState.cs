@@ -61,7 +61,7 @@ public class PlayerState : MonoBehaviour
         Vector2 velocity = (currentPos - previousPos) * 10f;
         previousPos = currentPos;
 
-        isFallingState = velocity.y < -0.1f ? true : false;
+        isFallingState = velocity.y < -2f ? true : false;
         isRunningState = Mathf.Abs(velocity.x) > 0.1f ? true : false;
 
         if (velocity.x > 0.1f && !isFacingRight)

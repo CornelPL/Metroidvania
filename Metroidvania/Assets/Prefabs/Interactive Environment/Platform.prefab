@@ -125,7 +125,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -147,6 +147,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 347665800707922786}
     m_Modifications:
+    - target: {fileID: 638782903279524913, guid: fdc0070a79eecd5429da7280ff75088b,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyStopMark (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 638782903279524911, guid: fdc0070a79eecd5429da7280ff75088b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -202,11 +207,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 638782903279524913, guid: fdc0070a79eecd5429da7280ff75088b,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyStopMark (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdc0070a79eecd5429da7280ff75088b, type: 3}
 --- !u!4 &354750641048264632 stripped
@@ -222,6 +222,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 347665800707922786}
     m_Modifications:
+    - target: {fileID: 638782903279524913, guid: fdc0070a79eecd5429da7280ff75088b,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyStopMark
+      objectReference: {fileID: 0}
     - target: {fileID: 638782903279524911, guid: fdc0070a79eecd5429da7280ff75088b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -276,11 +281,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 638782903279524913, guid: fdc0070a79eecd5429da7280ff75088b,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyStopMark
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdc0070a79eecd5429da7280ff75088b, type: 3}

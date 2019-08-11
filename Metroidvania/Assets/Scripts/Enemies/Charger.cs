@@ -5,6 +5,7 @@ public class Charger : MonoBehaviour
     [SerializeField] private int damage = 20;
     [SerializeField] private float sightRange = 5f;
     [SerializeField] private float chargeSpeed = 6f;
+    [SerializeField] private float playerKnockbackMultiplier = 2f;
     [SerializeField] private float stunTime = 1f;
     [SerializeField] private Vector2 sightOffset = Vector2.zero;
     [SerializeField] private LayerMask playerLayerMask = 0;
@@ -79,19 +80,20 @@ public class Charger : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isCharging) isCharging = false;
-
-        if (collision.gameObject.CompareTag("Player"))
+        if ( isCharging )
         {
-            collision.collider.GetComponent<PlayerHealthManager>().TakeDamage(damage, transform.position.x);
-        }
-        else if (isCharging)
-        {
+            isCharging = false;
             isStunned = true;
         }
-        else if (healthManager.isBeingKnockbacked && !collision.gameObject.CompareTag("Item"))
+    }
+
+
+    private void OnTriggerEnter2D( Collider2D collider )
+    {
+        if ( collider.CompareTag( "Player" ) )
         {
-            healthManager.isBeingKnockbacked = false;
+            float knockbackMultiplier = isCharging ? playerKnockbackMultiplier : 1f;
+            collider.GetComponent<PlayerHealthManager>().TakeDamage( damage, transform.position.x, knockbackMultiplier );
         }
     }
 

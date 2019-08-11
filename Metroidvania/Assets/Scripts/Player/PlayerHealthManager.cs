@@ -98,12 +98,12 @@ public class PlayerHealthManager : MonoBehaviour
     }
 
 
-    private IEnumerator Knockback(float xPos)
+    private IEnumerator Knockback(float xPos, float knockbackMultiplier)
     {
         PlayerState.instance.isKnockbackedState = true;
         PlayerState.instance.EnableInvulnerability();
         _rigidbody.velocity = Vector2.zero;
-        _rigidbody.AddForce(new Vector2(0.5f * Mathf.Sign(transform.position.x - xPos), 1f) * knockbackForce, ForceMode2D.Impulse);
+        _rigidbody.AddForce(new Vector2(0.5f * Mathf.Sign(transform.position.x - xPos), 1f) * knockbackForce * knockbackMultiplier, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(knockbackTime);
         PlayerState.instance.isKnockbackedState = false;
@@ -112,12 +112,12 @@ public class PlayerHealthManager : MonoBehaviour
     }
 
 
-    public void TakeDamage(int damage, float xPos)
+    public void TakeDamage(int damage, float xPos, float knockbackMultiplier = 1f)
     {
         currentHP -= damage;
         UpdateBars();
 
-        StartCoroutine(Knockback(xPos));
+        StartCoroutine(Knockback(xPos, knockbackMultiplier));
 
         if (currentHP < 0)
         {

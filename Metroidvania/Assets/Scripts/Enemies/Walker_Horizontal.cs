@@ -42,22 +42,22 @@ public class Walker_Horizontal : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.CompareTag("StopMark"))
+        if ( collider.gameObject.CompareTag("StopMark"))
         {
             ChangeDirection();
+        }
+        else if ( collider.gameObject.CompareTag( "Player" ) )
+        {
+            collider.GetComponent<PlayerHealthManager>().TakeDamage( damage, transform.position.x );
         }
     }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.collider.GetComponent<PlayerHealthManager>().TakeDamage(damage, transform.position.x);
-        }
-        else if (healthManager.isBeingKnockbacked && !collision.gameObject.CompareTag("Item"))
+        if (healthManager.isBeingKnockbacked)
         {
             healthManager.isBeingKnockbacked = false;
         }

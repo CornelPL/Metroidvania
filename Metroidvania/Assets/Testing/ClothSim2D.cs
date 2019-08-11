@@ -4,6 +4,7 @@ public class ClothSim2D : MonoBehaviour
 {
     #region Inspector variables
     [SerializeField] private int verticalNodesCount = 9;
+    [SerializeField] private Transform player = null;
     [SerializeField] private Transform[] capePoints = null;
     [SerializeField] private Transform[] referencePoints = null;
     [SerializeField] private float rotationSpeedMove = 2f;
@@ -13,6 +14,7 @@ public class ClothSim2D : MonoBehaviour
     [SerializeField] private float damping = 0.5f;
     [SerializeField] private float maxAngleDeviationHigh = 20f;
     [SerializeField] private float maxAngleDeviationLow = 5f;
+    [SerializeField] private float maxAngleAllCape = 170f;
     [SerializeField] private float noiseFrequency = 3f;
     [SerializeField] private float noiseMultiplier = 0.05f;
     [SerializeField] private float moveNoiseFrequency = 5f;
@@ -27,7 +29,7 @@ public class ClothSim2D : MonoBehaviour
     private int[] triangles;
     private Vector2[] previousCapePointsPositions;
     private Transform anchor;
-    private Vector2 previousAnchorPosition;
+    private Vector2 previousPlayerPosition;
     private PlayerState state;
     #endregion
 
@@ -107,7 +109,7 @@ public class ClothSim2D : MonoBehaviour
 
     private void RotateWithMovement()
     {
-        Vector2 movementDirection = (Vector2)anchor.position - previousAnchorPosition;
+        Vector2 movementDirection = (Vector2)player.position - previousPlayerPosition;
         if (movementDirection.magnitude > 0.05f)
         {
             float angle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg - 90f;
@@ -115,6 +117,22 @@ public class ClothSim2D : MonoBehaviour
             if (angle == -180f && !state.isFacingRight)
             {
                 angle = 180f;
+            }
+            if ( state.isFacingRight && angle > 0f )
+            {
+                angle = 0f;
+            }
+            else if ( !state.isFacingRight && angle < 0f )
+            {
+                angle = 0f;
+            }
+            if (angle > maxAngleAllCape )
+            {
+                angle = maxAngleAllCape;
+            }
+            else if (angle < -maxAngleAllCape )
+            {
+                angle = -maxAngleAllCape;
             }
 
             float curAngle = anchor.rotation.eulerAngles.z;
@@ -148,7 +166,8 @@ public class ClothSim2D : MonoBehaviour
             capePoint.position = (Vector2)capePoint.position + velocity * damping + gravity * dt * dt;
         }
 
-        previousAnchorPosition = previousCapePointsPositions[0] = anchor.position;
+        previousCapePointsPositions[0] = anchor.position;
+        previousPlayerPosition = player.position;
     }
 
 

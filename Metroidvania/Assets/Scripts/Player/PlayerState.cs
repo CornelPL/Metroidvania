@@ -30,6 +30,9 @@ public class PlayerState : MonoBehaviour
 
     [SerializeField] private Collider2D normalCollider = null;
     [SerializeField] private Collider2D invulnerableCollider = null;
+    [SerializeField] private SpriteRenderer spriteRenderer = null;
+    [SerializeField] private Material rightMaterial = null;
+    [SerializeField] private Material leftMaterial = null;
     [SerializeField] private Animator animator = null;
     private float t = 0f;
     private Vector2 currentPos;
@@ -60,13 +63,17 @@ public class PlayerState : MonoBehaviour
         isFallingState = velocity.y < -0.1f ? true : false;
         isRunningState = Mathf.Abs(velocity.x) > 0.1f ? true : false;
 
-        if (velocity.x > 0.1f)
+        if (velocity.x > 0.1f && !isFacingRight)
         {
             isFacingRight = true;
+            animator.SetBool( "isFacingRight", true );
+            spriteRenderer.material = rightMaterial;
         }
-        else if (velocity.x < -0.1f)
+        else if (velocity.x < -0.1f && isFacingRight)
         {
             isFacingRight = false;
+            animator.SetBool( "isFacingRight", false );
+            spriteRenderer.material = leftMaterial;
         }
 
         if (isInvulnerableState)

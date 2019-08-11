@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float movementSpeedUp = 5f;
     [SerializeField] private float movementSlowDown = 5f;
     [SerializeField] private float jumpSpeed = 20f;
+    [SerializeField] private float coyoteTime = 0.1f;
 
     [Header("Dash")]
     [SerializeField] private float dashSpeed = 10f;
@@ -116,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (input.jumpDown)
         {
-            if (state.isGroundedState)
+            if (state.isGroundedState || (Time.time - state.lastTimeGrounded < coyoteTime))
             {
                 state.SetJumpingState();
 

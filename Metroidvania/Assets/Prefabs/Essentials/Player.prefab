@@ -1150,6 +1150,7 @@ MonoBehaviour:
   rightMaterial: {fileID: 0}
   leftMaterial: {fileID: 0}
   animator: {fileID: 5845602597293220103}
+  lastTimeGrounded: 0
 --- !u!114 &6838834047338178268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1168,6 +1169,7 @@ MonoBehaviour:
   movementSpeedUp: 50
   movementSlowDown: 100
   jumpSpeed: 32
+  coyoteTime: 0.05
   dashSpeed: 30
   dashTime: 0.25
   slam: {fileID: 3445858120292024893}

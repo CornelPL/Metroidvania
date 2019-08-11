@@ -163,7 +163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242615059820139624}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 69.99, y: 44.559998, z: 15.441002}
+  m_LocalPosition: {x: 112.590004, y: 58.752, z: 15.441002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1242615059719114930}
@@ -465,15 +465,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerALL
       objectReference: {fileID: 0}
+    - target: {fileID: 4176205736516100576, guid: 810032cc2a9333d419904d0d8205d8a7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.148
+      objectReference: {fileID: 0}
     - target: {fileID: 7430015419646271702, guid: 810032cc2a9333d419904d0d8205d8a7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 68.5
+      value: 111.1
       objectReference: {fileID: 0}
     - target: {fileID: 7430015419646271702, guid: 810032cc2a9333d419904d0d8205d8a7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 47.3
+      value: 62.5
       objectReference: {fileID: 0}
     - target: {fileID: 7430015419646271702, guid: 810032cc2a9333d419904d0d8205d8a7,
         type: 3}
@@ -557,11 +562,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4176205736516100580, guid: 810032cc2a9333d419904d0d8205d8a7,
         type: 3}
-      propertyPath: isGroundedState
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4176205736516100580, guid: 810032cc2a9333d419904d0d8205d8a7,
-        type: 3}
       propertyPath: invulnerableCollider
       value: 
       objectReference: {fileID: 839795262587950758}
@@ -583,17 +583,22 @@ PrefabInstance:
     - target: {fileID: 713138664572627473, guid: 810032cc2a9333d419904d0d8205d8a7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.4899979
+      value: 1.4900055
       objectReference: {fileID: 0}
     - target: {fileID: 713138664572627473, guid: 810032cc2a9333d419904d0d8205d8a7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.7400017
+      value: -3.748001
       objectReference: {fileID: 0}
     - target: {fileID: 4025476983027049323, guid: 810032cc2a9333d419904d0d8205d8a7,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key1.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4176205735840321201, guid: 810032cc2a9333d419904d0d8205d8a7,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 713138664572627694, guid: 810032cc2a9333d419904d0d8205d8a7,
         type: 3}
@@ -640,8 +645,7 @@ PrefabInstance:
       propertyPath: maxAngleAllCape
       value: 150
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8085843249087202950, guid: 810032cc2a9333d419904d0d8205d8a7, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 810032cc2a9333d419904d0d8205d8a7, type: 3}
 --- !u!4 &1242615059567244051 stripped
 Transform:

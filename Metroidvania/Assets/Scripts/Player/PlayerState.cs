@@ -35,9 +35,12 @@ public class PlayerState : MonoBehaviour
     [SerializeField] private Material rightMaterial = null;
     [SerializeField] private Material leftMaterial = null;
     [SerializeField] private Animator animator = null;
+
+
     private float t = 0f;
     private Vector2 currentPos;
     private Vector2 previousPos;
+    [HideInInspector] public float lastTimeGrounded = 0f;
 
 
     private void Awake()
@@ -114,6 +117,7 @@ public class PlayerState : MonoBehaviour
     public void SetGroundedState(bool b)
     {
         isGroundedState = b;
+        lastTimeGrounded = Time.time;
         animator.SetBool("isGrounded", b);
 
         if (b)

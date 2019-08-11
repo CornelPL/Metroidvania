@@ -18440,11 +18440,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level pack
       objectReference: {fileID: 0}
-    - target: {fileID: 5753010445753725477, guid: 80ab023b49b9d5d409a95d808ede5b48,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6.148
-      objectReference: {fileID: 0}
     - target: {fileID: 1654533705398813729, guid: 80ab023b49b9d5d409a95d808ede5b48,
         type: 3}
       propertyPath: container
@@ -18509,16 +18504,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9207472750435514836, guid: 80ab023b49b9d5d409a95d808ede5b48,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.7479973
-      objectReference: {fileID: 0}
-    - target: {fileID: 1242615059820139626, guid: 80ab023b49b9d5d409a95d808ede5b48,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 43.552002
       objectReference: {fileID: 0}
     - target: {fileID: 1242615059820139637, guid: 80ab023b49b9d5d409a95d808ede5b48,
         type: 3}

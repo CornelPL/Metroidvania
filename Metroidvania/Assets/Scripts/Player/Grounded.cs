@@ -31,7 +31,6 @@ public class Grounded : MonoBehaviour
     {
         if (state.isGroundedState)
         {
-            state.isGroundedState = false;
             OnGroundedOff.Invoke();
             invoked = false;
         }

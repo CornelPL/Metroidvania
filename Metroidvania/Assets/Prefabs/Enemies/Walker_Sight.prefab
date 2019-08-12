@@ -254,7 +254,7 @@ MonoBehaviour:
   boost: 2
   playerLayerMask:
     serializedVersion: 2
-    m_Bits: 268502016
+    m_Bits: 268436480
   _rigidbody: {fileID: 8628843287280416399}
   healthManager: {fileID: 8628843287280416398}
   direction: 1

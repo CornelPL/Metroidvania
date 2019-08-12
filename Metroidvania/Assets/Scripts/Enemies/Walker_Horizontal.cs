@@ -7,10 +7,20 @@ public class Walker_Horizontal : MonoBehaviour
     [SerializeField] private int damage = 20;
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private EnemyHealthManager healthManager = null;
+    [SerializeField] private Animator animator = null;
+    [SerializeField] private SpriteRenderer spriteRenderer = null;
+    [SerializeField] private Material leftMaterial = null;
+    [SerializeField] private Material rightMaterial = null;
     [Tooltip("1 - right; -1 - left")]
     [SerializeField] private int direction = 1;
 
     private float timeWalkingTooSlow = 0f;
+
+
+    private void Start()
+    {
+        UpdateDirection();
+    }
 
 
     private void Update()
@@ -36,9 +46,18 @@ public class Walker_Horizontal : MonoBehaviour
         _rigidbody.velocity = new Vector2(speed * direction, _rigidbody.velocity.y);
     }
 
+
     private void ChangeDirection()
     {
         direction = direction > 0 ? -1 : 1;
+        UpdateDirection();
+    }
+
+
+    private void UpdateDirection()
+    {
+        animator.SetBool( "isFacingRight", direction == 1 ? true : false );
+        spriteRenderer.material = direction == 1 ? rightMaterial : leftMaterial;
     }
 
 

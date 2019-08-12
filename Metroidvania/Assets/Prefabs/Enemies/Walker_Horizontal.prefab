@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 492946502777295300}
   - component: {fileID: 492946502777295297}
   - component: {fileID: 492946502777295302}
+  - component: {fileID: 2243348780040284707}
   - component: {fileID: 492946502777295301}
   - component: {fileID: 492946502777295296}
   - component: {fileID: 1114128916411736821}
@@ -133,6 +134,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1772213, y: 0.64992523}
   m_EdgeRadius: 0
+--- !u!95 &2243348780040284707
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492946502777295322}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b74aa244c5a83844f9ae1ad1684af89a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &492946502777295301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +170,10 @@ MonoBehaviour:
   damage: 1
   _rigidbody: {fileID: 492946502777295297}
   healthManager: {fileID: 492946502777295296}
+  animator: {fileID: 2243348780040284707}
+  spriteRenderer: {fileID: 492946502777295300}
+  leftMaterial: {fileID: 2100000, guid: 123fd3f9061ca134a8098b3747ae09d6, type: 2}
+  rightMaterial: {fileID: 2100000, guid: bc1fe5580479ff343a1bd7bea9854d6b, type: 2}
   direction: 1
 --- !u!114 &492946502777295296
 MonoBehaviour:

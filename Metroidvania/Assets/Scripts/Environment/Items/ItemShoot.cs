@@ -18,6 +18,7 @@ public class ItemShoot : MonoBehaviour
     [SerializeField] private float knockbackForce = 100f;
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private Collider2D _collider = null;
+    [SerializeField] private GameObject destroyEffect = null;
     [SerializeField] private int plankHealth = 3;
     [SerializeField] private List<GameObject> itemsToSpawn = null;
     [SerializeField] private int maxItemsToSpawn = 3;
@@ -92,7 +93,10 @@ public class ItemShoot : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
+        Transform effect = Instantiate( destroyEffect, transform.position, transform.rotation ).transform;
+        float angle = Mathf.Atan2( _rigidbody.velocity.y, _rigidbody.velocity.x ) * Mathf.Rad2Deg;
+        effect.rotation = Quaternion.AngleAxis( angle, Vector3.forward );
+        Destroy( gameObject );
     }
 
 

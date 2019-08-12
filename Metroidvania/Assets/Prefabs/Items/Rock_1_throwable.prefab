@@ -5041,6 +5041,8 @@ MonoBehaviour:
   knockbackForce: 100
   _rigidbody: {fileID: 6417654320457713545}
   _collider: {fileID: 8632387716685488110}
+  destroyEffect: {fileID: 6060602310375322860, guid: 568c5a579b4c6814fb1cff60b849b194,
+    type: 3}
   plankHealth: 3
   itemsToSpawn: []
   maxItemsToSpawn: 3

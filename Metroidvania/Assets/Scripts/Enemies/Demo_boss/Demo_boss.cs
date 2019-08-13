@@ -6,6 +6,7 @@ public class Demo_boss : MonoBehaviour
     [Header("General")]
     [SerializeField] private int secondPhaseHP = 10;
     [SerializeField] private int thirdPhaseHP = 5;
+    [SerializeField] private int touchDamage = 1;
     [SerializeField] private float decisionTime = 1f;
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private BossHealthManager healthManager = null;
@@ -33,6 +34,8 @@ public class Demo_boss : MonoBehaviour
     [Header("Charge")]
     [SerializeField] private float stunTime = 2f;
     [SerializeField] private float chargeSpeed = 20f;
+    [SerializeField] private int chargeDamage = 2;
+    [SerializeField] private float chargeKnockbackMultiplier = 2f;
 
     [Header("Rage")]
     [SerializeField] private float timeBetweenRageProjectiles = 0.05f;
@@ -330,6 +333,24 @@ public class Demo_boss : MonoBehaviour
             {
                 StopCharging();
             }
+        }
+    }
+
+
+    private void OnTriggerEnter2D( Collider2D collider )
+    {
+        if ( collider.CompareTag( "Player" ) )
+        {
+            int damage = touchDamage;
+            float knockbackMultiplier = 1f;
+
+            if ( isCharging )
+            {
+                damage = chargeDamage;
+                knockbackMultiplier = chargeKnockbackMultiplier;
+            }
+
+            collider.GetComponent<PlayerHealthManager>().TakeDamage( damage, transform.position.x, knockbackMultiplier );
         }
     }
 }

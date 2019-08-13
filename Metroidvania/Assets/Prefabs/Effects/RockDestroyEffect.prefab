@@ -3854,7 +3854,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 5134592
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -9673,7 +9673,7 @@ ParticleSystem:
   serializedVersion: 6
   lengthInSec: 2
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}

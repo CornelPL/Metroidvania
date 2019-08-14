@@ -2,7 +2,7 @@
 
 public class PlayerAnimationsController : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator animator = null;
 
     private PlayerState state;
     private bool isRunningSet = false;

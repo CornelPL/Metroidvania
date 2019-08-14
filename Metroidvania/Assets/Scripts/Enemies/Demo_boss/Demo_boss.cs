@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Demo_boss : MonoBehaviour
 {
-    [Header("General")]
+    [Header( "General" )]
     [SerializeField] private int secondPhaseHP = 10;
     [SerializeField] private int thirdPhaseHP = 5;
     [SerializeField] private int touchDamage = 1;
@@ -13,14 +13,14 @@ public class Demo_boss : MonoBehaviour
     [SerializeField] private GameObject phaseColliders = null;
     [SerializeField] private GameObject chargeColliders = null;
 
-    [Header("Moving")]
+    [Header( "Moving" )]
     [SerializeField] private float firstMovementSpeed = 5f;
     [SerializeField] private float firstMoveDistance = 20f;
     [SerializeField] private float secondMovementSpeed = 6f;
     [SerializeField] private float secondMoveDistance = 25f;
     [SerializeField] private float thirdMovementSpeed = 7f;
 
-    [Header("Shooting")]
+    [Header( "Shooting" )]
     [SerializeField] private Transform projectile = null;
     [SerializeField] private float forceVariation = 0.2f;
     [SerializeField] private float angleVariation = 0.2f;
@@ -31,13 +31,13 @@ public class Demo_boss : MonoBehaviour
     [SerializeField] private int thirdMinProjectiles = 5;
     [SerializeField] private int thirdMaxProjectiles = 10;
 
-    [Header("Charge")]
+    [Header( "Charge" )]
     [SerializeField] private float stunTime = 2f;
     [SerializeField] private float chargeSpeed = 20f;
     [SerializeField] private int chargeDamage = 2;
     [SerializeField] private float chargeKnockbackMultiplier = 2f;
 
-    [Header("Rage")]
+    [Header( "Rage" )]
     [SerializeField] private float timeBetweenRageProjectiles = 0.05f;
     [SerializeField] private int firstRageProjectiles = 20;
     [SerializeField] private int secondRageProjectiles = 30;
@@ -62,7 +62,7 @@ public class Demo_boss : MonoBehaviour
     private int shootingSequence = 0;
 
 
-    public void AssignPlayer(Transform p)
+    public void AssignPlayer( Transform p )
     {
         player = p;
     }
@@ -70,9 +70,9 @@ public class Demo_boss : MonoBehaviour
 
     public void HitInWeakPoint()
     {
-        if (phase == 1 || phase == 2)
+        if ( phase == 1 || phase == 2 )
         {
-            StartCoroutine(Rage());
+            StartCoroutine( Rage() );
         }
         else
         {
@@ -83,17 +83,17 @@ public class Demo_boss : MonoBehaviour
 
     private void Start()
     {
-        SetPhase(1);
+        SetPhase( 1 );
     }
 
 
     private void Update()
     {
-        if (isRaging || isMoving || isCharging) return;
+        if ( isRaging || isMoving || isCharging ) return;
 
-        if (isStunned)
+        if ( isStunned )
         {
-            if (actionTime < stunTime)
+            if ( actionTime < stunTime )
             {
                 actionTime += Time.deltaTime;
             }
@@ -103,28 +103,28 @@ public class Demo_boss : MonoBehaviour
                 isStunned = false;
             }
         }
-        else if (!isDeciding)
+        else if ( !isDeciding )
         {
-            Invoke("ChooseAction", decisionTime);
+            Invoke( "ChooseAction", decisionTime );
             isDeciding = true;
         }
     }
 
 
-    private void SetPhase(int phaseNum)
+    private void SetPhase( int phaseNum )
     {
-        phaseColliders.SetActive(true);
-        chargeColliders.SetActive(false);
+        phaseColliders.SetActive( true );
+        chargeColliders.SetActive( false );
         phase = phaseNum;
 
-        if (phaseNum == 1)
+        if ( phaseNum == 1 )
         {
             movementSpeed = firstMovementSpeed;
             moveDistance = firstMoveDistance;
             minProjectiles = firstMinProjectiles;
             maxProjectiles = firstMaxProjectiles;
         }
-        else if (phaseNum == 2)
+        else if ( phaseNum == 2 )
         {
             movementSpeed = secondMovementSpeed;
             moveDistance = secondMoveDistance;
@@ -143,65 +143,71 @@ public class Demo_boss : MonoBehaviour
     private void ChooseAction()
     {
         direction = player.position.x < transform.position.x ? -1 : 1;
-        Shoot();
-        shootingSequence = 0;
-        isDeciding = false;
-        return;
+
         // PHASE 1
-        if (phase == 1 && healthManager.currentHP > secondPhaseHP)
+        if ( phase == 1 )
         {
-            if (shootingSequence < 3)
+            if ( healthManager.currentHP > secondPhaseHP )
             {
-                Shoot();
-                shootingSequence++;
+                if ( shootingSequence < 3 )
+                {
+                    Shoot();
+                    shootingSequence++;
+                }
+                else
+                {
+                    StartCoroutine( Move() );
+                    shootingSequence = 0;
+                }
             }
             else
             {
-                StartCoroutine(Move());
-                shootingSequence = 0;
+                StartCoroutine( Charge() );
             }
-        }
-        else if (phase == 1 && healthManager.currentHP <= secondPhaseHP)
-        {
-            StartCoroutine(Charge());
         }
 
         // PHASE 2
-        else if (phase == 2 && healthManager.currentHP > thirdPhaseHP)
+        else if ( phase == 2 )
         {
-            if (shootingSequence < 2)
+            if ( healthManager.currentHP > thirdPhaseHP )
             {
-                Shoot();
-                shootingSequence++;
+                if ( shootingSequence < 2 )
+                {
+                    Shoot();
+                    shootingSequence++;
+                }
+                else
+                {
+                    StartCoroutine( Move() );
+                    shootingSequence = 0;
+                }
             }
             else
             {
-                StartCoroutine(Move());
-                shootingSequence = 0;
+                StartCoroutine( Charge() );
             }
-        }
-        else if (phase == 2 && healthManager.currentHP <= thirdPhaseHP)
-        {
-            StartCoroutine(Charge());
         }
 
         // PHASE 3
-        else if (phase == 3 && healthManager.currentHP > 1)
+        else if ( phase == 3 )
         {
-            if (shootingSequence < 2)
+            if ( healthManager.currentHP > 1 )
             {
-                Shoot();
-                shootingSequence++;
+                if ( shootingSequence < 2 )
+                {
+                    Shoot();
+                    shootingSequence++;
+                }
+                else
+                {
+                    StartCoroutine( Move() );
+                    shootingSequence = 0;
+                }
             }
             else
             {
-                StartCoroutine(Move());
-                shootingSequence = 0;
+                StartCoroutine( Charge() );
             }
-        }
-        else
-        {
-            StartCoroutine(Charge());
         }
 
         isDeciding = false;
@@ -210,7 +216,7 @@ public class Demo_boss : MonoBehaviour
 
     private IEnumerator Move()
     {
-        if (phase == 3)
+        if ( phase == 3 )
         {
             destination = player.transform.position.x;
         }
@@ -221,11 +227,11 @@ public class Demo_boss : MonoBehaviour
 
         isMoving = true;
 
-        while (isMoving)
+        while ( isMoving )
         {
-            if ((direction == 1 && transform.position.x < destination) || (direction == -1 && transform.position.x > destination))
+            if ( (direction == 1 && transform.position.x < destination) || (direction == -1 && transform.position.x > destination) )
             {
-                _rigidbody.velocity = new Vector2(movementSpeed * direction, _rigidbody.velocity.y);
+                _rigidbody.velocity = new Vector2( movementSpeed * direction, _rigidbody.velocity.y );
             }
             else
             {
@@ -239,39 +245,40 @@ public class Demo_boss : MonoBehaviour
 
     private void StopMoving()
     {
-        _rigidbody.velocity = new Vector2(0f, 0f);
+        _rigidbody.velocity = new Vector2( 0f, 0f );
         isMoving = false;
     }
 
 
     private void ShootProjectile()
     {
-        Rigidbody2D rb = Instantiate(projectile, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = Instantiate( projectile, transform.position, transform.rotation ).GetComponent<Rigidbody2D>();
+
         Vector2 vectorToPlayer = player.position - transform.position;
 
-        float angleToPlayer = Mathf.Atan2(vectorToPlayer.y, vectorToPlayer.x) * Mathf.Rad2Deg;
-        if (angleToPlayer < -90f)
+        float angleToPlayer = Mathf.Atan2( vectorToPlayer.y, vectorToPlayer.x ) * Mathf.Rad2Deg;
+        if ( angleToPlayer < -90f )
             angleToPlayer = -(180f + angleToPlayer);
-        else if (angleToPlayer > 90f)
+        else if ( angleToPlayer > 90f )
         {
             angleToPlayer = 180f - angleToPlayer;
         }
         float angle = 45 + angleToPlayer / 2f;
         angle *= Mathf.Deg2Rad;
-        angle = Random.Range(angle * (1f - angleVariation), angle * (1f + angleVariation));
+        angle = Random.Range( angle * (1f - angleVariation), angle * (1f + angleVariation) );
 
-        Vector2 dir = new Vector2(Mathf.Cos(angle) * direction, Mathf.Sin(angle));
+        Vector2 dir = new Vector2( Mathf.Cos( angle ) * direction, Mathf.Sin( angle ) );
         float distance = vectorToPlayer.magnitude;
-        float force = Mathf.Sqrt(-Physics2D.gravity.y * rb.gravityScale * distance / Mathf.Sin(2f * angle));
-        force = Random.Range(force * (1f - forceVariation), force * (1f + forceVariation));
-        rb.AddForce(dir * force, ForceMode2D.Impulse);
+        float force = Mathf.Sqrt( -Physics2D.gravity.y * rb.gravityScale * distance / Mathf.Sin( 2f * angle ) );
+        force = Random.Range( force * (1f - forceVariation), force * (1f + forceVariation) );
+        rb.AddForce( dir * force, ForceMode2D.Impulse );
     }
 
 
     private void Shoot()
     {
-        int num = Random.Range(minProjectiles, maxProjectiles);
-        for (int i = 0; i < num; i++)
+        int num = Random.Range( minProjectiles, maxProjectiles );
+        for ( int i = 0; i < num; i++ )
         {
             ShootProjectile();
         }
@@ -281,12 +288,12 @@ public class Demo_boss : MonoBehaviour
     private IEnumerator Charge()
     {
         isCharging = true;
-        phaseColliders.SetActive(false);
-        chargeColliders.SetActive(true);
+        phaseColliders.SetActive( false );
+        chargeColliders.SetActive( true );
 
-        while (isCharging)
+        while ( isCharging )
         {
-            _rigidbody.velocity = new Vector2(chargeSpeed * direction, _rigidbody.velocity.y);
+            _rigidbody.velocity = new Vector2( chargeSpeed * direction, _rigidbody.velocity.y );
 
             yield return new WaitForEndOfFrame();
         }
@@ -304,32 +311,32 @@ public class Demo_boss : MonoBehaviour
         isRaging = true;
         direction = player.position.x < transform.position.x ? -1 : 1;
 
-        if (phase == 1) rageProjectiles = firstRageProjectiles;
+        if ( phase == 1 ) rageProjectiles = firstRageProjectiles;
         else rageProjectiles = secondRageProjectiles;
 
-        while (shootingSequence < rageProjectiles)
+        while ( shootingSequence < rageProjectiles )
         {
             ShootProjectile();
 
             shootingSequence++;
-            yield return new WaitForSeconds(timeBetweenRageProjectiles);
+            yield return new WaitForSeconds( timeBetweenRageProjectiles );
         }
 
         isRaging = false;
         shootingSequence = 0;
-        SetPhase(phase == 1 ? 2 : 3);
+        SetPhase( phase == 1 ? 2 : 3 );
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D( Collision2D collision )
     {
-        if (collision.collider.CompareTag("Wall"))
+        if ( collision.collider.CompareTag( "Wall" ) )
         {
-            if (isMoving)
+            if ( isMoving )
             {
                 StopMoving();
             }
-            else if (isCharging)
+            else if ( isCharging )
             {
                 StopCharging();
             }

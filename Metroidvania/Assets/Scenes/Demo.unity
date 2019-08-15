@@ -1149,7 +1149,7 @@ PrefabInstance:
     - target: {fileID: 8628843287280416404, guid: 4829d2662aaedb241b7a9c4fd0254778,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8628843287280416393, guid: 4829d2662aaedb241b7a9c4fd0254778,
         type: 3}
@@ -1548,12 +1548,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 200892904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.03, y: 2.28, z: 0}
+  m_LocalPosition: {x: -6.03, y: 1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 431695631}
+  - {fileID: 1590945456}
   - {fileID: 424611381}
-  - {fileID: 607478954}
+  - {fileID: 563718751}
+  - {fileID: 553504268}
   - {fileID: 464188209}
   m_Father: {fileID: 59687901}
   m_RootOrder: 3
@@ -1576,8 +1578,6 @@ MonoBehaviour:
   decisionTime: 1
   _rigidbody: {fileID: 200892908}
   healthManager: {fileID: 200892910}
-  phaseColliders: {fileID: 424611380}
-  chargeColliders: {fileID: 607478953}
   firstMovementSpeed: 5
   firstMoveDistance: 10
   secondMovementSpeed: 7
@@ -1600,14 +1600,11 @@ MonoBehaviour:
   timeBetweenRageProjectiles: 0.05
   firstRageProjectiles: 20
   secondRageProjectiles: 30
-  spriteRenderer: {fileID: 0}
-  basic: {fileID: 0}
-  loadShooting: {fileID: 0}
-  shoot: {fileID: 0}
-  armored: {fileID: 0}
-  loadCharge: {fileID: 0}
-  charge: {fileID: 0}
-  stunned: {fileID: 0}
+  _animator: {fileID: 200892907}
+  firstShootingSequence: 3
+  secondShootingSequence: 2
+  thirdShootingSequence: 1
+  shootPosition: {fileID: 1590945456}
   player: {fileID: 1911857580}
 --- !u!95 &200892907
 Animator:
@@ -1643,7 +1640,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -4654,7 +4651,7 @@ GameObject:
   - component: {fileID: 424611383}
   - component: {fileID: 424611382}
   m_Layer: 15
-  m_Name: Phases collider
+  m_Name: Vulnerable collider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4667,12 +4664,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424611380}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.77, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 200892905}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &424611382
 MonoBehaviour:
@@ -4693,8 +4690,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!60 &424611383
-PolygonCollider2D:
+--- !u!70 &424611383
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4706,29 +4703,9 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.50890875, y: 2.7419896}
-      - {x: -0.4731741, y: 2.8293996}
-      - {x: -0.87151766, y: 2.3898091}
-      - {x: -0.406538, y: 1.3238988}
-      - {x: -0.84554243, y: 0.37758684}
-      - {x: -1.385571, y: -0.6069865}
-      - {x: -0.6079869, y: -2.7684066}
-      - {x: 0.53109217, y: -2.7684066}
-      - {x: 0.69899607, y: -0.20365095}
-      - {x: 0.43102884, y: 1.4618688}
-      - {x: 0.71618414, y: 2.375893}
+  m_Offset: {x: -0.14649224, y: 2.7303658}
+  m_Size: {x: 2.0765338, y: 5.243721}
+  m_Direction: 0
 --- !u!1001 &424867162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5148,7 +5125,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 464188209}
-  - component: {fileID: 464188211}
   - component: {fileID: 464188210}
   m_Layer: 31
   m_Name: Collider with enviro
@@ -5169,7 +5145,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 200892905}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &464188210
 BoxCollider2D:
@@ -5197,25 +5173,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.0252628, y: 5.6154556}
   m_EdgeRadius: 0
---- !u!114 &464188211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464188208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 220b91cfac2f9cc4cbfd97fec53ef2b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canBeKnockbacked: 0
-  healthManager: {fileID: 200892910}
-  OnHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &479005719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6110,7 +6067,7 @@ GameObject:
   - component: {fileID: 553504269}
   - component: {fileID: 553504270}
   m_Layer: 15
-  m_Name: Charging collider 2
+  m_Name: Weak point collider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6124,38 +6081,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553504267}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.77299976, y: -0.7810011, z: 0}
+  m_LocalPosition: {x: 0.7730002, y: -0.7809994, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 607478954}
-  m_RootOrder: 1
+  m_Father: {fileID: 200892905}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &553504269
-BoxCollider2D:
+--- !u!70 &553504269
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553504267}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.037896156, y: 0.19327164}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.9242077, y: 1.3865433}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!114 &553504270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6267,7 +6214,7 @@ GameObject:
   - component: {fileID: 563718752}
   - component: {fileID: 563718753}
   m_Layer: 15
-  m_Name: Charging collider
+  m_Name: Invulnerable collider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6284,40 +6231,25 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 607478954}
-  m_RootOrder: 0
+  m_Father: {fileID: 200892905}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &563718752
-PolygonCollider2D:
+--- !u!70 &563718752
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563718750}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 1.2665358, y: 0.25788593}
-      - {x: 1.2657328, y: 1.2501154}
-      - {x: -1.2693844, y: 1.2715807}
-      - {x: -1.2699165, y: -1.2713499}
-      - {x: 0.38314724, y: -1.2637739}
-      - {x: 0.42050838, y: 0.25596714}
+  m_Offset: {x: -0.14649224, y: -0.02092743}
+  m_Size: {x: 2.0765338, y: 5.39476}
+  m_Direction: 0
 --- !u!114 &563718753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6549,38 +6481,6 @@ Transform:
   - {fileID: 1175835794}
   m_Father: {fileID: 1165566845}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &607478953
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 607478954}
-  m_Layer: 15
-  m_Name: Charging colliders
-  m_TagString: Enemy
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &607478954
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 607478953}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 563718751}
-  - {fileID: 553504268}
-  m_Father: {fileID: 200892905}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &610248394
 PrefabInstance:
@@ -6905,6 +6805,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Walker_Horizontal
       objectReference: {fileID: 0}
+    - target: {fileID: 492946502777295322, guid: 857b36963159db748b6745ad494ab573,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 492946502777295303, guid: 857b36963159db748b6745ad494ab573,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6959,6 +6864,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 492946502777295302, guid: 857b36963159db748b6745ad494ab573,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857b36963159db748b6745ad494ab573, type: 3}
@@ -8660,6 +8570,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Charger
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173082080487236784, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4173082080487236785, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
         type: 3}
@@ -13509,6 +13424,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1587992740}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1590945455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1590945456}
+  m_Layer: 15
+  m_Name: shootPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1590945456
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590945455}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 200892905}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1591091834
 PrefabInstance:
   m_ObjectHideFlags: 0

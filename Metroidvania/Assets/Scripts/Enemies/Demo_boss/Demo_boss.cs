@@ -45,6 +45,7 @@ public class Demo_boss : MonoBehaviour
     [SerializeField] private int firstShootingSequence = 3;
     [SerializeField] private int secondShootingSequence = 2;
     [SerializeField] private int thirdShootingSequence = 1;
+    [SerializeField] private Transform shootPosition = null;
     private bool wasShooting = false;
 
 
@@ -64,7 +65,7 @@ public class Demo_boss : MonoBehaviour
     private bool isStunned = false;
     private bool isShooting = false;
     private bool isChangingPhase = false;
-    [HideInInspector] public bool isArmored = false;
+    private bool isArmored = false;
     private float actionTime = 0f;
     private float destination = 0f;
     private int direction = 1;
@@ -83,12 +84,54 @@ public class Demo_boss : MonoBehaviour
         {
             isStunned = false;
             isRaging = true;
+            isArmored = false;
             _animator.SetBool( "isStunned", false );
+            _animator.SetBool( "isChangingPhase", false );
+            isChangingPhase = false;
         }
         else
         {
             healthManager.Death();
         }
+    }
+
+
+    public void ShootProjectiles()
+    {
+        int num = Random.Range( minProjectiles, maxProjectiles );
+        for ( int i = 0; i < num; i++ )
+        {
+            ShootProjectile();
+        }
+
+        currentSequence++;
+
+        if ( currentSequence == sequences )
+        {
+            currentSequence = 0;
+            isShooting = false;
+            _animator.SetBool( "isShooting", false );
+            wasShooting = true;
+        }
+    }
+
+
+    public void Charge()
+    {
+        isCharging = true;
+        StartCoroutine( ChargeCoroutine() );
+    }
+
+
+    public void SetArmored()
+    {
+        isArmored = true;
+    }
+
+
+    public void StartRage()
+    {
+        StartCoroutine( Rage() );
     }
 
 
@@ -273,30 +316,11 @@ public class Demo_boss : MonoBehaviour
     }
 
 
-    public void ShootProjectiles()
-    {
-        int num = Random.Range( minProjectiles, maxProjectiles );
-        for ( int i = 0; i < num; i++ )
-        {
-            ShootProjectile();
-        }
-
-        currentSequence++;
-
-        if ( currentSequence == sequences )
-        {
-            currentSequence = 0;
-            _animator.SetBool( "isShooting", false );
-            wasShooting = true;
-        }
-    }
-
-
     private void ShootProjectile()
     {
-        Rigidbody2D rb = Instantiate( projectile, transform.position, transform.rotation ).GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = Instantiate( projectile, shootPosition.position, transform.rotation ).GetComponent<Rigidbody2D>();
 
-        Vector2 vectorToPlayer = player.position - transform.position;
+        Vector2 vectorToPlayer = player.position - shootPosition.position;
 
         float angleToPlayer = Mathf.Atan2( vectorToPlayer.y, vectorToPlayer.x ) * Mathf.Rad2Deg;
         if ( angleToPlayer < -90f )
@@ -332,12 +356,6 @@ public class Demo_boss : MonoBehaviour
     }
 
 
-    public void Charge()
-    {
-        StartCoroutine( ChargeCoroutine() );
-    }
-
-
     private IEnumerator ChargeCoroutine()
     {
         while ( isCharging )
@@ -354,17 +372,13 @@ public class Demo_boss : MonoBehaviour
         isCharging = false;
         isStunned = true;
         _animator.SetBool( "isStunned", true );
-    }
-
-
-    public void StartRage()
-    {
-        StartCoroutine( Rage() );
-    }
+    }    
 
 
     private IEnumerator Rage()
     {
+        isRaging = true;
+
         direction = player.position.x < transform.position.x ? -1 : 1;
 
         if ( phase == 1 ) rageProjectiles = firstRageProjectiles;
@@ -379,6 +393,7 @@ public class Demo_boss : MonoBehaviour
         }
 
         isRaging = false;
+        _animator.SetTrigger( "rageEnd" );
         currentSequence = 0;
         SetPhase( phase == 1 ? 2 : 3 );
     }

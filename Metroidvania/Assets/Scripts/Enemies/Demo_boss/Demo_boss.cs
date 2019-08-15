@@ -96,6 +96,8 @@ public class Demo_boss : MonoBehaviour
 
     public void ShootProjectiles()
     {
+        direction = player.position.x < transform.position.x ? -1 : 1;
+
         int num = Random.Range( minProjectiles, maxProjectiles );
         for ( int i = 0; i < num; i++ )
         {
@@ -293,9 +295,19 @@ public class Demo_boss : MonoBehaviour
         {
             angleToPlayer = 180f - angleToPlayer;
         }
-        float angle = 45 + angleToPlayer / 2f;
-        angle *= Mathf.Deg2Rad;
+        float angle = 45;
+        if (angleToPlayer < 0f )
+        {
+            angle -= angleToPlayer / 2f;
+            vectorToPlayer.y = 0f;
+        }
+        else
+        {
+            angle += angleToPlayer / 2f;
+        }
         angle = Random.Range( angle * (1f - angleVariation), angle * (1f + angleVariation) );
+        if ( angle > 89f ) angle = 89f;
+        angle *= Mathf.Deg2Rad;
 
         Vector2 dir = new Vector2( Mathf.Cos( angle ) * direction, Mathf.Sin( angle ) );
         float distance = vectorToPlayer.magnitude;

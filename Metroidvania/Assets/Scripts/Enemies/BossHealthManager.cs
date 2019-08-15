@@ -29,8 +29,6 @@ public class BossHealthManager : HealthManager
 
     override public void TakeDamage(int damage)
     {
-        Debug.Log(currentHP);
         currentHP -= damage;
-        Debug.Log(currentHP);
     }
 }

@@ -1532,6 +1532,7 @@ GameObject:
   - component: {fileID: 200892908}
   - component: {fileID: 200892906}
   - component: {fileID: 200892910}
+  - component: {fileID: 200892907}
   m_Layer: 15
   m_Name: Demo_boss
   m_TagString: Enemy
@@ -1599,7 +1600,34 @@ MonoBehaviour:
   timeBetweenRageProjectiles: 0.05
   firstRageProjectiles: 20
   secondRageProjectiles: 30
+  spriteRenderer: {fileID: 0}
+  basic: {fileID: 0}
+  loadShooting: {fileID: 0}
+  shoot: {fileID: 0}
+  armored: {fileID: 0}
+  loadCharge: {fileID: 0}
+  charge: {fileID: 0}
+  stunned: {fileID: 0}
   player: {fileID: 1911857580}
+--- !u!95 &200892907
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200892904}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3f90f8668fbe56748a3a0c6cb4a9a260, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!50 &200892908
 Rigidbody2D:
   serializedVersion: 4

@@ -10,8 +10,6 @@ public class Demo_boss : MonoBehaviour
     [SerializeField] private float decisionTime = 1f;
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private BossHealthManager healthManager = null;
-    [SerializeField] private GameObject phaseColliders = null;
-    [SerializeField] private GameObject chargeColliders = null;
 
     [Header( "Moving" )]
     [SerializeField] private float firstMovementSpeed = 5f;
@@ -42,12 +40,21 @@ public class Demo_boss : MonoBehaviour
     [SerializeField] private int firstRageProjectiles = 20;
     [SerializeField] private int secondRageProjectiles = 30;
 
+    [Header( "TEMPORARY" )]
+    [SerializeField] private Animator _animator = null;
+    [SerializeField] private int firstShootingSequence = 3;
+    [SerializeField] private int secondShootingSequence = 2;
+    [SerializeField] private int thirdShootingSequence = 1;
+    private bool wasShooting = false;
+
 
     private float movementSpeed;
     private float moveDistance;
     private int minProjectiles;
     private int maxProjectiles;
     private int rageProjectiles;
+    private int sequences;
+    private int currentSequence;
 
     [SerializeField] private Transform player;
     private bool isDeciding = false;
@@ -55,11 +62,13 @@ public class Demo_boss : MonoBehaviour
     private bool isCharging = false;
     private bool isRaging = false;
     private bool isStunned = false;
+    private bool isShooting = false;
+    private bool isChangingPhase = false;
+    [HideInInspector] public bool isArmored = false;
     private float actionTime = 0f;
     private float destination = 0f;
     private int direction = 1;
     private int phase = 1;
-    private int shootingSequence = 0;
 
 
     public void AssignPlayer( Transform p )
@@ -72,7 +81,9 @@ public class Demo_boss : MonoBehaviour
     {
         if ( phase == 1 || phase == 2 )
         {
-            StartCoroutine( Rage() );
+            isStunned = false;
+            isRaging = true;
+            _animator.SetBool( "isStunned", false );
         }
         else
         {
@@ -89,7 +100,7 @@ public class Demo_boss : MonoBehaviour
 
     private void Update()
     {
-        if ( isRaging || isMoving || isCharging ) return;
+        if ( isRaging || isMoving || isCharging || isShooting || (isChangingPhase && !isArmored) ) return;
 
         if ( isStunned )
         {
@@ -101,6 +112,7 @@ public class Demo_boss : MonoBehaviour
             {
                 actionTime = 0f;
                 isStunned = false;
+                _animator.SetBool( "isStunned", false );
             }
         }
         else if ( !isDeciding )
@@ -113,8 +125,6 @@ public class Demo_boss : MonoBehaviour
 
     private void SetPhase( int phaseNum )
     {
-        phaseColliders.SetActive( true );
-        chargeColliders.SetActive( false );
         phase = phaseNum;
 
         if ( phaseNum == 1 )
@@ -123,6 +133,7 @@ public class Demo_boss : MonoBehaviour
             moveDistance = firstMoveDistance;
             minProjectiles = firstMinProjectiles;
             maxProjectiles = firstMaxProjectiles;
+            sequences = firstShootingSequence;
         }
         else if ( phaseNum == 2 )
         {
@@ -130,12 +141,14 @@ public class Demo_boss : MonoBehaviour
             moveDistance = secondMoveDistance;
             minProjectiles = secondMinProjectiles;
             maxProjectiles = secondMaxProjectiles;
+            sequences = secondShootingSequence;
         }
         else
         {
             movementSpeed = thirdMovementSpeed;
             minProjectiles = thirdMinProjectiles;
             maxProjectiles = thirdMaxProjectiles;
+            sequences = thirdShootingSequence;
         }
     }
 
@@ -144,25 +157,28 @@ public class Demo_boss : MonoBehaviour
     {
         direction = player.position.x < transform.position.x ? -1 : 1;
 
+        if ( isChangingPhase && isArmored )
+        {
+            LoadCharge();
+        }
+
         // PHASE 1
         if ( phase == 1 )
         {
             if ( healthManager.currentHP > secondPhaseHP )
             {
-                if ( shootingSequence < 3 )
+                if ( wasShooting )
                 {
-                    Shoot();
-                    shootingSequence++;
+                    StartCoroutine( Move() );
                 }
                 else
                 {
-                    StartCoroutine( Move() );
-                    shootingSequence = 0;
+                    Shoot();
                 }
             }
             else
             {
-                StartCoroutine( Charge() );
+                OnPhaseEnd();
             }
         }
 
@@ -171,20 +187,18 @@ public class Demo_boss : MonoBehaviour
         {
             if ( healthManager.currentHP > thirdPhaseHP )
             {
-                if ( shootingSequence < 2 )
+                if ( wasShooting )
                 {
-                    Shoot();
-                    shootingSequence++;
+                    StartCoroutine( Move() );
                 }
                 else
                 {
-                    StartCoroutine( Move() );
-                    shootingSequence = 0;
+                    Shoot();
                 }
             }
             else
             {
-                StartCoroutine( Charge() );
+                OnPhaseEnd();
             }
         }
 
@@ -193,24 +207,29 @@ public class Demo_boss : MonoBehaviour
         {
             if ( healthManager.currentHP > 1 )
             {
-                if ( shootingSequence < 2 )
+                if ( wasShooting )
                 {
-                    Shoot();
-                    shootingSequence++;
+                    StartCoroutine( Move() );
                 }
                 else
                 {
-                    StartCoroutine( Move() );
-                    shootingSequence = 0;
+                    Shoot();
                 }
             }
             else
             {
-                StartCoroutine( Charge() );
+                OnPhaseEnd();
             }
         }
 
         isDeciding = false;
+    }
+
+
+    private void OnPhaseEnd()
+    {
+        _animator.SetBool( "isChangingPhase", true );
+        isChangingPhase = true;
     }
 
 
@@ -226,6 +245,7 @@ public class Demo_boss : MonoBehaviour
         }
 
         isMoving = true;
+        _animator.SetBool( "isMoving", true );
 
         while ( isMoving )
         {
@@ -240,6 +260,8 @@ public class Demo_boss : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
+
+        wasShooting = false;
     }
 
 
@@ -247,6 +269,26 @@ public class Demo_boss : MonoBehaviour
     {
         _rigidbody.velocity = new Vector2( 0f, 0f );
         isMoving = false;
+        _animator.SetBool( "isMoving", false );
+    }
+
+
+    public void ShootProjectiles()
+    {
+        int num = Random.Range( minProjectiles, maxProjectiles );
+        for ( int i = 0; i < num; i++ )
+        {
+            ShootProjectile();
+        }
+
+        currentSequence++;
+
+        if ( currentSequence == sequences )
+        {
+            currentSequence = 0;
+            _animator.SetBool( "isShooting", false );
+            wasShooting = true;
+        }
     }
 
 
@@ -277,20 +319,27 @@ public class Demo_boss : MonoBehaviour
 
     private void Shoot()
     {
-        int num = Random.Range( minProjectiles, maxProjectiles );
-        for ( int i = 0; i < num; i++ )
-        {
-            ShootProjectile();
-        }
+        isShooting = true;
+        _animator.SetBool( "isShooting", true );
     }
 
 
-    private IEnumerator Charge()
+    private void LoadCharge()
     {
         isCharging = true;
-        phaseColliders.SetActive( false );
-        chargeColliders.SetActive( true );
+        _animator.SetTrigger( "charge" );
+        wasShooting = false;
+    }
 
+
+    public void Charge()
+    {
+        StartCoroutine( ChargeCoroutine() );
+    }
+
+
+    private IEnumerator ChargeCoroutine()
+    {
         while ( isCharging )
         {
             _rigidbody.velocity = new Vector2( chargeSpeed * direction, _rigidbody.velocity.y );
@@ -304,26 +353,33 @@ public class Demo_boss : MonoBehaviour
     {
         isCharging = false;
         isStunned = true;
+        _animator.SetBool( "isStunned", true );
     }
+
+
+    public void StartRage()
+    {
+        StartCoroutine( Rage() );
+    }
+
 
     private IEnumerator Rage()
     {
-        isRaging = true;
         direction = player.position.x < transform.position.x ? -1 : 1;
 
         if ( phase == 1 ) rageProjectiles = firstRageProjectiles;
         else rageProjectiles = secondRageProjectiles;
 
-        while ( shootingSequence < rageProjectiles )
+        while ( currentSequence < rageProjectiles )
         {
             ShootProjectile();
 
-            shootingSequence++;
+            currentSequence++;
             yield return new WaitForSeconds( timeBetweenRageProjectiles );
         }
 
         isRaging = false;
-        shootingSequence = 0;
+        currentSequence = 0;
         SetPhase( phase == 1 ? 2 : 3 );
     }
 

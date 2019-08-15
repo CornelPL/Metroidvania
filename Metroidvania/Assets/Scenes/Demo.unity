@@ -1539,7 +1539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &200892905
 Transform:
   m_ObjectHideFlags: 0
@@ -1578,21 +1578,26 @@ MonoBehaviour:
   decisionTime: 1
   _rigidbody: {fileID: 200892908}
   healthManager: {fileID: 200892910}
+  _animator: {fileID: 200892907}
   firstMovementSpeed: 5
   firstMoveDistance: 10
   secondMovementSpeed: 7
   secondMoveDistance: 15
   thirdMovementSpeed: 10
+  shootPosition: {fileID: 1590945456}
   projectile: {fileID: 8206545884806941566, guid: 4aa758788a05cab488441b3963a6c47a,
     type: 3}
   forceVariation: 0.1
   angleVariation: 0.1
   firstMinProjectiles: 4
   firstMaxProjectiles: 6
+  firstShootingSequence: 3
   secondMinProjectiles: 6
   secondMaxProjectiles: 9
+  secondShootingSequence: 2
   thirdMinProjectiles: 9
   thirdMaxProjectiles: 12
+  thirdShootingSequence: 1
   stunTime: 2
   chargeSpeed: 20
   chargeDamage: 2
@@ -1600,12 +1605,6 @@ MonoBehaviour:
   timeBetweenRageProjectiles: 0.05
   firstRageProjectiles: 20
   secondRageProjectiles: 30
-  _animator: {fileID: 200892907}
-  firstShootingSequence: 3
-  secondShootingSequence: 2
-  thirdShootingSequence: 1
-  shootPosition: {fileID: 1590945456}
-  player: {fileID: 1911857580}
 --- !u!95 &200892907
 Animator:
   serializedVersion: 3
@@ -1668,6 +1667,22 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   currentHP: 0
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 200892906}
+        m_MethodName: CheckRage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &209257469
 GameObject:
   m_ObjectHideFlags: 0
@@ -6614,6 +6629,28 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 200892904}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 200892906}
+        m_MethodName: AssignPlayer
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1911857580}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null

@@ -10,6 +10,7 @@ public class Demo_boss : MonoBehaviour
     [SerializeField] private float decisionTime = 1f;
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private BossHealthManager healthManager = null;
+    [SerializeField] private Animator _animator = null;
 
     [Header( "Moving" )]
     [SerializeField] private float firstMovementSpeed = 5f;
@@ -19,15 +20,19 @@ public class Demo_boss : MonoBehaviour
     [SerializeField] private float thirdMovementSpeed = 7f;
 
     [Header( "Shooting" )]
+    [SerializeField] private Transform shootPosition = null;
     [SerializeField] private Transform projectile = null;
     [SerializeField] private float forceVariation = 0.2f;
     [SerializeField] private float angleVariation = 0.2f;
     [SerializeField] private int firstMinProjectiles = 5;
     [SerializeField] private int firstMaxProjectiles = 10;
+    [SerializeField] private int firstShootingSequence = 3;
     [SerializeField] private int secondMinProjectiles = 5;
     [SerializeField] private int secondMaxProjectiles = 10;
+    [SerializeField] private int secondShootingSequence = 2;
     [SerializeField] private int thirdMinProjectiles = 5;
     [SerializeField] private int thirdMaxProjectiles = 10;
+    [SerializeField] private int thirdShootingSequence = 1;
 
     [Header( "Charge" )]
     [SerializeField] private float stunTime = 2f;
@@ -40,14 +45,6 @@ public class Demo_boss : MonoBehaviour
     [SerializeField] private int firstRageProjectiles = 20;
     [SerializeField] private int secondRageProjectiles = 30;
 
-    [Header( "TEMPORARY" )]
-    [SerializeField] private Animator _animator = null;
-    [SerializeField] private int firstShootingSequence = 3;
-    [SerializeField] private int secondShootingSequence = 2;
-    [SerializeField] private int thirdShootingSequence = 1;
-    [SerializeField] private Transform shootPosition = null;
-    private bool wasShooting = false;
-
 
     private float movementSpeed;
     private float moveDistance;
@@ -57,7 +54,7 @@ public class Demo_boss : MonoBehaviour
     private int sequences;
     private int currentSequence;
 
-    [SerializeField] private Transform player;
+    private Transform player;
     private bool isDeciding = false;
     private bool isMoving = false;
     private bool isCharging = false;
@@ -66,6 +63,7 @@ public class Demo_boss : MonoBehaviour
     private bool isShooting = false;
     private bool isChangingPhase = false;
     private bool isArmored = false;
+    private bool wasShooting = false;
     private float actionTime = 0f;
     private float destination = 0f;
     private int direction = 1;
@@ -126,6 +124,16 @@ public class Demo_boss : MonoBehaviour
     public void SetArmored()
     {
         isArmored = true;
+    }
+
+
+    public void CheckRage()
+    {
+        if ( (phase == 1 && healthManager.currentHP <= secondPhaseHP) ||
+             (phase == 2 && healthManager.currentHP <= thirdPhaseHP) )
+        {
+            ChangePhase();
+        }
     }
 
 
@@ -204,75 +212,31 @@ public class Demo_boss : MonoBehaviour
         {
             LoadCharge();
         }
-
-        // PHASE 1
-        if ( phase == 1 )
+        else if ( wasShooting )
         {
-            if ( healthManager.currentHP > secondPhaseHP )
-            {
-                if ( wasShooting )
-                {
-                    StartCoroutine( Move() );
-                }
-                else
-                {
-                    Shoot();
-                }
-            }
-            else
-            {
-                OnPhaseEnd();
-            }
+            StartCoroutine( Move() );
         }
-
-        // PHASE 2
-        else if ( phase == 2 )
+        else
         {
-            if ( healthManager.currentHP > thirdPhaseHP )
-            {
-                if ( wasShooting )
-                {
-                    StartCoroutine( Move() );
-                }
-                else
-                {
-                    Shoot();
-                }
-            }
-            else
-            {
-                OnPhaseEnd();
-            }
-        }
-
-        // PHASE 3
-        else if ( phase == 3 )
-        {
-            if ( healthManager.currentHP > 1 )
-            {
-                if ( wasShooting )
-                {
-                    StartCoroutine( Move() );
-                }
-                else
-                {
-                    Shoot();
-                }
-            }
-            else
-            {
-                OnPhaseEnd();
-            }
+            Shoot();
         }
 
         isDeciding = false;
     }
 
 
-    private void OnPhaseEnd()
+    private void ChangePhase()
     {
+        _animator.SetBool( "isMoving", false );
+        _animator.SetBool( "isShooting", false );
+        isMoving = false;
+        isShooting = false;
+        isDeciding = false;
+
         _animator.SetBool( "isChangingPhase", true );
         isChangingPhase = true;
+
+        _animator.Play( "Demo_boss_armor" );
     }
 
 

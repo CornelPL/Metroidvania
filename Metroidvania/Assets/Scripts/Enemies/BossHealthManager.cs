@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BossHealthManager : HealthManager
 {
+    [SerializeField] private UnityEvent OnTakeDamage = null;
     public void Death()
     {
         Debug.Log("Boss dead");
@@ -30,5 +32,6 @@ public class BossHealthManager : HealthManager
     override public void TakeDamage(int damage)
     {
         currentHP -= damage;
+        OnTakeDamage.Invoke();
     }
 }

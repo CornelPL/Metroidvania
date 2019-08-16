@@ -132,7 +132,8 @@ public class Demo_boss : MonoBehaviour
     public void CheckRage()
     {
         if ( (phase == 1 && healthManager.currentHP <= secondPhaseHP) ||
-             (phase == 2 && healthManager.currentHP <= thirdPhaseHP) )
+             (phase == 2 && healthManager.currentHP <= thirdPhaseHP) ||
+             (phase == 3 && healthManager.currentHP <= 0) )
         {
             ChangePhase();
         }
@@ -234,6 +235,7 @@ public class Demo_boss : MonoBehaviour
         isMoving = false;
         isShooting = false;
         isDeciding = false;
+        isRaging = false;
 
         _animator.SetBool( "isChangingPhase", true );
         isChangingPhase = true;

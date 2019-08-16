@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verticalNodesCount: 9
-  player: {fileID: 0}
+  player: {fileID: 6838834047338178270}
   capePoints:
   - {fileID: 3379213248802444538}
   - {fileID: 0}
@@ -495,9 +495,9 @@ MonoBehaviour:
   gravity: {x: 0, y: -100}
   restDistance: 0.2
   damping: 0.3
-  maxAngleDeviationHigh: 10
-  maxAngleDeviationLow: 7
-  maxAngleAllCape: 170
+  maxAngleDeviationHigh: 7
+  maxAngleDeviationLow: 5
+  maxAngleAllCape: 150
   noiseFrequency: 1.5
   noiseMultiplier: 0.003
   moveNoiseFrequency: 7
@@ -711,7 +711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verticalNodesCount: 9
-  player: {fileID: 0}
+  player: {fileID: 6838834047338178270}
   capePoints:
   - {fileID: 4316189592397647427}
   - {fileID: 0}
@@ -737,9 +737,9 @@ MonoBehaviour:
   gravity: {x: 0, y: -80}
   restDistance: 0.2
   damping: 0.3
-  maxAngleDeviationHigh: 10
-  maxAngleDeviationLow: 7
-  maxAngleAllCape: 170
+  maxAngleDeviationHigh: 7
+  maxAngleDeviationLow: 5
+  maxAngleAllCape: 150
   noiseFrequency: 1.5
   noiseMultiplier: 0.003
   moveNoiseFrequency: 7
@@ -971,6 +971,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6838834047180450965}
   - component: {fileID: 1669173208879235512}
+  - component: {fileID: 1916609879606229411}
   m_Layer: 16
   m_Name: invulnerableCollider
   m_TagString: Player
@@ -1018,6 +1019,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1632566, y: 3.1506286}
   m_EdgeRadius: 0
+--- !u!60 &1916609879606229411
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838834047180450954}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 1120773c9e350294dacfeab691083a78, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.07, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.2266134, y: 2.8431246}
+      - {x: -0.3343683, y: 2.8470707}
+      - {x: -0.56591094, y: 0.14795613}
+      - {x: -0.31991476, y: 0.015741646}
+      - {x: 0.31286585, y: 0.022790909}
+      - {x: 0.5624095, y: 0.14795622}
 --- !u!1 &6838834047338178269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,7 +1162,7 @@ MonoBehaviour:
   isFacingRight: 1
   isPullingItemState: 0
   isHoldingItemState: 0
-  isGroundedState: 0
+  isGroundedState: 1
   isRunningState: 0
   isJumpingState: 0
   isFallingState: 0
@@ -1144,13 +1176,13 @@ MonoBehaviour:
   hasUpgradedDash: 0
   hasSlam: 1
   normalCollider: {fileID: 7657262229719900732}
-  invulnerableCollider: {fileID: 1669173208879235512}
+  invulnerableCollider: {fileID: 1916609879606229411}
   holdingItemPosition: {fileID: 3956272965029147024}
-  spriteRenderer: {fileID: 0}
-  rightMaterial: {fileID: 0}
-  leftMaterial: {fileID: 0}
+  spriteRenderer: {fileID: 3432850370135696382}
+  rightMaterial: {fileID: 2100000, guid: 7bf8b85bdcf50d2478ed951da3d74f44, type: 2}
+  leftMaterial: {fileID: 2100000, guid: af846ae2e52422a4ba14290d919a255e, type: 2}
   animator: {fileID: 5845602597293220103}
-  lastTimeGrounded: 0
+  lastTimeGrounded: 21.16958
 --- !u!114 &6838834047338178268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1164,7 +1196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 6838834047338178264}
-  animator: {fileID: 5845602597293220103}
   movementSpeed: 10
   movementSpeedUp: 50
   movementSlowDown: 100
@@ -1251,8 +1282,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  anchorFront: {fileID: 0}
-  anchorBack: {fileID: 0}
+  anchorFront: {fileID: 4316189592397647427}
+  anchorBack: {fileID: 3379213248802444538}
   shootEffectBlur: {fileID: 0}
   shootEffectBlurSize: 1.5
   shootEffectBlurTime: 0.1
@@ -1300,14 +1331,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 5
-  knockbackForce: 30
+  knockbackForce: 10
   knockbackTime: 0.5
   invulnerabilityTime: 1
   healChargeTime: 1
   _rigidbody: {fileID: 6838834047338178264}
   pointsController: {fileID: 560894362981388506}
-  barsBackgrounds: []
-  bars: []
+  barsBackgrounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  bars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &2887670582435451143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1362,9 +1407,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 0}
-  containerCapacity: 50
+  containerCapacity: 5
   pointsText: {fileID: 0}
-  isContainerFull: 0
+  isContainerFull: 1
 --- !u!1 &6838834047492786797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,7 +1482,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.8
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1450,13 +1495,22 @@ LineRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.29166666
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.8606714, g: 0.25943398, b: 1, a: 1}
+      key1: {r: 1, g: 0.0047169924, b: 0.94357294, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1547,7 +1601,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1887836, y: 0.2710371}
+  m_Size: {x: 1.1, y: 0.2710371}
   m_EdgeRadius: 0
 --- !u!114 &6838834048005818766
 MonoBehaviour:
@@ -1831,7 +1885,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8794459946814237746}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.435, y: 2.314, z: 0}
+  m_LocalPosition: {x: 0.299, y: 2.417, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2688279590942930702}

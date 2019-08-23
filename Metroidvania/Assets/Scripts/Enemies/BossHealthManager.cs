@@ -3,6 +3,17 @@ using UnityEngine;
 
 public class BossHealthManager : HealthManager
 {
+    [SerializeField] private float normalBrightness = 0.2f;
+    [SerializeField] private float hitBrightness = 1f;
+    [SerializeField] private float brightnessChangeTime = 0.5f;
+
+
+    override public void ChangeColorOnDamage()
+    {
+        LeanTween.value( gameObject, hitBrightness, normalBrightness, brightnessChangeTime ).setOnUpdate( ( float v ) => { spriteRenderer.material.SetFloat( "_Brightness", v ); } );
+    }
+
+
     public void Death()
     {
         Debug.Log("Boss dead");

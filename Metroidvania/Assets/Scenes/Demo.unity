@@ -1766,7 +1766,7 @@ MonoBehaviour:
   point: {fileID: 3365028966441827141, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
   minPoints: 100
   maxPoints: 100
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 431695632}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 1, b: 1, a: 1}
   colorChangeTime: 0.5
@@ -1789,9 +1789,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 200892910}
+        m_MethodName: ChangeColorOnDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   currentHP: 0
+  normalBrightness: 0
+  hitBrightness: 6
+  brightnessChangeTime: 0.15
 --- !u!1 &203028094 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 24211803558539460, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c,
@@ -3700,6 +3714,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Walker_Horizontal (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 492946502777295322, guid: 857b36963159db748b6745ad494ab573,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 492946502777295303, guid: 857b36963159db748b6745ad494ab573,
         type: 3}
@@ -7277,6 +7296,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Walker_Horizontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 492946502777295322, guid: 857b36963159db748b6745ad494ab573,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 492946502777295303, guid: 857b36963159db748b6745ad494ab573,
         type: 3}

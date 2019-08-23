@@ -133,7 +133,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c8bd1a075dc3fa442834eb8b84771df3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -180,9 +180,29 @@ MonoBehaviour:
   point: {fileID: 3365028966441827141, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
   minPoints: 0
   maxPoints: 5
+  spriteRenderer: {fileID: 4173082080487236794}
+  normalColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  colorChangeTime: 0.5
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4173082080487236799}
+        m_MethodName: ChangeColorOnDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   currentHP: 0
@@ -203,6 +223,7 @@ MonoBehaviour:
   damage: 1
   sightRange: 10
   chargeSpeed: 10
+  playerKnockbackMultiplier: 2
   stunTime: 1
   sightOffset: {x: 0, y: 0.7}
   playerLayerMask:

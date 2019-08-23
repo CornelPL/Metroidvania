@@ -174,9 +174,6 @@ MonoBehaviour:
   spriteRenderer: {fileID: 492946502777295300}
   leftMaterial: {fileID: 2100000, guid: 123fd3f9061ca134a8098b3747ae09d6, type: 2}
   rightMaterial: {fileID: 2100000, guid: bc1fe5580479ff343a1bd7bea9854d6b, type: 2}
-  normalColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-  damageColor: {r: 1, g: 0, b: 0, a: 1}
-  colorChangeTime: 0.5
   direction: -1
 --- !u!114 &492946502777295296
 MonoBehaviour:
@@ -194,6 +191,10 @@ MonoBehaviour:
   point: {fileID: 3365028966441827141, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
   minPoints: 3
   maxPoints: 10
+  spriteRenderer: {fileID: 492946502777295300}
+  normalColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  colorChangeTime: 0.5
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -202,7 +203,7 @@ MonoBehaviour:
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 492946502777295301}
+      - m_Target: {fileID: 492946502777295296}
         m_MethodName: ChangeColorOnDamage
         m_Mode: 1
         m_Arguments:

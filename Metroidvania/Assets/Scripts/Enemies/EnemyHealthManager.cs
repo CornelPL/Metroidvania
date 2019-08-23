@@ -54,5 +54,9 @@ public class EnemyHealthManager : HealthManager
         {
             Death();
         }
+        else
+        {
+            OnTakeDamage.Invoke();
+        }
     }
 }

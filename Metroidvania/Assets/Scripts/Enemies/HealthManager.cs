@@ -10,6 +10,7 @@ abstract public class HealthManager : MonoBehaviour
     [SerializeField] protected int minPoints = 0;
     [SerializeField] protected int maxPoints = 5;
     [SerializeField] protected UnityEvent OnDeath = null;
+    [SerializeField] protected UnityEvent OnTakeDamage = null;
 
     public int currentHP;
 

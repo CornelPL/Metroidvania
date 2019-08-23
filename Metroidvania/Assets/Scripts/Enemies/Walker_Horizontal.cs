@@ -11,10 +11,19 @@ public class Walker_Horizontal : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer = null;
     [SerializeField] private Material leftMaterial = null;
     [SerializeField] private Material rightMaterial = null;
+    [SerializeField] private Color normalColor = Color.white;
+    [SerializeField] private Color damageColor = Color.white;
+    [SerializeField] private float colorChangeTime = 0.5f;
     [Tooltip("1 - right; -1 - left")]
     [SerializeField] private int direction = 1;
 
     private float timeWalkingTooSlow = 0f;
+
+
+    public void ChangeColorOnDamage()
+    {
+        LeanTween.value( gameObject, damageColor, normalColor, colorChangeTime ).setOnUpdate( ( Color c ) => { spriteRenderer.color = c; } );
+    }
 
 
     private void Start()

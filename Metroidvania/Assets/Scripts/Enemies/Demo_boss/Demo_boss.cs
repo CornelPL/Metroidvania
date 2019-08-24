@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Demo_boss : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class Demo_boss : MonoBehaviour
     [SerializeField] private float chargeSpeed = 20f;
     [SerializeField] private int chargeDamage = 2;
     [SerializeField] private float chargeKnockbackMultiplier = 2f;
+    [SerializeField] private UnityEvent OnStun = null;
+    [SerializeField] private Vector2Event EarthquakeEvent = null;
 
     [Header( "Rage" )]
     [SerializeField] private float timeBetweenRageProjectiles = 0.05f;
@@ -143,6 +146,12 @@ public class Demo_boss : MonoBehaviour
     public void StartRage()
     {
         StartCoroutine( Rage() );
+    }
+
+
+    public void InvokeEarthquake()
+    {
+        EarthquakeEvent.Broadcast(gameObject, transform.position);
     }
 
 
@@ -350,6 +359,7 @@ public class Demo_boss : MonoBehaviour
         isCharging = false;
         isStunned = true;
         _animator.SetBool( "isStunned", true );
+        OnStun.Invoke();
     }    
 
 

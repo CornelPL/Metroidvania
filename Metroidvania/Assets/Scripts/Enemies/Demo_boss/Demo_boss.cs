@@ -375,9 +375,7 @@ public class Demo_boss : MonoBehaviour
         if ( phase == 1 ) rageProjectiles = firstRageProjectiles;
         else rageProjectiles = secondRageProjectiles;
 
-        Debug.Log( rageParticles.isPlaying );
         rageParticles.Play();
-        Debug.Log( rageParticles.isPlaying );
         rageParticles2.Play();
         rageParticles3.Play();
 

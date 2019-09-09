@@ -47,6 +47,9 @@ public class Demo_boss : MonoBehaviour
     [SerializeField] private float timeBetweenRageProjectiles = 0.05f;
     [SerializeField] private int firstRageProjectiles = 20;
     [SerializeField] private int secondRageProjectiles = 30;
+    [SerializeField] private ParticleSystem rageParticles = null;
+    [SerializeField] private ParticleSystem rageParticles2 = null;
+    [SerializeField] private ParticleSystem rageParticles3 = null;
 
 
     private float movementSpeed;
@@ -372,6 +375,12 @@ public class Demo_boss : MonoBehaviour
         if ( phase == 1 ) rageProjectiles = firstRageProjectiles;
         else rageProjectiles = secondRageProjectiles;
 
+        Debug.Log( rageParticles.isPlaying );
+        rageParticles.Play();
+        Debug.Log( rageParticles.isPlaying );
+        rageParticles2.Play();
+        rageParticles3.Play();
+
         while ( currentSequence < rageProjectiles )
         {
             ShootProjectile();
@@ -379,6 +388,10 @@ public class Demo_boss : MonoBehaviour
             currentSequence++;
             yield return new WaitForSeconds( timeBetweenRageProjectiles );
         }
+
+        rageParticles.Stop();
+        rageParticles2.Stop();
+        rageParticles3.Stop();
 
         isRaging = false;
         _animator.SetTrigger( "rageEnd" );

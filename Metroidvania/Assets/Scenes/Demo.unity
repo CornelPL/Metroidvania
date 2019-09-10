@@ -1649,6 +1649,7 @@ GameObject:
   - component: {fileID: 200892906}
   - component: {fileID: 200892910}
   - component: {fileID: 200892907}
+  - component: {fileID: 200892909}
   m_Layer: 15
   m_Name: Demo_boss
   m_TagString: Enemy
@@ -1760,11 +1761,12 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   EarthquakeEvent: {fileID: 11400000, guid: db75f749c9fd32d44bff23c94776704d, type: 2}
   timeBetweenRageProjectiles: 0.05
-  firstRageProjectiles: 20
-  secondRageProjectiles: 30
+  firstRageProjectiles: 30
+  secondRageProjectiles: 50
   rageParticles: {fileID: 3373982920522884237}
   rageParticles2: {fileID: 3373982920621382638}
   rageParticles3: {fileID: 3373982921028564253}
+  OnRageImpulse: {fileID: 200892909}
 --- !u!95 &200892907
 Animator:
   serializedVersion: 3
@@ -1805,6 +1807,47 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &200892909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200892904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 11400000, guid: 8b0f8ea620dea6f408988f0c66fdd34d, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 10
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.05
+      m_DecayTime: 0
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
 --- !u!114 &200892910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1857,7 +1900,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  currentHP: 0
+  currentHP: 4
   normalBrightness: 0
   hitBrightness: 6
   brightnessChangeTime: 0.15

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using Cinemachine;
 
 public class Demo_boss : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class Demo_boss : MonoBehaviour
     [SerializeField] private ParticleSystem rageParticles = null;
     [SerializeField] private ParticleSystem rageParticles2 = null;
     [SerializeField] private ParticleSystem rageParticles3 = null;
+    [SerializeField] private CinemachineImpulseSource OnRageImpulse = null;
 
 
     private float movementSpeed;
@@ -370,6 +372,7 @@ public class Demo_boss : MonoBehaviour
     {
         isRaging = true;
 
+
         direction = player.position.x < transform.position.x ? -1 : 1;
 
         if ( phase == 1 ) rageProjectiles = firstRageProjectiles;
@@ -381,6 +384,8 @@ public class Demo_boss : MonoBehaviour
 
         while ( currentSequence < rageProjectiles )
         {
+            OnRageImpulse.GenerateImpulse();
+
             ShootProjectile();
 
             currentSequence++;

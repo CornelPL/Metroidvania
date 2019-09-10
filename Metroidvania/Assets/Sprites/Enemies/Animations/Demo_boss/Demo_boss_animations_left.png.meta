@@ -110,6 +110,18 @@ TextureImporter:
   - first:
       213: 6395672789819687167
     second: Demo_boss_animations_left_35
+  - first:
+      213: -1342583142845100066
+    second: Demo_boss_animations_left_36
+  - first:
+      213: -6566452486870229926
+    second: Demo_boss_animations_left_37
+  - first:
+      213: 3383080526396188705
+    second: Demo_boss_animations_left_38
+  - first:
+      213: -5688992251937332985
+    second: Demo_boss_animations_left_39
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -198,7 +210,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1200
+        y: 1800
         width: 600
         height: 600
       alignment: 7
@@ -208,7 +220,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e6236ce99e203a448ce63b7cf6e8527
+      spriteID: b3dc9141cc787044dada1c78de607301
       internalID: 4139587078962781632
       vertices: []
       indices: 
@@ -219,7 +231,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 600
-        y: 1200
+        y: 1800
         width: 600
         height: 600
       alignment: 7
@@ -229,7 +241,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bdaad7c8896f354a834a0ca5227d806
+      spriteID: fab6ab0fb86d3604980353a79be96a11
       internalID: -2486234825737083898
       vertices: []
       indices: 
@@ -240,7 +252,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1200
-        y: 1200
+        y: 1800
         width: 600
         height: 600
       alignment: 7
@@ -250,7 +262,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75e69f49d26f9c641a201449c7962b9e
+      spriteID: bd1889aa1bc15e24e87d0a0dc3d80c71
       internalID: -2523198855536797148
       vertices: []
       indices: 
@@ -261,7 +273,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1800
-        y: 1200
+        y: 1800
         width: 600
         height: 600
       alignment: 7
@@ -271,7 +283,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfd158e3e5fdab546afe3c2b9dc352f2
+      spriteID: ab736099bacb0594781957819c6cc2f1
       internalID: 3622616625049363618
       vertices: []
       indices: 
@@ -282,7 +294,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2400
-        y: 1200
+        y: 1800
         width: 600
         height: 600
       alignment: 7
@@ -292,7 +304,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2c9250b1a20ba64fa765520eb177c5e
+      spriteID: 30cfa92dd1df045419585967b890a19f
       internalID: -2353103623974567784
       vertices: []
       indices: 
@@ -303,7 +315,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3000
-        y: 1200
+        y: 1800
         width: 600
         height: 600
       alignment: 7
@@ -313,7 +325,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 713ce7619d0ed5e41a1dc8621cc2ae73
+      spriteID: 2d1281f8f935d644daf0d91be6d7bada
       internalID: 7832484670287473156
       vertices: []
       indices: 
@@ -324,7 +336,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3600
-        y: 1200
+        y: 1800
         width: 600
         height: 600
       alignment: 7
@@ -334,7 +346,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6ce2ad7705884745aabfbc4c2fcc52a
+      spriteID: 8aa0e300495b097418fa25f693f3a1df
       internalID: -329963345161315038
       vertices: []
       indices: 
@@ -345,7 +357,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4200
-        y: 1200
+        y: 1800
         width: 600
         height: 600
       alignment: 7
@@ -355,7 +367,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e7f660e8c2ee0d41b614e38cb213de5
+      spriteID: e183d2c559e4502408463915692e9fe1
       internalID: -1512815267894234410
       vertices: []
       indices: 
@@ -366,7 +378,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4800
-        y: 1200
+        y: 1800
         width: 600
         height: 600
       alignment: 7
@@ -376,7 +388,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9544e3325e9cc3945829164f0edd9e20
+      spriteID: 11b0e796631826b4caaa154139864775
       internalID: -7115647486168796152
       vertices: []
       indices: 
@@ -387,7 +399,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5400
-        y: 1200
+        y: 1800
         width: 600
         height: 600
       alignment: 7
@@ -397,7 +409,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10567500daffe874a895bfa2620c3755
+      spriteID: e92c0922cd067f8449eeaec8baadd9b9
       internalID: 6111765273877069166
       vertices: []
       indices: 
@@ -408,6 +420,69 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6000
+        y: 1800
+        width: 600
+        height: 600
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dae55aec9d4a214dadd6a5983aec555
+      internalID: -4043851590039302396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demo_boss_animations_left_11
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 1800
+        width: 600
+        height: 600
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ac16b201840a374095005002797dfd1
+      internalID: 7088283423156278123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demo_boss_animations_left_12
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 1800
+        width: 600
+        height: 600
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96aaa5f3efc6d084da7a5a004c713831
+      internalID: -13738160803802893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demo_boss_animations_left_13
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 1200
         width: 600
         height: 600
@@ -418,14 +493,224 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c282ae350ba182340b8eac443ee5d286
-      internalID: -4043851590039302396
+      spriteID: 5213c49cf2cafa441b56192991227478
+      internalID: 872916832627834491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_11
+      name: Demo_boss_animations_left_14
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1200
+        width: 600
+        height: 600
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62c6fc225eb83c04aae8f823a1676c62
+      internalID: -3666618518621141845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demo_boss_animations_left_15
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1200
+        width: 600
+        height: 600
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4beb246f7a0b9a43b7bd51618aa5eac
+      internalID: 753750627498089601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demo_boss_animations_left_16
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1200
+        width: 600
+        height: 600
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 149cd321409a69749a4cb40b0d4ce94b
+      internalID: -2387034593133706111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demo_boss_animations_left_17
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 1200
+        width: 600
+        height: 600
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3126ec253a042846966d9ae2d37f4ae
+      internalID: -2818206384546941076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demo_boss_animations_left_18
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 1200
+        width: 600
+        height: 600
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28680709ecd75b847a8a63eafa6a7e26
+      internalID: -2258228798798174880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demo_boss_animations_left_19
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 1200
+        width: 600
+        height: 600
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 610a1d94e7a513a42aa5ece5545f04f4
+      internalID: -6628926130007418428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demo_boss_animations_left_20
+      rect:
+        serializedVersion: 2
+        x: 4200
+        y: 1200
+        width: 600
+        height: 600
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d6b97b863e1fc8499d844b73cae4507
+      internalID: -6938355061995489661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demo_boss_animations_left_21
+      rect:
+        serializedVersion: 2
+        x: 4800
+        y: 1200
+        width: 600
+        height: 600
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52422b4d6b3ac454c9b680d1d9f8f9c8
+      internalID: -3065502319087496527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demo_boss_animations_left_22
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 1200
+        width: 600
+        height: 600
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 559f252eb587d7c4bb372d31faff145c
+      internalID: 8302934882306502151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demo_boss_animations_left_23
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 1200
+        width: 600
+        height: 600
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d04947b1cda6e34db74f2087c556aea
+      internalID: 4799234379792696298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demo_boss_animations_left_24
       rect:
         serializedVersion: 2
         x: 6600
@@ -439,14 +724,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fd73c340cce78c409c4578ebecff2c0
-      internalID: 7088283423156278123
+      spriteID: 7da3be345b66b3e4cb828a6530097ed9
+      internalID: 2068922733408347392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_12
+      name: Demo_boss_animations_left_25
       rect:
         serializedVersion: 2
         x: 7200
@@ -460,14 +745,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3adad7a1b68a36746b187949c7e54419
-      internalID: -13738160803802893
+      spriteID: a1eb98f3002d1ca4f9d6b62eaeacf21e
+      internalID: 6133644775141034125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_13
+      name: Demo_boss_animations_left_26
       rect:
         serializedVersion: 2
         x: 0
@@ -481,14 +766,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ca04ba3622d6a54ba144c9d28f46e10
-      internalID: 872916832627834491
+      spriteID: 6998491265109504aa7cc7284def5ade
+      internalID: -255762872842413992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_14
+      name: Demo_boss_animations_left_27
       rect:
         serializedVersion: 2
         x: 600
@@ -502,14 +787,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed3d2bcbc4e085641a7587348edc98bd
-      internalID: -3666618518621141845
+      spriteID: 6f2c2f21cc59b7a4da2bac479f811809
+      internalID: -8097692967777162053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_15
+      name: Demo_boss_animations_left_28
       rect:
         serializedVersion: 2
         x: 1200
@@ -523,14 +808,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f7feeb2e3e8e884d8ced9e46a51b68f
-      internalID: 753750627498089601
+      spriteID: aa67e4258261e1349a587f9eaffb39ee
+      internalID: -5754917728312945728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_16
+      name: Demo_boss_animations_left_29
       rect:
         serializedVersion: 2
         x: 1800
@@ -544,14 +829,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 065439ffe9dd2cc45b49b1b7bc14e5c5
-      internalID: -2387034593133706111
+      spriteID: 380e28303bb41624b8f27aac1ed0ab50
+      internalID: -2990232019264283461
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_17
+      name: Demo_boss_animations_left_30
       rect:
         serializedVersion: 2
         x: 2400
@@ -565,14 +850,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ca4ecb838d20f74e8794b3a31609d70
-      internalID: -2818206384546941076
+      spriteID: 7b40a40beda62ee4a8d0ab06e6e1a9d7
+      internalID: -5991355707711779203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_18
+      name: Demo_boss_animations_left_31
       rect:
         serializedVersion: 2
         x: 3000
@@ -586,14 +871,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e941e32edd5405a4499fc2729d3ca4b9
-      internalID: -2258228798798174880
+      spriteID: 5598a88f09cd93c4f96e3eb39cc6e0c7
+      internalID: 8774138008014235693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_19
+      name: Demo_boss_animations_left_32
       rect:
         serializedVersion: 2
         x: 3600
@@ -607,14 +892,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02f9b5c0194cddb448de6d0db3deb6a7
-      internalID: -6628926130007418428
+      spriteID: ed8de6c5ee26e4a439c450e67be5ff4c
+      internalID: -2452942832701818401
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_20
+      name: Demo_boss_animations_left_33
       rect:
         serializedVersion: 2
         x: 4200
@@ -628,14 +913,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 069f4879b350cff49a4ff8e2f6bdcfac
-      internalID: -6938355061995489661
+      spriteID: 7221f884f1968dd488717c3bf54e9287
+      internalID: -4744119563874530911
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_21
+      name: Demo_boss_animations_left_34
       rect:
         serializedVersion: 2
         x: 4800
@@ -649,14 +934,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecf18378daba98749b21cc2748b1886e
-      internalID: -3065502319087496527
+      spriteID: db982490aff3f5a42b3245fdefcfee7b
+      internalID: -782346262293252652
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_22
+      name: Demo_boss_animations_left_35
       rect:
         serializedVersion: 2
         x: 5400
@@ -670,14 +955,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93f904c7061eae64c8ed2aa65e43f583
-      internalID: 8302934882306502151
+      spriteID: 9cf08659aa6c81a4a8e5b1df13d93a9a
+      internalID: 6395672789819687167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_23
+      name: Demo_boss_animations_left_36
       rect:
         serializedVersion: 2
         x: 6000
@@ -691,14 +976,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26cacb821b7113f4bbda6e067dd34e72
-      internalID: 4799234379792696298
+      spriteID: 23c7a72e494c5f141a63957f73da10de
+      internalID: -1342583142845100066
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_24
+      name: Demo_boss_animations_left_37
       rect:
         serializedVersion: 2
         x: 6600
@@ -712,14 +997,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df5f117ed77ab764d8c078258d9ff359
-      internalID: 2068922733408347392
+      spriteID: d535ad326324c9c429a735dbf1903dc2
+      internalID: -6566452486870229926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_25
+      name: Demo_boss_animations_left_38
       rect:
         serializedVersion: 2
         x: 7200
@@ -733,14 +1018,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 676b0e1f33a63334ea2da574a11c262c
-      internalID: 6133644775141034125
+      spriteID: 0f477e73425d5b64fadce9106c8abe03
+      internalID: 3383080526396188705
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demo_boss_animations_left_26
+      name: Demo_boss_animations_left_39
       rect:
         serializedVersion: 2
         x: 0
@@ -754,197 +1039,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe8ee9faf05b82846998aa232cde8ac0
-      internalID: -255762872842413992
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Demo_boss_animations_left_27
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 0
-        width: 600
-        height: 600
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba882f7149be9de4ea3961bac26fc44e
-      internalID: -8097692967777162053
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Demo_boss_animations_left_28
-      rect:
-        serializedVersion: 2
-        x: 1200
-        y: 0
-        width: 600
-        height: 600
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 53618aacc5a628a45aeeb13db1c40a7e
-      internalID: -5754917728312945728
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Demo_boss_animations_left_29
-      rect:
-        serializedVersion: 2
-        x: 1800
-        y: 0
-        width: 600
-        height: 600
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1d4377bc5150acb43a62ad2ee4f7d560
-      internalID: -2990232019264283461
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Demo_boss_animations_left_30
-      rect:
-        serializedVersion: 2
-        x: 2400
-        y: 0
-        width: 600
-        height: 600
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b794c236916d28f4fb4f73f01d23997f
-      internalID: -5991355707711779203
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Demo_boss_animations_left_31
-      rect:
-        serializedVersion: 2
-        x: 3000
-        y: 0
-        width: 600
-        height: 600
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: edc701a00298fb745a07cf91c2d34dad
-      internalID: 8774138008014235693
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Demo_boss_animations_left_32
-      rect:
-        serializedVersion: 2
-        x: 3600
-        y: 0
-        width: 600
-        height: 600
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c8a3ccfe2e5ed834f9861458d53fd2b9
-      internalID: -2452942832701818401
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Demo_boss_animations_left_33
-      rect:
-        serializedVersion: 2
-        x: 4200
-        y: 0
-        width: 600
-        height: 600
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e953501ce01032c4b9b94031d2809ac7
-      internalID: -4744119563874530911
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Demo_boss_animations_left_34
-      rect:
-        serializedVersion: 2
-        x: 4800
-        y: 0
-        width: 600
-        height: 600
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0960d2bb9e53dc44099dfe6fc9b53b5f
-      internalID: -782346262293252652
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Demo_boss_animations_left_35
-      rect:
-        serializedVersion: 2
-        x: 5400
-        y: 0
-        width: 600
-        height: 600
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 29845e985ffe22c479fb5bfc3c5f2130
-      internalID: 6395672789819687167
+      spriteID: 0e7524b70b38b6d49b1a484237b5b45b
+      internalID: -5688992251937332985
       vertices: []
       indices: 
       edges: []

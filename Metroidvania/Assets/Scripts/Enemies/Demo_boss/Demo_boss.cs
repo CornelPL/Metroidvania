@@ -224,6 +224,8 @@ public class Demo_boss : MonoBehaviour
 
     private void ChooseAction()
     {
+        if ( isRaging || isMoving || isCharging || isShooting || isArmoring ) return;
+
         direction = player.position.x < transform.position.x ? -1 : 1;
 
         if ( isArmored )
@@ -250,8 +252,8 @@ public class Demo_boss : MonoBehaviour
             StopMoving();
         }
 
-        _animator.SetBool( "isShooting", false );
         isShooting = false;
+        _animator.SetBool( "isShooting", false );
 
         isDeciding = false;
 

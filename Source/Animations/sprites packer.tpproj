@@ -188,7 +188,7 @@ limitMemory=true
 useIndexes=true
 
 scaleFactors=[{suffix:"",factor:1,resampling:bicubic}]
-inputFiles=[{path:Demo_boss/4_load_charge,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/1_walk,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/6_stun,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/2_load_shooting,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/3_shoot,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/5_charge,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/7_rage,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false}]
+inputFiles=[{path:Demo_boss/01_walk,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/10_idle_armored,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/02_load_shooting,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/03_shoot,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/04_load_charge,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/05_charge,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/06_stun,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/07_rage,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/08_after_stun,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false},{path:Demo_boss/09_idle,type:Input,dirFilePrefix:null,recursive:false,flattenPaths:false}]
 
 
 -PROJ-

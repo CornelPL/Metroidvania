@@ -41,6 +41,7 @@ public class BossHealthManager : HealthManager
     override public void TakeDamage(int damage)
     {
         currentHP -= damage;
+        ChangeColorOnDamage();
         OnTakeDamage.Invoke();
     }
 }

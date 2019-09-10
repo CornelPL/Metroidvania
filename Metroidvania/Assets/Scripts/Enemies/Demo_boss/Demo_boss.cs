@@ -36,6 +36,11 @@ public class Demo_boss : MonoBehaviour
     [SerializeField] private int thirdMaxProjectiles = 10;
     [SerializeField] private int thirdShootingSequence = 1;
 
+    [Header( "Armoring" )]
+    [SerializeField] private float armoringTime = 2f;
+    [SerializeField] private ParticleSystem[] armoringParticles = null;
+    [SerializeField] private GameObject forceField = null;
+
     [Header( "Charge" )]
     [SerializeField] private float stunTime = 2f;
     [SerializeField] private float chargeSpeed = 20f;
@@ -48,9 +53,7 @@ public class Demo_boss : MonoBehaviour
     [SerializeField] private float timeBetweenRageProjectiles = 0.05f;
     [SerializeField] private int firstRageProjectiles = 20;
     [SerializeField] private int secondRageProjectiles = 30;
-    [SerializeField] private ParticleSystem rageParticles = null;
-    [SerializeField] private ParticleSystem rageParticles2 = null;
-    [SerializeField] private ParticleSystem rageParticles3 = null;
+    [SerializeField] private ParticleSystem[] rageParticles = null;
     [SerializeField] private CinemachineImpulseSource OnRageImpulse = null;
 
 
@@ -69,7 +72,7 @@ public class Demo_boss : MonoBehaviour
     private bool isRaging = false;
     private bool isStunned = false;
     private bool isShooting = false;
-    private bool isChangingPhase = false;
+    private bool isArmoring = false;
     private bool isArmored = false;
     private bool wasShooting = false;
     private float actionTime = 0f;
@@ -88,12 +91,10 @@ public class Demo_boss : MonoBehaviour
     {
         if ( phase == 1 || phase == 2 )
         {
-            isStunned = false;
+            SetStunned( false );
             isRaging = true;
             isArmored = false;
-            _animator.SetBool( "isStunned", false );
-            _animator.SetBool( "isChangingPhase", false );
-            isChangingPhase = false;
+            _animator.SetBool( "isArmored", false );
         }
         else
         {
@@ -131,19 +132,13 @@ public class Demo_boss : MonoBehaviour
     }
 
 
-    public void SetArmored()
-    {
-        isArmored = true;
-    }
-
-
-    public void CheckRage()
+    public void CheckPhaseHP()
     {
         if ( (phase == 1 && healthManager.currentHP <= secondPhaseHP) ||
              (phase == 2 && healthManager.currentHP <= thirdPhaseHP) ||
              (phase == 3 && healthManager.currentHP <= 0) )
         {
-            ChangePhase();
+            ArmorUp();
         }
     }
 
@@ -156,7 +151,7 @@ public class Demo_boss : MonoBehaviour
 
     public void InvokeEarthquake()
     {
-        EarthquakeEvent.Broadcast(gameObject, transform.position);
+        EarthquakeEvent.Broadcast( gameObject, transform.position );
     }
 
 
@@ -168,7 +163,7 @@ public class Demo_boss : MonoBehaviour
 
     private void Update()
     {
-        if ( isRaging || isMoving || isCharging || isShooting || (isChangingPhase && !isArmored) ) return;
+        if ( isRaging || isMoving || isCharging || isShooting || isArmoring ) return;
 
         if ( isStunned )
         {
@@ -179,8 +174,7 @@ public class Demo_boss : MonoBehaviour
             else
             {
                 actionTime = 0f;
-                isStunned = false;
-                _animator.SetBool( "isStunned", false );
+                SetStunned( false );
             }
         }
         else if ( !isDeciding )
@@ -188,6 +182,13 @@ public class Demo_boss : MonoBehaviour
             Invoke( "ChooseAction", decisionTime );
             isDeciding = true;
         }
+    }
+
+
+    private void SetStunned (bool b )
+    {
+        isStunned = b;
+        _animator.SetBool( "isStunned", b );
     }
 
 
@@ -225,7 +226,7 @@ public class Demo_boss : MonoBehaviour
     {
         direction = player.position.x < transform.position.x ? -1 : 1;
 
-        if ( isChangingPhase && isArmored )
+        if ( isArmored )
         {
             LoadCharge();
         }
@@ -242,19 +243,43 @@ public class Demo_boss : MonoBehaviour
     }
 
 
-    private void ChangePhase()
+    private void ArmorUp()
     {
-        _animator.SetBool( "isMoving", false );
+        if ( isMoving )
+        {
+            StopMoving();
+        }
+
         _animator.SetBool( "isShooting", false );
-        isMoving = false;
         isShooting = false;
+
         isDeciding = false;
+
         isRaging = false;
 
-        _animator.SetBool( "isChangingPhase", true );
-        isChangingPhase = true;
+        forceField.SetActive( false );
+        Invoke( "SetArmored", armoringTime );
+        foreach ( ParticleSystem p in armoringParticles )
+        {
+            p.Play();
+        }
+        isArmoring = true;
 
-        _animator.Play( "Demo_boss_armor" );
+        _animator.Play( "Demo_boss_idle" );
+    }
+
+
+    private void SetArmored()
+    {
+        isArmored = true;
+        _animator.SetBool( "isArmored", true );
+
+        isArmoring = false;
+        foreach ( ParticleSystem p in armoringParticles )
+        {
+            p.Stop();
+        }
+        forceField.SetActive( true );
     }
 
 
@@ -312,7 +337,7 @@ public class Demo_boss : MonoBehaviour
             angleToPlayer = 180f - angleToPlayer;
         }
         float angle = 45;
-        if (angleToPlayer < 0f )
+        if ( angleToPlayer < 0f )
         {
             angle -= angleToPlayer / 2f;
             vectorToPlayer.y = 0f;
@@ -362,10 +387,9 @@ public class Demo_boss : MonoBehaviour
     private void StopCharging()
     {
         isCharging = false;
-        isStunned = true;
-        _animator.SetBool( "isStunned", true );
+        SetStunned( true );
         OnStun.Invoke();
-    }    
+    }
 
 
     private IEnumerator Rage()
@@ -378,9 +402,10 @@ public class Demo_boss : MonoBehaviour
         if ( phase == 1 ) rageProjectiles = firstRageProjectiles;
         else rageProjectiles = secondRageProjectiles;
 
-        rageParticles.Play();
-        rageParticles2.Play();
-        rageParticles3.Play();
+        foreach (ParticleSystem p in rageParticles )
+        {
+            p.Play();
+        }
 
         while ( currentSequence < rageProjectiles )
         {
@@ -392,9 +417,10 @@ public class Demo_boss : MonoBehaviour
             yield return new WaitForSeconds( timeBetweenRageProjectiles );
         }
 
-        rageParticles.Stop();
-        rageParticles2.Stop();
-        rageParticles3.Stop();
+        foreach ( ParticleSystem p in rageParticles )
+        {
+            p.Stop();
+        }
 
         isRaging = false;
         _animator.SetTrigger( "rageEnd" );

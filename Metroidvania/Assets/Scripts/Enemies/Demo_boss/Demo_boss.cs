@@ -98,7 +98,7 @@ public class Demo_boss : MonoBehaviour
         }
         else
         {
-            healthManager.Death();
+            _animator.Play( "Demo_boss_death" );
         }
     }
 
@@ -397,7 +397,6 @@ public class Demo_boss : MonoBehaviour
     private IEnumerator Rage()
     {
         isRaging = true;
-
 
         direction = player.position.x < transform.position.x ? -1 : 1;
 

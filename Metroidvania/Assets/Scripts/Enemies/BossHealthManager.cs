@@ -7,6 +7,7 @@ public class BossHealthManager : HealthManager
     [SerializeField] private float hitBrightness = 1f;
     [SerializeField] private float brightnessChangeTime = 0.5f;
     [SerializeField] private float deathTime = 3f;
+    [SerializeField] private Transform pointsDropPosition = null;
     [SerializeField] private ParticleSystem[] deathParticles = null;
     [SerializeField] private ParticleSystem[] deathParticles2 = null;
     [SerializeField] private ParticleSystem[] deathParticles3 = null;
@@ -74,7 +75,7 @@ public class BossHealthManager : HealthManager
 
         for ( int i = 0; i < count; i++ )
         {
-            Transform inst = Instantiate( point, transform.position, transform.rotation );
+            Transform inst = Instantiate( point, pointsDropPosition.position, transform.rotation );
             Vector2 dropForce = Random.insideUnitCircle * pointsDropForce;
             dropForce.y = Mathf.Abs( dropForce.y );
             inst.GetComponent<Rigidbody2D>().AddForce( dropForce, ForceMode2D.Impulse );

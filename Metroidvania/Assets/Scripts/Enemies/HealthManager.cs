@@ -3,8 +3,7 @@ using UnityEngine.Events;
 
 abstract public class HealthManager : MonoBehaviour
 {
-    protected float pointsDropForce = 10f;
-
+    [SerializeField] protected float pointsDropForce = 10f;
     [SerializeField] protected int initialHP = 100;
     [SerializeField] protected Transform point = null;
     [SerializeField] protected int minPoints = 0;

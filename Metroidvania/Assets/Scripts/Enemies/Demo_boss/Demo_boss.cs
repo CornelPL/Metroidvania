@@ -163,6 +163,11 @@ public class Demo_boss : MonoBehaviour
 
     private void Update()
     {
+        if ( Input.GetKey( KeyCode.G ) )
+        {
+            _animator.Play( "Demo_boss_death" );
+        }
+
         if ( isRaging || isMoving || isCharging || isShooting || isArmoring ) return;
 
         if ( isStunned )

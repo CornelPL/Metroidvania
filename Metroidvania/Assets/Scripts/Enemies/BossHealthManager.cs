@@ -11,6 +11,16 @@ public class BossHealthManager : HealthManager
     [SerializeField] private ParticleSystem[] deathParticles = null;
     [SerializeField] private ParticleSystem[] deathParticles2 = null;
     [SerializeField] private ParticleSystem[] deathParticles3 = null;
+    [SerializeField] private GameObject explosionForceField = null;
+
+    [Header("Death Light")]
+    [SerializeField] private UnityEngine.Experimental.Rendering.LWRP.Light2D deathLight = null;
+    [SerializeField] private float increaseTime = 0.1f;
+    [SerializeField] private float decreaseTime = 1f;
+    [SerializeField] private float minOuterRadius = 0f;
+    [SerializeField] private float maxOuterRadius = 40f;
+    [SerializeField] private float minIntensity = 0f;
+    [SerializeField] private float maxIntensity = 20f;
 
 
     override public void ChangeColorOnDamage()
@@ -50,6 +60,9 @@ public class BossHealthManager : HealthManager
 
         yield return new WaitForSeconds( deathTime / 3f );
 
+        LeanTween.value( minOuterRadius, maxOuterRadius, increaseTime ).setOnUpdate( ( float v ) => { deathLight.pointLightOuterRadius = v; } );
+        LeanTween.value( minIntensity, maxIntensity, increaseTime ).setOnUpdate( ( float v ) => { deathLight.intensity = v; } ).setOnComplete( () => { LeanTween.value( maxIntensity, minIntensity, decreaseTime ).setOnUpdate( ( float v ) => { deathLight.intensity = v; } ); } );
+
         foreach ( ParticleSystem p in deathParticles )
         {
             p.Stop();
@@ -65,7 +78,7 @@ public class BossHealthManager : HealthManager
             p.Stop();
         }
 
-        // final explosion
+        explosionForceField.SetActive( true );
     }
 
 

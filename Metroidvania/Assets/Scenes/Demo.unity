@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 35675793}
   - component: {fileID: 35675794}
   m_Layer: 0
-  m_Name: Point Light 2D
+  m_Name: LastExplosionLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -291,7 +291,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 792388945}
-  m_RootOrder: 10
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &35675794
 MonoBehaviour:
@@ -750,7 +750,7 @@ Transform:
   m_LocalPosition: {x: -0.1499992, y: -0.22000277, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 792388945}
+  m_Father: {fileID: 1182747412}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &66404577
@@ -769,7 +769,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -11612,24 +11612,24 @@ MonoBehaviour:
   deathParticles:
   - {fileID: 970241272}
   - {fileID: 430975764}
+  - {fileID: 2051210920}
+  eyesLight: {fileID: 941338964}
+  firstExplosionOneShot: {fileID: 1182747411}
+  firstExplosionLooping:
   - {fileID: 1352339400}
   - {fileID: 1418543407}
-  - {fileID: 66404577}
-  - {fileID: 992328336}
-  deathParticles2:
+  secondExplosionOneShot: {fileID: 1580837211}
+  secondExplosionLooping:
   - {fileID: 132294045}
-  - {fileID: 0}
-  - {fileID: 893713885}
-  - {fileID: 1013570993}
-  deathParticles3:
+  - {fileID: 944321065}
+  thirdExplosionOneShot: {fileID: 467566375}
+  thirdExplosionLooping:
   - {fileID: 347286529}
-  - {fileID: 0}
-  - {fileID: 485571325}
-  - {fileID: 1793893995}
-  explosionForceField: {fileID: 1671203151}
+  - {fileID: 1991203636}
+  lastExplosionForceField: {fileID: 1671203151}
   deathLight: {fileID: 35675794}
   increaseTime: 0.1
-  decreaseTime: 1
+  decreaseTime: 2
   minOuterRadius: 0
   maxOuterRadius: 40
   minIntensity: 0
@@ -18886,8 +18886,8 @@ Transform:
   m_LocalPosition: {x: 0.9100022, y: -1.440004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 792388945}
-  m_RootOrder: 6
+  m_Father: {fileID: 467566376}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -117.782005}
 --- !u!114 &354449621
 MonoBehaviour:
@@ -29731,6 +29731,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.0252628, y: 5.6154556}
   m_EdgeRadius: 0
+--- !u!1 &467566375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 467566376}
+  m_Layer: 0
+  m_Name: ThirdExplosion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &467566376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467566375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 354449620}
+  - {fileID: 485571324}
+  - {fileID: 1793893994}
+  m_Father: {fileID: 792388945}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &479005719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30154,8 +30187,8 @@ Transform:
   m_LocalPosition: {x: -0.2900005, y: -1.1599976, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 792388945}
-  m_RootOrder: 7
+  m_Father: {fileID: 467566376}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -48.23}
 --- !u!198 &485571325
 ParticleSystem:
@@ -30173,7 +30206,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -41270,7 +41303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.08775, y: 0.85122126}
   m_AnchorMax: {x: 0.14375, y: 0.88010615}
-  m_AnchoredPosition: {x: -9.100159, y: -0.8000488}
+  m_AnchoredPosition: {x: -9.100098, y: -0.8000488}
   m_SizeDelta: {x: 55, y: 87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &655700169
@@ -41871,7 +41904,7 @@ Transform:
   m_LocalPosition: {x: 0.7400002, y: 0.9199965, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 792388945}
+  m_Father: {fileID: 1182747412}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -60}
 --- !u!114 &779751268
@@ -41940,15 +41973,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 779751267}
-  - {fileID: 66404576}
-  - {fileID: 992328335}
-  - {fileID: 1928750198}
-  - {fileID: 893713884}
-  - {fileID: 1013570992}
-  - {fileID: 354449620}
-  - {fileID: 485571324}
-  - {fileID: 1793893994}
+  - {fileID: 1182747412}
+  - {fileID: 1580837212}
+  - {fileID: 467566376}
   - {fileID: 1671203152}
   - {fileID: 35675793}
   m_Father: {fileID: 193585796}
@@ -42483,8 +42510,8 @@ Transform:
   m_LocalPosition: {x: -0.39000088, y: -0.36000216, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 792388945}
-  m_RootOrder: 4
+  m_Father: {fileID: 1580837212}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 118.61}
 --- !u!198 &893713885
 ParticleSystem:
@@ -42502,7 +42529,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -48303,7 +48330,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &941338965
 Transform:
   m_ObjectHideFlags: 0
@@ -48333,18 +48360,18 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.99420637, g: 0.4669811, b: 1, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.9946177, g: 0.5801887, b: 1, a: 1}
+  m_Intensity: 1.5
   m_LightVolumeOpacity: 1
   m_ApplyToSortingLayers: 00000000d75abb4b
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
-  m_PointLightInnerAngle: 20
-  m_PointLightOuterAngle: 50
+  m_PointLightInnerAngle: 25
+  m_PointLightOuterAngle: 60
   m_PointLightInnerRadius: 1.4
-  m_PointLightOuterRadius: 5
+  m_PointLightOuterRadius: 7
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 3
@@ -58153,7 +58180,7 @@ Transform:
   m_LocalPosition: {x: -0.1499992, y: -0.22000277, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 792388945}
+  m_Father: {fileID: 1182747412}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &992328336
@@ -58172,7 +58199,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -63197,8 +63224,8 @@ Transform:
   m_LocalPosition: {x: -0.1499992, y: -0.22000277, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 792388945}
-  m_RootOrder: 5
+  m_Father: {fileID: 1580837212}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 118.61}
 --- !u!198 &1013570993
 ParticleSystem:
@@ -63216,7 +63243,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -69317,6 +69344,39 @@ Transform:
   - {fileID: 1587992741}
   m_Father: {fileID: 1813080090}
   m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1182747411
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1182747412}
+  m_Layer: 0
+  m_Name: FirstExplosion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1182747412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182747411}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 779751267}
+  - {fileID: 66404576}
+  - {fileID: 992328335}
+  m_Father: {fileID: 792388945}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1193049896
 GameObject:
@@ -87775,6 +87835,39 @@ Transform:
   m_Father: {fileID: 616860111}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -16.056002}
+--- !u!1 &1580837211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1580837212}
+  m_Layer: 0
+  m_Name: SecondExplosion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1580837212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580837211}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1928750198}
+  - {fileID: 893713884}
+  - {fileID: 1013570992}
+  m_Father: {fileID: 792388945}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1586569546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89267,7 +89360,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 792388945}
-  m_RootOrder: 9
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!330 &1671203153
 ParticleSystemForceField:
@@ -91179,8 +91272,8 @@ Transform:
   m_LocalPosition: {x: -0.1499992, y: -0.22000277, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 792388945}
-  m_RootOrder: 8
+  m_Father: {fileID: 467566376}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -48.23}
 --- !u!198 &1793893995
 ParticleSystem:
@@ -91198,7 +91291,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -97139,8 +97232,8 @@ Transform:
   m_LocalPosition: {x: -1.4599996, y: -0.43000185, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 792388945}
-  m_RootOrder: 3
+  m_Father: {fileID: 1580837212}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 64.239006}
 --- !u!114 &1928750199
 MonoBehaviour:
@@ -102857,8 +102950,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.3
-      minScalar: 0.15
+      scalar: 0.5
+      minScalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:

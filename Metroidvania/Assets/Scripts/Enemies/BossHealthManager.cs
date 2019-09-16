@@ -9,9 +9,14 @@ public class BossHealthManager : HealthManager
     [SerializeField] private float deathTime = 3f;
     [SerializeField] private Transform pointsDropPosition = null;
     [SerializeField] private ParticleSystem[] deathParticles = null;
-    [SerializeField] private ParticleSystem[] deathParticles2 = null;
-    [SerializeField] private ParticleSystem[] deathParticles3 = null;
-    [SerializeField] private GameObject explosionForceField = null;
+    [SerializeField] private GameObject eyesLight = null;
+    [SerializeField] private GameObject firstExplosionOneShot = null;
+    [SerializeField] private ParticleSystem[] firstExplosionLooping = null;
+    [SerializeField] private GameObject secondExplosionOneShot = null;
+    [SerializeField] private ParticleSystem[] secondExplosionLooping = null;
+    [SerializeField] private GameObject thirdExplosionOneShot = null;
+    [SerializeField] private ParticleSystem[] thirdExplosionLooping = null;
+    [SerializeField] private GameObject lastExplosionForceField = null;
 
     [Header("Death Light")]
     [SerializeField] private UnityEngine.Experimental.Rendering.LWRP.Light2D deathLight = null;
@@ -39,26 +44,41 @@ public class BossHealthManager : HealthManager
 
     private IEnumerator DeathCoroutine()
     {
+        eyesLight.SetActive( true );
+
         foreach ( ParticleSystem p in deathParticles )
         {
             p.Play();
         }
 
-        yield return new WaitForSeconds( deathTime / 3f );
+        yield return new WaitForSeconds( deathTime / 4f );
 
-        foreach ( ParticleSystem p in deathParticles2 )
+        firstExplosionOneShot.SetActive( true );
+
+        foreach ( ParticleSystem p in firstExplosionLooping )
         {
             p.Play();
         }
 
-        yield return new WaitForSeconds( deathTime / 3f );
+        yield return new WaitForSeconds( deathTime / 4f );
 
-        foreach ( ParticleSystem p in deathParticles3 )
+        secondExplosionOneShot.SetActive( true );
+
+        foreach ( ParticleSystem p in secondExplosionLooping )
         {
             p.Play();
         }
 
-        yield return new WaitForSeconds( deathTime / 3f );
+        yield return new WaitForSeconds( deathTime / 4f );
+
+        thirdExplosionOneShot.SetActive( true );
+
+        foreach ( ParticleSystem p in thirdExplosionLooping )
+        {
+            p.Play();
+        }
+
+        yield return new WaitForSeconds( deathTime / 4f );
 
         LeanTween.value( minOuterRadius, maxOuterRadius, increaseTime ).setOnUpdate( ( float v ) => { deathLight.pointLightOuterRadius = v; } );
         LeanTween.value( minIntensity, maxIntensity, increaseTime ).setOnUpdate( ( float v ) => { deathLight.intensity = v; } ).setOnComplete( () => { LeanTween.value( maxIntensity, minIntensity, decreaseTime ).setOnUpdate( ( float v ) => { deathLight.intensity = v; } ); } );
@@ -68,17 +88,22 @@ public class BossHealthManager : HealthManager
             p.Stop();
         }
 
-        foreach ( ParticleSystem p in deathParticles2 )
+        foreach ( ParticleSystem p in firstExplosionLooping )
         {
             p.Stop();
         }
 
-        foreach ( ParticleSystem p in deathParticles3 )
+        foreach ( ParticleSystem p in secondExplosionLooping )
         {
             p.Stop();
         }
 
-        explosionForceField.SetActive( true );
+        foreach ( ParticleSystem p in thirdExplosionLooping )
+        {
+            p.Stop();
+        }
+
+        lastExplosionForceField.SetActive( true );
     }
 
 

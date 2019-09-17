@@ -99,6 +99,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3379213248802444538}
+  - component: {fileID: 1082356501}
+  - component: {fileID: 1082356500}
   m_Layer: 10
   m_Name: cape anchor back
   m_TagString: Untagged
@@ -130,6 +132,48 @@ Transform:
   m_Father: {fileID: 2688279590942930702}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -16.056002}
+--- !u!114 &1082356501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584554640082957436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7549820a81959438cb2a199ebc4ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cape: {fileID: 3294241901115249136}
+--- !u!114 &1082356500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584554640082957436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c292d8e6b629b42ae228f0fd3d7ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: a7a8e6516a5aac946b467e0134339f54, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 886065061}
+        m_MethodName: Rotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventVector2, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1651306642104861816
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,6 +333,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4316189592397647427}
+  - component: {fileID: 886065061}
+  - component: {fileID: 886065062}
   m_Layer: 10
   m_Name: cape anchor front
   m_TagString: Untagged
@@ -320,6 +366,48 @@ Transform:
   m_Father: {fileID: 2688279590942930702}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -16.056002}
+--- !u!114 &886065061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4004304393709588870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7549820a81959438cb2a199ebc4ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cape: {fileID: 1992314874212601816}
+--- !u!114 &886065062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4004304393709588870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c292d8e6b629b42ae228f0fd3d7ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: a7a8e6516a5aac946b467e0134339f54, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 886065061}
+        m_MethodName: Rotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventVector2, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &4137482102016390374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,7 +1247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9172272b96a684a9f8ef04397a5554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFacingRight: 1
+  isFacingRight: 0
   isPullingItemState: 0
   isHoldingItemState: 0
   isGroundedState: 1
@@ -1182,7 +1270,7 @@ MonoBehaviour:
   rightMaterial: {fileID: 2100000, guid: 7bf8b85bdcf50d2478ed951da3d74f44, type: 2}
   leftMaterial: {fileID: 2100000, guid: af846ae2e52422a4ba14290d919a255e, type: 2}
   animator: {fileID: 5845602597293220103}
-  lastTimeGrounded: 21.16958
+  lastTimeGrounded: 0.02
 --- !u!114 &6838834047338178268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1282,8 +1370,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  anchorFront: {fileID: 4316189592397647427}
-  anchorBack: {fileID: 3379213248802444538}
   shootEffectBlur: {fileID: 0}
   shootEffectBlurSize: 1.5
   shootEffectBlurTime: 0.1

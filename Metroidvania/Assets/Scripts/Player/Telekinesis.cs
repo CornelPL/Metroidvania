@@ -27,8 +27,6 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private GameObject pullEffects = null;
     [SerializeField] private GameObject shootEffects = null;
     [SerializeField] private UnityEvent OnShoot = null;
-    [SerializeField] private Transform anchorFront = null;
-    [SerializeField] private Transform anchorBack = null;
     [SerializeField] private GameObject shootEffectBlur = null;
     [SerializeField] private float shootEffectBlurSize = 1.5f;
     [SerializeField] private float shootEffectBlurTime = 0.1f;
@@ -294,14 +292,6 @@ public class Telekinesis : MonoBehaviour
     private void ShootItem()
     {
         OnShoot.Invoke();
-
-        float tmp = anchorFront.rotation.eulerAngles.z;
-        tmp = tmp > 180f ? tmp - 360f : tmp;
-        if (tmp > -50f)
-        {
-            anchorFront.eulerAngles = new Vector3(0f, 0f, -50f);
-            anchorBack.eulerAngles = new Vector3(0f, 0f, -50f);
-        }
 
         LeanTween.value(shootEffectBlur, new Vector3(0f, 0f, 1f), new Vector3(shootEffectBlurSize, shootEffectBlurSize, 1f), shootEffectBlurTime).setOnUpdate((Vector3 v) => shootEffectBlur.transform.localScale = v).setOnComplete(() => shootEffectBlur.transform.localScale = new Vector3(0f, 0f, 1f));
         SpriteRenderer renderer = shootEffectBlur.GetComponent<SpriteRenderer>();

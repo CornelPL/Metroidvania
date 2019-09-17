@@ -22,6 +22,7 @@ public class BossHealthManager : HealthManager
     [SerializeField] private ParticleSystem[] thirdExplosionLooping = null;
     [SerializeField] private GameObject lastExplosionForceField = null;
     [SerializeField] private CinemachineImpulseSource LastExplosionImpulse = null;
+    [SerializeField] private Vector2Event shockwaveEvent = null;
 
     [Header("Death Light")]
     [SerializeField] private UnityEngine.Experimental.Rendering.LWRP.Light2D deathLight = null;
@@ -145,6 +146,23 @@ public class BossHealthManager : HealthManager
             instantiated.GetComponent<Rigidbody2D>().mass = randomScale;
             instantiated.GetComponent<Rigidbody2D>().AddTorque( Random.Range( 0f, 5f ), ForceMode2D.Impulse );
             instantiated.GetComponent<Rigidbody2D>().AddForce( direction * shootForce, ForceMode2D.Impulse );
+        }
+
+        StartCoroutine( GenerateShockwave() );
+    }
+
+
+    private IEnumerator GenerateShockwave()
+    {
+        float t = 0f;
+
+        while (t < decreaseTime / 2f )
+        {
+            t += Time.deltaTime;
+
+            shockwaveEvent.Broadcast( gameObject, pointsDropPosition.position );
+
+            yield return new WaitForSeconds( 0.05f );
         }
     }
 

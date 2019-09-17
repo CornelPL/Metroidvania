@@ -19,7 +19,9 @@ public class ClothSim2D : MonoBehaviour
     [SerializeField] private float noiseMultiplier = 0.05f;
     [SerializeField] private float moveNoiseFrequency = 5f;
     [SerializeField] private float moveNoiseMultiplier = 0.3f;
+    [SerializeField] private Vector2 wind = Vector2.zero;
     #endregion
+
 
     #region Private variables
     private Mesh mesh;
@@ -32,6 +34,15 @@ public class ClothSim2D : MonoBehaviour
     private Vector2 previousPlayerPosition;
     private PlayerState state;
     #endregion
+
+
+    public void Recalculate()
+    {
+        CalculatePositions();
+        CalculateAngles();
+        UpdateSprite();
+    }
+
 
     private void Start()
     {
@@ -154,7 +165,6 @@ public class ClothSim2D : MonoBehaviour
 
     private void CalculatePositions()
     {
-
         for (int i = 1; i < verticalNodesCount; i++)
         {
             Transform capePoint = capePoints[i];
@@ -163,7 +173,7 @@ public class ClothSim2D : MonoBehaviour
 
             previousCapePointsPositions[i] = capePoint.position;
 
-            capePoint.position = (Vector2)capePoint.position + velocity * damping + gravity * dt * dt;
+            capePoint.position = (Vector2)capePoint.position + velocity * damping + gravity * dt * dt + wind;
         }
 
         previousCapePointsPositions[0] = anchor.position;

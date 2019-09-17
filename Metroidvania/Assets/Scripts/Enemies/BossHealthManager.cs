@@ -22,7 +22,9 @@ public class BossHealthManager : HealthManager
     [SerializeField] private ParticleSystem[] thirdExplosionLooping = null;
     [SerializeField] private GameObject lastExplosionForceField = null;
     [SerializeField] private CinemachineImpulseSource LastExplosionImpulse = null;
-    [SerializeField] private Vector2Event shockwaveEvent = null;
+    [SerializeField] private Vector2Event shockwaveEventSource = null;
+    [SerializeField] private FloatEvent shockwaveEventForce = null;
+    [SerializeField] private float shockwaveForce = 0.1f;
 
     [Header("Death Light")]
     [SerializeField] private UnityEngine.Experimental.Rendering.LWRP.Light2D deathLight = null;
@@ -156,11 +158,12 @@ public class BossHealthManager : HealthManager
     {
         float t = 0f;
 
-        while (t < decreaseTime / 2f )
+        while (t < decreaseTime / 3f )
         {
             t += Time.deltaTime;
 
-            shockwaveEvent.Broadcast( gameObject, pointsDropPosition.position );
+            shockwaveEventSource.Broadcast( gameObject, pointsDropPosition.position );
+            shockwaveEventForce.Broadcast( gameObject, shockwaveForce );
 
             yield return new WaitForSeconds( 0.05f );
         }

@@ -19,7 +19,7 @@ public class ClothSim2D : MonoBehaviour
     [SerializeField] private float noiseMultiplier = 0.05f;
     [SerializeField] private float moveNoiseFrequency = 5f;
     [SerializeField] private float moveNoiseMultiplier = 0.3f;
-    [SerializeField] private Vector2 wind = Vector2.zero;
+    [SerializeField] private float windSmoothness = 1000f;
     #endregion
 
 
@@ -33,7 +33,21 @@ public class ClothSim2D : MonoBehaviour
     private Transform anchor;
     private Vector2 previousPlayerPosition;
     private PlayerState state;
+    [SerializeField] private Vector2 wind = Vector2.zero;
     #endregion
+
+
+    public void SetWindDirection( Vector2 windSourcePosition )
+    {
+        wind = (Vector2)transform.position - windSourcePosition;
+        wind.Normalize();
+    }
+
+
+    public void SetWindForce( float windForce )
+    {
+        wind *= windForce;
+    }
 
 
     public void Recalculate()
@@ -59,6 +73,11 @@ public class ClothSim2D : MonoBehaviour
         CalculatePositions();
         CalculateAngles();
         UpdateSprite();
+
+        if ( wind.magnitude > 0.0001f )
+        {
+            wind -= wind * Time.deltaTime / windSmoothness;
+        }
     }
 
 
@@ -121,34 +140,46 @@ public class ClothSim2D : MonoBehaviour
     private void RotateWithMovement()
     {
         Vector2 movementDirection = (Vector2)player.position - previousPlayerPosition;
-        if (movementDirection.magnitude > 0.05f)
+        if (movementDirection.magnitude > 0.05f || wind.magnitude > 0.0001f)
         {
-            float angle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg - 90f;
-            angle = angle < -180f ? angle + 360f : angle;
-            if (angle == -180f && !state.isFacingRight)
+            float movementAngle = 0f;
+
+            if ( movementDirection.magnitude > 0.05f )
             {
-                angle = 180f;
+                movementAngle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg - 90f;
+                movementAngle = movementAngle < -180f ? movementAngle + 360f : movementAngle;
             }
-            if ( state.isFacingRight && angle > 0f )
+
+            float windAngle = Mathf.Atan2( wind.y, wind.x ) * Mathf.Rad2Deg + 90f;
+            windAngle = windAngle > 180f ? windAngle - 360f : windAngle;
+
+            float desiredAngle = movementAngle + (windAngle - movementAngle) * wind.magnitude;
+
+            if ( desiredAngle == -180f && !state.isFacingRight)
             {
-                angle = 0f;
+                desiredAngle = 180f;
             }
-            else if ( !state.isFacingRight && angle < 0f )
+            if ( state.isFacingRight && desiredAngle > 0f )
             {
-                angle = 0f;
+                desiredAngle = 0f;
             }
-            if (angle > maxAngleAllCape )
+            else if ( !state.isFacingRight && desiredAngle < 0f )
             {
-                angle = maxAngleAllCape;
+                desiredAngle = 0f;
             }
-            else if (angle < -maxAngleAllCape )
+            if ( desiredAngle > maxAngleAllCape )
             {
-                angle = -maxAngleAllCape;
+                desiredAngle = maxAngleAllCape;
+            }
+            else if ( desiredAngle < -maxAngleAllCape )
+            {
+                desiredAngle = -maxAngleAllCape;
             }
 
             float curAngle = anchor.rotation.eulerAngles.z;
             curAngle = curAngle > 180f ? curAngle - 360f : curAngle;
-            float angleDiff = angle - curAngle;
+
+            float angleDiff = desiredAngle - curAngle;
             // TODO: optimalization
             //if (Mathf.Abs(angleDiff) > 5f)
             anchor.Rotate(Vector3.forward * angleDiff * Time.deltaTime * rotationSpeedMove);
@@ -173,7 +204,7 @@ public class ClothSim2D : MonoBehaviour
 
             previousCapePointsPositions[i] = capePoint.position;
 
-            capePoint.position = (Vector2)capePoint.position + velocity * damping + gravity * dt * dt + wind;
+            capePoint.position = (Vector2)capePoint.position + velocity * damping + gravity * dt * dt + wind / 10f;
         }
 
         previousCapePointsPositions[0] = anchor.position;

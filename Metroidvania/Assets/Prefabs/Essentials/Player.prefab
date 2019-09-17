@@ -99,8 +99,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3379213248802444538}
-  - component: {fileID: 1082356501}
-  - component: {fileID: 1082356500}
   m_Layer: 10
   m_Name: cape anchor back
   m_TagString: Untagged
@@ -132,48 +130,6 @@ Transform:
   m_Father: {fileID: 2688279590942930702}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -16.056002}
---- !u!114 &1082356501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584554640082957436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a7549820a81959438cb2a199ebc4ce9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cape: {fileID: 3294241901115249136}
---- !u!114 &1082356500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584554640082957436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0c292d8e6b629b42ae228f0fd3d7ed7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: a7a8e6516a5aac946b467e0134339f54, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 886065061}
-        m_MethodName: Rotate
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEventVector2, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!1 &1651306642104861816
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,8 +289,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4316189592397647427}
-  - component: {fileID: 886065061}
-  - component: {fileID: 886065062}
   m_Layer: 10
   m_Name: cape anchor front
   m_TagString: Untagged
@@ -366,48 +320,6 @@ Transform:
   m_Father: {fileID: 2688279590942930702}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -16.056002}
---- !u!114 &886065061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4004304393709588870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a7549820a81959438cb2a199ebc4ce9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cape: {fileID: 1992314874212601816}
---- !u!114 &886065062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4004304393709588870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0c292d8e6b629b42ae228f0fd3d7ed7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: a7a8e6516a5aac946b467e0134339f54, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 886065061}
-        m_MethodName: Rotate
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEventVector2, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!1 &4137482102016390374
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +363,8 @@ GameObject:
   - component: {fileID: 432935374222350247}
   - component: {fileID: 627802304885610991}
   - component: {fileID: 3294241901115249136}
+  - component: {fileID: 885041410}
+  - component: {fileID: 885041413}
   m_Layer: 10
   m_Name: Quad
   m_TagString: Untagged
@@ -590,6 +504,66 @@ MonoBehaviour:
   noiseMultiplier: 0.003
   moveNoiseFrequency: 7
   moveNoiseMultiplier: 0.07
+  windSmoothness: 0.5
+  wind: {x: 0, y: 0}
+--- !u!114 &885041410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4425606370408308430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c292d8e6b629b42ae228f0fd3d7ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: a7a8e6516a5aac946b467e0134339f54, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3294241901115249136}
+        m_MethodName: SetWindDirection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventVector2, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &885041413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4425606370408308430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a00bd12507c9a14f852be67ee6e6ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 931e68b5bb8040040a1d450d301e2dcc, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3294241901115249136}
+        m_MethodName: SetWindForce
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventFloat, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &4864051879220176926
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +667,8 @@ GameObject:
   - component: {fileID: 4104928584312667053}
   - component: {fileID: 8631312590913552132}
   - component: {fileID: 1992314874212601816}
+  - component: {fileID: 262559041}
+  - component: {fileID: 262559043}
   m_Layer: 10
   m_Name: Quad
   m_TagString: Untagged
@@ -832,6 +808,66 @@ MonoBehaviour:
   noiseMultiplier: 0.003
   moveNoiseFrequency: 7
   moveNoiseMultiplier: 0.07
+  windSmoothness: 0.5
+  wind: {x: 0, y: 0}
+--- !u!114 &262559041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5224176720194547003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a00bd12507c9a14f852be67ee6e6ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 931e68b5bb8040040a1d450d301e2dcc, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1992314874212601816}
+        m_MethodName: SetWindForce
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventFloat, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &262559043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5224176720194547003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c292d8e6b629b42ae228f0fd3d7ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: a7a8e6516a5aac946b467e0134339f54, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1992314874212601816}
+        m_MethodName: SetWindDirection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventVector2, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &5378617878819047141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,7 +1306,7 @@ MonoBehaviour:
   rightMaterial: {fileID: 2100000, guid: 7bf8b85bdcf50d2478ed951da3d74f44, type: 2}
   leftMaterial: {fileID: 2100000, guid: af846ae2e52422a4ba14290d919a255e, type: 2}
   animator: {fileID: 5845602597293220103}
-  lastTimeGrounded: 0.02
+  lastTimeGrounded: 38.54
 --- !u!114 &6838834047338178268
 MonoBehaviour:
   m_ObjectHideFlags: 0

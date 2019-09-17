@@ -11631,7 +11631,11 @@ MonoBehaviour:
   - {fileID: 1991203636}
   lastExplosionForceField: {fileID: 1671203151}
   LastExplosionImpulse: {fileID: 2105759240}
-  shockwaveEvent: {fileID: 11400000, guid: a7a8e6516a5aac946b467e0134339f54, type: 2}
+  shockwaveEventSource: {fileID: 11400000, guid: a7a8e6516a5aac946b467e0134339f54,
+    type: 2}
+  shockwaveEventForce: {fileID: 11400000, guid: 931e68b5bb8040040a1d450d301e2dcc,
+    type: 2}
+  shockwaveForce: 5
   deathLight: {fileID: 35675794}
   increaseTime: 0.1
   decreaseTime: 2

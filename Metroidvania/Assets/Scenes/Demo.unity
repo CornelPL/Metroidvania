@@ -11611,7 +11611,7 @@ MonoBehaviour:
   deathTime: 5
   pointsDropPosition: {fileID: 335774383}
   sprite: {fileID: 431695632}
-  collider: {fileID: 563718750}
+  _collider: {fileID: 0}
   deathParticles:
   - {fileID: 970241272}
   - {fileID: 430975764}
@@ -125335,7 +125335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8242272842907280739}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.125221, y: 12.905779, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 172076701}

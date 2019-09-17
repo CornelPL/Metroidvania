@@ -11,7 +11,7 @@ public class BossHealthManager : HealthManager
     [SerializeField] private float deathTime = 3f;
     [SerializeField] private Transform pointsDropPosition = null;
     [SerializeField] private SpriteRenderer sprite = null;
-    [SerializeField] private GameObject collider = null;
+    [SerializeField] private GameObject _collider = null;
     [SerializeField] private ParticleSystem[] deathParticles = null;
     [SerializeField] private GameObject eyesLight = null;
     [SerializeField] private GameObject firstExplosionOneShot = null;
@@ -135,7 +135,7 @@ public class BossHealthManager : HealthManager
         lastExplosionForceField.SetActive( true );
 
         sprite.enabled = false;
-        collider.SetActive( false );
+        _collider.SetActive( false );
 
         for ( int i = 0; i < numOfParts; i++ )
         {

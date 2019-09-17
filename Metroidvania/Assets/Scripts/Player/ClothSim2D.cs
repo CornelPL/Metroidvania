@@ -50,14 +50,6 @@ public class ClothSim2D : MonoBehaviour
     }
 
 
-    public void Recalculate()
-    {
-        CalculatePositions();
-        CalculateAngles();
-        UpdateSprite();
-    }
-
-
     private void Start()
     {
         state = PlayerState.instance;

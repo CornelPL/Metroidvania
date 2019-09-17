@@ -1283,7 +1283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9172272b96a684a9f8ef04397a5554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFacingRight: 0
+  isFacingRight: 1
   isPullingItemState: 0
   isHoldingItemState: 0
   isGroundedState: 1
@@ -1306,7 +1306,7 @@ MonoBehaviour:
   rightMaterial: {fileID: 2100000, guid: 7bf8b85bdcf50d2478ed951da3d74f44, type: 2}
   leftMaterial: {fileID: 2100000, guid: af846ae2e52422a4ba14290d919a255e, type: 2}
   animator: {fileID: 5845602597293220103}
-  lastTimeGrounded: 38.54
+  lastTimeGrounded: 0.02
 --- !u!114 &6838834047338178268
 MonoBehaviour:
   m_ObjectHideFlags: 0

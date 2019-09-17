@@ -112890,6 +112890,11 @@ PrefabInstance:
       propertyPath: capePoints.Array.data[8]
       value: 
       objectReference: {fileID: 4375786181968277570}
+    - target: {fileID: 6838834047338178266, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: lastTimeGrounded
+      value: 0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9b27274a5ec96b428c82bee720c1fc9, type: 3}
 --- !u!1001 &2103285538

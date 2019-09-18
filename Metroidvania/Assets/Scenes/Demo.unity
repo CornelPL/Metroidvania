@@ -11611,7 +11611,7 @@ MonoBehaviour:
   deathTime: 5
   pointsDropPosition: {fileID: 335774383}
   sprite: {fileID: 431695632}
-  _collider: {fileID: 0}
+  _collider: {fileID: 563718750}
   deathParticles:
   - {fileID: 970241272}
   - {fileID: 430975764}
@@ -30119,59 +30119,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8628843287280416398, guid: 4829d2662aaedb241b7a9c4fd0254778,
         type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8628843287280416398, guid: 4829d2662aaedb241b7a9c4fd0254778,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8628843287280416398, guid: 4829d2662aaedb241b7a9c4fd0254778,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8628843287280416398, guid: 4829d2662aaedb241b7a9c4fd0254778,
-        type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1875998779}
-    - target: {fileID: 8628843287280416398, guid: 4829d2662aaedb241b7a9c4fd0254778,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RemoveEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 8628843287280416398, guid: 4829d2662aaedb241b7a9c4fd0254778,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8628843287280416398, guid: 4829d2662aaedb241b7a9c4fd0254778,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8628843287280416398, guid: 4829d2662aaedb241b7a9c4fd0254778,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8628843287280416398, guid: 4829d2662aaedb241b7a9c4fd0254778,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1676820313}
-    - target: {fileID: 8628843287280416398, guid: 4829d2662aaedb241b7a9c4fd0254778,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 8628843287280416398, guid: 4829d2662aaedb241b7a9c4fd0254778,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4829d2662aaedb241b7a9c4fd0254778, type: 3}
 --- !u!4 &484314061 stripped
@@ -46391,7 +46341,7 @@ PrefabInstance:
     - target: {fileID: 347665800707922786, guid: b8aa97b61a9808d438d7a360e019c948,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.2
+      value: 7.992
       objectReference: {fileID: 0}
     - target: {fileID: 347665800707922786, guid: b8aa97b61a9808d438d7a360e019c948,
         type: 3}
@@ -66598,7 +66548,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 3
     type: 1
     collisionMode: 1
@@ -66785,13 +66735,13 @@ ParticleSystem:
     interiorCollisions: 0
   TriggerModule:
     enabled: 0
-    collisionShape0: {fileID: 0}
+    collisionShape0: {fileID: 1911857580}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
     collisionShape3: {fileID: 0}
     collisionShape4: {fileID: 0}
     collisionShape5: {fileID: 0}
-    inside: 1
+    inside: 0
     outside: 0
     enter: 0
     exit: 0
@@ -66802,7 +66752,7 @@ ParticleSystem:
     subEmitters:
     - serializedVersion: 3
       emitter: {fileID: 0}
-      type: 0
+      type: 1
       properties: 2
       emitProbability: 1
   LightsModule:
@@ -67815,12 +67765,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!1 &997062059 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 492946502777295322, guid: 857b36963159db748b6745ad494ab573,
-    type: 3}
-  m_PrefabInstance: {fileID: 1034048814}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &997062060 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 492946502777295303, guid: 857b36963159db748b6745ad494ab573,
@@ -73026,11 +72970,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Walker_Horizontal
       objectReference: {fileID: 0}
-    - target: {fileID: 492946502777295322, guid: 857b36963159db748b6745ad494ab573,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 492946502777295303, guid: 857b36963159db748b6745ad494ab573,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -73086,71 +73025,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 492946502777295297, guid: 857b36963159db748b6745ad494ab573,
-        type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 492946502777295301, guid: 857b36963159db748b6745ad494ab573,
-        type: 3}
-      propertyPath: direction
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
         type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1875998779}
-    - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RemoveEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 997062059}
-    - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
-        type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857b36963159db748b6745ad494ab573, type: 3}
 --- !u!1001 &1040766611
@@ -73563,7 +73442,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115479061}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -91.88, y: 68.01, z: 25.541002}
+  m_LocalPosition: {x: 41.5, y: 56.8, z: 25.541002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1911857580}
@@ -80385,7 +80264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364458349}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -90.39, y: 64.262, z: 15.441002}
+  m_LocalPosition: {x: 42.989998, y: 53.052002, z: 15.441002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1265205175}
@@ -93449,7 +93328,7 @@ PrefabInstance:
     - target: {fileID: 7996462740890672813, guid: ec636d8419fa03644bc054e26d6c47e0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.748001
+      value: -3.7479973
       objectReference: {fileID: 0}
     - target: {fileID: 7996462740890672813, guid: ec636d8419fa03644bc054e26d6c47e0,
         type: 3}
@@ -94784,12 +94663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76462c9f06c5bbf40b8d6de787d15ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1676820313 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8628843287280416404, guid: 4829d2662aaedb241b7a9c4fd0254778,
-    type: 3}
-  m_PrefabInstance: {fileID: 484314060}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1685049887 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 492946502777295322, guid: 857b36963159db748b6745ad494ab573,

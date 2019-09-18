@@ -69,9 +69,9 @@ GameObject:
   - component: {fileID: 8628843287280416394}
   - component: {fileID: 8628843287280416399}
   - component: {fileID: 8628843287280416392}
+  - component: {fileID: 8628843287280416403}
   - component: {fileID: 8628843287280416398}
   - component: {fileID: 1717158258406937693}
-  - component: {fileID: 8628843287280416403}
   - component: {fileID: 1884719558664078766}
   m_Layer: 15
   m_Name: Walker_Sight
@@ -133,12 +133,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f4dc316edfc81024cb33efd9dd6345ea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cbe8d0f4092ba3746a63ea49624bdf85, type: 3}
   m_Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 1.8, y: 0.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -183,7 +183,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.8, y: 0.8}
-    newSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.8, y: 0.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -191,6 +191,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3859539, y: 0.49169922}
   m_EdgeRadius: 0
+--- !u!114 &8628843287280416403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8628843287280416404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b8819597284b574587b480613d254c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  minSpeed: 0.5
+  damage: 1
+  sightRange: 10
+  sightOffset: {x: 0, y: 0.5}
+  boost: 2
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 268436480
+  _rigidbody: {fileID: 8628843287280416399}
+  healthManager: {fileID: 8628843287280416398}
+  animator: {fileID: 1884719558664078766}
+  direction: 1
 --- !u!114 &8628843287280416398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e02d1c9aa928f04aaaaf4cadb80304c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsDropForce: 10
   initialHP: 100
   point: {fileID: 3365028966441827141, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
   minPoints: 0
@@ -213,7 +239,29 @@ MonoBehaviour:
   colorChangeTime: 0.5
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: RemoveEnemy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8628843287280416404}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnTakeDamage:
@@ -254,30 +302,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &8628843287280416403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8628843287280416404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b8819597284b574587b480613d254c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  minSpeed: 0.5
-  damage: 1
-  sightRange: 10
-  sightOffset: {x: 0, y: 0.5}
-  boost: 2
-  playerLayerMask:
-    serializedVersion: 2
-    m_Bits: 268436480
-  _rigidbody: {fileID: 8628843287280416399}
-  healthManager: {fileID: 8628843287280416398}
-  direction: 1
 --- !u!95 &1884719558664078766
 Animator:
   serializedVersion: 3

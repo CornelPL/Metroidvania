@@ -8,9 +8,6 @@ public class Walker_Horizontal : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private EnemyHealthManager healthManager = null;
     [SerializeField] private Animator animator = null;
-    [SerializeField] private SpriteRenderer spriteRenderer = null;
-    [SerializeField] private Material leftMaterial = null;
-    [SerializeField] private Material rightMaterial = null;
     [Tooltip("1 - right; -1 - left")]
     [SerializeField] private int direction = 1;
 
@@ -19,7 +16,7 @@ public class Walker_Horizontal : MonoBehaviour
 
     private void Start()
     {
-        UpdateDirection();
+        animator.SetBool( "isFacingRight", direction == 1 ? true : false );
     }
 
 
@@ -50,14 +47,7 @@ public class Walker_Horizontal : MonoBehaviour
     private void ChangeDirection()
     {
         direction = direction > 0 ? -1 : 1;
-        UpdateDirection();
-    }
-
-
-    private void UpdateDirection()
-    {
         animator.SetBool( "isFacingRight", direction == 1 ? true : false );
-        spriteRenderer.material = direction == 1 ? rightMaterial : leftMaterial;
     }
 
 

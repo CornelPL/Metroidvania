@@ -11,11 +11,19 @@ public class Walker_Sight : MonoBehaviour
     [SerializeField] private LayerMask playerLayerMask = 0;
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private EnemyHealthManager healthManager = null;
+    [SerializeField] private Animator animator = null;
     [Tooltip("1 - right; -1 - left")]
     [SerializeField] private int direction = 1;
 
     private float timeWalkingTooSlow = 0f;
     private bool playerInRange = false;
+    private bool playerWasInRange = false;
+
+
+    private void Start()
+    {
+        animator.SetBool( "isFacingRight", direction == 1 ? true : false );
+    }
 
 
     private void Update()
@@ -39,6 +47,13 @@ public class Walker_Sight : MonoBehaviour
             ChangeDirection();
             timeWalkingTooSlow = 0f;
         }
+
+        if ( (!playerWasInRange && playerInRange) || (playerWasInRange && !playerInRange) )
+        {
+            animator.SetBool( "isAttacking", playerInRange );
+        }
+
+        playerWasInRange = playerInRange;
 
         float s = playerInRange ? boost : 1f;
         s = s * speed * direction;
@@ -70,6 +85,7 @@ public class Walker_Sight : MonoBehaviour
     private void ChangeDirection()
     {
         direction = direction > 0 ? -1 : 1;
+        animator.SetBool( "isFacingRight", direction == 1 ? true : false );
     }
 
 

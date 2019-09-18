@@ -185,7 +185,7 @@ public class BossHealthManager : HealthManager
     }
 
 
-    override public void TakeDamage( int damage )
+    override public void TakeDamage( Vector2 direction, int damage )
     {
         currentHP -= damage;
         ChangeColorOnDamage();

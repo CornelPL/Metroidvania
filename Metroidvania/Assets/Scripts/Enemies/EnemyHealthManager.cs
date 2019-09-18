@@ -45,7 +45,7 @@ public class EnemyHealthManager : HealthManager
     }
 
 
-    override public void TakeDamage(int damage)
+    override public void TakeDamage( Vector2 direction, int damage )
     {
         currentHP -= damage;
 
@@ -55,6 +55,7 @@ public class EnemyHealthManager : HealthManager
         }
         else
         {
+            // summon splash in direction
             ChangeColorOnDamage();
             OnTakeDamage.Invoke();
         }

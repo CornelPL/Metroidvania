@@ -1435,7 +1435,7 @@ MonoBehaviour:
   slamSpeed: 50
   slamRange: 5
   itemsKnockbackForce: 15
-  enemiesKnockbackForce: 8000
+  enemiesKnockbackForce: 80
   earthquakeEvent: {fileID: 11400000, guid: db75f749c9fd32d44bff23c94776704d, type: 2}
   slamMask:
     serializedVersion: 2

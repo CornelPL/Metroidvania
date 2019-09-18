@@ -26,6 +26,10 @@ public class Walker_Horizontal : MonoBehaviour
         {
             Move();
         }
+        else if ( _rigidbody.velocity.magnitude < minSpeed )
+        {
+            healthManager.isBeingKnockbacked = false;
+        }
     }
 
     private void Move()

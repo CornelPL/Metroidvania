@@ -28,66 +28,70 @@ public class ItemShoot : MonoBehaviour
 
     private void Awake()
     {
-        Assert.IsNotNull(_rigidbody);
-        Assert.IsNotNull(_collider);
+        Assert.IsNotNull( _rigidbody );
+        Assert.IsNotNull( _collider );
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D( Collider2D collider )
     {
-        if (isShooted)
+        if ( isShooted )
         {
             GameObject go = collider.gameObject;
-            if (go.CompareTag("Enemy"))
+            if ( go.CompareTag( "Enemy" ) )
             {
-                go.GetComponent<HitManager>().TakeHit(baseDamage, transform.position.x, knockbackForce);
-                CustomDestroy(_rigidbody.velocity);
+                Vector2 direction = GetComponent<Rigidbody2D>().velocity.normalized;
+                direction.y += 1f;
+                direction.Normalize();
+
+                go.GetComponent<HitManager>().TakeHit( baseDamage, direction, knockbackForce );
+                CustomDestroy( _rigidbody.velocity );
             }
-            else if (go.CompareTag("DestroyablePlanks"))
+            else if ( go.CompareTag( "DestroyablePlanks" ) )
             {
                 go.GetComponent<CustomDestroy>().Destroy();
             }
 
-            if (itemType == ItemType.rock)
+            if ( itemType == ItemType.rock )
             {
-                CustomDestroy(_rigidbody.velocity);
+                CustomDestroy( _rigidbody.velocity );
             }
-            else if (itemType == ItemType.crate)
+            else if ( itemType == ItemType.crate )
             {
-                CustomDestroy(_rigidbody.velocity);
+                CustomDestroy( _rigidbody.velocity );
             }
-            else if (itemType == ItemType.plank)
+            else if ( itemType == ItemType.plank )
             {
-                if (go.CompareTag("SoftWall"))
+                if ( go.CompareTag( "SoftWall" ) )
                 {
                     plankHealth--;
-                    if (plankHealth == 0) CustomDestroy(_rigidbody.velocity);
+                    if ( plankHealth == 0 ) CustomDestroy( _rigidbody.velocity );
                     _rigidbody.velocity = Vector2.zero;
                     _rigidbody.bodyType = RigidbodyType2D.Static;
-                    gameObject.layer = LayerMask.NameToLayer("PlanksGround");
+                    gameObject.layer = LayerMask.NameToLayer( "PlanksGround" );
                     transform.rotation = Quaternion.identity;
                 }
-                else if (!go.CompareTag("Player"))
+                else if ( !go.CompareTag( "Player" ) )
                 {
-                    CustomDestroy(_rigidbody.velocity);
+                    CustomDestroy( _rigidbody.velocity );
                 }
             }
         }
     }
 
 
-    private void CustomDestroy(Vector2 collisionVelocity)
+    private void CustomDestroy( Vector2 collisionVelocity )
     {
-        if (itemType == ItemType.crate)
+        if ( itemType == ItemType.crate )
         {
-            int item = Random.Range(0, itemsToSpawn.Count);
-            int i = Random.Range(1, maxItemsToSpawn);
+            int item = Random.Range( 0, itemsToSpawn.Count );
+            int i = Random.Range( 1, maxItemsToSpawn );
 
-            for(int a = 0; a < i; a++)
+            for ( int a = 0; a < i; a++ )
             {
                 Vector3 randomRotation = transform.eulerAngles;
-                randomRotation.z = Random.Range(0f, 360f);
-                GameObject inst = Instantiate(itemsToSpawn[item], transform.position + (Vector3)Random.insideUnitCircle, transform.rotation);
+                randomRotation.z = Random.Range( 0f, 360f );
+                GameObject inst = Instantiate( itemsToSpawn[ item ], transform.position + (Vector3)Random.insideUnitCircle, transform.rotation );
                 inst.transform.eulerAngles = randomRotation;
                 inst.GetComponent<Rigidbody2D>().velocity = -collisionVelocity;
             }
@@ -100,12 +104,12 @@ public class ItemShoot : MonoBehaviour
     }
 
 
-    public void Shoot(Vector2 direction, float power)
+    public void Shoot( Vector2 direction, float power )
     {
-        _rigidbody.AddForce(direction * power, ForceMode2D.Impulse);
+        _rigidbody.AddForce( direction * power, ForceMode2D.Impulse );
         _collider.enabled = true;
         _collider.isTrigger = true;
         isShooted = true;
-        gameObject.layer = LayerMask.NameToLayer("ShootItem");
+        gameObject.layer = LayerMask.NameToLayer( "ShootItem" );
     }
 }

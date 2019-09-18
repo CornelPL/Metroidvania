@@ -9,7 +9,7 @@ public class SlamSkill : MonoBehaviour
     [SerializeField] private float itemsKnockbackForce = 15f;
     [SerializeField] private float enemiesKnockbackForce = 8000f;
     [SerializeField] private Vector2Event earthquakeEvent = null;
-    [Tooltip("What should be affected on slam end")]
+    [Tooltip( "What should be affected on slam end" )]
     public LayerMask slamMask;
 
 
@@ -26,11 +26,11 @@ public class SlamSkill : MonoBehaviour
     }
 
 
-    public void OnSlamEnd(GameObject go)
+    public void OnSlamEnd( GameObject go )
     {
         state.isSlammingState = false;
         Slam();
-        if (go.CompareTag("DestroyableGround"))
+        if ( go.CompareTag( "DestroyableGround" ) )
         {
             go.GetComponent<CustomDestroy>().Destroy();
         }
@@ -39,22 +39,24 @@ public class SlamSkill : MonoBehaviour
 
     private void Slam()
     {
-        state.DisableInvulnerability(0.5f);
-        earthquakeEvent.Broadcast(gameObject, transform.position);
+        state.DisableInvulnerability( 0.5f );
+        earthquakeEvent.Broadcast( gameObject, transform.position );
 
-        Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(transform.position, slamRange, slamMask);
+        Collider2D[] objectsInRange = Physics2D.OverlapCircleAll( transform.position, slamRange, slamMask );
 
-        for (int i = 0; i < objectsInRange.Length; i++)
+        for ( int i = 0; i < objectsInRange.Length; i++ )
         {
-            Vector2 direction = objectsInRange[i].transform.position - new Vector3(transform.position.x, transform.position.y - 1f);
+            Collider2D currentObject = objectsInRange[ i ];
+
+            Vector2 direction = currentObject.transform.position - new Vector3( transform.position.x, transform.position.y - 1f );
             direction.Normalize();
-            if (objectsInRange[i].CompareTag("Item"))
+            if ( currentObject.CompareTag( "Item" ) )
             {
-                objectsInRange[i].attachedRigidbody.AddForce(direction * itemsKnockbackForce, ForceMode2D.Impulse);
+                currentObject.attachedRigidbody.AddForce( direction * itemsKnockbackForce, ForceMode2D.Impulse );
             }
-            else if (objectsInRange[i].CompareTag("Enemy"))
+            else if ( objectsInRange[ i ].CompareTag( "Enemy" ) )
             {
-                objectsInRange[i].GetComponent<EnemyHealthManager>().Knockback(transform.position.x, enemiesKnockbackForce);
+                currentObject.GetComponent<EnemyHealthManager>().Knockback( direction, enemiesKnockbackForce );
             }
         }
     }

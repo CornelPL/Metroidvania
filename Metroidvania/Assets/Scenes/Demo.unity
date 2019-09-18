@@ -107455,6 +107455,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
+        type: 3}
+      propertyPath: OnTakeDamage.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857b36963159db748b6745ad494ab573, type: 3}
 --- !u!4 &2033581386 stripped

@@ -37,11 +37,11 @@ public class EnemyHealthManager : HealthManager
     }
 
 
-    public override void Knockback(float xPos, float force)
+    public override void Knockback(Vector2 direction, float force)
     {
         isBeingKnockbacked = true;
 
-        _rigidbody.AddForce(new Vector2(0.5f * Mathf.Sign(transform.position.x - xPos), 1f) * force, ForceMode2D.Impulse);
+        _rigidbody.AddForce(direction * force, ForceMode2D.Impulse);
     }
 
 

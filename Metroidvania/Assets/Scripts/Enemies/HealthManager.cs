@@ -18,7 +18,7 @@ abstract public class HealthManager : MonoBehaviour
     public int currentHP;
 
     abstract public void TakeDamage(int damage);
-    virtual public void Knockback(float xPosition, float force) { }
+    virtual public void Knockback(Vector2 direction, float force) { }
 
 
     virtual protected void ChangeColorOnDamage()

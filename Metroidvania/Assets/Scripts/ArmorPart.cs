@@ -13,7 +13,17 @@ public class ArmorPart : MonoBehaviour
         {
             float angle = Mathf.Atan2( collision.GetContact( 0 ).normal.y, collision.GetContact( 0 ).normal.x ) * Mathf.Rad2Deg - 90f;
 
-            Instantiate( onFallEffect, collision.GetContact( 0 ).point, Quaternion.Euler( 0f, 0f, angle ) );
+            GameObject instantiated = Instantiate( onFallEffect, collision.GetContact( 0 ).point, Quaternion.Euler( 0f, 0f, angle ) );
+
+            float scale = 1f;
+
+            float mag = collision.relativeVelocity.magnitude;
+            if ( mag < 5f )
+            {
+                scale = mag / 5f;
+            }
+
+            instantiated.transform.localScale = new Vector3( scale, scale, 1f );
 
             lastSpawnTime = Time.time;
         }

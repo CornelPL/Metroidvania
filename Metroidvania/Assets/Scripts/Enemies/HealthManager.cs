@@ -21,7 +21,7 @@ abstract public class HealthManager : MonoBehaviour
     virtual public void Knockback(float xPosition, float force) { }
 
 
-    virtual public void ChangeColorOnDamage()
+    virtual protected void ChangeColorOnDamage()
     {
         LeanTween.value( gameObject, damageColor, normalColor, colorChangeTime ).setOnUpdate( ( Color c ) => { spriteRenderer.color = c; } );
     }

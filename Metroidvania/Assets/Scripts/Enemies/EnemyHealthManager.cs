@@ -9,7 +9,6 @@ public class EnemyHealthManager : HealthManager
 
     private void Death()
     {
-        Debug.Log("Enemy dead");
         OnDeath.Invoke();
         DropPoints();
         Destroy(gameObject);
@@ -56,6 +55,7 @@ public class EnemyHealthManager : HealthManager
         }
         else
         {
+            ChangeColorOnDamage();
             OnTakeDamage.Invoke();
         }
     }

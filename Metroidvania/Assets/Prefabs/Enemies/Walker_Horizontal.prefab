@@ -172,9 +172,6 @@ MonoBehaviour:
   _rigidbody: {fileID: 492946502777295297}
   healthManager: {fileID: 492946502777295296}
   animator: {fileID: 2243348780040284707}
-  spriteRenderer: {fileID: 492946502777295300}
-  leftMaterial: {fileID: 2100000, guid: 123fd3f9061ca134a8098b3747ae09d6, type: 2}
-  rightMaterial: {fileID: 2100000, guid: bc1fe5580479ff343a1bd7bea9854d6b, type: 2}
   direction: -1
 --- !u!114 &492946502777295296
 MonoBehaviour:
@@ -199,29 +196,7 @@ MonoBehaviour:
   colorChangeTime: 0.5
   OnDeath:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: RemoveEnemy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 492946502777295322}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnTakeDamage:

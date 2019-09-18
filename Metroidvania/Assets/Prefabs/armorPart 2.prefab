@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 542507678701872626}
   - component: {fileID: 542507678701872627}
   - component: {fileID: 542507678701872625}
+  - component: {fileID: -8753621494217746673}
   m_Layer: 31
-  m_Name: armorPart 1
+  m_Name: armorPart 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,3 +136,17 @@ PolygonCollider2D:
       - {x: -0.20908737, y: -0.15461731}
       - {x: -0.009084702, y: -0.536499}
       - {x: 0.15997314, y: -0.5012436}
+--- !u!114 &-8753621494217746673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542507678701872621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b091862d7dac64db735d3566b4181f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onFallEffect: {fileID: 294328952878463128, guid: 0d14daf1197688e45844c7e69c7bd63e,
+    type: 3}

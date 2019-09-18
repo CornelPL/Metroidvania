@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 542507678701872626}
   - component: {fileID: 542507678701872627}
   - component: {fileID: 542507678701872625}
+  - component: {fileID: -2042323020036077929}
   m_Layer: 31
   m_Name: armorPart 3
   m_TagString: Untagged
@@ -138,3 +139,17 @@ PolygonCollider2D:
       - {x: -0.12705994, y: -0.45461273}
       - {x: 0.12644196, y: -0.53691864}
       - {x: 0.03645134, y: -0.3890381}
+--- !u!114 &-2042323020036077929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542507678701872621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b091862d7dac64db735d3566b4181f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onFallEffect: {fileID: 294328952878463128, guid: 0d14daf1197688e45844c7e69c7bd63e,
+    type: 3}

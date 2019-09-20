@@ -5,17 +5,20 @@ public class EnemyHealthManager : HealthManager
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private GameObject splashEffect = null;
     [SerializeField] private GameObject deathEffect = null;
+    [SerializeField] private float deathKnockbackForce = 10f;
 
     [HideInInspector] public bool isBeingKnockbacked = false;
 
 
     private void Death( Vector2 direction )
     {
-        Debug.Log( "DEATH" );
         OnDeath.Invoke();
         DropPoints();
         SpawnEffect( direction, deathEffect );
-        Destroy( gameObject );
+
+        direction.y += 1f;
+
+        Knockback( direction, deathKnockbackForce );
     }
 
 

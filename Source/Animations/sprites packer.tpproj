@@ -110,7 +110,7 @@ limitMemory=true
 useIndexes=true
 
 scaleFactors=[{suffix:"",factor:1,resampling:bicubic}]
-inputFiles=[{path:Walker/Walk anim/Walker_walk_left0000.png,type:Input,regionName:null},{path:Walker/Walk anim/Walker_walk_left0003.png,type:Input,regionName:null},{path:Walker/Walk anim/Walker_walk_left0001.png,type:Input,regionName:null},{path:Walker/Walk anim/Walker_walk_left0002.png,type:Input,regionName:null}]
+inputFiles=[{path:Walker/Walk anim/Walker_walk_left0000.png,type:Input,regionName:null},{path:Walker/Walk anim/Walker_walk_left0003.png,type:Input,regionName:null},{path:Walker/Walk anim/Walker_walk_left0001.png,type:Input,regionName:null},{path:Walker/Walk anim/Walker_walk_left0002.png,type:Input,regionName:null},{path:Walker/Walkerr death.png,type:Input,regionName:null}]
 
 
 ---
@@ -149,7 +149,7 @@ limitMemory=true
 useIndexes=true
 
 scaleFactors=[{suffix:"",factor:1,resampling:bicubic}]
-inputFiles=[{path:Walker/Walk anim/Walker_walk_left_normal0000.png,type:Input,regionName:null},{path:Walker/Walk anim/Walker_walk_left_normal0003.png,type:Input,regionName:null},{path:Walker/Walk anim/Walker_walk_left_normal0001.png,type:Input,regionName:null},{path:Walker/Walk anim/Walker_walk_left_normal0002.png,type:Input,regionName:null}]
+inputFiles=[{path:Walker/Walk anim/Walker_walk_left_normal0000.png,type:Input,regionName:null},{path:Walker/Walk anim/Walker_walk_left_normal0003.png,type:Input,regionName:null},{path:Walker/Walk anim/Walker_walk_left_normal0001.png,type:Input,regionName:null},{path:Walker/Walk anim/Walker_walk_left_normal0002.png,type:Input,regionName:null},{path:Walker/Walkerr death normal.png,type:Input,regionName:null}]
 
 
 ---

@@ -10,8 +10,32 @@ public class Walker_Horizontal : MonoBehaviour
     [SerializeField] private Animator animator = null;
     [Tooltip("1 - right; -1 - left")]
     [SerializeField] private int direction = 1;
+    [SerializeField] private float torqueOnDeath = 10f;
+    [SerializeField] private GameObject onDeathColliderLeft = null;
+    [SerializeField] private GameObject onDeathColliderRight = null;
 
     private float timeWalkingTooSlow = 0f;
+
+
+    public void Death()
+    {
+        animator.SetBool( "isDead", true );
+
+        if ( direction == 1 )
+        {
+            onDeathColliderRight.SetActive( true );
+        }
+        else
+        {
+            onDeathColliderLeft.SetActive( true );
+        }
+
+        _rigidbody.freezeRotation = false;
+        _rigidbody.AddTorque( torqueOnDeath * direction, ForceMode2D.Impulse );
+
+        healthManager.enabled = false;
+        this.enabled = false;
+    }
 
 
     private void Start()

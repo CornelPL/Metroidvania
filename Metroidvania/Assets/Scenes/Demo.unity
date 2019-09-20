@@ -107533,7 +107533,7 @@ PrefabInstance:
     - target: {fileID: 492946502777295303, guid: 857b36963159db748b6745ad494ab573,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.59
+      value: 4.08
       objectReference: {fileID: 0}
     - target: {fileID: 492946502777295303, guid: 857b36963159db748b6745ad494ab573,
         type: 3}
@@ -107582,13 +107582,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
         type: 3}
-      propertyPath: OnTakeDamage.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
-        type: 3}
-      propertyPath: initialHP
-      value: 5
+      propertyPath: deathKnockbackForce
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857b36963159db748b6745ad494ab573, type: 3}

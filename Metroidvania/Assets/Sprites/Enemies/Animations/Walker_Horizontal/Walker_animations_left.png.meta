@@ -14,6 +14,9 @@ TextureImporter:
   - first:
       213: -2122227180673374510
     second: Walker_animations_left_3
+  - first:
+      213: -1804453818171675663
+    second: Walker_animations_left_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -112,7 +115,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a6dcbf00f90c1c4aaf620f6cb14debe
+      spriteID: 7edddec9cd808ed42b1a49510719cc19
       internalID: 7357492162526363964
       vertices: []
       indices: 
@@ -133,7 +136,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c13a7f942a363c94faf6c3ee72c18875
+      spriteID: 321ce4bd5e9781c4b9785974bd70fd99
       internalID: -7537359626451652412
       vertices: []
       indices: 
@@ -154,7 +157,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27344f44808f0114786af46f912cd510
+      spriteID: 9e9b5b9bd5e417144bdc5c434280c7c3
       internalID: 3911009283097609171
       vertices: []
       indices: 
@@ -175,8 +178,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0cdd197c8f779c40b5087ff0d46cf03
+      spriteID: d4c30ca7fa604974ab177caf163ddabf
       internalID: -2122227180673374510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walker_animations_left_4
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 0
+        width: 152
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6fb5400a74faf441b489ca7b7da3419
+      internalID: -1804453818171675663
       vertices: []
       indices: 
       edges: []

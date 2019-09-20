@@ -5011,7 +5011,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9673,6 +9673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2733395074981965451}
   - component: {fileID: 9138606259038021161}
+  - component: {fileID: 199894907378029252}
   - component: {fileID: 3954458117503516821}
   m_Layer: 0
   m_Name: BloodEffect2
@@ -9758,6 +9759,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &199894907378029252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4711486414606045037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b5ceb7cc7f88b34b9d68bb37d33fef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splashEffect: {fileID: 5351540393741817084, guid: ca4abce8eb7eff64c9488f21931db8cc,
+    type: 3}
 --- !u!198 &3954458117503516821
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -9841,7 +9856,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2

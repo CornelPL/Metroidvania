@@ -1,6 +1,6 @@
 
 Walker_animations_left_normals.png
-size: 608,80
+size: 760,80
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -28,6 +28,13 @@ Walker_walk_left_normal0002
 Walker_walk_left_normal0003
   rotate: false
   xy: 456, 0
+  size: 152, 80
+  orig: 152, 80
+  offset: 0, 0
+  index: -1
+Walkerr death normal
+  rotate: false
+  xy: 608, 0
   size: 152, 80
   orig: 152, 80
   offset: 0, 0

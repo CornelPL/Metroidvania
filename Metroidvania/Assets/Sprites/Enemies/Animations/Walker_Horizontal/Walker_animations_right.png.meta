@@ -14,6 +14,9 @@ TextureImporter:
   - first:
       213: 8729944014350627973
     second: Walker_animations_right_3
+  - first:
+      213: 4085225506874987388
+    second: Walker_animations_right_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -112,7 +115,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14c0edb01bfb297478a00a49d26c3edb
+      spriteID: 7a1a27bf96b42164f9f9609cab2f1e6b
       internalID: 4765933251566485171
       vertices: []
       indices: 
@@ -133,7 +136,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d69e314553d98443bf3c157a7bba7fd
+      spriteID: ff7c1070cf02b8643836441bd5d54a05
       internalID: -1736004676568199268
       vertices: []
       indices: 
@@ -154,7 +157,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b29c0699f7abeac439e568072e8d4601
+      spriteID: 3175f09ab21327b4cae68f76dc61d2a8
       internalID: 4630849612461321699
       vertices: []
       indices: 
@@ -175,8 +178,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4fc39397dd349941a5f0ff280d6b497
+      spriteID: 172b5639555b2494c97d01a83d2c36d9
       internalID: 8729944014350627973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walker_animations_right_4
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 0
+        width: 152
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc79da68b0c441146a82301fe5e5ad08
+      internalID: 4085225506874987388
       vertices: []
       indices: 
       edges: []

@@ -272,6 +272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 35675793}
   - component: {fileID: 35675794}
+  - component: {fileID: 35675795}
   m_Layer: 0
   m_Name: LastExplosionLight
   m_TagString: Untagged
@@ -287,11 +288,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35675792}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.48000145, y: -0.84000397, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 792388945}
-  m_RootOrder: 4
+  m_Father: {fileID: 1671203152}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &35675794
 MonoBehaviour:
@@ -332,6 +333,36 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &35675795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35675792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0dd644112793a641aa9463901edaebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _light: {fileID: 35675794}
+  fadeIn: 1
+  fadeInTime: 0.1
+  fadeInOuterRadius: 1
+  minInOuterRadius: 0
+  maxInOuterRadius: 40
+  fadeInIntensity: 1
+  minInIntensity: 0
+  maxInIntensity: 5
+  fadeOut: 1
+  fadeOutTime: 2
+  fadeOutOuterRadius: 0
+  minOutOuterRadius: 0
+  maxOutOuterRadius: 10
+  fadeOutIntensity: 1
+  minOutIntensity: 0
+  maxOutIntensity: 5
+  destroyOnEnd: 0
 --- !u!1001 &36216957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10552,6 +10583,49 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &136124373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 136124375}
+  - component: {fileID: 136124374}
+  m_Layer: 0
+  m_Name: ~LeanTween
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!114 &136124374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136124373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2f4b27196f84954b44753aaac214bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &136124375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136124373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &151419486
 GameObject:
   m_ObjectHideFlags: 0
@@ -11636,13 +11710,7 @@ MonoBehaviour:
   shockwaveEventForce: {fileID: 11400000, guid: 931e68b5bb8040040a1d450d301e2dcc,
     type: 2}
   shockwaveForce: 5
-  deathLight: {fileID: 35675794}
-  increaseTime: 0.1
-  decreaseTime: 2
-  minOuterRadius: 0
-  maxOuterRadius: 40
-  minIntensity: 0
-  maxIntensity: 5
+  shockwaveTime: 0.7
   armorParts:
   - {fileID: 542507678701872621, guid: 08c059093f8e40349bfba23ae5e61c03, type: 3}
   - {fileID: 542507678701872621, guid: 107640916ebda654192718ad431c38a6, type: 3}
@@ -46761,7 +46829,6 @@ Transform:
   - {fileID: 1580837212}
   - {fileID: 467566376}
   - {fileID: 1671203152}
-  - {fileID: 35675793}
   m_Father: {fileID: 193585796}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -92116,7 +92183,7 @@ GameObject:
   - component: {fileID: 1517198155}
   - component: {fileID: 1517198156}
   m_Layer: 8
-  m_Name: GameObject
+  m_Name: tmpCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94130,6 +94197,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 704828250}
+  - {fileID: 35675793}
   m_Father: {fileID: 792388945}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -107516,6 +107584,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnTakeDamage.m_PersistentCalls.m_Calls.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 492946502777295296, guid: 857b36963159db748b6745ad494ab573,
+        type: 3}
+      propertyPath: initialHP
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857b36963159db748b6745ad494ab573, type: 3}

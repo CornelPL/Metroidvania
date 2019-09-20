@@ -25,15 +25,7 @@ public class BossHealthManager : HealthManager
     [SerializeField] private Vector2Event shockwaveEventSource = null;
     [SerializeField] private FloatEvent shockwaveEventForce = null;
     [SerializeField] private float shockwaveForce = 0.1f;
-
-    [Header("Death Light")]
-    [SerializeField] private UnityEngine.Experimental.Rendering.LWRP.Light2D deathLight = null;
-    [SerializeField] private float increaseTime = 0.1f;
-    [SerializeField] private float decreaseTime = 1f;
-    [SerializeField] private float minOuterRadius = 0f;
-    [SerializeField] private float maxOuterRadius = 40f;
-    [SerializeField] private float minIntensity = 0f;
-    [SerializeField] private float maxIntensity = 20f;
+    [SerializeField] private float shockwaveTime = 0.7f;
 
     [Header("Armor Parts")]
     [SerializeField] private GameObject[] armorParts = null;
@@ -103,9 +95,6 @@ public class BossHealthManager : HealthManager
 
         yield return new WaitForSeconds( deathTime / 4f );
 
-        LeanTween.value( minOuterRadius, maxOuterRadius, increaseTime ).setOnUpdate( ( float v ) => { deathLight.pointLightOuterRadius = v; } );
-        LeanTween.value( minIntensity, maxIntensity, increaseTime ).setOnUpdate( ( float v ) => { deathLight.intensity = v; } ).setOnComplete( () => { LeanTween.value( maxIntensity, minIntensity, decreaseTime ).setOnUpdate( ( float v ) => { deathLight.intensity = v; } ); } );
-
         foreach ( ParticleSystem p in deathParticles )
         {
             p.Stop();
@@ -158,7 +147,7 @@ public class BossHealthManager : HealthManager
     {
         float t = 0f;
 
-        while (t < decreaseTime / 3f )
+        while ( t < shockwaveTime )
         {
             t += Time.deltaTime;
 

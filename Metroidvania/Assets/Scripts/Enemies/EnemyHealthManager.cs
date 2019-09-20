@@ -4,15 +4,18 @@ public class EnemyHealthManager : HealthManager
 {
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private GameObject splashEffect = null;
+    [SerializeField] private GameObject deathEffect = null;
 
     [HideInInspector] public bool isBeingKnockbacked = false;
 
 
-    private void Death()
+    private void Death( Vector2 direction )
     {
+        Debug.Log( "DEATH" );
         OnDeath.Invoke();
         DropPoints();
-        Destroy(gameObject);
+        SpawnEffect( direction, deathEffect );
+        Destroy( gameObject );
     }
 
 
@@ -33,7 +36,7 @@ public class EnemyHealthManager : HealthManager
     {
         if (collision.collider.CompareTag("Spikes"))
         {
-            Death();
+            Death( Vector2.up );
         }
     }
 
@@ -53,26 +56,27 @@ public class EnemyHealthManager : HealthManager
     {
         currentHP -= damage;
 
-        if (currentHP < 0)
+        SpawnEffect( direction, splashEffect );
+        ChangeColorOnDamage();
+
+        if ( currentHP < 0)
         {
-            Death();
+            Death( direction );
         }
         else
         {
-            SpawnSplashEffect( direction );
-            ChangeColorOnDamage();
             OnTakeDamage.Invoke();
         }
     }
 
 
-    private void SpawnSplashEffect( Vector2 direction )
+    private void SpawnEffect( Vector2 direction, GameObject effect )
     {
         float angle = Mathf.Atan2( direction.y, direction.x ) * Mathf.Rad2Deg;
 
         Vector3 position = transform.position;
         Vector3 spawnPos = new Vector3( position.x, position.y + spriteRenderer.bounds.size.y, position.z );
 
-        Instantiate( splashEffect, spawnPos, Quaternion.Euler( 0f, 0f, angle ) );
+        Instantiate( effect, spawnPos, Quaternion.Euler( 0f, 0f, angle ) );
     }
 }

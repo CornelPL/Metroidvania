@@ -217,6 +217,8 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   currentHP: 0
   _rigidbody: {fileID: 492946502777295297}
+  splashEffect: {fileID: 3867317853530762858, guid: e5deca7c11769484ea158b208a42f9cd,
+    type: 3}
   isBeingKnockbacked: 0
 --- !u!114 &1114128916411736821
 MonoBehaviour:

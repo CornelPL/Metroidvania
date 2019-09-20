@@ -41,8 +41,6 @@ public class ItemShoot : MonoBehaviour
             if ( go.CompareTag( "Enemy" ) )
             {
                 Vector2 direction = GetComponent<Rigidbody2D>().velocity.normalized;
-                direction.y += 1f;
-                direction.Normalize();
 
                 go.GetComponent<HitManager>().TakeHit( baseDamage, direction, knockbackForce );
                 CustomDestroy( _rigidbody.velocity );

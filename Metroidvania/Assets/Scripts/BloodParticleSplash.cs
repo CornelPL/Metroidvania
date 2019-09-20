@@ -23,9 +23,13 @@ public class BloodParticleSplash : MonoBehaviour
         {
             ParticleCollisionEvent collisionEvent = collisionEvents[ i ];
 
-            float angle = Mathf.Atan2( collisionEvent.normal.y, collisionEvent.normal.x ) * Mathf.Rad2Deg - 90f;
+            float angle = -Mathf.Atan2( collisionEvent.normal.y, collisionEvent.normal.x ) * Mathf.Rad2Deg + 90f;
 
-            Instantiate( splashEffect, collisionEvent.intersection, Quaternion.Euler( 0f, 0f, angle ), null );
+            GameObject instantiated = Instantiate( splashEffect, collisionEvent.intersection, Quaternion.identity, null );
+
+            ParticleSystem.MainModule main = instantiated.GetComponent<ParticleSystem>().main;
+
+            main.startRotation = angle * Mathf.Deg2Rad;
         }
     }
 }

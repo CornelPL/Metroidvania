@@ -3,6 +3,7 @@
 public class EnemyHealthManager : HealthManager
 {
     [SerializeField] private Rigidbody2D _rigidbody = null;
+    [SerializeField] private GameObject splashEffect = null;
 
     [HideInInspector] public bool isBeingKnockbacked = false;
 
@@ -41,6 +42,9 @@ public class EnemyHealthManager : HealthManager
     {
         isBeingKnockbacked = true;
 
+        direction.y += 1f;
+        direction.Normalize();
+
         _rigidbody.AddForce(direction * force, ForceMode2D.Impulse);
     }
 
@@ -55,9 +59,20 @@ public class EnemyHealthManager : HealthManager
         }
         else
         {
-            // summon splash in direction
+            SpawnSplashEffect( direction );
             ChangeColorOnDamage();
             OnTakeDamage.Invoke();
         }
+    }
+
+
+    private void SpawnSplashEffect( Vector2 direction )
+    {
+        float angle = Mathf.Atan2( direction.y, direction.x ) * Mathf.Rad2Deg;
+
+        Vector3 position = transform.position;
+        Vector3 spawnPos = new Vector3( position.x, position.y + spriteRenderer.bounds.size.y, position.z );
+
+        Instantiate( splashEffect, spawnPos, Quaternion.Euler( 0f, 0f, angle ) );
     }
 }

@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4765933251566485171, guid: 643ad391e82fdf7498b8a178c6ffd43c,
+  m_Sprite: {fileID: 7357492162526363964, guid: 155ceb492e7703a4b8edef43e46e7215,
     type: 3}
   m_Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_FlipX: 0
@@ -301,6 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5887098927952026418}
   - component: {fileID: 5122309848712271108}
+  - component: {fileID: 3309928127656173933}
   m_Layer: 31
   m_Name: Collision with enviro right
   m_TagString: Untagged
@@ -363,6 +364,25 @@ PolygonCollider2D:
       - {x: 0.2758026, y: 0.044628143}
       - {x: 0.35916138, y: 0.18311691}
       - {x: 0.50819397, y: 0.30077744}
+--- !u!114 &3309928127656173933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2312643302497711779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b091862d7dac64db735d3566b4181f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectToSpawn: {fileID: 294328952878463128, guid: 0d14daf1197688e45844c7e69c7bd63e,
+    type: 3}
+  minBetweenSpawnTime: 0.5
+  scaleWithSpeed: 1
+  scale: 1
+  maxSpeedToMaxScale: 5
+  minYSpeed: 1
 --- !u!1 &4089402902623276880
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3534106447660930080}
   - component: {fileID: 5194350560218147149}
+  - component: {fileID: 2974325663303776293}
   m_Layer: 31
   m_Name: Collision with enviro left
   m_TagString: Untagged
@@ -436,6 +457,25 @@ PolygonCollider2D:
       - {x: -0.05218506, y: -0.004184723}
       - {x: 0.16236877, y: 0.021411896}
       - {x: 0.36784363, y: 0.13449478}
+--- !u!114 &2974325663303776293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4089402902623276880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b091862d7dac64db735d3566b4181f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectToSpawn: {fileID: 294328952878463128, guid: 0d14daf1197688e45844c7e69c7bd63e,
+    type: 3}
+  minBetweenSpawnTime: 0.5
+  scaleWithSpeed: 1
+  scale: 1
+  maxSpeedToMaxScale: 5
+  minYSpeed: 1
 --- !u!1 &6646165639892559500
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6931741079235132}
   - component: {fileID: 4604984846785488806}
+  - component: {fileID: 4562603873304928488}
   m_Layer: 31
   m_Name: Collision with enviro
   m_TagString: Untagged
@@ -493,3 +534,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4904219, y: 0.76726794}
   m_EdgeRadius: 0
+--- !u!114 &4562603873304928488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6646165639892559500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b091862d7dac64db735d3566b4181f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectToSpawn: {fileID: 294328952878463128, guid: 0d14daf1197688e45844c7e69c7bd63e,
+    type: 3}
+  minBetweenSpawnTime: 0.5
+  scaleWithSpeed: 1
+  scale: 1
+  maxSpeedToMaxScale: 5
+  minYSpeed: 1

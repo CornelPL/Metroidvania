@@ -151,5 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b091862d7dac64db735d3566b4181f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onFallEffect: {fileID: 294328952878463128, guid: 0d14daf1197688e45844c7e69c7bd63e,
+  effectToSpawn: {fileID: 294328952878463128, guid: 0d14daf1197688e45844c7e69c7bd63e,
     type: 3}
+  minBetweenSpawnTime: 0.5
+  scaleWithSpeed: 1
+  scale: 1
+  maxSpeedToMaxScale: 5
+  minYSpeed: 1

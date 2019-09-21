@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Walker_sight_walk_right_mat
+  m_Name: Walker_sight_right_mat
   m_Shader: {fileID: -6465566751694194690, guid: a074ff4d05958c14d86ab1bef7249d6a,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _NORMALMAP
@@ -46,7 +46,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 46d58ab37759d5a4dbb1925218fb4752, type: 3}
+        m_Texture: {fileID: 2800000, guid: ea2dc1bf54c8d4e41b01209c101103cd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -58,7 +58,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 00efd75dd8d8880438b1216d3940d954, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5607def53771fbf45ad3d5533c64c273, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:

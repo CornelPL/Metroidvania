@@ -24,6 +24,7 @@ public class ItemShoot : MonoBehaviour
     [SerializeField] private int maxItemsToSpawn = 3;
 
     private bool isShooted = false;
+    private List<Collider2D> toIgnore = new List<Collider2D>();
 
 
     private void Awake()
@@ -37,13 +38,20 @@ public class ItemShoot : MonoBehaviour
     {
         if ( isShooted )
         {
+            Collider2D test = toIgnore.Find( ( Collider2D x ) => x );
+            Debug.Log( test );
+            if ( toIgnore.Find( (Collider2D x) => x == collider) )
+            {
+                return;
+            }
+
             GameObject go = collider.gameObject;
             if ( go.CompareTag( "Enemy" ) )
             {
                 Vector2 direction = GetComponent<Rigidbody2D>().velocity.normalized;
 
                 go.GetComponent<HitManager>().TakeHit( baseDamage, direction, knockbackForce );
-                CustomDestroy( _rigidbody.velocity );
+                CustomDestroy();
             }
             else if ( go.CompareTag( "DestroyablePlanks" ) )
             {
@@ -52,18 +60,18 @@ public class ItemShoot : MonoBehaviour
 
             if ( itemType == ItemType.rock )
             {
-                CustomDestroy( _rigidbody.velocity );
+                CustomDestroy();
             }
             else if ( itemType == ItemType.crate )
             {
-                CustomDestroy( _rigidbody.velocity );
+                CustomDestroy();
             }
             else if ( itemType == ItemType.plank )
             {
                 if ( go.CompareTag( "SoftWall" ) )
                 {
                     plankHealth--;
-                    if ( plankHealth == 0 ) CustomDestroy( _rigidbody.velocity );
+                    if ( plankHealth == 0 ) CustomDestroy();
                     _rigidbody.velocity = Vector2.zero;
                     _rigidbody.bodyType = RigidbodyType2D.Static;
                     gameObject.layer = LayerMask.NameToLayer( "PlanksGround" );
@@ -71,15 +79,17 @@ public class ItemShoot : MonoBehaviour
                 }
                 else if ( !go.CompareTag( "Player" ) )
                 {
-                    CustomDestroy( _rigidbody.velocity );
+                    CustomDestroy();
                 }
             }
         }
     }
 
 
-    private void CustomDestroy( Vector2 collisionVelocity )
+    private void CustomDestroy()
     {
+        Vector2 collisionVelocity = _rigidbody.velocity;
+
         if ( itemType == ItemType.crate )
         {
             int item = Random.Range( 0, itemsToSpawn.Count );
@@ -109,5 +119,14 @@ public class ItemShoot : MonoBehaviour
         _collider.isTrigger = true;
         isShooted = true;
         gameObject.layer = LayerMask.NameToLayer( "ShootItem" );
+
+        Collider2D[] overlapedColliders = Physics2D.OverlapCircleAll( transform.position, 0.5f );
+        foreach (Collider2D collider in overlapedColliders )
+        {
+            if ( !collider.CompareTag( "Enemy" ) )
+            {
+                toIgnore.Add( collider );
+            }
+        }
     }
 }

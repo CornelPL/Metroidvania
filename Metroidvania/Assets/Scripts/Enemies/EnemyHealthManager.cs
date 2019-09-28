@@ -2,23 +2,33 @@
 
 public class EnemyHealthManager : HealthManager
 {
+    [SerializeField] private Animator animator = null;
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private GameObject splashEffect = null;
     [SerializeField] private GameObject deathEffect = null;
     [SerializeField] private float deathKnockbackForce = 10f;
+    [SerializeField] private float torqueOnDeath = 10f;
 
     [HideInInspector] public bool isBeingKnockbacked = false;
 
 
-    private void Death( Vector2 direction )
+    private void Death( Vector2 shootDirection )
     {
         OnDeath.Invoke();
         DropPoints();
-        SpawnEffect( direction, deathEffect );
+        SpawnEffect( shootDirection, deathEffect );
 
-        direction.y += 1f;
+        shootDirection.y += 1f;
 
-        Knockback( direction, deathKnockbackForce );
+        Knockback( shootDirection, deathKnockbackForce );
+
+        animator.SetBool( "isDead", true );
+
+        _rigidbody.freezeRotation = false;
+        float moveDirection = Mathf.Sign(_rigidbody.velocity.x);
+        _rigidbody.AddTorque( torqueOnDeath * moveDirection, ForceMode2D.Impulse );
+
+        this.enabled = false;
     }
 
 
@@ -27,7 +37,7 @@ public class EnemyHealthManager : HealthManager
         int count = Random.Range(minPoints, maxPoints);
         for (int i = 0; i < count; i++)
         {
-            Transform inst = Instantiate(point, transform.position, transform.rotation);
+            GameObject inst = Instantiate(point, transform.position, transform.rotation);
             Vector2 dropForce = Random.insideUnitCircle * pointsDropForce;
             dropForce.y = Mathf.Abs(dropForce.y);
             inst.GetComponent<Rigidbody2D>().AddForce(dropForce, ForceMode2D.Impulse);

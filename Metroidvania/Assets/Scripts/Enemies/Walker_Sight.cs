@@ -3,7 +3,6 @@
 public class Walker_Sight : MonoBehaviour
 {
     [SerializeField] private float speed = 3f;
-    [SerializeField] private float minSpeed = 0.5f;
     [SerializeField] private int damage = 20;
     [SerializeField] private float sightRange = 5f;
     [SerializeField] private Vector2 sightOffset = Vector2.zero;
@@ -12,10 +11,9 @@ public class Walker_Sight : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private EnemyHealthManager healthManager = null;
     [SerializeField] private Animator animator = null;
-    [Tooltip("1 - right; -1 - left")]
+    [Tooltip( "1 - right; -1 - left" )]
     [SerializeField] private int direction = 1;
 
-    private float timeWalkingTooSlow = 0f;
     private bool playerInRange = false;
     private bool playerWasInRange = false;
 
@@ -28,7 +26,7 @@ public class Walker_Sight : MonoBehaviour
 
     private void Update()
     {
-        if (!healthManager.isBeingKnockbacked)
+        if ( !healthManager.isBeingKnockbacked )
         {
             CheckPlayerInSight();
             Move();
@@ -38,16 +36,6 @@ public class Walker_Sight : MonoBehaviour
 
     private void Move()
     {
-        if (Mathf.Abs(_rigidbody.velocity.x) < minSpeed)
-        {
-            timeWalkingTooSlow += Time.fixedDeltaTime;
-        }
-        if (timeWalkingTooSlow > 0.1f)
-        {
-            ChangeDirection();
-            timeWalkingTooSlow = 0f;
-        }
-
         if ( (!playerWasInRange && playerInRange) || (playerWasInRange && !playerInRange) )
         {
             animator.SetBool( "isAttacking", playerInRange );
@@ -57,20 +45,20 @@ public class Walker_Sight : MonoBehaviour
 
         float s = playerInRange ? boost : 1f;
         s = s * speed * direction;
-        _rigidbody.velocity = new Vector2(s, _rigidbody.velocity.y);
+        _rigidbody.velocity = new Vector2( s, _rigidbody.velocity.y );
     }
 
 
     private void CheckPlayerInSight()
     {
-        RaycastHit2D hitr = Physics2D.Raycast((Vector2)transform.position + sightOffset, new Vector2(direction, 0f), sightRange, playerLayerMask);
-        RaycastHit2D hitl = Physics2D.Raycast((Vector2)transform.position + sightOffset, new Vector2(-direction, 0f), sightRange, playerLayerMask);
+        RaycastHit2D hitr = Physics2D.Raycast( (Vector2)transform.position + sightOffset, new Vector2( direction, 0f ), sightRange, playerLayerMask );
+        RaycastHit2D hitl = Physics2D.Raycast( (Vector2)transform.position + sightOffset, new Vector2( -direction, 0f ), sightRange, playerLayerMask );
 
-        if (hitr && !hitr.transform.CompareTag("StopMark"))
+        if ( hitr && !hitr.transform.CompareTag( "StopMark" ) )
         {
             playerInRange = true;
         }
-        else if (hitl && !hitl.transform.CompareTag("StopMark"))
+        else if ( hitl && !hitl.transform.CompareTag( "StopMark" ) )
         {
             ChangeDirection();
             playerInRange = true;
@@ -89,22 +77,27 @@ public class Walker_Sight : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D( Collider2D collider )
     {
-        if (collider.CompareTag("StopMark"))
+        if ( collider.CompareTag( "StopMark" ) )
         {
             ChangeDirection();
         }
-        else if (collider.CompareTag("Player"))
+        else if ( collider.CompareTag( "Player" ) )
         {
-            collider.GetComponent<PlayerHealthManager>().TakeDamage(damage, transform.position.x);
+            collider.GetComponent<PlayerHealthManager>().TakeDamage( damage, transform.position.x );
         }
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D( Collision2D collision )
     {
-        if (healthManager.isBeingKnockbacked)
+        if ( collision.collider.CompareTag( "Wall" ) )
+        {
+            ChangeDirection();
+        }
+
+        if ( healthManager.isBeingKnockbacked )
         {
             healthManager.isBeingKnockbacked = false;
         }
@@ -113,7 +106,7 @@ public class Walker_Sight : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawRay((Vector2)transform.position + sightOffset, new Vector2(sightRange, 0f));
-        Gizmos.DrawRay((Vector2)transform.position + sightOffset, new Vector2(-sightRange, 0f));
+        Gizmos.DrawRay( (Vector2)transform.position + sightOffset, new Vector2( sightRange, 0f ) );
+        Gizmos.DrawRay( (Vector2)transform.position + sightOffset, new Vector2( -sightRange, 0f ) );
     }
 }

@@ -16,7 +16,6 @@ public class OnFallEffect : MonoBehaviour
     {
         if (Time.time - lastSpawnTime > minBetweenSpawnTime )
         {
-            Debug.Log( collision.relativeVelocity.y );
             if ( collision.relativeVelocity.y < minYSpeed ) return;
 
 

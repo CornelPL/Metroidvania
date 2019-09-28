@@ -12,3 +12,5 @@ Chwilę zatrzymują przeciwników w miejscu.
 Po zniszczeniu powstają z nich deski.
 - deski\
 Można je wbić w ścianę i na nich stanąć.
+- shotgun\
+Jakieś małe kawałki np. kamieni. Krótki zasięg, duży rozstrzał, małe obrażenia.

@@ -4823,9 +4823,7 @@ GameObject:
   - component: {fileID: 6417654320457713544}
   - component: {fileID: 6417654320457713545}
   - component: {fileID: 8632387716685488110}
-  - component: {fileID: 6019423085865643738}
-  - component: {fileID: 5230624211792680476}
-  - component: {fileID: 8800780912779798053}
+  - component: {fileID: 967267820}
   m_Layer: 9
   m_Name: Rock_1_throwable
   m_TagString: Item
@@ -4962,7 +4960,7 @@ PolygonCollider2D:
       - {x: 0.23093414, y: -0.4411459}
       - {x: 0.37698364, y: -0.39190102}
       - {x: 0.538887, y: -0.2169838}
---- !u!114 &6019423085865643738
+--- !u!114 &967267820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4971,96 +4969,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 6417654320457713547}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d64f84f6a09e56449844090db5096848, type: 3}
+  m_Script: {fileID: 11500000, guid: ffeb9d6086b2e3d438301b1eee7eb36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 0}
+  _collider: {fileID: 0}
+  itemType: 0
+  itemsToSpawn: []
+  minItemsToSpawn: 1
+  maxItemsToSpawn: 3
+  plankHealth: 3
+  destroyEffect: {fileID: 0}
+  baseDamage: 10
+  knockbackForce: 100
   OnStartPulling:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4116446809112793277}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  OnPullingComplete:
+  OnPullingCompleted:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7043718315856494840}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnRelease:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7043718315856494840}
-        m_MethodName: Stop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  itemPull: {fileID: 8800780912779798053}
-  _rigidbody: {fileID: 6417654320457713545}
---- !u!114 &5230624211792680476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6417654320457713547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cfb7ce45f9f7384c8a8541d1aaddf2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemType: 0
-  baseDamage: 2
-  knockbackForce: 100
-  _rigidbody: {fileID: 6417654320457713545}
-  _collider: {fileID: 8632387716685488110}
-  destroyEffect: {fileID: 6060602310375322860, guid: 568c5a579b4c6814fb1cff60b849b194,
-    type: 3}
-  plankHealth: 3
-  itemsToSpawn: []
-  maxItemsToSpawn: 3
---- !u!114 &8800780912779798053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6417654320457713547}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43fa6c749173a9b4aab40e5cfc681ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 6417654320457713545}
-  _collider: {fileID: 8632387716685488110}
-  _itemHandling: {fileID: 6019423085865643738}
 --- !u!1 &8773064680071665000
 GameObject:
   m_ObjectHideFlags: 0

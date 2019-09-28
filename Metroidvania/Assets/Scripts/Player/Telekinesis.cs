@@ -178,7 +178,8 @@ public class Telekinesis : MonoBehaviour
 
     private void PullItem()
     {
-        closestItem.GetComponent<ItemHandling>().PullItem(holdingItemPlace, pullSpeed, maxPullSpeed);
+        closestItem.GetComponent<Item>().StartPulling( holdingItemPlace, pullSpeed, maxPullSpeed);
+
         SetPullEffectsActive(true);
         pullEffects.SetActive(true);
     }
@@ -202,7 +203,7 @@ public class Telekinesis : MonoBehaviour
         {
             if (state.isPullingItemState)
             {
-                closestItem.GetComponent<ItemHandling>().StopPulling();
+                closestItem.GetComponent<Item>().AbortPulling();
             }
 
             ReleaseItem();
@@ -302,7 +303,7 @@ public class Telekinesis : MonoBehaviour
         float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
         shootEffects.transform.eulerAngles = Vector3.forward * angle;
         ReleaseItem();
-        closestItem.GetComponent<ItemShoot>().Shoot(shootDirection, shootPower);
+        closestItem.GetComponent<Item>().Shoot(shootDirection, shootPower);
     }
 
 
@@ -326,7 +327,7 @@ public class Telekinesis : MonoBehaviour
 
     private void ReleaseItem()
     {
-        closestItem.GetComponent<ItemHandling>().SetFree();
+        closestItem.GetComponent<Item>().SetFree();
         state.isPullingItemState = false;
         state.isHoldingItemState = false;
         SetPullEffectsActive(false);

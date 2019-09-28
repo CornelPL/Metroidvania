@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StableItemHandling : MonoBehaviour
+public class StableItem : MonoBehaviour
 {
     [HideInInspector] public Telekinesis telekinesis = null;
 

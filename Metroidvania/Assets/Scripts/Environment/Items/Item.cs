@@ -16,23 +16,26 @@ public enum ItemType
 
 public class Item : MonoBehaviour
 {
+    #region Inspector variables
+
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private Collider2D _collider = null;
-    [SerializeField] private ItemType itemType = ItemType.rock;
-    [SerializeField] private List<GameObject> itemsToSpawn = null;
-    [SerializeField] private int minItemsToSpawn = 1;
-    [SerializeField] private int maxItemsToSpawn = 3;
-    [SerializeField] private int plankHealth = 3;
     [SerializeField] private GameObject destroyEffect = null;
     [SerializeField] private int baseDamage = 10;
     [SerializeField] private float knockbackForce = 100f;
-
-    // Add PullParticles.Play();
     [SerializeField] private UnityEvent OnStartPulling = null;
-    // Add HoldingParticles.Play();
     [SerializeField] private UnityEvent OnPullingCompleted = null;
-    // Add HoldingParticles.Stop();
     [SerializeField] private UnityEvent OnRelease = null;
+    [SerializeField] private ItemType itemType = ItemType.rock;
+    [Header("Edit only when crate or planks")]
+    [SerializeField] private GameObject[] itemsToSpawn = null;
+    [SerializeField] private int minItemsToSpawn = 1;
+    [SerializeField] private int maxItemsToSpawn = 3;
+    [SerializeField] private int plankHealth = 3;
+
+    #endregion
+
+    #region Private variables
 
     private Transform itemHolder = null;
     private bool isPulling = false;
@@ -41,6 +44,8 @@ public class Item : MonoBehaviour
     private float pullingTime = 1f;
     private float gravityScaleCopy = 0f;
     private List<Collider2D> collidersToIgnore = new List<Collider2D>();
+
+    #endregion
 
 
     public void SetFree()
@@ -230,7 +235,7 @@ public class Item : MonoBehaviour
 
         if ( itemType == ItemType.crate )
         {
-            int item = Random.Range( 0, itemsToSpawn.Count );
+            int item = Random.Range( 0, itemsToSpawn.Length );
             int i = Random.Range( minItemsToSpawn, maxItemsToSpawn );
 
             for ( int a = 0; a < i; a++ )

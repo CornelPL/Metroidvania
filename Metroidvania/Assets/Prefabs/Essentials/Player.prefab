@@ -1299,6 +1299,7 @@ MonoBehaviour:
   hasDash: 0
   hasUpgradedDash: 0
   hasSlam: 1
+  canModifyStableItems: 0
   normalCollider: {fileID: 7657262229719900732}
   invulnerableCollider: {fileID: 1916609879606229411}
   holdingItemPosition: {fileID: 3956272965029147024}
@@ -1416,7 +1417,10 @@ MonoBehaviour:
   arcLength: 8
   itemsLayer:
     serializedVersion: 2
-    m_Bits: 657920
+    m_Bits: 655872
+  stableItemsLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   rocksLayer:
     serializedVersion: 2
     m_Bits: 16640

@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 10
-  radius: 1
+  radius: 0.5
   pullSpeed: 20
   maxPullSpeed: 50
   shootPower: 60
@@ -1354,9 +1354,9 @@ MonoBehaviour:
   lightOnIntensity: 1.5
   lightOffIntensity: 0.5
   tweenTime: 0.5
-  objectToPullHighlightParticles: {fileID: 0}
-  objectToPullHighlight: {fileID: 0}
   pullEffects: {fileID: 0}
+  objectToPullHighlight: {fileID: 0}
+  objectToPullLight: {fileID: 0}
   shootEffects: {fileID: 0}
   OnShoot:
     m_PersistentCalls:

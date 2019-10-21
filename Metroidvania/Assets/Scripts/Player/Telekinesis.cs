@@ -23,6 +23,7 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float lightOffIntensity = 0.5f;
     [SerializeField] private float tweenTime = 0.5f;
     [SerializeField] private GameObject pullEffects = null;
+    [SerializeField] private ParticleSystem objectToPullHighlight = null;
     [SerializeField] private GameObject shootEffects = null;
     [SerializeField] private UnityEvent OnShoot = null;
     [SerializeField] private GameObject shootEffectBlur = null;
@@ -198,9 +199,21 @@ public class Telekinesis : MonoBehaviour
 
         isCursorOver = closestItem != null || canGetRockFromGround || closestStableItem != null;
 
-        if ( isCursorOver != wasCursorOver )
+        if ( isCursorOver )
         {
             CustomCursor.Instance.OnOverChange( isCursorOver );
+            if ( !objectToPullHighlight.isPlaying )
+                objectToPullHighlight.Play();
+#pragma warning disable CS0618 // Type or member is obsolete
+            objectToPullHighlight.enableEmission = true;
+            objectToPullHighlight.transform.position = input.cursorPosition;
+        }
+        else
+        {
+            CustomCursor.Instance.OnOverChange( isCursorOver );
+#pragma warning disable CS0618 // Type or member is obsolete
+            objectToPullHighlight.enableEmission = false;
+            objectToPullHighlight.transform.position = input.cursorPosition;
         }
 
         wasCursorInRange = isCursorInRange;

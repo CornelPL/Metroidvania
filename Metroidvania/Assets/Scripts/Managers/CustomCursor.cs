@@ -15,6 +15,7 @@ public class CustomCursor : MonoBehaviour
 
 	[Header("Cursor Images")]
 	[SerializeField] private Image cursorImage = null;
+	[SerializeField] private Image cursorBrigtherImage = null;
 
 	[Header("Colors")]
 	[SerializeField] private Color normalColor = Color.white;
@@ -23,16 +24,15 @@ public class CustomCursor : MonoBehaviour
 	[SerializeField] private Color inRangeColor = Color.white;
 
 	[Header("Parameters")]
-	[SerializeField, Tooltip("Works on any UI element that blocks raycasts")] private bool highlighOnOverUI = true;
+	[SerializeField, Tooltip("Works on any UI element that blocks raycasts")] private bool highlightOnOverUI = true;
 	[SerializeField] private float onClickScale = 2f;
 	[SerializeField] private float scaleDecreaseOverTime = 6f;
 	[SerializeField] private float minScale = 1f;
-	[SerializeField] private Vector3 offset = Vector3.zero;
 
 
 	private float currentScale = 1f;
     private bool inRange = false;
-    private bool isOver;
+    private bool isOver = false;
 
 
     private void OnEnable( )
@@ -69,7 +69,7 @@ public class CustomCursor : MonoBehaviour
 
     public void OnOverChange( bool isOver )
     {
-        cursorImage.color = isOver ? overColor : normalColor;
+        cursorBrigtherImage.enabled = isOver;
         this.isOver = isOver;
     }
 
@@ -87,7 +87,7 @@ public class CustomCursor : MonoBehaviour
 
 	private void UpdatePosition( )
 	{
-		transform.position = Input.mousePosition + offset;
+		transform.position = Input.mousePosition;
 	}
 
 	private void UpdateVisualState( )
@@ -97,9 +97,9 @@ public class CustomCursor : MonoBehaviour
 
 		transform.localScale = Vector3.one * currentScale;
 
-		if ( highlighOnOverUI && UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject( ) )
+		if ( highlightOnOverUI && UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject( ) )
 			cursorImage.color = overColor;
-		else if ( !inRange && !isOver)
+		else if ( !inRange )
 			cursorImage.color = normalColor;
 	}
 }

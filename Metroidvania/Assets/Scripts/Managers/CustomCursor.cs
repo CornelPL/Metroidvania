@@ -14,26 +14,28 @@ public class CustomCursor : MonoBehaviour
 	public static CustomCursor Instance { get; private set; }
 
 	[Header("Cursor Images")]
-	[SerializeField] private Image outerImage = null;
-	[SerializeField] private Image innerImage = null;
+	[SerializeField] private Image cursorImage = null;
 
 	[Header("Colors")]
-	[SerializeField] private Color normalColorOuter = Color.white;
-	[SerializeField] private Color normalColorInner = Color.black;
-	[SerializeField] private Color clickInsideColor = Color.red;
+	[SerializeField] private Color normalColor = Color.white;
+	[SerializeField] private Color clickColor = Color.red;
 	[SerializeField] private Color overColor = Color.yellow;
+	[SerializeField] private Color inRangeColor = Color.white;
 
 	[Header("Parameters")]
 	[SerializeField, Tooltip("Works on any UI element that blocks raycasts")] private bool highlighOnOverUI = true;
-	[SerializeField] private bool useInsideImage = true;
 	[SerializeField] private float onClickScale = 2f;
 	[SerializeField] private float scaleDecreaseOverTime = 6f;
 	[SerializeField] private float minScale = 1f;
 	[SerializeField] private Vector3 offset = Vector3.zero;
 
-	private float currentScale = 1f;
 
-	private void OnEnable( )
+	private float currentScale = 1f;
+    private bool inRange = false;
+    private bool isOver;
+
+
+    private void OnEnable( )
 	{
 		if ( Instance != null && Instance != this )
 			Destroy( this );
@@ -46,12 +48,8 @@ public class CustomCursor : MonoBehaviour
 
 	private void Start( )
 	{
-		Assert.IsNotNull( outerImage, $"Please assign <b>{nameof( outerImage )}</b> field on <b>{GetType( ).Name}</b> script on <b>{name}</b> object" );
-		if ( useInsideImage )
-			Assert.IsNotNull( innerImage, $"Please assign <b>{nameof( innerImage )}</b> field on <b>{GetType( ).Name}</b> script on <b>{name}</b> object" );
+		Assert.IsNotNull( cursorImage, $"Please assign <b>{nameof( cursorImage )}</b> field on <b>{GetType( ).Name}</b> script on <b>{name}</b> object" );
 
-		if ( useInsideImage )
-			innerImage.color = normalColorInner;
 		currentScale = minScale;
 
 		CanvasGroup cg = GetComponent<CanvasGroup>( );
@@ -61,7 +59,22 @@ public class CustomCursor : MonoBehaviour
 		Cursor.visible = false;
 	}
 
-	public void OnInteraction( )
+
+    public void OnInRangeChange( bool inRange )
+    {
+        cursorImage.color = inRange ? inRangeColor : normalColor;
+        this.inRange = inRange;
+    }
+
+
+    public void OnOverChange( bool isOver )
+    {
+        cursorImage.color = isOver ? overColor : normalColor;
+        this.isOver = isOver;
+    }
+
+
+    public void OnInteraction( )
 	{
 		currentScale = onClickScale;
 	}
@@ -84,17 +97,9 @@ public class CustomCursor : MonoBehaviour
 
 		transform.localScale = Vector3.one * currentScale;
 
-		if ( useInsideImage )
-		{
-			if ( Input.GetMouseButtonDown( 0 ) )
-				innerImage.color = clickInsideColor;
-			else if ( Input.GetMouseButtonUp( 0 ) )
-				innerImage.color = normalColorInner;
-		}
-
 		if ( highlighOnOverUI && UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject( ) )
-			outerImage.color = overColor;
-		else
-			outerImage.color = normalColorOuter;
+			cursorImage.color = overColor;
+		else if ( !inRange && !isOver)
+			cursorImage.color = normalColor;
 	}
 }

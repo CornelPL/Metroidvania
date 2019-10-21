@@ -59,6 +59,10 @@ public class Telekinesis : MonoBehaviour
     private List<GameObject> stableItems = new List<GameObject>();
     private float t = 0f;
     private bool canGetRockFromGround = false;
+    private bool isCursorInRange = false;
+    private bool wasCursorInRange = false;
+    private bool isCursorOver = false;
+    private bool wasCursorOver = false;
 
     #endregion
 
@@ -79,26 +83,25 @@ public class Telekinesis : MonoBehaviour
 
     private void Update()
     {
+        isCursorInRange = Vector2.Distance( input.cursorPosition, transform.position ) > range ? false : true;
+
         // Player doesn't have any item and isn't pulling any
         if ( !state.isHoldingItemState && !state.isPullingItemState )
         {
-            TryFindClosestItem();
-
-            TryHighlightItemToPull();
-
-            // Player tries to pull item
-            if ( input.rmb )
+            if ( isCursorInRange )
             {
-                // If we found any item to pull...
-                if ( closestItem != null )
+                TryFindClosestItem();
+
+                // Player tries to pull item and there's item to pull
+                if ( input.rmb && ( closestItem != null || canGetRockFromGround ) )
                 {
                     PullItem();
                 }
-                // ...or if there's ground nearby
-                else if ( canGetRockFromGround )
-                {
-                    PullItemFromGround();
-                }
+            }
+            else
+            {
+                closestItem = null;
+                canGetRockFromGround = false;
             }
         }
         // Player is holding item or is pulling one and wants to abort it
@@ -113,22 +116,20 @@ public class Telekinesis : MonoBehaviour
         }
 
         // Player acquired stabling items skill
-        if ( state.canModifyStableItems )
+        if ( isCursorInRange && state.canModifyStableItems )
         {
             // Try to find stable item near cursor
             TryFindClosestStableItem();
 
-            if ( closestStableItem != null)
+            // Stable it
+            if ( closestStableItem != null  && input.rmb )
             {
-                // Highlight if found
-                HighlightStableItem();
-
-                // Stable it
-                if ( input.rmb )
-                {
-                    SetNewStableItem();
-                }
+                SetNewStableItem();
             }
+        }
+        else
+        {
+            closestStableItem = null;
         }
 
         // Player is holding item and wants to shoot it
@@ -145,6 +146,8 @@ public class Telekinesis : MonoBehaviour
                 ShootingSequence();
             }
         }
+
+        UpdateCursorHighlight();
     }
 
 
@@ -152,10 +155,7 @@ public class Telekinesis : MonoBehaviour
     {
         closestStableItem = null;
 
-        if ( Vector2.Distance( input.cursorPosition, transform.position ) < range )
-        {
-            closestStableItem = Physics2D.OverlapCircle( input.cursorPosition, radius, stableItemsLayer ).gameObject;
-        }
+        closestStableItem = Physics2D.OverlapCircle( input.cursorPosition, radius, stableItemsLayer ).gameObject;
     }
 
 
@@ -163,11 +163,6 @@ public class Telekinesis : MonoBehaviour
     {
         closestItem = null;
         canGetRockFromGround = false;
-
-        if ( Vector2.Distance( input.cursorPosition, transform.position ) > range )
-        {
-            return;
-        }
 
         Collider2D[] items = Physics2D.OverlapCircleAll( input.cursorPosition, radius, itemsLayer );
 
@@ -194,41 +189,33 @@ public class Telekinesis : MonoBehaviour
     }
 
 
-    private void TryHighlightItemToPull()
+    private void UpdateCursorHighlight()
     {
-        // TODO
-        if ( closestItem != null )
+        if ( isCursorInRange != wasCursorInRange )
         {
-            // highlight closest item
+            CustomCursor.Instance.OnInRangeChange( isCursorInRange );
         }
-        else if ( canGetRockFromGround )
+
+        isCursorOver = closestItem != null || canGetRockFromGround || closestStableItem != null;
+
+        if ( isCursorOver != wasCursorOver )
         {
-            // highlight at input.cursorPosition
+            CustomCursor.Instance.OnOverChange( isCursorOver );
         }
-        else
-        {
-            // turn highlight off
-        }
-    }
 
-
-    private void HighlightStableItem()
-    {
-        // TODO
-    }
-
-
-    private void PullItemFromGround()
-    {
-        closestItem = Instantiate( rockToSpawn, input.cursorPosition, transform.rotation );
-        closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
-
-        PullItem();
+        wasCursorInRange = isCursorInRange;
+        wasCursorOver = isCursorOver;
     }
 
 
     private void PullItem()
     {
+        if ( closestItem == null )
+        {
+            closestItem = Instantiate( rockToSpawn, input.cursorPosition, transform.rotation );
+            closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
+        }
+
         closestItem.GetComponent<Item>().StartPulling( holdingItemPlace, pullSpeed, maxPullSpeed );
 
         SetPullEffectsActive( true );

@@ -85,7 +85,6 @@ public class Item : MonoBehaviour
         _collider.enabled = true;
         gameObject.layer = LayerMask.NameToLayer( "Items" );
         isPulling = false;
-        //this.enabled = false;
     }
 
 

@@ -39,6 +39,7 @@ public class Item : MonoBehaviour
 
     private Transform itemHolder = null;
     private bool isPulling = false;
+    private bool isShooted = false;
     private float pullSpeedUp = 0f;
     private float maxPullSpeed = 0f;
     private float pullingTime = 1f;
@@ -83,12 +84,15 @@ public class Item : MonoBehaviour
         _rigidbody.gravityScale = gravityScaleCopy;
         _collider.enabled = true;
         gameObject.layer = LayerMask.NameToLayer( "Items" );
-        this.enabled = false;
+        isPulling = false;
+        //this.enabled = false;
     }
 
 
     public void Shoot( Vector2 direction, float power )
     {
+        isShooted = true;
+
         _rigidbody.AddForce( direction * power, ForceMode2D.Impulse );
 
         _collider.enabled = true;
@@ -127,7 +131,11 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter2D( Collider2D collider )
     {
-        // DELETED "if (isShooted)"
+        if (!isShooted)
+        {
+            return;
+        }
+
         if ( collidersToIgnore.Find( ( Collider2D x ) => x == collider ) )
         {
             return;

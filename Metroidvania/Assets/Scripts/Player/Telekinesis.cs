@@ -79,24 +79,29 @@ public class Telekinesis : MonoBehaviour
 
     private void Update()
     {
+        // Player doesn't have any item and isn't pulling any
         if ( !state.isHoldingItemState && !state.isPullingItemState )
         {
             TryFindClosestItem();
 
             TryHighlightItemToPull();
 
+            // Player tries to pull item
             if ( input.rmb )
             {
+                // If we found any item to pull...
                 if ( closestItem != null )
                 {
                     PullItem();
                 }
+                // ...or if there's ground nearby
                 else if ( canGetRockFromGround )
                 {
                     PullItemFromGround();
                 }
             }
         }
+        // Player is holding item or is pulling one and wants to abort it
         else if ( input.rmb )
         {
             if ( state.isPullingItemState )
@@ -107,14 +112,18 @@ public class Telekinesis : MonoBehaviour
             ReleaseItem();
         }
 
+        // Player acquired stabling items skill
         if ( state.canModifyStableItems )
         {
+            // Try to find stable item near cursor
             TryFindClosestStableItem();
 
             if ( closestStableItem != null)
             {
+                // Highlight if found
                 HighlightStableItem();
 
+                // Stable it
                 if ( input.rmb )
                 {
                     SetNewStableItem();
@@ -122,8 +131,11 @@ public class Telekinesis : MonoBehaviour
             }
         }
 
+        // Player is holding item and wants to shoot it
         if ( state.isHoldingItemState )
         {
+            SetPullEffectsActive( false );
+
             if ( input.lmbDown )
             {
                 StartShootingSequence();
@@ -132,11 +144,6 @@ public class Telekinesis : MonoBehaviour
             {
                 ShootingSequence();
             }
-        }
-
-        if ( state.isHoldingItemState )
-        {
-            SetPullEffectsActive( false );
         }
     }
 

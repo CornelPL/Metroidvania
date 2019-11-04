@@ -53,6 +53,9 @@ TagManager:
   - ShootItem
   - CollisionsWithEnvironment
   m_SortingLayers:
+  - name: Background 2
+    uniqueID: 3666107843
+    locked: 0
   - name: Background
     uniqueID: 1283502053
     locked: 0
@@ -61,4 +64,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 1270569687
+    locked: 0
+  - name: Black foreground
+    uniqueID: 1584456187
     locked: 0

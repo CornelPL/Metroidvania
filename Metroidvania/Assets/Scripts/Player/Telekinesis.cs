@@ -23,7 +23,8 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float lightOffIntensity = 0.5f;
     [SerializeField] private float tweenTime = 0.5f;
     [SerializeField] private GameObject pullEffects = null;
-    [SerializeField] private ParticleSystem objectToPullHighlight = null;
+    [SerializeField] private ParticleSystem onHoverItemParticles = null;
+    [SerializeField] private GameObject itemHighlight = null;
     [SerializeField] private GameObject shootEffects = null;
     [SerializeField] private UnityEvent OnShoot = null;
     [SerializeField] private GameObject shootEffectBlur = null;
@@ -61,6 +62,7 @@ public class Telekinesis : MonoBehaviour
     private List<GameObject> stableItems = new List<GameObject>();
     private float t = 0f;
     private bool canGetRockFromGround = false;
+    private bool couldGetRockFromGround = false;
     private bool isCursorInRange = false;
     private bool wasCursorInRange = false;
     private bool isCursorOver = false;
@@ -199,23 +201,25 @@ public class Telekinesis : MonoBehaviour
             CustomCursor.Instance.OnInRangeChange( isCursorInRange );
         }
 
-        isCursorOver = closestItem != null || canGetRockFromGround || closestStableItem != null;
+        isCursorOver = (closestItem != null || canGetRockFromGround || closestStableItem != null)
+            && (!state.isHoldingItemState && !state.isPullingItemState);
 
         if ( isCursorOver )
         {
             CustomCursor.Instance.OnOverChange( isCursorOver );
-            if ( !objectToPullHighlight.isPlaying )
-                objectToPullHighlight.Play();
-#pragma warning disable CS0618 // Type or member is obsolete
-            objectToPullHighlight.enableEmission = true;
-            objectToPullHighlight.transform.position = input.cursorPosition;
+            if ( !onHoverItemParticles.isPlaying )
+                onHoverItemParticles.Play();
+            onHoverItemParticles.transform.position = input.cursorPosition;
         }
         else
         {
             CustomCursor.Instance.OnOverChange( isCursorOver );
-#pragma warning disable CS0618 // Type or member is obsolete
-            objectToPullHighlight.enableEmission = false;
-            objectToPullHighlight.transform.position = input.cursorPosition;
+            if ( onHoverItemParticles.isPlaying )
+            {
+                onHoverItemParticles.Stop();
+                onHoverItemParticles.Clear();
+            }
+            onHoverItemParticles.transform.position = input.cursorPosition;
         }
 
         wasCursorInRange = isCursorInRange;
@@ -225,21 +229,23 @@ public class Telekinesis : MonoBehaviour
 
     private void UpdateItemHighlight()
     {
+        if ( closestItem != null && !state.isHoldingItemState && !state.isPullingItemState )
+        {
+            onHoverItemParticles.transform.position = closestItem.transform.position;
+        }
+
         if ( closestItem != lastClosestItem )
         {
             closestItem?.GetComponent<Item>().OnHover( true );
             lastClosestItem?.GetComponent<Item>().OnHover( false );
 
             lastClosestItem = closestItem;
-
-            if ( closestItem != null )
-            {
-                objectToPullHighlight.transform.position = closestItem.transform.position;
-            }
         }
-        else if ( canGetRockFromGround )
+        else if ( canGetRockFromGround != couldGetRockFromGround )
         {
-            // display rock highlight
+            itemHighlight.SetActive( canGetRockFromGround );
+
+            couldGetRockFromGround = canGetRockFromGround;
         }
     }
 
@@ -255,6 +261,8 @@ public class Telekinesis : MonoBehaviour
         closestItem.GetComponent<Item>().StartPulling( holdingItemPlace, pullSpeed, maxPullSpeed );
 
         SetPullEffectsActive( true );
+
+        canGetRockFromGround = false;
     }
 
 

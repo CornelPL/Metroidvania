@@ -21,6 +21,7 @@ public class Item : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private Collider2D _collider = null;
     [SerializeField] private GameObject destroyEffect = null;
+    [SerializeField] private GameObject itemHighlight = null;
     [SerializeField] private int baseDamage = 10;
     [SerializeField] private float knockbackForce = 100f;
     [SerializeField] private UnityEvent OnStartPulling = null;
@@ -107,6 +108,12 @@ public class Item : MonoBehaviour
                 collidersToIgnore.Add( collider );
             }
         }
+    }
+
+
+    public void OnHover( bool start )
+    {
+        itemHighlight.SetActive( start );
     }
 
 

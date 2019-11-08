@@ -52,6 +52,7 @@ public class Telekinesis : MonoBehaviour
     #region Private variables
 
     private GameObject closestItem;
+    private GameObject lastClosestItem;
     private Rigidbody2D closestItemRigidbody;
     private GameObject closestStableItem;
     private InputController input;
@@ -149,6 +150,7 @@ public class Telekinesis : MonoBehaviour
         }
 
         UpdateCursorHighlight();
+        UpdateItemHighlight();
     }
 
 
@@ -218,6 +220,27 @@ public class Telekinesis : MonoBehaviour
 
         wasCursorInRange = isCursorInRange;
         wasCursorOver = isCursorOver;
+    }
+
+
+    private void UpdateItemHighlight()
+    {
+        if ( closestItem != lastClosestItem )
+        {
+            closestItem?.GetComponent<Item>().OnHover( true );
+            lastClosestItem?.GetComponent<Item>().OnHover( false );
+
+            lastClosestItem = closestItem;
+
+            if ( closestItem != null )
+            {
+                objectToPullHighlight.transform.position = closestItem.transform.position;
+            }
+        }
+        else if ( canGetRockFromGround )
+        {
+            // display rock highlight
+        }
     }
 
 

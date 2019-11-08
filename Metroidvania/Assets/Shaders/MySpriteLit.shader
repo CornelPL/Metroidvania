@@ -5,6 +5,7 @@
 		_MainTex("Diffuse", 2D) = "white" {}
 		_MaskTex("Mask", 2D) = "white" {}
 		_NormalMap("Normal Map", 2D) = "bump" {}
+		_NormalMapSaturation("NormalMapSaturation", Float) = 1.0
 	}
 
 		HLSLINCLUDE
@@ -44,6 +45,7 @@
 				float4  color       : COLOR;
 				float2	uv          : TEXCOORD0;
 				float2	lightingUV  : TEXCOORD1;
+				float3  positionWS	: TEXCOORD2;
 			};
 
 			#include "Packages/com.unity.render-pipelines.lightweight/Shaders/2D/Include/LightingUtility.hlsl"
@@ -78,6 +80,7 @@
 				Varyings o = (Varyings)0;
 
 				o.positionCS = TransformObjectToHClip(v.positionOS);
+				o.positionWS = TransformObjectToWorld(v.positionOS);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				float4 clipVertex = o.positionCS / o.positionCS.w;
 				o.lightingUV = ComputeScreenPos(clipVertex).xy;
@@ -95,6 +98,7 @@
 			half4 CombinedShapeLightFragment(Varyings i) : SV_Target
 			{
 				half4 main = i.color * SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
+				main.xyz *= (i.positionWS.z + 1);
 				half4 mask = SAMPLE_TEXTURE2D(_MaskTex, sampler_MaskTex, i.uv);
 
 				return CombinedShapeLightShared(main, mask, i.lightingUV);
@@ -132,6 +136,7 @@
 			TEXTURE2D(_NormalMap);
 			SAMPLER(sampler_NormalMap);
 			float4 _NormalMap_ST;  // Is this the right way to do this?
+			float _NormalMapSaturation;
 
 			Varyings NormalsRenderingVertex(Attributes attributes)
 			{
@@ -156,6 +161,7 @@
 			{
 				float4 mainTex = i.color * SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
 				float3 normalTS = UnpackNormal(SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, i.uv));
+				normalTS.xyz *= _NormalMapSaturation;
 				return NormalsRenderingShared(mainTex, normalTS, i.tangentWS.xyz, i.bitangentWS.xyz, -i.normalWS.xyz);
 			}
 			ENDHLSL

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
+using MyBox;
 
 
 public enum ItemType
@@ -18,21 +19,23 @@ public class Item : MonoBehaviour
 {
     #region Inspector variables
 
-    [SerializeField] private Rigidbody2D _rigidbody = null;
-    [SerializeField] private Collider2D _collider = null;
-    [SerializeField] private GameObject destroyEffect = null;
-    [SerializeField] private GameObject itemHighlight = null;
+    [SerializeField, MustBeAssigned] private Rigidbody2D _rigidbody = null;
+    [SerializeField, MustBeAssigned] private Collider2D _collider = null;
+    [SerializeField, MustBeAssigned] private GameObject destroyEffect = null;
+    [SerializeField, MustBeAssigned] private GameObject itemHighlight = null;
     [SerializeField] private int baseDamage = 10;
     [SerializeField] private float knockbackForce = 100f;
     [SerializeField] private UnityEvent OnStartPulling = null;
     [SerializeField] private UnityEvent OnPullingCompleted = null;
     [SerializeField] private UnityEvent OnRelease = null;
     [SerializeField] private ItemType itemType = ItemType.rock;
-    [Header("Edit only when crate or planks")]
-    [SerializeField] private GameObject[] itemsToSpawn = null;
-    [SerializeField] private int minItemsToSpawn = 1;
-    [SerializeField] private int maxItemsToSpawn = 3;
-    [SerializeField] private int plankHealth = 3;
+    private GameObject[] itemsToSpawnOnDestroy = null;
+    [SerializeField, ConditionalField(nameof(itemType), false, ItemType.plank)]
+    private int minItemsToSpawn = 1;
+    [SerializeField, ConditionalField(nameof(itemType), false, ItemType.plank)]
+    private int maxItemsToSpawn = 3;
+    [SerializeField, ConditionalField(nameof(itemType), false, ItemType.plank)]
+    private int plankHealth = 3;
 
     #endregion
 
@@ -249,14 +252,14 @@ public class Item : MonoBehaviour
 
         if ( itemType == ItemType.crate )
         {
-            int item = Random.Range( 0, itemsToSpawn.Length );
+            int item = Random.Range( 0, itemsToSpawnOnDestroy.Length );
             int i = Random.Range( minItemsToSpawn, maxItemsToSpawn );
 
             for ( int a = 0; a < i; a++ )
             {
                 Vector3 randomRotation = transform.eulerAngles;
                 randomRotation.z = Random.Range( 0f, 360f );
-                GameObject inst = Instantiate( itemsToSpawn[ item ], transform.position + (Vector3)Random.insideUnitCircle, transform.rotation );
+                GameObject inst = Instantiate( itemsToSpawnOnDestroy[ item ], transform.position + (Vector3)Random.insideUnitCircle, transform.rotation );
                 inst.transform.eulerAngles = randomRotation;
                 inst.GetComponent<Rigidbody2D>().velocity = -collisionVelocity;
             }

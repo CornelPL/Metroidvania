@@ -2,7 +2,7 @@
 using UnityEditor;
 using System;
 
-[CustomEditor(typeof(ExplosionLight))]
+/*[CustomEditor(typeof(ExplosionLight))]
 public class ExplosionLightEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -113,4 +113,4 @@ public class ExplosionLightEditor : Editor
 
         myScript.destroyOnEnd = GUILayout.Toggle( myScript.destroyOnEnd, "Destroy On End" );
     }
-}
+}*/

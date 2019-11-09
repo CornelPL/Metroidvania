@@ -27,6 +27,8 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private GameObject itemHighlight = null;
     [SerializeField] private GameObject shootEffects = null;
     [SerializeField] private UnityEvent OnShoot = null;
+    [SerializeField] private UnityEvent OnPull = null;
+    [SerializeField] private UnityEvent OnRelease = null;
     [SerializeField] private GameObject shootEffectBlur = null;
     [SerializeField] private float shootEffectBlurSize = 1.5f;
     [SerializeField] private float shootEffectBlurTime = 0.1f;
@@ -252,6 +254,8 @@ public class Telekinesis : MonoBehaviour
 
     private void PullItem()
     {
+        OnPull.Invoke();
+
         if ( closestItem == null )
         {
             closestItem = Instantiate( rockToSpawn, input.cursorPosition, transform.rotation );
@@ -371,6 +375,8 @@ public class Telekinesis : MonoBehaviour
 
     private void ReleaseItem()
     {
+        OnRelease.Invoke();
+
         closestItem.GetComponent<Item>().SetFree();
         state.isPullingItemState = false;
         state.isHoldingItemState = false;

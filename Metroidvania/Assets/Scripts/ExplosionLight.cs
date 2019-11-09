@@ -1,36 +1,40 @@
 ﻿using UnityEngine;
+using MyBox;
 
 public class ExplosionLight : MonoBehaviour
 {
     [SerializeField] private UnityEngine.Experimental.Rendering.LWRP.Light2D _light = null;
 
-    [HideInInspector] public bool fadeIn = false;
-    [HideInInspector] public float fadeInTime = 1f;
+    [Separator( "Fade In" )]
+    [SerializeField] private bool fadeIn = false;
+    [SerializeField, ConditionalField( nameof( fadeIn ) )] private float fadeInTime = 1f;
 
-    [HideInInspector] public bool fadeInOuterRadius = false;
-    [HideInInspector] public float minInOuterRadius = 0f;
-    [HideInInspector] public float maxInOuterRadius = 10f;
+    [SerializeField, ConditionalField( nameof( fadeIn ) )] private bool fadeInOuterRadius = false;
+    [SerializeField, ConditionalField( nameof( fadeInOuterRadius ) )] private float minInOuterRadius = 0f;
+    [SerializeField, ConditionalField( nameof( fadeInOuterRadius ) )] private float maxInOuterRadius = 10f;
 
-    [HideInInspector] public bool fadeInIntensity = false;
-    [HideInInspector] public float minInIntensity = 0f;
-    [HideInInspector] public float maxInIntensity = 10f;
+    [SerializeField, ConditionalField( nameof( fadeIn ) )] private bool fadeInIntensity = false;
+    [SerializeField, ConditionalField( nameof( fadeInIntensity ) )] private float minInIntensity = 0f;
+    [SerializeField, ConditionalField( nameof( fadeInIntensity ) )] private float maxInIntensity = 10f;
+
+    [Separator( "Fade Out" )]
+    [SerializeField] private bool fadeOut = false;
+    [SerializeField, ConditionalField( nameof( fadeOut ) )] private float fadeOutTime = 1f;
+
+    [SerializeField, ConditionalField( nameof( fadeOut ) )] private bool fadeOutOuterRadius = false;
+    [SerializeField, ConditionalField( nameof( fadeOutOuterRadius ) )] private float minOutOuterRadius = 0f;
+    [SerializeField, ConditionalField( nameof( fadeOutOuterRadius ) )] private float maxOutOuterRadius = 10f;
+
+    [SerializeField, ConditionalField( nameof( fadeOut ) )] private bool fadeOutIntensity = false;
+    [SerializeField, ConditionalField( nameof( fadeOutIntensity ) )] private float minOutIntensity = 0f;
+    [SerializeField, ConditionalField( nameof( fadeOutIntensity ) )] private float maxOutIntensity = 10f;
+
+    [Separator( "Destroy" )]
+    [SerializeField] private bool destroyOnEnd = false;
 
 
-    [HideInInspector] public bool fadeOut = false;
-    [HideInInspector] public float fadeOutTime = 1f;
-
-    [HideInInspector] public bool fadeOutOuterRadius = false;
-    [HideInInspector] public float minOutOuterRadius = 0f;
-    [HideInInspector] public float maxOutOuterRadius = 10f;
-
-    [HideInInspector] public bool fadeOutIntensity = false;
-    [HideInInspector] public float minOutIntensity = 0f;
-    [HideInInspector] public float maxOutIntensity = 10f;
-
-    [HideInInspector] public bool destroyOnEnd = false;
-
-
-    public void Start()
+    [ButtonMethod]
+    private void Start()
     {
         if ( fadeIn )
         {

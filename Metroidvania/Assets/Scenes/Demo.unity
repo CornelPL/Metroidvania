@@ -420,20 +420,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light: {fileID: 35675794}
-  fadeIn: 1
+  fadeIn: 0
   fadeInTime: 0.1
-  fadeInOuterRadius: 1
+  fadeInOuterRadius: 0
   minInOuterRadius: 0
   maxInOuterRadius: 40
-  fadeInIntensity: 1
+  fadeInIntensity: 0
   minInIntensity: 0
   maxInIntensity: 5
-  fadeOut: 1
+  fadeOut: 0
   fadeOutTime: 2
   fadeOutOuterRadius: 0
   minOutOuterRadius: 0
   maxOutOuterRadius: 10
-  fadeOutIntensity: 1
+  fadeOutIntensity: 0
   minOutIntensity: 0
   maxOutIntensity: 5
   destroyOnEnd: 0
@@ -5866,11 +5866,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1652622458}
-    - target: {fileID: 489815610069802124, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c,
-        type: 3}
-      propertyPath: EmissionModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c, type: 3}
 --- !u!1 &132294043
@@ -42758,6 +42753,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 620798215}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &626543996 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3186234877268468458, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c,
+    type: 3}
+  m_PrefabInstance: {fileID: 119857112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &629016284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55424,6 +55425,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8034119047393716616, guid: 5de8e7d302de99e4ab3f524d9ee4d225,
     type: 3}
   m_PrefabInstance: {fileID: 925792979}
+  m_PrefabAsset: {fileID: 0}
+--- !u!330 &932834407 stripped
+ParticleSystemForceField:
+  m_CorrespondingSourceObject: {fileID: 2072732974381505093, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c,
+    type: 3}
+  m_PrefabInstance: {fileID: 119857112}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &938309008
 PrefabInstance:
@@ -117557,6 +117564,21 @@ PrefabInstance:
       propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1483961788}
+    - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 626543996}
+    - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: OnPull.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 932834407}
+    - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: OnRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 932834407}
     - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: shootEffectBlur

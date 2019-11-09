@@ -120,16 +120,14 @@ public abstract class Item : MonoBehaviour
     protected virtual void OnTriggerEnter2D( Collider2D collider )
     {
         GameObject go = collider.gameObject;
+
         if ( go.CompareTag( "Enemy" ) )
         {
-            Vector2 direction = GetComponent<Rigidbody2D>().velocity.normalized;
-
-            go.GetComponent<HitManager>().TakeHit( baseDamage, direction, knockbackForce );
-            CustomDestroy();
+            go.GetComponent<HitManager>().TakeHit( baseDamage, _rigidbody.velocity.normalized, knockbackForce );
         }
         else if ( go.CompareTag( "DestroyablePlanks" ) )
         {
-            go.GetComponent<CustomDestroy>().Destroy();
+            go.GetComponent<CustomDestroy>().Destroy( _rigidbody.velocity, transform.position );
         }
     }
 

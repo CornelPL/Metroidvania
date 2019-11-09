@@ -123,9 +123,9 @@ MonoBehaviour:
   OnDestroy:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7198517643227437171}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 7198517643227437170}
+        m_MethodName: DestroyObject
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -136,3 +136,13 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  objectsToSpawnOnDestroy:
+  - {fileID: 6417654320457713547, guid: 33057ab5e8b0e0d47a77f04442e743c4, type: 3}
+  numObjectsToSpawn:
+    Min: 2
+    Max: 5
+  spawnedItemVelocityLoss: 4
+  spawnRange: {x: 1, y: 1}
+  angularVelocity:
+    Min: -355.40424
+    Max: 355.40424

@@ -5,21 +5,11 @@ using UnityEngine.Events;
 using MyBox;
 
 
-public enum ItemType
-{
-    rock,
-    crate,
-    plank,
-    barrel,
-    saw
-}
-
-
-public class Item : MonoBehaviour
+public abstract class Item : MonoBehaviour
 {
     #region Inspector variables
 
-    [SerializeField, MustBeAssigned] private Rigidbody2D _rigidbody = null;
+    [SerializeField, MustBeAssigned] protected Rigidbody2D _rigidbody = null;
     [SerializeField, MustBeAssigned] private Collider2D _collider = null;
     [SerializeField, MustBeAssigned] private GameObject destroyEffect = null;
     [SerializeField, MustBeAssigned] private GameObject itemHighlight = null;
@@ -28,14 +18,6 @@ public class Item : MonoBehaviour
     [SerializeField] private UnityEvent OnStartPulling = null;
     [SerializeField] private UnityEvent OnPullingCompleted = null;
     [SerializeField] private UnityEvent OnRelease = null;
-    [SerializeField] private ItemType itemType = ItemType.rock;
-    private GameObject[] itemsToSpawnOnDestroy = null;
-    [SerializeField, ConditionalField(nameof(itemType), false, ItemType.plank)]
-    private int minItemsToSpawn = 1;
-    [SerializeField, ConditionalField(nameof(itemType), false, ItemType.plank)]
-    private int maxItemsToSpawn = 3;
-    [SerializeField, ConditionalField(nameof(itemType), false, ItemType.plank)]
-    private int plankHealth = 3;
 
     #endregion
 
@@ -43,17 +25,17 @@ public class Item : MonoBehaviour
 
     private Transform itemHolder = null;
     private bool isPulling = false;
-    private bool isShooted = false;
+    protected bool isShooted = false;
     private float pullSpeedUp = 0f;
     private float maxPullSpeed = 0f;
     private float pullingTime = 1f;
     private float gravityScaleCopy = 0f;
-    private List<Collider2D> collidersToIgnore = new List<Collider2D>();
+    protected List<Collider2D> collidersToIgnore = new List<Collider2D>();
 
     #endregion
 
 
-    public void SetFree()
+    public virtual void SetFree()
     {
         transform.SetParent( null );
         _rigidbody.simulated = true;
@@ -61,7 +43,7 @@ public class Item : MonoBehaviour
     }
 
 
-    public void StartPulling( Transform t, float s, float ms )
+    public virtual void StartPulling( Transform t, float s, float ms )
     {
         itemHolder = t;
         pullSpeedUp = s;
@@ -76,13 +58,10 @@ public class Item : MonoBehaviour
         _rigidbody.gravityScale = 0f;
 
         _collider.enabled = false;
-
-        if ( itemType == ItemType.plank )
-            gameObject.layer = LayerMask.NameToLayer( "Planks" );
     }
 
 
-    public void AbortPulling()
+    public virtual void AbortPulling()
     {
         PlayerState.instance.isPullingItemState = false;
         _rigidbody.gravityScale = gravityScaleCopy;
@@ -92,7 +71,7 @@ public class Item : MonoBehaviour
     }
 
 
-    public void Shoot( Vector2 direction, float power )
+    public virtual void Shoot( Vector2 direction, float power )
     {
         isShooted = true;
 
@@ -114,13 +93,13 @@ public class Item : MonoBehaviour
     }
 
 
-    public void OnHover( bool start )
+    public virtual void OnHover( bool start )
     {
         itemHighlight.SetActive( start );
     }
 
 
-    private void Awake()
+    protected virtual void Awake()
     {
         gravityScaleCopy = _rigidbody.gravityScale;
 
@@ -129,7 +108,7 @@ public class Item : MonoBehaviour
     }
 
 
-    private void Update()
+    protected virtual void Update()
     {
         if ( isPulling )
         {
@@ -138,18 +117,8 @@ public class Item : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D( Collider2D collider )
+    protected virtual void OnTriggerEnter2D( Collider2D collider )
     {
-        if (!isShooted)
-        {
-            return;
-        }
-
-        if ( collidersToIgnore.Find( ( Collider2D x ) => x == collider ) )
-        {
-            return;
-        }
-
         GameObject go = collider.gameObject;
         if ( go.CompareTag( "Enemy" ) )
         {
@@ -162,35 +131,10 @@ public class Item : MonoBehaviour
         {
             go.GetComponent<CustomDestroy>().Destroy();
         }
-
-        if ( itemType == ItemType.rock )
-        {
-            CustomDestroy();
-        }
-        else if ( itemType == ItemType.crate )
-        {
-            CustomDestroy();
-        }
-        else if ( itemType == ItemType.plank )
-        {
-            if ( go.CompareTag( "SoftWall" ) )
-            {
-                plankHealth--;
-                if ( plankHealth == 0 ) CustomDestroy();
-                _rigidbody.velocity = Vector2.zero;
-                _rigidbody.bodyType = RigidbodyType2D.Static;
-                gameObject.layer = LayerMask.NameToLayer( "PlanksGround" );
-                transform.rotation = Quaternion.identity;
-            }
-            else if ( !go.CompareTag( "Player" ) )
-            {
-                CustomDestroy();
-            }
-        }
     }
 
 
-    private void Pull()
+    protected virtual void Pull()
     {
         pullingTime += Time.deltaTime;
 
@@ -203,7 +147,7 @@ public class Item : MonoBehaviour
     }
 
 
-    private void UpdateVelocity()
+    protected virtual void UpdateVelocity()
     {
         Vector2 direction = itemHolder.position - transform.position;
         direction.Normalize();
@@ -219,7 +163,7 @@ public class Item : MonoBehaviour
     }
 
 
-    private bool IsItemOnPlace()
+    protected virtual bool IsItemOnPlace()
     {
         float distance = Vector2.Distance( transform.position, itemHolder.position );
 
@@ -227,7 +171,7 @@ public class Item : MonoBehaviour
     }
 
 
-    private void FinishPulling()
+    protected virtual void FinishPulling()
     {
         PlayerState.instance.isHoldingItemState = true;
 
@@ -246,25 +190,8 @@ public class Item : MonoBehaviour
     }
 
 
-    private void CustomDestroy()
+    protected virtual void CustomDestroy()
     {
-        Vector2 collisionVelocity = _rigidbody.velocity;
-
-        if ( itemType == ItemType.crate )
-        {
-            int item = Random.Range( 0, itemsToSpawnOnDestroy.Length );
-            int i = Random.Range( minItemsToSpawn, maxItemsToSpawn );
-
-            for ( int a = 0; a < i; a++ )
-            {
-                Vector3 randomRotation = transform.eulerAngles;
-                randomRotation.z = Random.Range( 0f, 360f );
-                GameObject inst = Instantiate( itemsToSpawnOnDestroy[ item ], transform.position + (Vector3)Random.insideUnitCircle, transform.rotation );
-                inst.transform.eulerAngles = randomRotation;
-                inst.GetComponent<Rigidbody2D>().velocity = -collisionVelocity;
-            }
-        }
-
         Transform effect = Instantiate( destroyEffect, transform.position, transform.rotation ).transform;
         float angle = Mathf.Atan2( _rigidbody.velocity.y, _rigidbody.velocity.x ) * Mathf.Rad2Deg;
         effect.rotation = Quaternion.AngleAxis( angle, Vector3.forward );

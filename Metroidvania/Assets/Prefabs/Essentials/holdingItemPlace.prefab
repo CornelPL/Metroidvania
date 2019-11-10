@@ -45,6 +45,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2991419991390253053}
   - component: {fileID: 8145061735393440752}
+  - component: {fileID: 7034374969620809253}
+  - component: {fileID: 1935595151718459375}
   m_Layer: 0
   m_Name: shootEffectBlur
   m_TagString: Untagged
@@ -115,6 +117,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7034374969620809253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202518792430496859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f385dfd02c1d677438101d6c98f2bf45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleUp: 1
+  scaleUpTime: 0.3
+  minUpScale: {x: 0, y: 0, z: 1}
+  maxUpScale: {x: 1.5, y: 1.5, z: 1}
+  scaleDown: 1
+  scaleDownTime: 0
+  minDownScale: {x: 0, y: 0, z: 1}
+  maxDownScale: {x: 1, y: 1, z: 1}
+  scaleOnStart: 0
+  destroyOnEnd: 0
+--- !u!114 &1935595151718459375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202518792430496859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898388cd88ca1cd4ab7cbc4fad517a4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeIn: 0
+  fadeInTime: 1
+  minFadeInA: 0
+  maxFadeInA: 1
+  fadeOut: 1
+  fadeOutTime: 0.3
+  minFadeOutA: 0
+  maxFadeOutA: 1
+  fadeOnStart: 0
+  destroyOnEnd: 0
 --- !u!1 &587527347645729144
 GameObject:
   m_ObjectHideFlags: 0

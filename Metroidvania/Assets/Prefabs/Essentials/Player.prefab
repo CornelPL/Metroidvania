@@ -1544,7 +1544,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   shootEffectBlur: {fileID: 0}
   shootEffectBlurSize: 1.5
-  shootEffectBlurTime: 0.1
+  shootEffectBlurTime: 0.3
   stableItemFreezeTime: 5
   maxStableItems: 2
   arcRenderer: {fileID: 6838834047492786796}

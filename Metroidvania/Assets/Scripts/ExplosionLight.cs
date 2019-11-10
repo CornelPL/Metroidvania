@@ -54,6 +54,10 @@ public class ExplosionLight : MonoBehaviour
             {
                 LeanTween.value( 0f, 0f, fadeInTime ).setOnComplete( () => { FadeOut(); } );
             }
+            else if ( destroyOnEnd )
+            {
+                LeanTween.value( 0f, 0f, fadeInTime ).setOnComplete( () => { Destroy( gameObject ); } );
+            }
         }
         else if ( fadeOut )
         {
@@ -61,7 +65,7 @@ public class ExplosionLight : MonoBehaviour
 
             if ( destroyOnEnd )
             {
-                Destroy( gameObject );
+                LeanTween.value( 0f, 0f, fadeOutTime ).setOnComplete( () => { Destroy( gameObject ); } );
             }
         }
     }

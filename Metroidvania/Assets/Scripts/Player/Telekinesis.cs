@@ -29,9 +29,6 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private UnityEvent OnShoot = null;
     [SerializeField] private UnityEvent OnPull = null;
     [SerializeField] private UnityEvent OnRelease = null;
-    [SerializeField] private GameObject shootEffectBlur = null;
-    [SerializeField] private float shootEffectBlurSize = 1.5f;
-    [SerializeField] private float shootEffectBlurTime = 0.1f;
 
     [Header( "Stable items" )]
     [SerializeField] private float stableItemFreezeTime = 5f;
@@ -353,12 +350,6 @@ public class Telekinesis : MonoBehaviour
     private void ShootItem()
     {
         OnShoot.Invoke();
-
-        LeanTween.value( shootEffectBlur, new Vector3( 0f, 0f, 1f ), new Vector3( shootEffectBlurSize, shootEffectBlurSize, 1f ), shootEffectBlurTime ).setOnUpdate( ( Vector3 v ) => shootEffectBlur.transform.localScale = v ).setOnComplete( () => shootEffectBlur.transform.localScale = new Vector3( 0f, 0f, 1f ) );
-
-        SpriteRenderer renderer = shootEffectBlur.GetComponent<SpriteRenderer>();
-
-        LeanTween.value( shootEffectBlur, 1f, 0f, shootEffectBlurTime ).setOnUpdate( ( float f ) => renderer.color = new Color( renderer.color.r, renderer.color.g, renderer.color.b, f ) );
 
         Vector2 shootDirection = input.cursorPosition - (Vector2)holdingItemPlace.position;
         shootDirection.Normalize();

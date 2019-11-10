@@ -29,12 +29,22 @@ public class ExplosionLight : MonoBehaviour
     [SerializeField, ConditionalField( nameof( fadeOutIntensity ) )] private float minOutIntensity = 0f;
     [SerializeField, ConditionalField( nameof( fadeOutIntensity ) )] private float maxOutIntensity = 10f;
 
-    [Separator( "Destroy" )]
+    [Separator( "Bools" )]
+    [SerializeField] private bool fadeOnStart = false;
     [SerializeField] private bool destroyOnEnd = false;
 
 
-    [ButtonMethod]
     private void Start()
+    {
+        if ( fadeOnStart )
+        {
+            DoFade();
+        }
+    }
+
+
+    [ButtonMethod]
+    public void DoFade()
     {
         if ( fadeIn )
         {

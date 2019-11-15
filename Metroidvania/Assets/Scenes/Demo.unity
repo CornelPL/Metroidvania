@@ -420,23 +420,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light: {fileID: 35675794}
-  fadeIn: 0
+  fadeIn: 1
   fadeInTime: 0.1
-  fadeInOuterRadius: 0
+  fadeInOuterRadius: 1
   minInOuterRadius: 0
   maxInOuterRadius: 40
-  fadeInIntensity: 0
+  fadeInIntensity: 1
   minInIntensity: 0
   maxInIntensity: 5
-  fadeOut: 0
+  fadeOut: 1
   fadeOutTime: 2
   fadeOutOuterRadius: 0
   minOutOuterRadius: 0
   maxOutOuterRadius: 10
-  fadeOutIntensity: 0
+  fadeOutIntensity: 1
   minOutIntensity: 0
   maxOutIntensity: 5
-  fadeOnStart: 0
+  fadeOnStart: 1
   destroyOnEnd: 0
 --- !u!1 &36038807
 GameObject:
@@ -36401,7 +36401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &495761514
 MonoBehaviour:
   m_ObjectHideFlags: 0

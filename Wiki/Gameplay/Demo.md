@@ -23,7 +23,7 @@
   - crate
   - planks
   - explosive (barrel?)
-  - saw (maybe not)
+  - saw (maybe not) (or maybe yes - bardziej przybliży, że pomysł na grę wziął się z Half life'a)
   - itemy z przeciwników
   - losowe eventy - spadające kamienie
   

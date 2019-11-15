@@ -9790,6 +9790,7 @@ MonoBehaviour:
   fadeOutIntensity: 1
   minOutIntensity: 0
   maxOutIntensity: 2
+  fadeOnStart: 1
   destroyOnEnd: 0
 --- !u!1 &4150075052483052455
 GameObject:

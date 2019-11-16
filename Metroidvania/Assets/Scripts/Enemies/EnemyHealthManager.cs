@@ -17,6 +17,7 @@ public class EnemyHealthManager : HealthManager
         OnDeath.Invoke();
         DropPoints();
         SpawnEffect( shootDirection, deathEffect );
+        EnergyController.instance.AddEnergy( EnergyGain.OnKill );
 
         shootDirection.y += 1f;
 
@@ -71,6 +72,7 @@ public class EnemyHealthManager : HealthManager
 
         SpawnEffect( direction, splashEffect );
         ChangeColorOnDamage();
+        EnergyController.instance.AddEnergy( EnergyGain.OnHit );
 
         if ( currentHP < 0)
         {

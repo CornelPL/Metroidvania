@@ -26,6 +26,7 @@ public class PlayerState : MonoBehaviour
     public bool hasUpgradedDash = false;
     public bool hasSlam = false;
     public bool canModifyStableItems = false;
+    public bool canSpawnItems = false;
 
     [Header("Helpers")]
 

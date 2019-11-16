@@ -1,25 +1,29 @@
 ﻿using UnityEngine;
+using MyBox;
+using System.Collections.Generic;
 
 public class InputController : MonoBehaviour
 {
     public static InputController instance = null;
 
-    [Header("Movement")]
+    [Separator("Movement")]
     public KeyCode rightKey;
     public KeyCode leftKey;
     public KeyCode dashKey;
 
-    [Header("Air")]
+    [Separator( "Air")]
     public KeyCode jumpKey;
     public KeyCode flyingKey;
     public KeyCode downKey;
 
-    [Header("Mouse")]
+    [Separator( "Mouse")]
     public KeyCode lmbKey;
     public KeyCode rmbKey;
 
-    [Header("Other")]
+    [Separator( "Other")]
     public KeyCode healKey;
+    public KeyCode spawnItemKey;
+    public List<KeyCode> numKeys;
 
     public bool right { get; private set; }
     public bool left { get; private set; }
@@ -37,9 +41,14 @@ public class InputController : MonoBehaviour
     public bool healDown { get; private set; }
     public bool healUp { get; private set; }
 
+    public bool spawnItem { get; private set; }
+
+    public int numKey { get; private set; }
+
     public Vector2 cursorPosition;
 
     private Camera _camera;
+
 
     private void Awake()
     {
@@ -49,10 +58,12 @@ public class InputController : MonoBehaviour
             Destroy(this);
     }
 
+
     private void Start()
     {
         _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
+
 
     private void Update()
     {
@@ -71,6 +82,19 @@ public class InputController : MonoBehaviour
 
         healDown = Input.GetKeyDown(healKey);
         healUp = Input.GetKeyUp(healKey);
+
+        spawnItem = Input.GetKeyDown( spawnItemKey );
+
+        for ( int i = 0; i < numKeys.Count; i++ )
+        {
+            if ( Input.GetKeyDown( numKeys[ i ] ) )
+            {
+                numKey = i;
+                break;
+            }
+
+            numKey = -1;
+        }
 
         cursorPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
     }

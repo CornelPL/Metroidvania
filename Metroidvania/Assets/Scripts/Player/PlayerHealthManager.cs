@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using MyBox;
+
 
 public class PlayerHealthManager : MonoBehaviour
 {
@@ -9,10 +11,9 @@ public class PlayerHealthManager : MonoBehaviour
     [SerializeField] private float knockbackTime = 0.5f;
     [SerializeField] private float invulnerabilityTime = 1f;
     [SerializeField] private float healChargeTime = 1f;
-    [SerializeField] private Rigidbody2D _rigidbody = null;
-    [SerializeField] private PointsController pointsController = null;
-    [SerializeField] private Image[] barsBackgrounds = null;
-    [SerializeField] private Image[] bars = null;
+    [SerializeField, MustBeAssigned] private Rigidbody2D _rigidbody = null;
+    [SerializeField, MustBeAssigned] private Image[] barsBackgrounds = null;
+    [SerializeField, MustBeAssigned] private Image[] bars = null;
 
     private InputController input;
     private PlayerState state;
@@ -37,7 +38,7 @@ public class PlayerHealthManager : MonoBehaviour
 
     private void Update()
     {
-        if (input.healDown && pointsController.isContainerFull && currentHP < maxHP && state.isGroundedState && !state.isRunningState && !state.isKnockbackedState)
+        if (input.healDown && EnergyController.instance.isContainerFull && currentHP < maxHP && state.isGroundedState && !state.isRunningState && !state.isKnockbackedState)
         {
             state.isHealingState = true;
         }
@@ -57,7 +58,7 @@ public class PlayerHealthManager : MonoBehaviour
             {
                 state.isHealingState = false;
                 healingTime = 0f;
-                pointsController.EmptyContainer();
+                EnergyController.instance.EmptyContainer();
                 currentHP++;
                 UpdateBars();
             }

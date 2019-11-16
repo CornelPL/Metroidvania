@@ -1272,6 +1272,7 @@ GameObject:
   - component: {fileID: 6838834047338178276}
   - component: {fileID: 2887670582435451143}
   - component: {fileID: 560894362981388506}
+  - component: {fileID: 767784458}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -1381,6 +1382,7 @@ MonoBehaviour:
   hasUpgradedDash: 0
   hasSlam: 1
   canModifyStableItems: 0
+  canSpawnItems: 1
   normalCollider: {fileID: 7657262229719900732}
   invulnerableCollider: {fileID: 1916609879606229411}
   holdingItemPosition: {fileID: 3956272965029147024}
@@ -1388,7 +1390,7 @@ MonoBehaviour:
   rightMaterial: {fileID: 2100000, guid: 7bf8b85bdcf50d2478ed951da3d74f44, type: 2}
   leftMaterial: {fileID: 2100000, guid: af846ae2e52422a4ba14290d919a255e, type: 2}
   animator: {fileID: 5845602597293220103}
-  lastTimeGrounded: 0.02
+  lastTimeGrounded: 33.24
 --- !u!114 &6838834047338178268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1431,6 +1433,7 @@ MonoBehaviour:
   holdingItemPlace: {fileID: 0}
   rockToSpawn: {fileID: 6417654320457713547, guid: 33057ab5e8b0e0d47a77f04442e743c4,
     type: 3}
+  itemGenerator: {fileID: 767784458}
   _light: {fileID: 5591806385418254259}
   lightOnIntensity: 2
   lightOffIntensity: 1
@@ -1508,6 +1511,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: DoScale
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: DoFade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnPull:
@@ -1542,9 +1567,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  shootEffectBlur: {fileID: 0}
-  shootEffectBlurSize: 1.5
-  shootEffectBlurTime: 0.3
   stableItemFreezeTime: 5
   maxStableItems: 2
   arcRenderer: {fileID: 6838834047492786796}
@@ -1597,7 +1619,6 @@ MonoBehaviour:
   invulnerabilityTime: 1
   healChargeTime: 1
   _rigidbody: {fileID: 6838834047338178264}
-  pointsController: {fileID: 560894362981388506}
   barsBackgrounds:
   - {fileID: 0}
   - {fileID: 0}
@@ -1667,10 +1688,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a19f75e5e894bb41af3a5a462005d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  container: {fileID: 0}
-  containerCapacity: 5
   pointsText: {fileID: 0}
-  isContainerFull: 1
+--- !u!114 &767784458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838834047338178269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71abb96e3238bfc4788756c66d431b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 6417654320457713547, guid: 33057ab5e8b0e0d47a77f04442e743c4, type: 3}
+  itemsSpawnCosts: 01000000
+  selectedItem: {fileID: 0}
+  itemSpawnCost: 1
 --- !u!1 &6838834047492786797
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,10 @@ Całą telekinezę obsługuje się myszką. Bohater może podnosić przedmioty, 
 Tak jak w Ori and the Blind Forest w momencie rozpoczęcia rzucania spowalnia czas i pokazuje się strzałka w którą stronę możemy rzucić przedmiotem.\
 Przedmioty zachowują się różnie w zależności od typu (czyt. Przedmioty). Na początku gracz może wziąć tylko jeden przedmiot na raz. Wstępnie brak ograniczeń rzucania przedmiotami w stylu energii.
 
+#### Item generator
+
+
+
 #### Double jump
 
 Bohater odpycha się od powietrza wyrzucając pod siebie energię i skacze wyżej. Może użyć tylko raz w powietrzu. Odnawia się po dotknięciu podłoża.\

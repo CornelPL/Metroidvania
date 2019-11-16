@@ -2,44 +2,46 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Experimental.Rendering.LWRP;
+using MyBox;
 
 public class Telekinesis : MonoBehaviour
 {
     #region Editor variables
 
-    [Header( "Telekinesis" )]
+    [Separator( "Telekinesis" )]
     [SerializeField] private float range = 10f;
     [SerializeField] private float radius = 1f;
     [SerializeField] private float pullSpeed = 50f;
     [SerializeField] private float maxPullSpeed = 50f;
     [SerializeField] private float shootPower = 10f;
     [SerializeField] private float slowmoMaxTime = 2f;
-    [SerializeField] private Transform holdingItemPlace = null;
-    [SerializeField] private GameObject rockToSpawn = null;
+    [SerializeField, MustBeAssigned] private Transform holdingItemPlace = null;
+    [SerializeField, MustBeAssigned] private GameObject rockToSpawn = null;
+    [SerializeField, MustBeAssigned] private ItemGenerator itemGenerator = null;
 
-    [Header( "Effects" )]
-    [SerializeField] private Light2D _light = null;
+    [Separator( "Effects" )]
+    [SerializeField, MustBeAssigned] private Light2D _light = null;
     [SerializeField] private float lightOnIntensity = 1.5f;
     [SerializeField] private float lightOffIntensity = 0.5f;
     [SerializeField] private float tweenTime = 0.5f;
-    [SerializeField] private GameObject pullEffects = null;
-    [SerializeField] private ParticleSystem onHoverItemParticles = null;
-    [SerializeField] private GameObject itemHighlight = null;
-    [SerializeField] private GameObject shootEffects = null;
+    [SerializeField, MustBeAssigned] private GameObject pullEffects = null;
+    [SerializeField, MustBeAssigned] private ParticleSystem onHoverItemParticles = null;
+    [SerializeField, MustBeAssigned] private GameObject itemHighlight = null;
+    [SerializeField, MustBeAssigned] private GameObject shootEffects = null;
     [SerializeField] private UnityEvent OnShoot = null;
     [SerializeField] private UnityEvent OnPull = null;
     [SerializeField] private UnityEvent OnRelease = null;
 
-    [Header( "Stable items" )]
+    [Separator( "Stable items" )]
     [SerializeField] private float stableItemFreezeTime = 5f;
     [SerializeField] private int maxStableItems = 5;
 
-    [Header( "Trajectory" )]
-    [SerializeField] private LineRenderer arcRenderer = null;
+    [Separator( "Trajectory" )]
+    [SerializeField, MustBeAssigned] private LineRenderer arcRenderer = null;
     [SerializeField] private int arcResolution = 10;
     [SerializeField] private float arcLength = 8f;
 
-    [Header( "Masks" )]
+    [Separator( "Masks" )]
     [Tooltip( "Layers of all items player can pick up." )]
     public LayerMask itemsLayer;
     [Tooltip( "Layers of stable items player can modify." )]
@@ -94,25 +96,43 @@ public class Telekinesis : MonoBehaviour
             if ( isCursorInRange )
             {
                 TryFindClosestItem();
+            }
 
+            // Player tries to pull or spawn item
+            if ( input.rmb || input.spawnItem )
+            {
                 // Player tries to pull item and there's item to pull
-                if ( input.rmb && ( closestItem != null || canGetRockFromGround ) )
+                if ( input.rmb && (closestItem != null || canGetRockFromGround) )
                 {
                     PullItem();
                 }
-            }
-            else
-            {
-                closestItem = null;
-                canGetRockFromGround = false;
+                // Player tries to spawn item and there's item to spawn
+                else if ( state.canSpawnItems && input.spawnItem && itemGenerator.selectedItem != null && EnergyController.instance.energy >= itemGenerator.itemSpawnCost )
+                {
+                    SpawnItem();
+                }
+                // There was no item to pull or player couldn't spawn any
+                else
+                {
+                    // TODO: no item in range or to spawn EFFECT (vfx, sfx)
+                    closestItem = null;
+                    canGetRockFromGround = false;
+                }
             }
         }
-        // Player is holding item or is pulling one and wants to abort it
+        // Player is holding item and wants to drop it or is pulling one and wants to abort it
         else if ( input.rmb )
         {
             if ( state.isPullingItemState )
             {
                 closestItem.GetComponent<Item>().AbortPulling();
+            }
+            else if ( closestItem.GetComponent<Item>().isSpawned )
+            {
+                // TODO: Destroy effects
+                state.isPullingItemState = false;
+                state.isHoldingItemState = false;
+                Destroy( closestItem );
             }
 
             ReleaseItem();
@@ -246,6 +266,27 @@ public class Telekinesis : MonoBehaviour
 
             couldGetRockFromGround = canGetRockFromGround;
         }
+    }
+
+
+    private void SpawnItem()
+    {
+        // TODO: Spawn effects
+        closestItem = Instantiate( itemGenerator.selectedItem, holdingItemPlace.position, transform.rotation );
+        closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
+
+        closestItem.GetComponent<Item>().isSpawned = true;
+
+        EnergyController.instance.SubEnergy( itemGenerator.itemSpawnCost );
+
+        state.isHoldingItemState = true;
+
+        closestItemRigidbody.bodyType = RigidbodyType2D.Dynamic;
+        closestItemRigidbody.isKinematic = false;
+
+        closestItem.transform.SetParent( transform );
+
+        canGetRockFromGround = false;
     }
 
 

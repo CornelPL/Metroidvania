@@ -46,6 +46,7 @@ public class BossHealthManager : HealthManager
         OnDeath.Invoke();
         StartCoroutine( DeathCoroutine() );
         StartCoroutine( DropPoints() );
+        EnergyController.instance.AddEnergy( EnergyGain.OnKillBoss );
     }
 
 

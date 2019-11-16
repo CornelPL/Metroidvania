@@ -21,6 +21,8 @@ public abstract class Item : MonoBehaviour
 
     #endregion
 
+    [HideInInspector] public bool isSpawned = false;
+
     #region Private variables
 
     private Transform itemHolder = null;

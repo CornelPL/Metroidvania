@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Experimental.Rendering.LWRP;
@@ -55,19 +56,15 @@ public class Telekinesis : MonoBehaviour
 
     private GameObject closestItem;
     private GameObject lastClosestItem;
-    private Rigidbody2D closestItemRigidbody;
+    private float closestItemGravityScale;
     private GameObject closestStableItem;
     private InputController input;
     private PlayerState state;
-    private bool isHoldingLMB;
     private List<GameObject> stableItems = new List<GameObject>();
     private float t = 0f;
-    private bool canGetRockFromGround = false;
-    private bool couldGetRockFromGround = false;
+    private bool canGetItemFromSurface = false;
     private bool isCursorInRange = false;
-    private bool wasCursorInRange = false;
     private bool isCursorOver = false;
-    private bool wasCursorOver = false;
 
     #endregion
 
@@ -88,58 +85,88 @@ public class Telekinesis : MonoBehaviour
 
     private void Update()
     {
-        isCursorInRange = Vector2.Distance( input.cursorPosition, transform.position ) > range ? false : true;
+        isCursorInRange = CheckCursorInRange();
 
-        // Player doesn't have any item and isn't pulling any
-        if ( !state.isHoldingItemState && !state.isPullingItemState )
+        if ( isCursorInRange && !state.isHoldingItemState && !state.isPullingItemState )
         {
-            if ( isCursorInRange )
-            {
-                TryFindClosestItem();
-            }
+            closestItem = FindClosestItem();
 
-            // Player tries to pull or spawn item
-            if ( input.rmb || input.spawnItem )
+            if ( closestItem == null )
             {
-                // Player tries to pull item and there's item to pull
-                if ( input.rmb && (closestItem != null || canGetRockFromGround) )
+                canGetItemFromSurface = FindRockySurface();
+
+                if ( canGetItemFromSurface )
+                {
+                    onHoverItemParticles.transform.position = input.cursorPosition;
+                    itemHighlight.SetActive( false );
+                }
+            }
+            else
+            {
+                onHoverItemParticles.transform.position = closestItem.transform.position;
+                itemHighlight.SetActive( false );
+            }
+        }
+        else
+        {
+            itemHighlight.SetActive( false );
+        }
+
+        isCursorOver = CheckCursorOver();
+        
+        if ( input.rmb )
+        {
+            /*if ( closestItem.GetComponent<Item>().isSpawned )
+            {
+                // TODO: Destroy effects
+                Destroy( closestItem );
+            }*/
+            if ( state.isHoldingItemState )
+            {
+                ReleaseItem();
+            }
+            else if ( state.isPullingItemState )
+            {
+                closestItem.GetComponent<Item>().AbortPulling();
+                ReleaseItem();
+            }
+            else if ( isCursorInRange )
+            {
+                if ( closestItem != null )
                 {
                     PullItem();
                 }
-                // Player tries to spawn item and there's item to spawn
-                else if ( state.canSpawnItems && input.spawnItem && itemGenerator.selectedItem != null && EnergyController.instance.energy >= itemGenerator.itemSpawnCost )
+                else if ( canGetItemFromSurface )
                 {
-                    SpawnItem();
+                    PullItemFromSurface();
                 }
-                // There was no item to pull or player couldn't spawn any
                 else
                 {
-                    // TODO: no item in range or to spawn EFFECT (vfx, sfx)
-                    closestItem = null;
-                    canGetRockFromGround = false;
+                    // TODO: no item in range EFFECT (vfx, sfx)
                 }
             }
         }
-        // Player is holding item and wants to drop it or is pulling one and wants to abort it
-        else if ( input.rmb )
+        else if ( input.spawnItem && !state.isHoldingItemState && !state.isPullingItemState )
         {
-            if ( state.isPullingItemState )
+            if ( state.canSpawnItems && itemGenerator.selectedItem != null && EnergyController.instance.energy >= itemGenerator.itemSpawnCost )
             {
-                closestItem.GetComponent<Item>().AbortPulling();
+                SpawnItem();
             }
-            else if ( closestItem.GetComponent<Item>().isSpawned )
+            else
             {
-                // TODO: Destroy effects
-                state.isPullingItemState = false;
-                state.isHoldingItemState = false;
-                Destroy( closestItem );
+                // TODO: no item to spawn EFFECT (vfx, sfx)
             }
+        }
+        else if ( input.lmbDown && state.isHoldingItemState )
+        {
+            // TODO: move it to endPull method
+            SetPullEffectsActive( false );
 
-            ReleaseItem();
+            StartCoroutine( ShootingSequence() );
         }
 
         // Player acquired stabling items skill
-        if ( isCursorInRange && state.canModifyStableItems )
+        /*if ( isCursorInRange && state.canModifyStableItems )
         {
             // Try to find stable item near cursor
             TryFindClosestStableItem();
@@ -153,25 +180,48 @@ public class Telekinesis : MonoBehaviour
         else
         {
             closestStableItem = null;
-        }
+        }*/
+    }
 
-        // Player is holding item and wants to shoot it
-        if ( state.isHoldingItemState )
+
+    private bool CheckCursorInRange()
+    {
+        bool result = Vector2.Distance( input.cursorPosition, transform.position ) > range ? false : true;
+
+        if ( result != isCursorInRange )
         {
-            SetPullEffectsActive( false );
+            CustomCursor.Instance.OnInRangeChange( result );
+        }
 
-            if ( input.lmbDown )
+        return result;
+    }
+
+
+    private bool CheckCursorOver()
+    {
+        bool result = (closestItem != null || canGetItemFromSurface) && !state.isHoldingItemState && !state.isPullingItemState;
+
+        if ( result != isCursorOver )
+        {
+            CustomCursor.Instance.OnOverChange( result );
+
+            if ( !onHoverItemParticles.isPlaying )
             {
-                StartShootingSequence();
+                onHoverItemParticles.Play();
             }
-            else if ( isHoldingLMB )
+            else
             {
-                ShootingSequence();
+                onHoverItemParticles.Stop();
+                onHoverItemParticles.Clear();
             }
         }
 
-        UpdateCursorHighlight();
-        UpdateItemHighlight();
+        if ( result )
+        {
+            onHoverItemParticles.transform.position = input.cursorPosition;
+        }
+
+        return result;
     }
 
 
@@ -183,10 +233,9 @@ public class Telekinesis : MonoBehaviour
     }
 
 
-    private void TryFindClosestItem()
+    private GameObject FindClosestItem()
     {
-        closestItem = null;
-        canGetRockFromGround = false;
+        GameObject result = null;
 
         Collider2D[] items = Physics2D.OverlapCircleAll( input.cursorPosition, radius, itemsLayer );
 
@@ -197,75 +246,27 @@ public class Telekinesis : MonoBehaviour
             GameObject item = items[ i ].gameObject;
 
             float distanceToItem = Vector2.Distance( item.transform.position, input.cursorPosition );
+
             if ( distanceToItem < smallestDistance )
             {
                 smallestDistance = distanceToItem;
-                closestItem = item;
+                result = item;
             }
         }
 
-        closestItemRigidbody = closestItem?.GetComponent<Rigidbody2D>();
-
-        if ( closestItem == null && Physics2D.OverlapCircle( input.cursorPosition, radius, rocksLayer ) )
+        if ( result != closestItem)
         {
-            canGetRockFromGround = true;
+            closestItem?.GetComponent<Item>().OnHover( false );
+            result?.GetComponent<Item>().OnHover( true );
         }
+
+        return result;
     }
 
 
-    private void UpdateCursorHighlight()
+    private bool FindRockySurface()
     {
-        if ( isCursorInRange != wasCursorInRange )
-        {
-            CustomCursor.Instance.OnInRangeChange( isCursorInRange );
-        }
-
-        isCursorOver = (closestItem != null || canGetRockFromGround || closestStableItem != null)
-            && (!state.isHoldingItemState && !state.isPullingItemState);
-
-        if ( isCursorOver )
-        {
-            CustomCursor.Instance.OnOverChange( isCursorOver );
-            if ( !onHoverItemParticles.isPlaying )
-                onHoverItemParticles.Play();
-            onHoverItemParticles.transform.position = input.cursorPosition;
-        }
-        else
-        {
-            CustomCursor.Instance.OnOverChange( isCursorOver );
-            if ( onHoverItemParticles.isPlaying )
-            {
-                onHoverItemParticles.Stop();
-                onHoverItemParticles.Clear();
-            }
-            onHoverItemParticles.transform.position = input.cursorPosition;
-        }
-
-        wasCursorInRange = isCursorInRange;
-        wasCursorOver = isCursorOver;
-    }
-
-
-    private void UpdateItemHighlight()
-    {
-        if ( closestItem != null && !state.isHoldingItemState && !state.isPullingItemState )
-        {
-            onHoverItemParticles.transform.position = closestItem.transform.position;
-        }
-
-        if ( closestItem != lastClosestItem )
-        {
-            closestItem?.GetComponent<Item>().OnHover( true );
-            lastClosestItem?.GetComponent<Item>().OnHover( false );
-
-            lastClosestItem = closestItem;
-        }
-        else if ( canGetRockFromGround != couldGetRockFromGround )
-        {
-            itemHighlight.SetActive( canGetRockFromGround );
-
-            couldGetRockFromGround = canGetRockFromGround;
-        }
+        return Physics2D.OverlapCircle( input.cursorPosition, radius, rocksLayer ) != null;
     }
 
 
@@ -273,7 +274,7 @@ public class Telekinesis : MonoBehaviour
     {
         // TODO: Spawn effects
         closestItem = Instantiate( itemGenerator.selectedItem, holdingItemPlace.position, transform.rotation );
-        closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
+        Rigidbody2D closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
 
         closestItem.GetComponent<Item>().isSpawned = true;
 
@@ -283,10 +284,11 @@ public class Telekinesis : MonoBehaviour
 
         closestItemRigidbody.bodyType = RigidbodyType2D.Dynamic;
         closestItemRigidbody.isKinematic = false;
+        closestItemRigidbody.simulated = false;
 
         closestItem.transform.SetParent( transform );
 
-        canGetRockFromGround = false;
+        canGetItemFromSurface = false;
     }
 
 
@@ -294,17 +296,18 @@ public class Telekinesis : MonoBehaviour
     {
         OnPull.Invoke();
 
-        if ( closestItem == null )
-        {
-            closestItem = Instantiate( rockToSpawn, input.cursorPosition, transform.rotation );
-            closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
-        }
-
         closestItem.GetComponent<Item>().StartPulling( holdingItemPlace, pullSpeed, maxPullSpeed );
 
         SetPullEffectsActive( true );
+    }
 
-        canGetRockFromGround = false;
+
+    private void PullItemFromSurface()
+    {
+        // TODO: select rockToSpawn from list of rocks
+        closestItem = Instantiate( rockToSpawn, input.cursorPosition, transform.rotation );
+
+        PullItem();
     }
 
 
@@ -324,32 +327,24 @@ public class Telekinesis : MonoBehaviour
     }
 
 
-    private void StartShootingSequence()
+    private IEnumerator ShootingSequence()
     {
         arcRenderer.enabled = true;
-        ShowArc();
         TimeManager.instance.TurnSlowmoOn();
-        isHoldingLMB = true;
-    }
+        closestItemGravityScale = closestItem.GetComponent<Rigidbody2D>().gravityScale;
 
-
-    private void ShootingSequence()
-    {
-        ShowArc();
-
-        if ( input.lmbUp || t >= slowmoMaxTime )
+        while ( !input.lmbUp && t < slowmoMaxTime )
         {
-            arcRenderer.enabled = false;
-            TimeManager.instance.TurnSlowmoOff();
-            isHoldingLMB = false;
-            t = 0f;
+            ShowArc();
 
-            ShootItem();
-        }
-        else
-        {
             t += Time.unscaledDeltaTime;
+            yield return new WaitForEndOfFrame();
         }
+
+        t = 0f;
+        arcRenderer.enabled = false;
+        TimeManager.instance.TurnSlowmoOff();
+        ShootItem();
     }
 
 
@@ -383,7 +378,7 @@ public class Telekinesis : MonoBehaviour
         float x = holdingItemPlace.position.x + t * Mathf.Abs( throwVector.x );
         float xy = t * Mathf.Abs( throwVector.x );
         // y = y0 + x*tg - g*x^2 / (2 * F^2 * cos^2)
-        float y = holdingItemPlace.position.y + xy * Mathf.Tan( radianAngle ) - -Physics2D.gravity.y * closestItemRigidbody.gravityScale * xy * xy / 2f / shootPower / shootPower / Mathf.Cos( radianAngle ) / Mathf.Cos( radianAngle );
+        float y = holdingItemPlace.position.y + xy * Mathf.Tan( radianAngle ) - -Physics2D.gravity.y * closestItemGravityScale * xy * xy / 2f / shootPower / shootPower / Mathf.Cos( radianAngle ) / Mathf.Cos( radianAngle );
         return new Vector3( x, y );
     }
 

@@ -104,9 +104,6 @@ public abstract class Item : MonoBehaviour
     protected virtual void Awake()
     {
         gravityScaleCopy = _rigidbody.gravityScale;
-
-        Assert.IsNotNull( _rigidbody );
-        Assert.IsNotNull( _collider );
     }
 
 

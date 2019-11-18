@@ -60,14 +60,14 @@ public class CustomCursor : MonoBehaviour
 	}
 
 
-    public void OnInRangeChange( bool inRange )
+    public void SetInRange( bool inRange )
     {
         cursorImage.color = inRange ? inRangeColor : normalColor;
         this.inRange = inRange;
     }
 
 
-    public void OnOverChange( bool isOver )
+    public void SetOver( bool isOver )
     {
         cursorBrigtherImage.enabled = isOver;
         this.isOver = isOver;

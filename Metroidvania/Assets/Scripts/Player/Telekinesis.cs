@@ -9,7 +9,6 @@ public class Telekinesis : MonoBehaviour
 {
     #region Editor variables
 
-    [Separator( "Telekinesis" )]
     [SerializeField] private float range = 10f;
     [SerializeField] private float radius = 1f;
     [SerializeField] private float pullSpeed = 50f;
@@ -26,7 +25,7 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float lightOffIntensity = 0.5f;
     [SerializeField] private float tweenTime = 0.5f;
     [SerializeField, MustBeAssigned] private GameObject pullEffects = null;
-    [SerializeField, MustBeAssigned] private ParticleSystem onHoverItemParticles = null;
+    [SerializeField, MustBeAssigned] private ParticleSystem onOverItemParticles = null;
     [SerializeField, MustBeAssigned] private GameObject itemHighlight = null;
     [SerializeField, MustBeAssigned] private GameObject shootEffects = null;
     [SerializeField] private UnityEvent OnShoot = null;
@@ -89,30 +88,10 @@ public class Telekinesis : MonoBehaviour
 
         if ( isCursorInRange && !state.isHoldingItemState && !state.isPullingItemState )
         {
-            closestItem = FindClosestItem();
-
-            if ( closestItem == null )
-            {
-                canGetItemFromSurface = FindRockySurface();
-
-                if ( canGetItemFromSurface )
-                {
-                    onHoverItemParticles.transform.position = input.cursorPosition;
-                    itemHighlight.SetActive( false );
-                }
-            }
-            else
-            {
-                onHoverItemParticles.transform.position = closestItem.transform.position;
-                itemHighlight.SetActive( false );
-            }
-        }
-        else
-        {
-            itemHighlight.SetActive( false );
+            FindItemsToPull();
         }
 
-        isCursorOver = CheckCursorOver();
+        CheckOverItemEffects();
         
         if ( input.rmb )
         {
@@ -184,44 +163,82 @@ public class Telekinesis : MonoBehaviour
     }
 
 
+    private void FindItemsToPull()
+    {
+        closestItem = FindClosestItem();
+
+        if ( closestItem == null )
+        {
+            canGetItemFromSurface = FindRockySurface();
+        }
+        else
+        {
+            canGetItemFromSurface = false;
+            itemHighlight.SetActive( false );
+        }
+    }
+
+
     private bool CheckCursorInRange()
     {
         bool result = Vector2.Distance( input.cursorPosition, transform.position ) > range ? false : true;
 
         if ( result != isCursorInRange )
         {
-            CustomCursor.Instance.OnInRangeChange( result );
+            CustomCursor.Instance.SetInRange( result );
         }
 
         return result;
     }
 
 
-    private bool CheckCursorOver()
+    private void SetOverItemEffects( bool on )
     {
-        bool result = (closestItem != null || canGetItemFromSurface) && !state.isHoldingItemState && !state.isPullingItemState;
+        isCursorOver = on;
+        itemHighlight.SetActive( on );
+        CustomCursor.Instance.SetOver( on );
 
-        if ( result != isCursorOver )
+        if ( on == false && onOverItemParticles.isPlaying )
         {
-            CustomCursor.Instance.OnOverChange( result );
+            onOverItemParticles.Stop();
+            onOverItemParticles.Clear();
+        }
+        else if ( on == true && !onOverItemParticles.isPlaying )
+        {
+            onOverItemParticles.Play();
+        }
+    }
 
-            if ( !onHoverItemParticles.isPlaying )
+
+    private void CheckOverItemEffects()
+    {
+        if ( !state.isHoldingItemState && !state.isPullingItemState )
+        {
+            if ( closestItem != null )
             {
-                onHoverItemParticles.Play();
+                if ( !isCursorOver )
+                {
+                    SetOverItemEffects( true );
+                    itemHighlight.SetActive( false );
+                }
+
+                onOverItemParticles.transform.position = closestItem.transform.position;
             }
-            else
+            else if ( isCursorOver && !canGetItemFromSurface )
             {
-                onHoverItemParticles.Stop();
-                onHoverItemParticles.Clear();
+                SetOverItemEffects( false );
+            }
+
+            if ( canGetItemFromSurface )
+            {
+                if ( !isCursorOver )
+                {
+                    SetOverItemEffects( true );
+                }
+
+                onOverItemParticles.transform.position = input.cursorPosition;
             }
         }
-
-        if ( result )
-        {
-            onHoverItemParticles.transform.position = input.cursorPosition;
-        }
-
-        return result;
     }
 
 
@@ -266,7 +283,14 @@ public class Telekinesis : MonoBehaviour
 
     private bool FindRockySurface()
     {
-        return Physics2D.OverlapCircle( input.cursorPosition, radius, rocksLayer ) != null;
+        bool result = Physics2D.OverlapCircle( input.cursorPosition, radius, rocksLayer ) != null;
+        
+        if ( result == true && !canGetItemFromSurface )
+        {
+            itemHighlight.SetActive( true );
+        }
+
+        return result;
     }
 
 
@@ -295,6 +319,8 @@ public class Telekinesis : MonoBehaviour
     private void PullItem()
     {
         OnPull.Invoke();
+
+        SetOverItemEffects( false );
 
         closestItem.GetComponent<Item>().StartPulling( holdingItemPlace, pullSpeed, maxPullSpeed );
 

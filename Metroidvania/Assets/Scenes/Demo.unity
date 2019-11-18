@@ -117623,6 +117623,11 @@ PrefabInstance:
       propertyPath: OnRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 932834407}
+    - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: onOverItemParticles
+      value: 
+      objectReference: {fileID: 831043213}
     - target: {fileID: 560894362981388506, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: pointsText

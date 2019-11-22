@@ -28,6 +28,9 @@ public class Telekinesis : MonoBehaviour
     [SerializeField, MustBeAssigned] private ParticleSystem onOverItemParticles = null;
     [SerializeField, MustBeAssigned] private GameObject itemHighlight = null;
     [SerializeField, MustBeAssigned] private GameObject shootEffects = null;
+    [SerializeField, MustBeAssigned] private Vector2Event shockwaveEventSource = null;
+    [SerializeField, MustBeAssigned] private FloatEvent shockwaveEventForce = null;
+    [SerializeField] private float shockwaveForce = 5f;
     [SerializeField] private UnityEvent OnShoot = null;
     [SerializeField] private UnityEvent OnPull = null;
     [SerializeField] private UnityEvent OnRelease = null;
@@ -424,6 +427,9 @@ public class Telekinesis : MonoBehaviour
         Instantiate( shootEffects, holdingItemPlace.position, Quaternion.AngleAxis( angle, Vector3.forward ));
 
         closestItem.GetComponent<Item>().Shoot( shootDirection.normalized, shootPower );
+
+        shockwaveEventSource.Broadcast( gameObject, holdingItemPlace.position );
+        shockwaveEventForce.Broadcast( gameObject, shockwaveForce );
 
         ReleaseItem();
     }

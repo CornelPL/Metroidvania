@@ -94,14 +94,16 @@ public class Telekinesis : MonoBehaviour
         
         if ( input.rmb )
         {
-            /*if ( closestItem.GetComponent<Item>().isSpawned )
-            {
-                // TODO: Destroy effects
-                Destroy( closestItem );
-            }*/
             if ( state.isHoldingItemState )
             {
-                ReleaseItem();
+                if ( closestItem.GetComponent<Item>().isSpawned )
+                {
+                    DestroySpawnedItem();
+                }
+                else
+                {
+                    ReleaseItem();
+                }
             }
             else if ( state.isPullingItemState )
             {
@@ -137,9 +139,6 @@ public class Telekinesis : MonoBehaviour
         }
         else if ( input.lmbDown && state.isHoldingItemState )
         {
-            // TODO: move it to endPull method
-            SetPullEffectsActive( false );
-
             StartCoroutine( ShootingSequence() );
         }
 
@@ -299,6 +298,7 @@ public class Telekinesis : MonoBehaviour
         closestItem = Instantiate( itemGenerator.selectedItem, holdingItemPlace.position, transform.rotation );
         Rigidbody2D closestItemRigidbody = closestItem.GetComponent<Rigidbody2D>();
 
+        closestItem.GetComponent<Item>().OnHover( true );
         closestItem.GetComponent<Item>().isSpawned = true;
 
         EnergyController.instance.SubEnergy( itemGenerator.itemSpawnCost );
@@ -323,6 +323,8 @@ public class Telekinesis : MonoBehaviour
 
         closestItem.GetComponent<Item>().StartPulling( holdingItemPlace, pullSpeed, maxPullSpeed );
 
+        state.isPullingItemState = true;
+
         SetPullEffectsActive( true );
     }
 
@@ -331,6 +333,8 @@ public class Telekinesis : MonoBehaviour
     {
         // TODO: select rockToSpawn from list of rocks
         closestItem = Instantiate( rockToSpawn, input.cursorPosition, transform.rotation );
+
+        closestItem.GetComponent<Item>().OnHover( true );
 
         PullItem();
     }
@@ -354,6 +358,7 @@ public class Telekinesis : MonoBehaviour
 
     private IEnumerator ShootingSequence()
     {
+        SetPullEffectsActive( false );
         arcRenderer.enabled = true;
         TimeManager.instance.TurnSlowmoOn();
         closestItemGravityScale = closestItem.GetComponent<Rigidbody2D>().gravityScale;
@@ -434,6 +439,16 @@ public class Telekinesis : MonoBehaviour
         state.isPullingItemState = false;
         state.isHoldingItemState = false;
         SetPullEffectsActive( false );
+    }
+
+
+    private void DestroySpawnedItem()
+    {
+        // TODO: Destroy effects
+        state.isPullingItemState = false;
+        state.isHoldingItemState = false;
+        SetPullEffectsActive( false );
+        Destroy( closestItem );
     }
 
 

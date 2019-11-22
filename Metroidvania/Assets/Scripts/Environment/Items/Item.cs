@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.Events;
 using MyBox;
 
@@ -52,7 +51,6 @@ public abstract class Item : MonoBehaviour
         maxPullSpeed = ms;
 
         isPulling = true;
-        PlayerState.instance.isPullingItemState = true;
 
         OnStartPulling.Invoke();
 

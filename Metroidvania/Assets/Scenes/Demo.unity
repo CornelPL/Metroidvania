@@ -11932,12 +11932,6 @@ MonoBehaviour:
   minScale: 0.8
   maxScale: 1.7
   shootForce: 20
---- !u!1 &203028094 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 24211803558539460, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c,
-    type: 3}
-  m_PrefabInstance: {fileID: 119857112}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &209257469
 GameObject:
   m_ObjectHideFlags: 0
@@ -42764,12 +42758,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 620798215}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &626543996 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3186234877268468458, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c,
-    type: 3}
-  m_PrefabInstance: {fileID: 119857112}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &629016284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48083,12 +48071,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!198 &722559706 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1529783672176681593, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c,
-    type: 3}
-  m_PrefabInstance: {fileID: 119857112}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &725786357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78652,18 +78634,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1338833151}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1344541610 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2012107753945532958, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c,
-    type: 3}
-  m_PrefabInstance: {fileID: 119857112}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0dd644112793a641aa9463901edaebb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1345467637 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 492946502777295322, guid: 857b36963159db748b6745ad494ab573,
@@ -90857,12 +90827,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1480325747}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &1483961788 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5819189841081811059, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c,
-    type: 3}
-  m_PrefabInstance: {fileID: 119857112}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1488262096
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -96220,6 +96184,18 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: 8.840001, y: -9.540002, z: -0.00501}
     m_Extent: {x: 11.680001, y: 10.180001, z: 0.00501}
+--- !u!114 &1555446482 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2887670582435451143, guid: f9b27274a5ec96b428c82bee720c1fc9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2101476350}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1573772190
 GameObject:
   m_ObjectHideFlags: 0
@@ -105288,12 +105264,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3170934798441363138, guid: b32abbdd7a03cea47b60b252ba59db95,
     type: 3}
   m_PrefabInstance: {fileID: 1851136904}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &1851793462 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4706715576966055482, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c,
-    type: 3}
-  m_PrefabInstance: {fileID: 119857112}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1858249815
 GameObject:
@@ -117555,6 +117525,11 @@ PrefabInstance:
       objectReference: {fileID: 321445429}
     - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
       propertyPath: holdingItemPlace
       value: 
       objectReference: {fileID: 336070984}
@@ -117577,37 +117552,38 @@ PrefabInstance:
         type: 3}
       propertyPath: shootEffects
       value: 
-      objectReference: {fileID: 203028094}
+      objectReference: {fileID: 8304175956328360584, guid: 107bac4fab7850b43837de94e1d31ae7,
+        type: 3}
     - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1851793462}
+      objectReference: {fileID: 1555446482}
     - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 722559706}
+      objectReference: {fileID: 918507738}
     - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1483961788}
+      objectReference: {fileID: 119857113}
     - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
-      objectReference: {fileID: 626543996}
+      objectReference: {fileID: 119857113}
     - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
-      objectReference: {fileID: 1344541610}
+      objectReference: {fileID: 119857113}
     - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[6].m_Target
       value: 
-      objectReference: {fileID: 918507738}
+      objectReference: {fileID: 119857113}
     - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[7].m_Target
@@ -117628,6 +117604,46 @@ PrefabInstance:
       propertyPath: onOverItemParticles
       value: 
       objectReference: {fileID: 831043213}
+    - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: DoFade
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 119857113}
+    - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: DoFade
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: DoFade
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
+      value: DoFade
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[6].m_MethodName
+      value: DoFade
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DoScale
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838834047338178267, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GenerateImpulse
+      objectReference: {fileID: 0}
     - target: {fileID: 560894362981388506, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: pointsText

@@ -54,7 +54,6 @@ public class Telekinesis : MonoBehaviour
     #region Private variables
 
     private GameObject closestItem;
-    private GameObject lastClosestItem;
     private float closestItemGravityScale;
     private GameObject closestStableItem;
     private InputController input;
@@ -224,12 +223,11 @@ public class Telekinesis : MonoBehaviour
 
                 onOverItemParticles.transform.position = closestItem.transform.position;
             }
-            else if ( isCursorOver && !canGetItemFromSurface )
+            else if ( isCursorOver && ( !canGetItemFromSurface || !isCursorInRange ) )
             {
                 SetOverItemEffects( false );
             }
-
-            if ( canGetItemFromSurface )
+            else if ( canGetItemFromSurface && isCursorInRange )
             {
                 if ( !isCursorOver )
                 {
@@ -239,6 +237,7 @@ public class Telekinesis : MonoBehaviour
                 onOverItemParticles.transform.position = input.cursorPosition;
             }
         }
+        
     }
 
 
@@ -414,15 +413,14 @@ public class Telekinesis : MonoBehaviour
         OnShoot.Invoke();
 
         Vector2 shootDirection = input.cursorPosition - (Vector2)holdingItemPlace.position;
-        shootDirection.Normalize();
 
         float angle = Mathf.Atan2( shootDirection.y, shootDirection.x ) * Mathf.Rad2Deg;
 
-        shootEffects.transform.eulerAngles = Vector3.forward * angle;
+        Instantiate( shootEffects, holdingItemPlace.position, Quaternion.AngleAxis( angle, Vector3.forward ));
+
+        closestItem.GetComponent<Item>().Shoot( shootDirection.normalized, shootPower );
 
         ReleaseItem();
-
-        closestItem.GetComponent<Item>().Shoot( shootDirection, shootPower );
     }
 
 
@@ -431,6 +429,8 @@ public class Telekinesis : MonoBehaviour
         OnRelease.Invoke();
 
         closestItem.GetComponent<Item>().SetFree();
+        closestItem.GetComponent<Item>().OnHover( false );
+        closestItem = null;
         state.isPullingItemState = false;
         state.isHoldingItemState = false;
         SetPullEffectsActive( false );

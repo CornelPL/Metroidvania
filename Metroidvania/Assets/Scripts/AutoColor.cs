@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using MyBox;
+using UnityEngine.UI;
 
 public class AutoColor : MonoBehaviour
 {
@@ -17,15 +18,24 @@ public class AutoColor : MonoBehaviour
 
     [Separator( "Bools" )]
     [SerializeField] private bool fadeOnStart = false;
+    [SerializeField] private bool isImage = false;
     [SerializeField] private bool destroyOnEnd = false;
 
 
     private SpriteRenderer _renderer;
+    private Image _image;
 
 
     private void Start()
     {
-        _renderer = GetComponent<SpriteRenderer>();
+        if ( isImage )
+        {
+            _image = GetComponent<Image>();
+        }
+        else
+        {
+            _renderer = GetComponent<SpriteRenderer>();
+        }
 
         if ( fadeOnStart )
         {
@@ -48,12 +58,24 @@ public class AutoColor : MonoBehaviour
     }
 
 
-    private void FadeIn()
+    public void FadeIn()
     {
-        Color rendererColor = _renderer.color;
+        LTDescr tween;
 
-        LTDescr tween = LeanTween.value( gameObject, minFadeInA, maxFadeInA, fadeInTime )
-            .setOnUpdate( ( float v ) => { _renderer.color = new Color( rendererColor.r, rendererColor.g, rendererColor.b, v ); } );
+        if ( isImage )
+        {
+            Color imageColor = _image.color;
+
+            tween = LeanTween.value( gameObject, minFadeInA, maxFadeInA, fadeInTime )
+                .setOnUpdate( ( float v ) => { _image.color = new Color( imageColor.r, imageColor.g, imageColor.b, v ); } );
+        }
+        else
+        {
+            Color rendererColor = _renderer.color;
+
+            tween = LeanTween.value( gameObject, minFadeInA, maxFadeInA, fadeInTime )
+                .setOnUpdate( ( float v ) => { _renderer.color = new Color( rendererColor.r, rendererColor.g, rendererColor.b, v ); } );
+        }
 
         if ( fadeOut )
         {
@@ -66,12 +88,24 @@ public class AutoColor : MonoBehaviour
     }
 
 
-    private void FadeOut()
+    public void FadeOut()
     {
-        Color rendererColor = _renderer.color;
+        LTDescr tween;
 
-        LTDescr tween = LeanTween.value( gameObject, maxFadeOutA, minFadeOutA, fadeOutTime )
-            .setOnUpdate( ( float v ) => { _renderer.color = new Color( rendererColor.r, rendererColor.g, rendererColor.b, v ); } );
+        if ( isImage )
+        {
+            Color imageColor = _image.color;
+
+            tween = LeanTween.value( gameObject, maxFadeOutA, minFadeOutA, fadeOutTime )
+                .setOnUpdate( ( float v ) => { _image.color = new Color( imageColor.r, imageColor.g, imageColor.b, v ); } );
+        }
+        else
+        {
+            Color rendererColor = _renderer.color;
+
+            tween = LeanTween.value( gameObject, maxFadeOutA, minFadeOutA, fadeOutTime )
+                .setOnUpdate( ( float v ) => { _renderer.color = new Color( rendererColor.r, rendererColor.g, rendererColor.b, v ); } );
+        }
 
         if ( destroyOnEnd )
         {

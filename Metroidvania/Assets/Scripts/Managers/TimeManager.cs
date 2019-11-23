@@ -5,6 +5,8 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance = null;
 
+    public bool isGamePaused = false;
+
     [SerializeField] private float slowmoTimeScale = 0.1f;
     [SerializeField] private float timeChangeDecreaseSpeed = 2f;
     [SerializeField] private float timeChangeIncreaseSpeed = 5f;
@@ -18,6 +20,20 @@ public class TimeManager : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(this);
+    }
+
+
+    public void Pause()
+    {
+        isGamePaused = true;
+        Time.timeScale = 0f;
+    }
+
+
+    public void Resume()
+    {
+        isGamePaused = false;
+        Time.timeScale = 1f;
     }
 
 

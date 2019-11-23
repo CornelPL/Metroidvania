@@ -55,6 +55,7 @@ MonoBehaviour:
   lmbKey: 323
   rmbKey: 324
   healKey: 102
+  spawnMenuKey: 113
   spawnItemKey: 101
   numKeys: 3100000032000000330000003400000035000000
   cursorPosition: {x: 0, y: 0}
@@ -70,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60e77398d23a0544ad27abe9c002eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGamePaused: 0
   slowmoTimeScale: 0.1
   timeChangeDecreaseSpeed: 3
   timeChangeIncreaseSpeed: 5

@@ -86,6 +86,11 @@ public class Telekinesis : MonoBehaviour
 
     private void Update()
     {
+        if ( TimeManager.instance.isGamePaused )
+        {
+            return;
+        }
+
         isCursorInRange = CheckCursorInRange();
 
         if ( isCursorInRange && !state.isHoldingItemState && !state.isPullingItemState )

@@ -22,6 +22,7 @@ public class InputController : MonoBehaviour
 
     [Separator( "Other")]
     public KeyCode healKey;
+    public KeyCode spawnMenuKey;
     public KeyCode spawnItemKey;
     public List<KeyCode> numKeys;
 
@@ -42,6 +43,7 @@ public class InputController : MonoBehaviour
     public bool healUp { get; private set; }
 
     public bool spawnItem { get; private set; }
+    public bool spawnMenu { get; private set; }
 
     public int numKey { get; private set; }
 
@@ -84,6 +86,7 @@ public class InputController : MonoBehaviour
         healUp = Input.GetKeyUp(healKey);
 
         spawnItem = Input.GetKeyDown( spawnItemKey );
+        spawnMenu = Input.GetKeyDown( spawnMenuKey );
 
         for ( int i = 0; i < numKeys.Count; i++ )
         {

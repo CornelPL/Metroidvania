@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.UI;
 
 [Serializable]
 public struct SpawnItem
 {
     public GameObject prefab;
     public int spawnCost;
+    public Image image;
 }
 
 
@@ -23,6 +24,7 @@ public class ItemGenerator : MonoBehaviour
 
     private InputController input;
     private TimeManager timeManager;
+    private Image chosenItem;
     private bool isMenuVisible = false;
     private int numKey = -1;
 
@@ -31,8 +33,15 @@ public class ItemGenerator : MonoBehaviour
     {
         if ( id < items.Count )
         {
-            selectedItem = items[ id ].prefab;
-            itemSpawnCost = items[ id ].spawnCost;
+            SpawnItem item = items[ id ];
+            selectedItem = item.prefab;
+            itemSpawnCost = item.spawnCost;
+            if ( chosenItem != null )
+            {
+                chosenItem.enabled = false;
+            }
+            chosenItem = item.image;
+            chosenItem.enabled = true;
         }
 
         if ( isMenuVisible )

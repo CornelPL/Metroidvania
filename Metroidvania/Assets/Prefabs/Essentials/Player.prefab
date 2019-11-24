@@ -1390,7 +1390,7 @@ MonoBehaviour:
   rightMaterial: {fileID: 2100000, guid: 7bf8b85bdcf50d2478ed951da3d74f44, type: 2}
   leftMaterial: {fileID: 2100000, guid: af846ae2e52422a4ba14290d919a255e, type: 2}
   animator: {fileID: 5845602597293220103}
-  lastTimeGrounded: 27.23038
+  lastTimeGrounded: 0.02
 --- !u!114 &6838834047338178268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1656,6 +1656,11 @@ MonoBehaviour:
   - prefab: {fileID: 6417654320457713547, guid: 33057ab5e8b0e0d47a77f04442e743c4,
       type: 3}
     spawnCost: 0
+    image: {fileID: 0}
+  - prefab: {fileID: 1842883390742956334, guid: a9d7fc1e5e5cd394fba2bfde45837009,
+      type: 3}
+    spawnCost: 0
+    image: {fileID: 0}
   OnShowMenu:
     m_PersistentCalls:
       m_Calls:
@@ -1700,7 +1705,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   selectedItem: {fileID: 0}
-  itemSpawnCost: 1
+  itemSpawnCost: 0
 --- !u!1 &6838834047492786797
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,4 +57,3 @@ Można podnieść wiele przedmiotów i rzucić wszystkimi na raz.
 ### Maybe later
 
 #### Pływanie
-#### Items generator

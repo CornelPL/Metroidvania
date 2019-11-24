@@ -6018,6 +6018,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1652622458}
+    - target: {fileID: 6629168647642547262, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cf8602a8122b7b4e8df279fa5ca7b3c, type: 3}
 --- !u!114 &119857113 stripped
@@ -78420,7 +78425,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115479061}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.47, y: -9.04, z: 25.541002}
+  m_LocalPosition: {x: 8.3, y: 5.1, z: 25.541002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1911857580}
@@ -86625,7 +86630,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364458349}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.120003, y: -14.119999, z: 15.441002}
+  m_LocalPosition: {x: 9.650002, y: 0.020000458, z: 15.441002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1265205175}
@@ -86648,7 +86653,7 @@ MonoBehaviour:
   m_BoundingVolume: {fileID: 0}
   m_BoundingShape2D: {fileID: 1905628634}
   m_ConfineScreenEdges: 1
-  m_Damping: 0
+  m_Damping: 5
 --- !u!114 &1364458353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100618,12 +100623,12 @@ PrefabInstance:
     - target: {fileID: 7996462740890672813, guid: ec636d8419fa03644bc054e26d6c47e0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3337612
+      value: 0.3332548
       objectReference: {fileID: 0}
     - target: {fileID: 7996462740890672813, guid: ec636d8419fa03644bc054e26d6c47e0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.2638788
+      value: -3.4508548
       objectReference: {fileID: 0}
     - target: {fileID: 7996462740890672813, guid: ec636d8419fa03644bc054e26d6c47e0,
         type: 3}
@@ -109706,7 +109711,7 @@ PolygonCollider2D:
       - {x: 46.41072, y: 6.9861193}
       - {x: 4.055374, y: 6.8915796}
       - {x: 3.7465477, y: -16.20716}
-      - {x: 82.25434, y: -15.754464}
+      - {x: 86.771355, y: -15.754464}
       - {x: 108.88444, y: -1.953752}
 --- !u!66 &1905628634
 CompositeCollider2D:
@@ -109730,9 +109735,9 @@ CompositeCollider2D:
     m_ColliderPaths:
     - - X: 37465477
         Y: -162071586
-      - X: 822543429
-        Y: -157544637
-      - X: 1088844420
+      - X: 867713542
+        Y: -157544636
+      - X: 1088844422
         Y: -19537520
       - X: 2645747967
         Y: -25510948
@@ -109749,7 +109754,7 @@ CompositeCollider2D:
   m_CompositePaths:
     m_Paths:
     - - {x: 3.746548, y: -16.207155}
-      - {x: 82.25434, y: -15.754464}
+      - {x: 86.771355, y: -15.754464}
       - {x: 108.884445, y: -1.953752}
       - {x: 264.5748, y: -2.551092}
       - {x: 263.54193, y: 53.87294}
@@ -121175,6 +121180,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6838834047338178269, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6838834047338178270, guid: f9b27274a5ec96b428c82bee720c1fc9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -121445,6 +121455,16 @@ PrefabInstance:
       propertyPath: capePoints.Array.data[8]
       value: 
       objectReference: {fileID: 4375786181968277570}
+    - target: {fileID: 6342742824496871485, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 893959454872203572, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9b27274a5ec96b428c82bee720c1fc9, type: 3}
 --- !u!1001 &2103285538

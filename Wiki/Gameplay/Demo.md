@@ -1,10 +1,12 @@
 # Demo level
 
 - Small boss
-- 3 enemies
-  - walking horizontal
-  - flying
-  - walking on every surface
+- 5 enemies
+  - walker
+  - walker with sight
+  - charger
+  - shooting plant
+  - shooting explosives plant
 - Major upgrades
   - slam
 - Mechanics
@@ -14,18 +16,17 @@
   - more hp
   - telekinesis dmg upgrade
   - System ulepszeń (tak jak system dusz w Hollow Knight)\
-	Z przeciwników wylatuje energia, którą napełniamy zbiornik. Po zapełnieniu zamiast energii dostajemy punkty za które możemy kupować ulepszenia. Dodaje to mechanikę risk&reward: albo się uleczymy i znowu będziemy zbierać punkty na kolejne leczenie, albo będziemy mieli mniej życia, ale będziemy zbierać punkty na ulepszenia.\
+	Z przeciwników wylatują punkty, które można zebrać i wykorzystać na zakup.\
 	TODO: rozpisać wygląd systemu ulepszeń i ulepszenia dostępne w demo jak również gdzie te ulepszenia będzie można nabyć.
   - System HP i leczenia\
-    Tak jak wyżej z dodatkowymi elementami leczącymi na mapie.
-- 3-5 items
-  - rocks
+    Health can be regenerated with energy or by collectibles on map.
+- 6+ items
+  - rock
   - crate
-  - planks
+  - plank
+  - saw
   - explosive (barrel?)
-  - saw (maybe not) (or maybe yes - bardziej przybliży, że pomysł na grę wziął się z Half life'a)
   - itemy z przeciwników
-  - losowe eventy - spadające kamienie
   
 ## Flow
 - little tutorial

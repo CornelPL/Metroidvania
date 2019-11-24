@@ -37,8 +37,6 @@ Always visible. Shoots three exploding projectiles at player when in range.
 
 ### Latający
 
-### Nieruchomy strzelający
-
 ### Pływający (jeżeli będzie możliwość pływania)
 
 

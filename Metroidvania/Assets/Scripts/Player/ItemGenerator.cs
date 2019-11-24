@@ -25,6 +25,11 @@ public class ItemGenerator : MonoBehaviour
             selectedItem = items[ id ];
             itemSpawnCost = itemsSpawnCosts[ id ];
         }
+
+        if ( isMenuVisible )
+        {
+            ShowMenu( false );
+        }
     }
 
 
@@ -60,15 +65,15 @@ public class ItemGenerator : MonoBehaviour
 
     private void ShowMenu( bool value )
     {
+        isMenuVisible = value;
+
         if ( value == true )
         {
-            isMenuVisible = true;
             timeManager.Pause();
             OnShowMenu.Invoke();
         }
         else
         {
-            isMenuVisible = false;
             timeManager.Resume();
             OnHideMenu.Invoke();
         }

@@ -1,11 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+[Serializable]
+public struct SpawnItem
+{
+    public GameObject prefab;
+    public int spawnCost;
+}
+
+
 public class ItemGenerator : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> items = null;
-    [SerializeField] private List<int> itemsSpawnCosts = null;
+    [SerializeField] private List<SpawnItem> items = null;
     [SerializeField] private UnityEvent OnShowMenu = null;
     [SerializeField] private UnityEvent OnHideMenu = null;
 
@@ -22,8 +31,8 @@ public class ItemGenerator : MonoBehaviour
     {
         if ( id < items.Count )
         {
-            selectedItem = items[ id ];
-            itemSpawnCost = itemsSpawnCosts[ id ];
+            selectedItem = items[ id ].prefab;
+            itemSpawnCost = items[ id ].spawnCost;
         }
 
         if ( isMenuVisible )

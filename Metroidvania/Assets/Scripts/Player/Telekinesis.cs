@@ -317,7 +317,7 @@ public class Telekinesis : MonoBehaviour
         closestItemRigidbody.isKinematic = false;
         closestItemRigidbody.simulated = false;
 
-        closestItem.transform.SetParent( transform );
+        closestItem.transform.SetParent( holdingItemPlace );
 
         canGetItemFromSurface = false;
     }

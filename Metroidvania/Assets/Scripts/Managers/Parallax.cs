@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
+[Serializable]
 public class Element
 {
     public Transform parent;
@@ -52,6 +54,27 @@ public class Parallax : MonoBehaviour
             float yOffset = Mathf.Abs( distance.y ) * element.ySpeedRatio * speed * ySign;
             element.transform.position = new Vector3( element.startPos.x + xOffset, element.startPos.y + yOffset, element.startPos.z );
         }
+    }
+
+
+    public void AddElement( Transform element, float xSpeed, float ySpeed )
+    {
+        elements.Add( new Element( null, element, xSpeed, ySpeed ) );
+    }
+
+
+    public void RemoveElement( Transform element )
+    {
+        Element e = elements.Find( x => x.transform == element );
+
+        if ( e == null )
+        {
+            Debug.LogError( "Could not find element " + element.name + " in list" );
+            return;
+        }
+        
+        e.transform.position = e.startPos;
+        elements.Remove( e );
     }
 
 

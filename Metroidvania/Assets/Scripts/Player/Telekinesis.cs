@@ -191,7 +191,7 @@ public class Telekinesis : MonoBehaviour
 
         if ( result != isCursorInRange )
         {
-            CustomCursor.Instance.SetInRange( result );
+            CustomCursor.Instance?.SetInRange( result );
         }
 
         return result;
@@ -202,7 +202,7 @@ public class Telekinesis : MonoBehaviour
     {
         isCursorOver = on;
         itemHighlight.SetActive( on );
-        CustomCursor.Instance.SetOver( on );
+        CustomCursor.Instance?.SetOver( on );
 
         if ( on == false && onOverItemParticles.isPlaying )
         {

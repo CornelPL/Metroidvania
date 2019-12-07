@@ -54,7 +54,8 @@ MonoBehaviour:
   downKey: 115
   lmbKey: 323
   rmbKey: 324
-  healKey: 102
+  interactKey: 102
+  healKey: 99
   spawnMenuKey: 113
   spawnItemKey: 101
   numKeys: 3100000032000000330000003400000035000000

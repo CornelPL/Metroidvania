@@ -6,20 +6,19 @@
   - walker with sight
   - charger
   - shooting plant
-  - shooting explosives plant
+  - shooting explosives plant (?)
 - Major upgrades
   - slam
 - Mechanics
   - slam
   - putting planks in the wall and walking on them up
 - collectables
-  - more hp
+  - more hp (heals one HP automatically)
   - telekinesis dmg upgrade
-  - System ulepszeń (tak jak system dusz w Hollow Knight)\
-	Z przeciwników wylatują punkty, które można zebrać i wykorzystać na zakup.\
-	TODO: rozpisać wygląd systemu ulepszeń i ulepszenia dostępne w demo jak również gdzie te ulepszenia będzie można nabyć.
   - System HP i leczenia\
     Health can be regenerated with energy or by collectibles on map.
+  - Points from enemies and things player can destroy\
+	TODO: rozpisać wygląd systemu ulepszeń i ulepszenia dostępne w demo jak również gdzie te ulepszenia będzie można nabyć.
 - 6+ items
   - rock
   - crate

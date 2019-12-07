@@ -21,6 +21,7 @@ public class InputController : MonoBehaviour
     public KeyCode rmbKey;
 
     [Separator( "Other")]
+    public KeyCode interactKey;
     public KeyCode healKey;
     public KeyCode spawnMenuKey;
     public KeyCode spawnItemKey;
@@ -38,6 +39,8 @@ public class InputController : MonoBehaviour
     public bool lmbDown { get; private set; }
     public bool lmbUp { get; private set; }
     public bool rmb { get; private set; }
+
+    public bool interact { get; private set; }
 
     public bool healDown { get; private set; }
     public bool healUp { get; private set; }
@@ -81,6 +84,8 @@ public class InputController : MonoBehaviour
         lmbDown = Input.GetKeyDown(lmbKey);
         lmbUp = Input.GetKeyUp(lmbKey);
         rmb = Input.GetKeyDown(rmbKey);
+
+        interact = Input.GetKeyDown(interactKey);
 
         healDown = Input.GetKeyDown(healKey);
         healUp = Input.GetKeyUp(healKey);

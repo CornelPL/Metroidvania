@@ -8,3 +8,7 @@
 	Pull end
 	Shoot
 	Destroy sounds for every item
+	
+## Enemies:
+	Charger:
+		- spot player

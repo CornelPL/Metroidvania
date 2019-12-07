@@ -113,7 +113,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   scaleOnStart: 0
-  autoScaleDown: 0
+  autoScaleDown: 1
   useUnscaledTime: 0
   destroyOnEnd: 0
 --- !u!114 &1935595151718459375

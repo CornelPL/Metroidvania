@@ -1390,7 +1390,7 @@ MonoBehaviour:
   rightMaterial: {fileID: 2100000, guid: 7bf8b85bdcf50d2478ed951da3d74f44, type: 2}
   leftMaterial: {fileID: 2100000, guid: af846ae2e52422a4ba14290d919a255e, type: 2}
   animator: {fileID: 5845602597293220103}
-  lastTimeGrounded: 0.02
+  lastTimeGrounded: 64.67721
 --- !u!114 &6838834047338178268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,7 +1429,11 @@ MonoBehaviour:
   pullSpeed: 20
   maxPullSpeed: 50
   shootPower: 60
-  slowmoMaxTime: 0.5
+  slowmoMaxTime: 1
+  leanWeight: 0.2
+  leanTime: 0.2
+  zeroOffsetWeight: 0.8
+  cameraOffset: {fileID: 0}
   holdingItemPlace: {fileID: 0}
   rockToSpawn: {fileID: 6417654320457713547, guid: 33057ab5e8b0e0d47a77f04442e743c4,
     type: 3}

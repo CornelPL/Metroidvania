@@ -15,6 +15,10 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float maxPullSpeed = 50f;
     [SerializeField] private float shootPower = 10f;
     [SerializeField] private float slowmoMaxTime = 2f;
+    [SerializeField] private float leanWeight = 0.1f;
+    [SerializeField] private float leanTime = 0.5f;
+    [SerializeField] private float zeroOffsetWeight = 0.5f;
+    [SerializeField, MustBeAssigned] private CinemachineCameraOffset cameraOffset = null;
     [SerializeField, MustBeAssigned] private Transform holdingItemPlace = null;
     [SerializeField, MustBeAssigned] private GameObject rockToSpawn = null;
     [SerializeField, MustBeAssigned] private ItemGenerator itemGenerator = null;
@@ -66,6 +70,7 @@ public class Telekinesis : MonoBehaviour
     private bool canGetItemFromSurface = false;
     private bool isCursorInRange = false;
     private bool isCursorOver = false;
+    private bool isCameraLeaning = false;
 
     #endregion
 
@@ -370,19 +375,47 @@ public class Telekinesis : MonoBehaviour
         arcRenderer.enabled = true;
         TimeManager.instance.TurnSlowmoOn();
         closestItemGravityScale = closestItem.GetComponent<Rigidbody2D>().gravityScale;
+        isCameraLeaning = true;
 
         while ( !input.lmbUp && t < slowmoMaxTime )
         {
+            LeanCameraTowardsCursor( t );
             ShowArc();
 
             t += Time.unscaledDeltaTime;
             yield return new WaitForEndOfFrame();
         }
 
+        isCameraLeaning = false;
+        StartCoroutine( ZeroCameraOffset() );
         t = 0f;
         arcRenderer.enabled = false;
         TimeManager.instance.TurnSlowmoOff();
         ShootItem();
+    }
+
+
+    private void LeanCameraTowardsCursor( float t )
+    {
+        Vector2 direction = input.cursorPosition - (Vector2)holdingItemPlace.position;
+        if ( t < leanTime )
+        {
+            direction *= t * t / leanTime / leanTime;
+        }
+
+        cameraOffset.m_Offset = direction * leanWeight;
+    }
+
+
+    private IEnumerator ZeroCameraOffset()
+    {
+        while ( !isCameraLeaning && cameraOffset.m_Offset.magnitude > 0.01f)
+        {
+            cameraOffset.m_Offset *= zeroOffsetWeight;
+            yield return new WaitForEndOfFrame();
+        }
+
+        cameraOffset.m_Offset = Vector3.zero;
     }
 
 

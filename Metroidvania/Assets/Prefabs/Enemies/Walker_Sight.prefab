@@ -205,7 +205,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  minSpeed: 0.5
   damage: 1
   sightRange: 10
   sightOffset: {x: 0, y: 0.5}
@@ -232,7 +231,7 @@ MonoBehaviour:
   pointsDropForce: 10
   initialHP: 4
   point: {fileID: 3365028966441827137, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
-  minPoints: 0
+  minPoints: 2
   maxPoints: 5
   spriteRenderer: {fileID: 8628843287280416394}
   normalColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}

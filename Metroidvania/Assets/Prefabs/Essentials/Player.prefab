@@ -1407,7 +1407,7 @@ MonoBehaviour:
   movementSpeed: 10
   movementSpeedUp: 50
   movementSlowDown: 100
-  jumpSpeed: 32
+  jumpSpeed: 30
   coyoteTime: 0.05
   dashSpeed: 30
   dashTime: 0.25

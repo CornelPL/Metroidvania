@@ -68,8 +68,9 @@ GameObject:
   - component: {fileID: 4173082080487236785}
   - component: {fileID: 4173082080487236794}
   - component: {fileID: 4173082080487236797}
-  - component: {fileID: 4173082080487236799}
+  - component: {fileID: 4891185637045821450}
   - component: {fileID: 4173082080487236787}
+  - component: {fileID: 4173082080487236799}
   m_Layer: 15
   m_Name: Charger
   m_TagString: Enemy
@@ -132,8 +133,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c8bd1a075dc3fa442834eb8b84771df3, type: 3}
-  m_Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  m_Sprite: {fileID: 3842236307659390873, guid: ba8141c1e6778f64181a719c63cd9ba2,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -164,6 +166,48 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!95 &4891185637045821450
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4173082080487236784}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0047ad72091274d4a8d336295b530ef6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4173082080487236787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4173082080487236784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51560fb9f74c914408b0405078410957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  sightRange: 10
+  chargeSpeed: 10
+  playerKnockbackMultiplier: 2
+  stunTime: 1
+  sightOffset: {x: 0, y: 0.7}
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _rigidbody: {fileID: 4173082080487236797}
+  healthManager: {fileID: 4173082080487236799}
 --- !u!114 &4173082080487236799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,12 +220,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e02d1c9aa928f04aaaaf4cadb80304c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHP: 100
-  point: {fileID: 3365028966441827141, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
-  minPoints: 0
-  maxPoints: 5
+  pointsDropForce: 10
+  initialHP: 10
+  point: {fileID: 3365028966441827137, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
+  minPoints: 5
+  maxPoints: 15
   spriteRenderer: {fileID: 4173082080487236794}
-  normalColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   colorChangeTime: 0.5
   OnDeath:
@@ -206,31 +251,15 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   currentHP: 0
+  animator: {fileID: 0}
   _rigidbody: {fileID: 4173082080487236797}
+  splashEffect: {fileID: 3867317853530762858, guid: e5deca7c11769484ea158b208a42f9cd,
+    type: 3}
+  deathEffect: {fileID: 7348761373615277433, guid: f71545d168475464597f395fe7923c5d,
+    type: 3}
+  deathKnockbackForce: 10
+  torqueOnDeath: 10
   isBeingKnockbacked: 0
---- !u!114 &4173082080487236787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4173082080487236784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51560fb9f74c914408b0405078410957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  sightRange: 10
-  chargeSpeed: 10
-  playerKnockbackMultiplier: 2
-  stunTime: 1
-  sightOffset: {x: 0, y: 0.7}
-  playerLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  _rigidbody: {fileID: 4173082080487236797}
-  healthManager: {fileID: 4173082080487236799}
 --- !u!1 &4948810219995125382
 GameObject:
   m_ObjectHideFlags: 0

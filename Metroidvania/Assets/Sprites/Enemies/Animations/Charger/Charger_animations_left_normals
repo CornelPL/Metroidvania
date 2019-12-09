@@ -1,0 +1,160 @@
+
+Charger_animations_left_normals.png
+size: 2000,600
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+01_walking_left_normal0000
+  rotate: false
+  xy: 0, 0
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+01_walking_left_normal0001
+  rotate: false
+  xy: 200, 0
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+01_walking_left_normal0002
+  rotate: false
+  xy: 400, 0
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+01_walking_left_normal0003
+  rotate: false
+  xy: 600, 0
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+01_walking_left_normal0004
+  rotate: false
+  xy: 800, 0
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+01_walking_left_normal0005
+  rotate: false
+  xy: 1000, 0
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+01_walking_left_normal0006
+  rotate: false
+  xy: 1200, 0
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+01_walking_left_normal0007
+  rotate: false
+  xy: 1400, 0
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+02_pre_charge_left_normal0000
+  rotate: false
+  xy: 1600, 0
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+02_pre_charge_left_normal0001
+  rotate: false
+  xy: 1800, 0
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+02_pre_charge_left_normal0002
+  rotate: false
+  xy: 0, 200
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+02_pre_charge_left_normal0003
+  rotate: false
+  xy: 200, 200
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+02_pre_charge_left_normal0004
+  rotate: false
+  xy: 400, 200
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+03_charge_left_normal0001
+  rotate: false
+  xy: 600, 200
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+03_charge_left_normal0002
+  rotate: false
+  xy: 800, 200
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+03_charge_left_normal0003
+  rotate: false
+  xy: 1000, 200
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+03_charge_left_normal0004
+  rotate: false
+  xy: 1200, 200
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+03_charge_left_normal0005
+  rotate: false
+  xy: 1400, 200
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+04_stun_left_normal0000
+  rotate: false
+  xy: 1600, 200
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+04_stun_left_normal0001
+  rotate: false
+  xy: 1800, 200
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+04_stun_left_normal0002
+  rotate: false
+  xy: 0, 400
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+05_wakeup_left_normal
+  rotate: false
+  xy: 200, 400
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1

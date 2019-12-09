@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 7357492162526363964, guid: 155ceb492e7703a4b8edef43e46e7215,
     type: 3}
-  m_Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -169,7 +169,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  minSpeed: 0.5
   damage: 1
   _rigidbody: {fileID: 492946502777295297}
   healthManager: {fileID: 492946502777295296}
@@ -193,7 +192,7 @@ MonoBehaviour:
   minPoints: 3
   maxPoints: 10
   spriteRenderer: {fileID: 492946502777295300}
-  normalColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   colorChangeTime: 0.5
   OnDeath:

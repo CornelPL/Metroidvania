@@ -383,7 +383,7 @@ public class Telekinesis : MonoBehaviour
             ShowArc();
 
             t += Time.unscaledDeltaTime;
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
 
         isCameraLeaning = false;
@@ -412,7 +412,7 @@ public class Telekinesis : MonoBehaviour
         while ( !isCameraLeaning && cameraOffset.m_Offset.magnitude > 0.01f)
         {
             cameraOffset.m_Offset *= zeroOffsetWeight;
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
 
         cameraOffset.m_Offset = Vector3.zero;

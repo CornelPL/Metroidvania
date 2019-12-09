@@ -11,6 +11,13 @@ public class Walker_Horizontal : MonoBehaviour
     [SerializeField] private int direction = 1;
 
 
+    public void OnDeath()
+    {
+        animator.SetBool( "isDead", true );
+        this.enabled = false;
+    }
+
+
     private void Start()
     {
         animator.SetBool( "isFacingRight", direction == 1 ? true : false );
@@ -34,7 +41,7 @@ public class Walker_Horizontal : MonoBehaviour
 
     private void ChangeDirection()
     {
-        direction = direction > 0 ? -1 : 1;
+        direction = -direction;
         animator.SetBool( "isFacingRight", direction == 1 ? true : false );
     }
 

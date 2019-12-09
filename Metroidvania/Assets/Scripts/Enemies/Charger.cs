@@ -1,80 +1,150 @@
 ﻿using UnityEngine;
+using System.Collections;
+using MyBox;
 
 public class Charger : MonoBehaviour
 {
     [SerializeField] private int damage = 20;
     [SerializeField] private float sightRange = 5f;
+    [SerializeField] private float movementSpeed = 3f;
     [SerializeField] private float chargeSpeed = 6f;
     [SerializeField] private float playerKnockbackMultiplier = 2f;
     [SerializeField] private float stunTime = 1f;
     [SerializeField] private Vector2 sightOffset = Vector2.zero;
     [SerializeField] private LayerMask playerLayerMask = 0;
-    [SerializeField] private Rigidbody2D _rigidbody = null;
-    [SerializeField] private EnemyHealthManager healthManager = null;
+    [SerializeField] private LayerMask playerAndObstaclesLayerMask = 0;
+    [SerializeField, MustBeAssigned] private Animator animator = null;
+    [SerializeField, MustBeAssigned] private Rigidbody2D _rigidbody = null;
+    [SerializeField, MustBeAssigned] private EnemyHealthManager healthManager = null;
+    [SerializeField] private int direction = 1;
 
-    private int direction = 1;
     private bool isCharging = false;
     private bool isStunned = false;
+    private bool isWalking = false;
     private float timeStunned = 0f;
     private Transform player;
+
+
+    public void OnDeath()
+    {
+        // TODO: spawn death parts
+    }
 
 
     private void Awake()
     {
         if ( !player )
-        {
             player = GameObject.FindGameObjectWithTag( "Player" ).transform;
-        }
+    }
+
+
+    private void Start()
+    {
+        animator.SetBool( "isFacingRight", direction == 1 ? true : false );
     }
 
 
     private void Update()
     {
-        if (!isStunned)
+        if ( !isStunned && !isCharging && !healthManager.isBeingKnockbacked )
         {
-            if (!healthManager.isBeingKnockbacked && !isCharging)
+            if ( CanSeePlayer() )
             {
                 RotateToPlayer();
-                CheckPlayerInSight();
+                if ( IsPlayerInRange() )
+                {
+                    PreCharge();
+                }
             }
-            else if (isCharging)
+            else if ( !isWalking )
             {
-                Charge();
+                StartCoroutine( Walk() );
             }
         }
-        else if (timeStunned < stunTime)
-        {
-            // TODO: Play stunned anim
-            timeStunned += Time.deltaTime;
-        }
-        else
-        {
-            timeStunned = 0f;
-            isStunned = false;
-        }
+    }
+
+
+    private bool CanSeePlayer()
+    {
+        Vector3 origin = (Vector2)transform.position + sightOffset;
+        Vector3 vectorToPlayer = player.position - transform.position;
+        return Physics2D.Raycast( origin, vectorToPlayer, Mathf.Infinity, playerAndObstaclesLayerMask ).transform.CompareTag( "Player" );
     }
 
 
     private void RotateToPlayer()
     {
-        // TODO: Rotate sprite
         direction = player.position.x < transform.position.x ? -1 : 1;
+        SetDirection( direction );
     }
 
 
-    private void CheckPlayerInSight()
+    private bool IsPlayerInRange()
     {
-        if ( Physics2D.Raycast( (Vector2)transform.position + sightOffset, new Vector2( direction, 0f ), sightRange, playerLayerMask ) )
+        return Physics2D.Raycast( (Vector2)transform.position + sightOffset, new Vector2( direction, 0f ), sightRange, playerLayerMask );
+    }
+
+
+    private IEnumerator Walk()
+    {
+        animator.SetBool( "isWalking", true );
+
+        while ( !isStunned && !isCharging && !healthManager.isBeingKnockbacked && !CanSeePlayer() )
         {
-            isCharging = true;
-            Charge();
+            _rigidbody.velocity = new Vector2( movementSpeed * direction, _rigidbody.velocity.y );
+            yield return null;
         }
+
+        animator.SetBool( "isWalking", false );
+    }
+
+
+    private void SetDirection( int dir )
+    {
+        direction = dir;
+        animator.SetBool( "isFacingRight", direction == 1 ? true : false );
+    }
+
+
+    private void PreCharge()
+    {
+        animator.SetTrigger( "preCharge" );
     }
 
 
     private void Charge()
     {
-        _rigidbody.velocity = new Vector2(chargeSpeed * direction, _rigidbody.velocity.y);
+        isCharging = true;
+        StartCoroutine( ChargeCoroutine() );
+    }
+
+
+    private IEnumerator ChargeCoroutine()
+    {
+        while ( isCharging )
+        {
+            _rigidbody.velocity = new Vector2( chargeSpeed * direction, _rigidbody.velocity.y );
+
+            yield return null;
+        }
+    }
+
+
+    private IEnumerator Stun()
+    {
+        isStunned = true;
+        animator.SetBool( "isStunned", true );
+
+        while( isStunned && timeStunned < stunTime )
+        {
+            timeStunned += Time.deltaTime;
+            yield return null;
+        }
+
+        timeStunned = 0f;
+        animator.SetBool( "isStunned", false );
+        isStunned = false;
+        SetDirection( -direction );
     }
 
 
@@ -83,14 +153,22 @@ public class Charger : MonoBehaviour
         if ( isCharging )
         {
             isCharging = false;
-            isStunned = true;
+            StartCoroutine( Stun() );
+        }
+        else if ( collision.collider.CompareTag( "Wall" ) )
+        {
+            SetDirection( -direction );
         }
     }
 
 
     private void OnTriggerEnter2D( Collider2D collider )
     {
-        if ( collider.CompareTag( "Player" ) )
+        if ( !isCharging && collider.gameObject.CompareTag( "StopMark" ) )
+        {
+            SetDirection( -direction );
+        }
+        else if ( collider.CompareTag( "Player" ) )
         {
             float knockbackMultiplier = isCharging ? playerKnockbackMultiplier : 1f;
             collider.GetComponent<PlayerHealthManager>().TakeDamage( damage, transform.position.x, knockbackMultiplier );

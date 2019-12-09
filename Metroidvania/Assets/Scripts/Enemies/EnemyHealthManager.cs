@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
+using MyBox;
 
 public class EnemyHealthManager : HealthManager
 {
-    [SerializeField] private Animator animator = null;
-    [SerializeField] private Rigidbody2D _rigidbody = null;
-    [SerializeField] private GameObject splashEffect = null;
-    [SerializeField] private GameObject deathEffect = null;
+    [SerializeField, MustBeAssigned] private Rigidbody2D _rigidbody = null;
+    [SerializeField, MustBeAssigned] private GameObject splashEffect = null;
+    [SerializeField, MustBeAssigned] private GameObject deathEffect = null;
     [SerializeField] private float deathKnockbackForce = 10f;
     [SerializeField] private float torqueOnDeath = 10f;
 
@@ -22,8 +22,6 @@ public class EnemyHealthManager : HealthManager
         shootDirection.y += 1f;
 
         Knockback( shootDirection, deathKnockbackForce );
-
-        animator.SetBool( "isDead", true );
 
         _rigidbody.freezeRotation = false;
         float moveDirection = Mathf.Sign(_rigidbody.velocity.x);

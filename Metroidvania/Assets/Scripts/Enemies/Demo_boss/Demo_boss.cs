@@ -315,7 +315,7 @@ public class Demo_boss : MonoBehaviour
                 StopMoving();
             }
 
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
 
         wasShooting = false;
@@ -386,7 +386,7 @@ public class Demo_boss : MonoBehaviour
         {
             _rigidbody.velocity = new Vector2( chargeSpeed * direction, _rigidbody.velocity.y );
 
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
     }
 

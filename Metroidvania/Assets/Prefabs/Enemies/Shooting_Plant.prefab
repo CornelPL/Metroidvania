@@ -60,6 +60,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &2892628564616168880
@@ -120,8 +121,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 1.6}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.52, y: 0.8}
     newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -142,17 +143,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e02d1c9aa928f04aaaaf4cadb80304c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsDropForce: 10
   initialHP: 100
-  canBeKnockbacked: 0
-  _rigidbody: {fileID: 2892628564616168880}
   point: {fileID: 3365028966441827141, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
   minPoints: 3
   maxPoints: 10
+  spriteRenderer: {fileID: 0}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  damageColor: {r: 1, g: 1, b: 1, a: 1}
+  colorChangeTime: 0.5
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  currentHP: 0
+  _rigidbody: {fileID: 2892628564616168880}
+  splashEffect: {fileID: 3867317853530762858, guid: e5deca7c11769484ea158b208a42f9cd,
+    type: 3}
+  deathEffect: {fileID: 7348761373615277433, guid: f71545d168475464597f395fe7923c5d,
+    type: 3}
+  deathKnockbackForce: 10
+  torqueOnDeath: 10
   isBeingKnockbacked: 0
 --- !u!114 &2892628564616168894
 MonoBehaviour:
@@ -177,6 +194,4 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 66560
-  _rigidbody: {fileID: 2892628564616168880}
-  healthManager: {fileID: 2892628564616168882}
   aimOffset: {x: 0, y: 2}

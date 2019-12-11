@@ -16,13 +16,34 @@ public class Charger : MonoBehaviour
     [SerializeField, MustBeAssigned] private Animator animator = null;
     [SerializeField, MustBeAssigned] private Rigidbody2D _rigidbody = null;
     [SerializeField, MustBeAssigned] private EnemyHealthManager healthManager = null;
+    [SerializeField, MustBeAssigned] private ParticleSystem breathEffect = null;
+    [SerializeField, MustBeAssigned] private Vector2 breathEffectPosition = Vector2.zero;
     [SerializeField] private int direction = 1;
 
     private bool isCharging = false;
     private bool isStunned = false;
     private bool isWalking = false;
+    private bool isPreCharging = false;
     private float timeStunned = 0f;
     private Transform player;
+
+
+    public void SpawnBreathEffect()
+    {
+        float rand = Random.Range( 0f, 1f );
+        if ( rand > 0.5f )
+        {
+            Vector2 pos = breathEffectPosition;
+            float angle = -120f;
+            if ( direction == 1 )
+            {
+                angle = -60f;
+                pos = new Vector2( -breathEffectPosition.x, breathEffectPosition.y );
+            }
+
+            Instantiate( breathEffect, transform.position + (Vector3)pos, Quaternion.AngleAxis( angle, Vector3.forward ), null );
+        }
+    }
 
 
     public void OnDeath()
@@ -46,7 +67,7 @@ public class Charger : MonoBehaviour
 
     private void Update()
     {
-        if ( !isStunned && !isCharging && !healthManager.isBeingKnockbacked )
+        if ( !isStunned && !isCharging && !isPreCharging && !healthManager.isBeingKnockbacked )
         {
             if ( CanSeePlayer() )
             {
@@ -108,12 +129,14 @@ public class Charger : MonoBehaviour
 
     private void PreCharge()
     {
+        isPreCharging = true;
         animator.SetTrigger( "preCharge" );
     }
 
 
     private void Charge()
     {
+        isPreCharging = false;
         isCharging = true;
         StartCoroutine( ChargeCoroutine() );
     }

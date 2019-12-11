@@ -131182,6 +131182,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4173082080487236787, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
+        type: 3}
+      propertyPath: sightRange
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4173082080487236799, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
         type: 3}
       propertyPath: initialHP

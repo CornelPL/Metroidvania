@@ -83661,7 +83661,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115479061}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 77.17, y: 6.47, z: 25.541002}
+  m_LocalPosition: {x: 107.22, y: 6.19, z: 25.541002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1911857580}
@@ -93235,7 +93235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364458349}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 78.52, y: -0.6100006, z: 15.441002}
+  m_LocalPosition: {x: 108.57, y: -0.8899994, z: 15.441002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1265205175}
@@ -106418,6 +106418,81 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1528500684}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1531718543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1531718544}
+  - component: {fileID: 1531718545}
+  m_Layer: 0
+  m_Name: Over spikes light (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1531718544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531718543}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 90.52, y: 5.61, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1825492755}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1531718545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531718543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 1
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 0.7877358, g: 0.8194579, b: 1, a: 1}
+  m_Intensity: 3
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: d75abb4be5af804c00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 1
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_PointLightDistance: 2
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 3
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -2.0799408, y: 1.4105644, z: 0}
+  - {x: -6.0835724, y: -3.7604694, z: 0}
+  - {x: -6.018753, y: -11.107016, z: 0}
+  - {x: -3.6535645, y: -12.291599, z: 0}
+  - {x: -3.5585175, y: -14.370581, z: 0}
+  - {x: 2.3284912, y: -14.30398, z: 0}
+  - {x: 2.380371, y: -12.970931, z: 0}
+  - {x: 15.026108, y: -13.126412, z: 0}
+  - {x: 14.89209, y: -0.29056168, z: 0}
 --- !u!1001 &1534074707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -108289,12 +108364,12 @@ PrefabInstance:
     - target: {fileID: 7996462740890672813, guid: ec636d8419fa03644bc054e26d6c47e0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3654556
+      value: 1.3660965
       objectReference: {fileID: 0}
     - target: {fileID: 7996462740890672813, guid: ec636d8419fa03644bc054e26d6c47e0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.049008
+      value: -2.8843045
       objectReference: {fileID: 0}
     - target: {fileID: 7996462740890672813, guid: ec636d8419fa03644bc054e26d6c47e0,
         type: 3}
@@ -117329,6 +117404,7 @@ Transform:
   - {fileID: 1771518611}
   - {fileID: 1518766850}
   - {fileID: 534125808}
+  - {fileID: 1531718544}
   m_Father: {fileID: 2097614239}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -131014,12 +131090,12 @@ PrefabInstance:
     - target: {fileID: 4173082080487236785, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.45
+      value: -7.35
       objectReference: {fileID: 0}
     - target: {fileID: 4173082080487236785, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.71
+      value: -6.28
       objectReference: {fileID: 0}
     - target: {fileID: 4173082080487236785, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
         type: 3}

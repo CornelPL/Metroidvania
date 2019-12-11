@@ -88,7 +88,7 @@ public class EnemyHealthManager : HealthManager
         float angle = Mathf.Atan2( direction.y, direction.x ) * Mathf.Rad2Deg;
 
         Vector3 position = transform.position;
-        Vector3 spawnPos = new Vector3( position.x, position.y + spriteRenderer.bounds.size.y, position.z );
+        Vector3 spawnPos = new Vector3( position.x, position.y + spriteRenderer.bounds.size.y / 2f, position.z );
 
         Instantiate( effect, spawnPos, Quaternion.Euler( 0f, 0f, angle ) );
     }

@@ -12681,7 +12681,7 @@ PrefabInstance:
     - target: {fileID: 7908586984185801554, guid: 8589c1465a41f85409178cffea1cc7b8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.08
+      value: -18.15
       objectReference: {fileID: 0}
     - target: {fileID: 7908586984185801554, guid: 8589c1465a41f85409178cffea1cc7b8,
         type: 3}
@@ -131014,12 +131014,12 @@ PrefabInstance:
     - target: {fileID: 4173082080487236785, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.82
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: 4173082080487236785, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.49
+      value: -6.71
       objectReference: {fileID: 0}
     - target: {fileID: 4173082080487236785, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
         type: 3}
@@ -131071,6 +131071,56 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a26fe3da012fc714c84d30f442e117eb, type: 2}
+    - target: {fileID: 5983473011580518104, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.301
+      objectReference: {fileID: 0}
+    - target: {fileID: 3783314166741005769, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.651
+      objectReference: {fileID: 0}
+    - target: {fileID: 3783314166741005769, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.613
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920673257513735604, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161220970958371691, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161220970958371691, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2297873718505070197, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173082080487236799, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
+        type: 3}
+      propertyPath: initialHP
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948810219995125382, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948810219995125382, guid: e4f4c3a35a77d51438b0dd862ea38e5b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4f4c3a35a77d51438b0dd862ea38e5b, type: 3}
 --- !u!4 &2105099827 stripped

@@ -1,3 +1,18 @@
+# What to show in demo?
+
+- USPs:
+	- using gravity on everything which comes with destroyable environment
+		Every lying item can be thrown. Parts of the enemies, every rock, foliage (could just fly and do no damage).
+		Staying objects can be destroyed with thrown item. Thrown item does stop only on enemies or undestroyable objects. It destroys everything it flies by.
+	- great fight feeling
+		Pulling effects, shooting effects, everything can be thrown.
+		Counterattacking enemies
+			When enemy charges or does some special action hint with button shows up to counterattack. If player hits it in time he grabs enemy with gravity and can throw him away.
+	- exploration and environment storytelling
+		Exploration done with player's abilities. Slam and planks in soft wall.
+		
+		
+
 # Demo level
 
 - Small boss

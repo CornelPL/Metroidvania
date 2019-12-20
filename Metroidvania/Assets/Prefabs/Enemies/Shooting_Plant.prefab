@@ -32,7 +32,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2352960285137053189}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -117,7 +118,7 @@ Animator:
   m_GameObject: {fileID: 2892628564616168893}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e07ee54fdfde39b46a7318a72539df43, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -207,12 +208,44 @@ MonoBehaviour:
   damage: 1
   range: 22
   timeBetweenShots: 2
+  chargeTime: 1
   shootForce: 10
-  projectile: {fileID: 5999442577757334188, guid: b1e435e492d56354481361ab57fb57b3,
-    type: 3}
   projectilesCount: 1
   spread: 10
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 66560
-  aimOffset: {x: 0, y: 2}
+  shootPosition: {fileID: 2352960285137053189}
+  projectile: {fileID: 5999442577757334188, guid: b1e435e492d56354481361ab57fb57b3,
+    type: 3}
+  animator: {fileID: 7062691669318407608}
+--- !u!1 &5364481203136498221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2352960285137053189}
+  m_Layer: 15
+  m_Name: shootPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2352960285137053189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5364481203136498221}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.47, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2892628564616168892}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

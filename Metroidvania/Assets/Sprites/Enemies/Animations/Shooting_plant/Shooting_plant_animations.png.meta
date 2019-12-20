@@ -14,6 +14,18 @@ TextureImporter:
   - first:
       213: 1998942636672838584
     second: Shooting_plant_animations_3
+  - first:
+      213: 3247332595367941656
+    second: Shooting_plant_animations_4
+  - first:
+      213: -5723616067219048222
+    second: Shooting_plant_animations_5
+  - first:
+      213: 7964550927638427828
+    second: Shooting_plant_animations_6
+  - first:
+      213: 8138397770810683442
+    second: Shooting_plant_animations_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -102,6 +114,132 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 400
+        width: 300
+        height: 400
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 074135273a8032f4199db6f22170949b
+      internalID: -7203473494531276481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shooting_plant_animations_1
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 400
+        width: 300
+        height: 400
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c88321030b90fdc4f9b467c675080c04
+      internalID: 9120077379068933357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shooting_plant_animations_2
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 400
+        width: 300
+        height: 400
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13df1ce32115d2549a9ae437c17d58bd
+      internalID: -2490376504432017964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shooting_plant_animations_3
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 400
+        width: 300
+        height: 400
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1065598be867a6849bd405efb06c7b83
+      internalID: 1998942636672838584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shooting_plant_animations_4
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 400
+        width: 300
+        height: 400
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cb1478525f9ed74ea1acbeb1f100713
+      internalID: 3247332595367941656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shooting_plant_animations_5
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 400
+        width: 300
+        height: 400
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cebbd054f8b864b4397402e5b8dd072c
+      internalID: -5723616067219048222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shooting_plant_animations_6
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 300
         height: 400
@@ -112,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8cf1c7f50fda1b47bce798362020f24
-      internalID: -7203473494531276481
+      spriteID: 68138af116f3be644864a53299d0accf
+      internalID: 7964550927638427828
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shooting_plant_animations_1
+      name: Shooting_plant_animations_7
       rect:
         serializedVersion: 2
         x: 300
@@ -133,50 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff4dd54d493ea9d40aee55338eb4df26
-      internalID: 9120077379068933357
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Shooting_plant_animations_2
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 0
-        width: 300
-        height: 400
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 81121d55328a4cd4da65b8f18303937e
-      internalID: -2490376504432017964
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Shooting_plant_animations_3
-      rect:
-        serializedVersion: 2
-        x: 900
-        y: 0
-        width: 300
-        height: 400
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 480b965a9666f1243b656184f14b3df8
-      internalID: 1998942636672838584
+      spriteID: 838518684a4ba31419a4f526c885ad54
+      internalID: 8138397770810683442
       vertices: []
       indices: 
       edges: []

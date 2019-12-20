@@ -383,7 +383,7 @@ limitMemory=true
 useIndexes=true
 
 scaleFactors=[{suffix:"",factor:1,resampling:bicubic}]
-inputFiles=[{path:Shooting_plant/01_idle/01_idle0000.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle0003.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle0001.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle0002.png,type:Input,regionName:null}]
+inputFiles=[{path:Shooting_plant/01_idle/01_idle0000.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle0003.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle0001.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle0002.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle0004.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle0007.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle0005.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle0006.png,type:Input,regionName:null}]
 
 
 ---
@@ -422,7 +422,7 @@ limitMemory=true
 useIndexes=true
 
 scaleFactors=[{suffix:"",factor:1,resampling:bicubic}]
-inputFiles=[{path:Shooting_plant/01_idle/01_idle_normal0000.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle_normal0003.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle_normal0001.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle_normal0002.png,type:Input,regionName:null}]
+inputFiles=[{path:Shooting_plant/01_idle/01_idle_normal0000.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle_normal0003.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle_normal0001.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle_normal0002.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle_normal0004.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle_normal0007.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle_normal0005.png,type:Input,regionName:null},{path:Shooting_plant/01_idle/01_idle_normal0006.png,type:Input,regionName:null}]
 
 
 -PROJ-

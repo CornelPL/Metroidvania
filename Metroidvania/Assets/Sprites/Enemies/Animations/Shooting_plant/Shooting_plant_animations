@@ -1,6 +1,6 @@
 
 Shooting_plant_animations.png
-size: 1200,400
+size: 1800,800
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -28,6 +28,34 @@ repeat: none
 01_idle0003
   rotate: false
   xy: 900, 0
+  size: 300, 400
+  orig: 300, 400
+  offset: 0, 0
+  index: -1
+01_idle0004
+  rotate: false
+  xy: 1200, 0
+  size: 300, 400
+  orig: 300, 400
+  offset: 0, 0
+  index: -1
+01_idle0005
+  rotate: false
+  xy: 1500, 0
+  size: 300, 400
+  orig: 300, 400
+  offset: 0, 0
+  index: -1
+01_idle0006
+  rotate: false
+  xy: 0, 400
+  size: 300, 400
+  orig: 300, 400
+  offset: 0, 0
+  index: -1
+01_idle0007
+  rotate: false
+  xy: 300, 400
   size: 300, 400
   orig: 300, 400
   offset: 0, 0

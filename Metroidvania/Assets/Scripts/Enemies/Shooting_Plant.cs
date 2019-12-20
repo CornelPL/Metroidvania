@@ -1,56 +1,72 @@
 ﻿using UnityEngine;
+using MyBox;
 
 public class Shooting_Plant : MonoBehaviour
 {
     [SerializeField] private int damage = 20;
     [SerializeField] private float range = 5f;
     [SerializeField] private float timeBetweenShots = 1f;
+    [SerializeField] private float chargeTime = 1f;
     [SerializeField] private float shootForce = 100f;
-    [SerializeField] private GameObject projectile = null;
     [SerializeField] private int projectilesCount = 1;
     [SerializeField] private float spread = 10f;
     [SerializeField] private LayerMask playerLayerMask = 0;
-    [SerializeField] private Vector2 aimOffset = Vector2.zero;
+    [SerializeField, MustBeAssigned] private Transform shootPosition = null;
+    [SerializeField, MustBeAssigned] private GameObject projectile = null;
+    [SerializeField, MustBeAssigned] private Animator animator = null;
 
     private bool playerInRange = false;
-    private float timeAfterLastShot = 0f;
+    private bool isCharging = false;
+    private float lastTimeShot = 0f;
     private Transform player = null;
+
+
+    private void Start()
+    {
+        animator.SetFloat( "chargeTime", chargeTime );
+    }
 
 
     private void Update()
     {
-        CheckPlayerInRange();
-
-        if (playerInRange)
+        if ( !isCharging && IsPlayerInRange() && Time.time - lastTimeShot > timeBetweenShots )
         {
-            if (timeAfterLastShot > timeBetweenShots)
-            {
-                Vector2 direction = (Vector2)player.position + aimOffset - (Vector2)transform.position;
-                Shoot(direction);
-            }
-            else
-            {
-                timeAfterLastShot += Time.deltaTime;
-            }
+            ChargeShoot();
         }
     }
 
 
-    private void CheckPlayerInRange()
+    private bool IsPlayerInRange()
     {
         if (Physics2D.OverlapCircle(transform.position, range, playerLayerMask))
         {
-            playerInRange = true;
             if (player == null) player = Physics2D.OverlapCircle(transform.position, range, playerLayerMask).transform;
+            return true;
         }
-        else
-        {
-            playerInRange = false;
-        }
+
+        return false;
     }
 
 
-    private void Shoot(Vector2 direction)
+    private void ChargeShoot()
+    {
+        isCharging = true;
+        animator.SetTrigger( "charge" );
+    }
+
+
+    private void Shoot()
+    {
+        isCharging = false;
+
+        GameObject proj = Instantiate( projectile, shootPosition.position, transform.rotation );
+        proj.GetComponent<Rigidbody2D>().AddForce( Vector2.up * shootForce, ForceMode2D.Impulse );
+
+        lastTimeShot = Time.time;
+    }
+
+
+    /*private void Shoot(Vector2 direction)
     {
         timeAfterLastShot = 0f;
 
@@ -82,7 +98,7 @@ public class Shooting_Plant : MonoBehaviour
 
             angle += spread * Mathf.Deg2Rad;
         }
-    }
+    }*/
 
 
     private void OnCollisionEnter2D(Collision2D collision)

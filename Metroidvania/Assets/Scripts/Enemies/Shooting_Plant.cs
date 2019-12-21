@@ -6,25 +6,15 @@ public class Shooting_Plant : MonoBehaviour
     [SerializeField] private int damage = 20;
     [SerializeField] private float range = 5f;
     [SerializeField] private float timeBetweenShots = 1f;
-    [SerializeField] private float chargeTime = 1f;
-    [SerializeField] private float shootForce = 100f;
-    [SerializeField] private int projectilesCount = 1;
-    [SerializeField] private float spread = 10f;
+    [SerializeField] private float shootForce = 15f;
     [SerializeField] private LayerMask playerLayerMask = 0;
     [SerializeField, MustBeAssigned] private Transform shootPosition = null;
     [SerializeField, MustBeAssigned] private GameObject projectile = null;
     [SerializeField, MustBeAssigned] private Animator animator = null;
 
-    private bool playerInRange = false;
     private bool isCharging = false;
     private float lastTimeShot = 0f;
     private Transform player = null;
-
-
-    private void Start()
-    {
-        animator.SetFloat( "chargeTime", chargeTime );
-    }
 
 
     private void Update()
@@ -38,9 +28,10 @@ public class Shooting_Plant : MonoBehaviour
 
     private bool IsPlayerInRange()
     {
-        if (Physics2D.OverlapCircle(transform.position, range, playerLayerMask))
+        Collider2D col = Physics2D.OverlapCircle( transform.position, range, playerLayerMask );
+        if ( col != null )
         {
-            if (player == null) player = Physics2D.OverlapCircle(transform.position, range, playerLayerMask).transform;
+            if (player == null) player = col.transform;
             return true;
         }
 
@@ -61,6 +52,7 @@ public class Shooting_Plant : MonoBehaviour
 
         GameObject proj = Instantiate( projectile, shootPosition.position, transform.rotation );
         proj.GetComponent<Rigidbody2D>().AddForce( Vector2.up * shootForce, ForceMode2D.Impulse );
+        proj.GetComponent<ShootingPlantProjectile>().SetPlayer( player );
 
         lastTimeShot = Time.time;
     }

@@ -14,8 +14,7 @@ public class Walker_Sight : MonoBehaviour
     [Tooltip( "1 - right; -1 - left" )]
     [SerializeField] private int direction = 1;
 
-    private bool playerInRange = false;
-    private bool playerWasInRange = false;
+    private bool isPlayerInSight = false;
 
 
     private void Start()
@@ -28,7 +27,6 @@ public class Walker_Sight : MonoBehaviour
     {
         if ( !healthManager.isBeingKnockbacked )
         {
-            CheckPlayerInSight();
             Move();
         }
     }
@@ -36,37 +34,34 @@ public class Walker_Sight : MonoBehaviour
 
     private void Move()
     {
-        if ( (!playerWasInRange && playerInRange) || (playerWasInRange && !playerInRange) )
+        if ( IsPlayerInSight() != isPlayerInSight )
         {
-            animator.SetBool( "isAttacking", playerInRange );
+            isPlayerInSight = !isPlayerInSight;
+            animator.SetBool( "isAttacking", isPlayerInSight );
         }
 
-        playerWasInRange = playerInRange;
-
-        float s = playerInRange ? boost : 1f;
+        float s = isPlayerInSight ? boost : 1f;
         s = s * speed * direction;
         _rigidbody.velocity = new Vector2( s, _rigidbody.velocity.y );
     }
 
 
-    private void CheckPlayerInSight()
+    private bool IsPlayerInSight()
     {
         RaycastHit2D hitr = Physics2D.Raycast( (Vector2)transform.position + sightOffset, new Vector2( direction, 0f ), sightRange, playerLayerMask );
         RaycastHit2D hitl = Physics2D.Raycast( (Vector2)transform.position + sightOffset, new Vector2( -direction, 0f ), sightRange, playerLayerMask );
 
         if ( hitr && !hitr.transform.CompareTag( "StopMark" ) )
         {
-            playerInRange = true;
+            return true;
         }
         else if ( hitl && !hitl.transform.CompareTag( "StopMark" ) )
         {
             ChangeDirection();
-            playerInRange = true;
+            return true;
         }
-        else
-        {
-            playerInRange = false;
-        }
+
+        return false;
     }
 
 

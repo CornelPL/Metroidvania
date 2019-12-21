@@ -13925,6 +13925,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooting_Plant (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2892628564616168893, guid: 64d29ec5b12dd204ab77e5aaa0216e9f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2892628564616168892, guid: 64d29ec5b12dd204ab77e5aaa0216e9f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -136569,6 +136574,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7bf8b85bdcf50d2478ed951da3d74f44, type: 2}
+    - target: {fileID: 1669173208879235512, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916609879606229411, guid: f9b27274a5ec96b428c82bee720c1fc9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9b27274a5ec96b428c82bee720c1fc9, type: 3}
 --- !u!1001 &2103285538

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 513658641061633873}
   - component: {fileID: 2864662639065194048}
   - component: {fileID: 6118403492583044311}
-  - component: {fileID: -18356211046132040}
+  - component: {fileID: 8900000894598986894}
   m_Layer: 26
   m_Name: Shooting_Plant_Projectile
   m_TagString: Untagged
@@ -98,7 +98,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -120,7 +120,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &-18356211046132040
+--- !u!114 &8900000894598986894
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,12 +129,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5999442577757334188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21a8b85bef675d84c88e7d4781e7072d, type: 3}
+  m_Script: {fileID: 11500000, guid: f84c5540758f1e947b8e3d5e1a08404f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 10
   OnDestroy:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  shootForce: 15
+  _rigidbody: {fileID: 2864662639065194048}

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class Enemy_Projectile : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
     [SerializeField] private int damage = 10;
     [SerializeField] private UnityEvent OnDestroy = null;

@@ -71,7 +71,7 @@ public class ExplosionLight : MonoBehaviour
     }
 
 
-    private void FadeIn()
+    public void FadeIn( bool autoFadeOut = false )
     {
         if ( fadeInOuterRadius )
         {
@@ -82,10 +82,15 @@ public class ExplosionLight : MonoBehaviour
         {
             LeanTween.value( minInIntensity, maxInIntensity, fadeInTime ).setOnUpdate( ( float v ) => { _light.intensity = v; } );
         }
+
+        if ( autoFadeOut )
+        {
+            LeanTween.value( 0f, 0f, fadeInTime ).setOnComplete( () => { FadeOut(); } );
+        }
     }
 
 
-    private void FadeOut()
+    public void FadeOut()
     {
         if ( fadeOutOuterRadius )
         {

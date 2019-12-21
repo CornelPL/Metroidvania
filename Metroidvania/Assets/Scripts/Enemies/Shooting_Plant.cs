@@ -11,6 +11,10 @@ public class Shooting_Plant : MonoBehaviour
     [SerializeField, MustBeAssigned] private Transform shootPosition = null;
     [SerializeField, MustBeAssigned] private GameObject projectile = null;
     [SerializeField, MustBeAssigned] private Animator animator = null;
+    [SerializeField, MustBeAssigned] private ExplosionLight _light = null;
+    [SerializeField, MustBeAssigned] private ExplosionLight upperLight = null;
+    [SerializeField, MustBeAssigned] private ParticleSystem chargeParticles = null;
+    [SerializeField, MustBeAssigned] private ParticleSystem shootParticles = null;
 
     private bool isCharging = false;
     private float lastTimeShot = 0f;
@@ -43,6 +47,12 @@ public class Shooting_Plant : MonoBehaviour
     {
         isCharging = true;
         animator.SetTrigger( "charge" );
+        _light.FadeIn( true );
+        upperLight.FadeIn( true );
+        if ( !chargeParticles.isPlaying )
+        {
+            chargeParticles.Play();
+        }
     }
 
 
@@ -53,6 +63,11 @@ public class Shooting_Plant : MonoBehaviour
         GameObject proj = Instantiate( projectile, shootPosition.position, transform.rotation );
         proj.GetComponent<Rigidbody2D>().AddForce( Vector2.up * shootForce, ForceMode2D.Impulse );
         proj.GetComponent<ShootingPlantProjectile>().SetPlayer( player );
+
+        if ( !shootParticles.isPlaying )
+        {
+            shootParticles.Play();
+        }
 
         lastTimeShot = Time.time;
     }

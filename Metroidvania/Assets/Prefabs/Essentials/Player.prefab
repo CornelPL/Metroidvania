@@ -1440,8 +1440,8 @@ MonoBehaviour:
     type: 3}
   itemGenerator: {fileID: 767784458}
   _light: {fileID: 5591806385418254259}
-  lightOnIntensity: 2
-  lightOffIntensity: 1
+  lightOnIntensity: 7
+  lightOffIntensity: 2
   tweenTime: 0.5
   pullEffects: {fileID: 0}
   onOverItemParticles: {fileID: 0}
@@ -2208,13 +2208,13 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.2
   m_Color: {r: 0.8392157, g: 0, b: 0.7254902, a: 1}
-  m_Intensity: 1
-  m_LightVolumeOpacity: 0.05
+  m_Intensity: 2
+  m_LightVolumeOpacity: 0.02
   m_ApplyToSortingLayers: e5af804c00000000d75abb4b
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 1
   m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
+  m_AlphaBlendOnOverlap: 1
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

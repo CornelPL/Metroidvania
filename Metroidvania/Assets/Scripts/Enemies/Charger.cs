@@ -89,7 +89,13 @@ public class Charger : MonoBehaviour
     {
         Vector3 origin = (Vector2)transform.position + sightOffset;
         Vector3 vectorToPlayer = player.position - transform.position;
-        return Physics2D.Raycast( origin, vectorToPlayer, Mathf.Infinity, playerAndObstaclesLayerMask ).transform.CompareTag( "Player" );
+        RaycastHit2D raycastHit = Physics2D.Raycast( origin, vectorToPlayer, Mathf.Infinity, playerAndObstaclesLayerMask );
+        if ( raycastHit )
+        {
+            return raycastHit.transform.CompareTag( "Player" );
+        }
+
+        return false;
     }
 
 

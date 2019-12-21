@@ -14,7 +14,7 @@ public class Shooting_Plant : MonoBehaviour
     [SerializeField, MustBeAssigned] private ExplosionLight _light = null;
     [SerializeField, MustBeAssigned] private ExplosionLight upperLight = null;
     [SerializeField, MustBeAssigned] private ParticleSystem chargeParticles = null;
-    [SerializeField, MustBeAssigned] private ParticleSystem shootParticles = null;
+    [SerializeField, MustBeAssigned] private ParticleSystem[] shootParticles = null;
 
     private bool isCharging = false;
     private float lastTimeShot = 0f;
@@ -64,9 +64,12 @@ public class Shooting_Plant : MonoBehaviour
         proj.GetComponent<Rigidbody2D>().AddForce( Vector2.up * shootForce, ForceMode2D.Impulse );
         proj.GetComponent<ShootingPlantProjectile>().SetPlayer( player );
 
-        if ( !shootParticles.isPlaying )
+        for ( int i = 0; i < shootParticles.Length; i++ )
         {
-            shootParticles.Play();
+            if ( !shootParticles[ i ].isPlaying )
+            {
+                shootParticles[ i ].Play();
+            }
         }
 
         lastTimeShot = Time.time;

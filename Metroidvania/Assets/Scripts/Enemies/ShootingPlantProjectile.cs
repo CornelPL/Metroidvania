@@ -23,7 +23,6 @@ public class ShootingPlantProjectile : EnemyProjectile
             Vector2 direction = player.position + Vector3.up * 2f - transform.position;
             _rigidbody.AddForce( direction.normalized * shootForce, ForceMode2D.Impulse );
             _rigidbody.gravityScale = 0f;
-            // TODO: Shoot effects
 
             isShot = true;
         }

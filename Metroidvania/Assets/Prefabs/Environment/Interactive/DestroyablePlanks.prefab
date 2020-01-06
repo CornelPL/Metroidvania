@@ -136,8 +136,10 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  destroyEffects: []
   objectsToSpawnOnDestroy:
-  - {fileID: 6417654320457713547, guid: 33057ab5e8b0e0d47a77f04442e743c4, type: 3}
+  - {fileID: 889198975887940495, guid: f8d19b05942360b419279762745f63d9, type: 3}
+  - {fileID: 6536819811933395187, guid: 75b242375bd55a84a9c8614cc1b14b37, type: 3}
   numObjectsToSpawn:
     Min: 2
     Max: 5

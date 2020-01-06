@@ -5,6 +5,7 @@ using MyBox;
 public class CustomDestroy : MonoBehaviour
 {
     [SerializeField] private UnityEvent OnDestroy = null;
+    [SerializeField] private GameObject[] destroyEffects = null;
     [SerializeField] private GameObject[] objectsToSpawnOnDestroy = null;
     [SerializeField, MinMaxRange(0, 10)] private RangedInt numObjectsToSpawn = new RangedInt(1, 3);
     [SerializeField] private float spawnedItemVelocityLoss = 4f;
@@ -23,6 +24,8 @@ public class CustomDestroy : MonoBehaviour
     {
         Destroy();
 
+        SpawnDestroyEffects();
+
         if ( objectsToSpawnOnDestroy.Length == 0 )
         {
             return;
@@ -32,7 +35,7 @@ public class CustomDestroy : MonoBehaviour
 
         for ( int a = 0; a < quantity; a++ )
         {
-            int objectIndex = Random.Range( 0, objectsToSpawnOnDestroy.Length - 1 );
+            int objectIndex = Random.Range( 0, objectsToSpawnOnDestroy.Length );
 
             Vector3 tmpSpawnRange = transform.InverseTransformVector( spawnRange );
             tmpSpawnRange.x = Random.Range( -tmpSpawnRange.x, tmpSpawnRange.x );
@@ -55,5 +58,14 @@ public class CustomDestroy : MonoBehaviour
     public void DestroyObject()
     {
         Destroy( gameObject );
+    }
+
+
+    public void SpawnDestroyEffects()
+    {
+        for ( int i = 0; i < destroyEffects.Length; i++ )
+        {
+            GameObject inst = Instantiate( destroyEffects[ i ], transform.position, transform.rotation );
+        }
     }
 }

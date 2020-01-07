@@ -71,6 +71,7 @@ public class Telekinesis : MonoBehaviour
     private bool isCursorInRange = false;
     private bool isCursorOver = false;
     private bool isCameraLeaning = false;
+    private bool arePullEffectsActive = false;
 
     #endregion
 
@@ -94,6 +95,11 @@ public class Telekinesis : MonoBehaviour
         if ( TimeManager.instance.isGamePaused )
         {
             return;
+        }
+
+        if ( arePullEffectsActive && !state.isPullingItemState )
+        {
+            SetPullEffectsActive( false );
         }
 
         isCursorInRange = CheckCursorInRange();
@@ -498,6 +504,8 @@ public class Telekinesis : MonoBehaviour
 
     private void SetPullEffectsActive( bool on )
     {
+        arePullEffectsActive = on;
+
         pullEffects.SetActive( on );
 
         if ( !state.isHoldingItemState )

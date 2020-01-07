@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2278852578793582399}
   - component: {fileID: 158790639353539321}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Pull particles Force Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 1609666979467002636}
   - component: {fileID: 8572971262917340000}
   - component: {fileID: 601471975082164087}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Pull particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5295,6 +5295,7 @@ GameObject:
   - component: {fileID: 2892628564616168882}
   - component: {fileID: 2892628564616168894}
   - component: {fileID: 5532662623717214547}
+  - component: {fileID: 3365030044466742236}
   m_Layer: 15
   m_Name: Shooting_Plant
   m_TagString: Enemy
@@ -5427,16 +5428,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsDropForce: 10
   initialHP: 100
-  point: {fileID: 3365028966441827141, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
+  point: {fileID: 3365028966441827137, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
   minPoints: 3
   maxPoints: 10
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 2892628564616168887}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  damageColor: {r: 1, g: 1, b: 1, a: 1}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
   colorChangeTime: 0.5
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2892628564616168893}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnTakeDamage:
@@ -5517,6 +5529,25 @@ PolygonCollider2D:
       - {x: -1.1131983, y: 1.900918}
       - {x: -1.1626444, y: 0.25224972}
       - {x: 1.1131887, y: 0.19109821}
+--- !u!114 &3365030044466742236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2892628564616168893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220b91cfac2f9cc4cbfd97fec53ef2b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBeKnockbacked: 0
+  healthManager: {fileID: 2892628564616168882}
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &3070231850548312023
 GameObject:
   m_ObjectHideFlags: 0
@@ -5762,7 +5793,7 @@ GameObject:
   - component: {fileID: 7055095162768859355}
   - component: {fileID: 3951066390520764143}
   - component: {fileID: 8568198314118139910}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Backward smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10574,7 +10605,7 @@ GameObject:
   - component: {fileID: 5369027979632414098}
   - component: {fileID: 1057275395196419366}
   - component: {fileID: 1610472505881784434}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Shoot particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15386,7 +15417,7 @@ GameObject:
   - component: {fileID: 1650088274391814774}
   - component: {fileID: 4138802523296891849}
   - component: {fileID: 5804205075379253062}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Backward smoke (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16041,7 +16072,7 @@ ParticleSystem:
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: -0, y: 0, z: -240}
+    m_Rotation: {x: -0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -20196,7 +20227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6746274228649323797}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Charge particles group
   m_TagString: Untagged
   m_Icon: {fileID: 0}

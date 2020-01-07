@@ -114,6 +114,8 @@ public class Charger : MonoBehaviour
 
     private IEnumerator Walk()
     {
+        isWalking = true;
+
         animator.SetBool( "isWalking", true );
 
         while ( !isStunned && !isCharging && !healthManager.isBeingKnockbacked && !CanSeePlayer() )
@@ -123,6 +125,8 @@ public class Charger : MonoBehaviour
         }
 
         animator.SetBool( "isWalking", false );
+
+        isWalking = false;
     }
 
 

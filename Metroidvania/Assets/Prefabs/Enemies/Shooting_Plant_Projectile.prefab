@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6503610255961257554}
   - component: {fileID: 3968044849467267650}
   m_Layer: 10
-  m_Name: Shoot particles
+  m_Name: Fly particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4967,6 +4967,8 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   shootForce: 15
   _rigidbody: {fileID: 2864662639065194048}
+  shootEffect: {fileID: 889285115224855251, guid: 825014a6aef1ed1418006bd9fc79390d,
+    type: 3}
 --- !u!96 &54894236058763658
 TrailRenderer:
   serializedVersion: 2

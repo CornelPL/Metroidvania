@@ -13,12 +13,13 @@ public class EnemyHealthManager : HealthManager
 
     private void Death( Vector2 shootDirection )
     {
-        OnDeath.Invoke();
         DropPoints();
         SpawnEffect( shootDirection, deathEffect );
         EnergyController.instance.AddEnergy( EnergyGain.OnKill );
 
         hitDirection = shootDirection;
+
+        OnDeath.Invoke();
 
         this.enabled = false;
     }

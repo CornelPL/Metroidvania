@@ -20,18 +20,16 @@ public class Walker_Horizontal : MonoBehaviour
     {
         this.enabled = false;
 
+        Vector3 spawnPos = new Vector3( transform.position.x, transform.position.y + 0.5f, transform.position.z );
+
+        Rigidbody2D inst = Instantiate( direction == 1 ? deadRight : deadLeft, spawnPos, transform.rotation, null ).GetComponent<Rigidbody2D>();
+
         Vector2 hitDirection = healthManager.hitDirection;
-
         hitDirection.y += 1f;
-
-        Rigidbody2D inst = Instantiate( direction == 1 ? deadRight : deadLeft, transform.position, transform.rotation, null ).GetComponent<Rigidbody2D>();
-
         hitDirection.Normalize();
 
-        Debug.Log( hitDirection * deathKnockbackForce );
         inst.AddForce( hitDirection * deathKnockbackForce, ForceMode2D.Impulse);
 
-        inst.freezeRotation = false;
         float moveDirection = Mathf.Sign( _rigidbody.velocity.x );
         inst.AddTorque( torqueOnDeath * moveDirection, ForceMode2D.Impulse );
 

@@ -176,8 +176,8 @@ MonoBehaviour:
     type: 3}
   deadRight: {fileID: 3538367600929282755, guid: 796e00dbe6952ea45b247c35cef7f09c,
     type: 3}
-  deathKnockbackForce: 1
-  torqueOnDeath: 10
+  deathKnockbackForce: 10
+  torqueOnDeath: 1
   direction: 1
 --- !u!114 &492946502777295296
 MonoBehaviour:
@@ -203,17 +203,6 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: RemoveEnemy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 492946502777295301}
         m_MethodName: OnDeath
         m_Mode: 1

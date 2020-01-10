@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!60 &4332345190729362570
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -274,15 +274,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 842172234368831384, guid: 1777696c5f0cadc47a65a707fe825ad4,
-        type: 3}
-      propertyPath: m_LightCookieSprite
-      value: 
-      objectReference: {fileID: 4765933251566485171, guid: 643ad391e82fdf7498b8a178c6ffd43c,
-        type: 3}
     - target: {fileID: 1532578006444518418, guid: 1777696c5f0cadc47a65a707fe825ad4,
         type: 3}
       propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4765933251566485171, guid: 643ad391e82fdf7498b8a178c6ffd43c,
+        type: 3}
+    - target: {fileID: 842172234368831384, guid: 1777696c5f0cadc47a65a707fe825ad4,
+        type: 3}
+      propertyPath: m_LightCookieSprite
       value: 
       objectReference: {fileID: 4765933251566485171, guid: 643ad391e82fdf7498b8a178c6ffd43c,
         type: 3}

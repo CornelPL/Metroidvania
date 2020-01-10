@@ -1,20 +1,41 @@
 ﻿using UnityEngine;
+using MyBox;
 
 public class Walker_Horizontal : MonoBehaviour
 {
     [SerializeField] private float speed = 3f;
     [SerializeField] private int damage = 20;
-    [SerializeField] private Rigidbody2D _rigidbody = null;
-    [SerializeField] private EnemyHealthManager healthManager = null;
-    [SerializeField] private Animator animator = null;
+    [SerializeField, MustBeAssigned] private Rigidbody2D _rigidbody = null;
+    [SerializeField, MustBeAssigned] private EnemyHealthManager healthManager = null;
+    [SerializeField, MustBeAssigned] private Animator animator = null;
+    [SerializeField, MustBeAssigned] private GameObject deadLeft = null;
+    [SerializeField, MustBeAssigned] private GameObject deadRight = null;
+    [SerializeField] private float deathKnockbackForce = 10f;
+    [SerializeField] private float torqueOnDeath = 10f;
     [Tooltip( "1 - right; -1 - left" )]
     [SerializeField] private int direction = 1;
 
 
     public void OnDeath()
     {
-        animator.SetBool( "isDead", true );
         this.enabled = false;
+
+        Vector2 hitDirection = healthManager.hitDirection;
+
+        hitDirection.y += 1f;
+
+        Rigidbody2D inst = Instantiate( direction == 1 ? deadRight : deadLeft, transform.position, transform.rotation, null ).GetComponent<Rigidbody2D>();
+
+        hitDirection.Normalize();
+
+        Debug.Log( hitDirection * deathKnockbackForce );
+        inst.AddForce( hitDirection * deathKnockbackForce, ForceMode2D.Impulse);
+
+        inst.freezeRotation = false;
+        float moveDirection = Mathf.Sign( _rigidbody.velocity.x );
+        inst.AddTorque( torqueOnDeath * moveDirection, ForceMode2D.Impulse );
+
+        Destroy( gameObject );
     }
 
 

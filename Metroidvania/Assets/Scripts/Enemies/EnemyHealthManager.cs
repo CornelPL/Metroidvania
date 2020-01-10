@@ -6,10 +6,9 @@ public class EnemyHealthManager : HealthManager
     [SerializeField, MustBeAssigned] private Rigidbody2D _rigidbody = null;
     [SerializeField, MustBeAssigned] private GameObject splashEffect = null;
     [SerializeField, MustBeAssigned] private GameObject deathEffect = null;
-    [SerializeField] private float deathKnockbackForce = 10f;
-    [SerializeField] private float torqueOnDeath = 10f;
 
     [HideInInspector] public bool isBeingKnockbacked = false;
+    [HideInInspector] public Vector2 hitDirection = Vector2.zero;
 
 
     private void Death( Vector2 shootDirection )
@@ -19,13 +18,7 @@ public class EnemyHealthManager : HealthManager
         SpawnEffect( shootDirection, deathEffect );
         EnergyController.instance.AddEnergy( EnergyGain.OnKill );
 
-        shootDirection.y += 1f;
-
-        Knockback( shootDirection, deathKnockbackForce );
-
-        _rigidbody.freezeRotation = false;
-        float moveDirection = Mathf.Sign(_rigidbody.velocity.x);
-        _rigidbody.AddTorque( torqueOnDeath * moveDirection, ForceMode2D.Impulse );
+        hitDirection = shootDirection;
 
         this.enabled = false;
     }
@@ -53,7 +46,7 @@ public class EnemyHealthManager : HealthManager
     }
 
 
-    public override void Knockback(Vector2 direction, float force)
+    public override void Knockback(Vector2 direction, float force )
     {
         isBeingKnockbacked = true;
 

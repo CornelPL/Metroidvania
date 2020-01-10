@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using MyBox;
 
 
-public abstract class Item : MonoBehaviour
+public class Item : MonoBehaviour
 {
     #region Inspector variables
 

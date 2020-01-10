@@ -15,7 +15,7 @@ public class RockItem : Item
         }
 
         base.OnTriggerEnter2D( collider );
-
+        
         CustomDestroy();
     }
 }

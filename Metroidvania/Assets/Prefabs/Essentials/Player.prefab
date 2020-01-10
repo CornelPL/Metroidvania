@@ -1429,7 +1429,7 @@ MonoBehaviour:
   radius: 0.5
   pullSpeed: 20
   maxPullSpeed: 50
-  shootPower: 60
+  shootPower: 40
   slowmoMaxTime: 1
   leanWeight: 0.2
   leanTime: 0.2

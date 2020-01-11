@@ -405,7 +405,6 @@ public class Telekinesis : MonoBehaviour
     private IEnumerator ShootingSequence( GameObject item = null )
     {
         state.isAttackingState = true;
-        SetPullEffectsActive( false );
         arcRenderer.enabled = true;
         TimeManager.instance.TurnSlowmoOn();
         if ( item == null )
@@ -534,7 +533,6 @@ public class Telekinesis : MonoBehaviour
 
         state.isPullingItemState = false;
         state.isHoldingItemState = false;
-        SetPullEffectsActive( false );
     }
 
 
@@ -543,7 +541,6 @@ public class Telekinesis : MonoBehaviour
         // TODO: Destroy effects
         state.isPullingItemState = false;
         state.isHoldingItemState = false;
-        SetPullEffectsActive( false );
         Destroy( closestItem );
     }
 

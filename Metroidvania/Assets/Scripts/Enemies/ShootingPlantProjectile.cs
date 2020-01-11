@@ -4,10 +4,12 @@ using MyBox;
 public class ShootingPlantProjectile : EnemyProjectile
 {
     [SerializeField] private float shootForce = 100f;
+    [SerializeField] private float counterAttackDist = 5f;
     [SerializeField, MustBeAssigned] private Rigidbody2D _rigidbody = null;
     [SerializeField, MustBeAssigned] private GameObject shootEffect = null;
 
     private bool isShot = false;
+    private bool notified = false;
     private Transform player;
 
 
@@ -31,5 +33,25 @@ public class ShootingPlantProjectile : EnemyProjectile
 
             isShot = true;
         }
+        else if ( isShot )
+        {
+            float dist = Vector2.Distance( transform.position, player.position );
+            if ( !notified && dist < counterAttackDist )
+            {
+                notified = true;
+                player.GetComponent<Telekinesis>().NotifyCounterAttackEnter( gameObject );
+            }
+            else if ( notified && dist > counterAttackDist )
+            {
+                notified = false;
+                player.GetComponent<Telekinesis>().NotifyCounterAttackExit( gameObject );
+            }
+        }
+    }
+
+
+    private void OnDestroy()
+    {
+        player.GetComponent<Telekinesis>().NotifyCounterAttackExit( gameObject );
     }
 }

@@ -9,6 +9,7 @@ public class EnemyProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if ( !enabled ) return;
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.collider.GetComponent<PlayerHealthManager>().TakeDamage(damage, transform.position.x);

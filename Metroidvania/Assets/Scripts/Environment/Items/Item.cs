@@ -11,12 +11,13 @@ public class Item : MonoBehaviour
     [SerializeField, MustBeAssigned] protected Rigidbody2D _rigidbody = null;
     [SerializeField, MustBeAssigned] private Collider2D _collider = null;
     [SerializeField, MustBeAssigned] private GameObject destroyEffect = null;
-    [SerializeField, MustBeAssigned] private GameObject itemHighlight = null;
+    [SerializeField] private GameObject itemHighlight = null;
     [SerializeField] private int baseDamage = 10;
     [SerializeField] private float knockbackForce = 100f;
     [SerializeField] private UnityEvent OnStartPulling = null;
     [SerializeField] private UnityEvent OnPullingCompleted = null;
     [SerializeField] private UnityEvent OnRelease = null;
+    [SerializeField] private UnityEvent OnMakeItem = null;
 
     #endregion
 
@@ -34,6 +35,12 @@ public class Item : MonoBehaviour
     protected List<Collider2D> collidersToIgnore = new List<Collider2D>();
 
     #endregion
+
+    public virtual void MakeItem()
+    {
+        OnMakeItem.Invoke();
+        _rigidbody.velocity = Vector2.zero;
+    }
 
 
     public virtual void SetFree()
@@ -95,7 +102,7 @@ public class Item : MonoBehaviour
 
     public virtual void OnHover( bool start )
     {
-        itemHighlight.SetActive( start );
+        itemHighlight?.SetActive( start );
     }
 
 

@@ -4887,6 +4887,7 @@ GameObject:
   - component: {fileID: 6118403492583044311}
   - component: {fileID: 8900000894598986894}
   - component: {fileID: 54894236058763658}
+  - component: {fileID: 2908805370928331528}
   m_Layer: 26
   m_Name: Shooting_Plant_Projectile
   m_TagString: Untagged
@@ -4966,6 +4967,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   shootForce: 15
+  counterAttackDist: 5
   _rigidbody: {fileID: 2864662639065194048}
   shootEffect: {fileID: 889285115224855251, guid: 825014a6aef1ed1418006bd9fc79390d,
     type: 3}
@@ -5065,3 +5067,65 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &2908805370928331528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5999442577757334188}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdbccf1053cac84b9af377071130493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 2864662639065194048}
+  _collider: {fileID: 6118403492583044311}
+  destroyEffect: {fileID: 6060602310375322860, guid: 568c5a579b4c6814fb1cff60b849b194,
+    type: 3}
+  itemHighlight: {fileID: 0}
+  baseDamage: 10
+  knockbackForce: 100
+  OnStartPulling:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnPullingCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnMakeItem:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8900000894598986894}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6118403492583044311}
+        m_MethodName: set_isTrigger
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  isSpawned: 0

@@ -9,6 +9,7 @@ public class PlayerState : MonoBehaviour
     public bool isFacingRight = false;
     public bool isPullingItemState = false;
     public bool isHoldingItemState = false;
+    public bool isAttackingState = false;
     public bool isGroundedState = false;
     public bool isRunningState = false;
     public bool isJumpingState = false;

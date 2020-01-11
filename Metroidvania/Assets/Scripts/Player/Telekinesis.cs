@@ -72,6 +72,8 @@ public class Telekinesis : MonoBehaviour
     private bool isCursorOver = false;
     private bool isCameraLeaning = false;
     private bool arePullEffectsActive = false;
+    private bool canCounterAttack = false;
+    private GameObject counterAttackItem = null;
 
     #endregion
 
@@ -79,6 +81,19 @@ public class Telekinesis : MonoBehaviour
     public void RemoveStableItem()
     {
         stableItems.RemoveAt( 0 );
+    }
+
+
+    public void NotifyCounterAttackEnter( GameObject toCounter )
+    {
+        counterAttackItem = toCounter;
+        canCounterAttack = true;
+    }
+
+
+    public void NotifyCounterAttackExit( GameObject toCounter )
+    {
+        canCounterAttack = false;
     }
 
 
@@ -92,7 +107,7 @@ public class Telekinesis : MonoBehaviour
 
     private void Update()
     {
-        if ( TimeManager.instance.isGamePaused )
+        if ( TimeManager.instance.isGamePaused || state.isAttackingState )
         {
             return;
         }
@@ -121,13 +136,13 @@ public class Telekinesis : MonoBehaviour
                 }
                 else
                 {
-                    ReleaseItem();
+                    ReleaseItem( closestItem );
                 }
             }
             else if ( state.isPullingItemState )
             {
                 closestItem.GetComponent<Item>().AbortPulling();
-                ReleaseItem();
+                ReleaseItem( closestItem );
             }
             else if ( isCursorInRange )
             {
@@ -159,6 +174,10 @@ public class Telekinesis : MonoBehaviour
         else if ( input.lmbDown && state.isHoldingItemState )
         {
             StartCoroutine( ShootingSequence() );
+        }
+        else if ( input.lmbDown && canCounterAttack && !state.isPullingItemState )
+        {
+            CounterAttack();
         }
 
         // Player acquired stabling items skill
@@ -375,18 +394,31 @@ public class Telekinesis : MonoBehaviour
     }
 
 
-    private IEnumerator ShootingSequence()
+    private void CounterAttack()
     {
+        counterAttackItem.GetComponent<Item>().enabled = true;
+        counterAttackItem.GetComponent<Item>().MakeItem();
+        StartCoroutine( ShootingSequence( counterAttackItem ) );
+    }
+
+
+    private IEnumerator ShootingSequence( GameObject item = null )
+    {
+        state.isAttackingState = true;
         SetPullEffectsActive( false );
         arcRenderer.enabled = true;
         TimeManager.instance.TurnSlowmoOn();
-        closestItemGravityScale = closestItem.GetComponent<Rigidbody2D>().gravityScale;
+        if ( item == null )
+        {
+            item = closestItem;
+        }
+        closestItemGravityScale = item.GetComponent<Rigidbody2D>().gravityScale;
         isCameraLeaning = true;
 
         while ( !input.lmbUp && t < slowmoMaxTime )
         {
             LeanCameraTowardsCursor( t );
-            ShowArc();
+            ShowArc( item.transform );
 
             t += Time.unscaledDeltaTime;
             yield return null;
@@ -397,7 +429,8 @@ public class Telekinesis : MonoBehaviour
         t = 0f;
         arcRenderer.enabled = false;
         TimeManager.instance.TurnSlowmoOff();
-        ShootItem();
+        ShootItem( item );
+        state.isAttackingState = false;
     }
 
 
@@ -425,67 +458,80 @@ public class Telekinesis : MonoBehaviour
     }
 
 
-    private void ShowArc()
+    private void ShowArc( Transform from = null )
     {
         arcRenderer.positionCount = arcResolution + 1;
-        arcRenderer.SetPositions( CalculateArcPositions() );
+        arcRenderer.SetPositions( CalculateArcPositions( from ) );
     }
 
 
-    private Vector3[] CalculateArcPositions()
+    private Vector3[] CalculateArcPositions( Transform from = null )
     {
         Vector3[] positions = new Vector3[ arcResolution + 1 ];
 
-        Vector2 throwVector = input.cursorPosition - (Vector2)holdingItemPlace.position;
+        if ( from == null )
+        {
+            from = holdingItemPlace;
+        }
+
+        Vector2 throwVector = input.cursorPosition - (Vector2)from.position;
         throwVector = throwVector.normalized * arcLength;
         float radianAngle = Mathf.Atan2( throwVector.y, throwVector.x );
 
         for ( int i = 0; i <= arcResolution; i++ )
         {
             float t = (float)i / (float)arcResolution * Mathf.Sign( throwVector.x );
-            positions[ i ] = CalculateArcPoint( t, throwVector, radianAngle );
+            positions[ i ] = CalculateArcPoint( t, throwVector, radianAngle, from );
         }
 
         return positions;
     }
 
 
-    private Vector3 CalculateArcPoint( float t, Vector2 throwVector, float radianAngle )
+    private Vector3 CalculateArcPoint( float t, Vector2 throwVector, float radianAngle, Transform from )
     {
-        float x = holdingItemPlace.position.x + t * Mathf.Abs( throwVector.x );
+        float x = from.position.x + t * Mathf.Abs( throwVector.x );
         float xy = t * Mathf.Abs( throwVector.x );
         // y = y0 + x*tg - g*x^2 / (2 * F^2 * cos^2)
-        float y = holdingItemPlace.position.y + xy * Mathf.Tan( radianAngle ) - -Physics2D.gravity.y * closestItemGravityScale * xy * xy / 2f / shootPower / shootPower / Mathf.Cos( radianAngle ) / Mathf.Cos( radianAngle );
+        float y = from.position.y + xy * Mathf.Tan( radianAngle ) - -Physics2D.gravity.y * closestItemGravityScale * xy * xy / 2f / shootPower / shootPower / Mathf.Cos( radianAngle ) / Mathf.Cos( radianAngle );
         return new Vector3( x, y );
     }
 
 
-    private void ShootItem()
+    private void ShootItem( GameObject item )
     {
         OnShoot.Invoke();
 
-        Vector2 shootDirection = input.cursorPosition - (Vector2)holdingItemPlace.position;
+        Vector2 shootDirection = input.cursorPosition - (Vector2)item.transform.position;
 
         float angle = Mathf.Atan2( shootDirection.y, shootDirection.x ) * Mathf.Rad2Deg;
 
-        Instantiate( shootEffects, holdingItemPlace.position, Quaternion.AngleAxis( angle, Vector3.forward ));
+        Instantiate( shootEffects, item.transform.position, Quaternion.AngleAxis( angle, Vector3.forward ));
 
-        closestItem.GetComponent<Item>().Shoot( shootDirection.normalized, shootPower );
+        item.GetComponent<Item>().Shoot( shootDirection.normalized, shootPower );
 
         shockwaveEventSource.Broadcast( gameObject, holdingItemPlace.position );
         shockwaveEventForce.Broadcast( gameObject, shockwaveForce );
 
-        ReleaseItem();
+        ReleaseItem( item );
     }
 
 
-    private void ReleaseItem()
+    private void ReleaseItem( GameObject item )
     {
         OnRelease.Invoke();
 
-        closestItem.GetComponent<Item>().SetFree();
-        closestItem.GetComponent<Item>().OnHover( false );
-        closestItem = null;
+        if ( item == closestItem )
+        {
+            closestItem.GetComponent<Item>().SetFree();
+            closestItem.GetComponent<Item>().OnHover( false );
+            closestItem = null;
+        }
+        else
+        {
+            NotifyCounterAttackExit( item );
+        }
+
         state.isPullingItemState = false;
         state.isHoldingItemState = false;
         SetPullEffectsActive( false );

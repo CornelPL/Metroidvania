@@ -7,7 +7,7 @@ public class EnemyProjectile : MonoBehaviour
     [SerializeField] private UnityEvent OnDestroy = null;
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if ( !enabled ) return;
         if (collision.gameObject.CompareTag("Player"))

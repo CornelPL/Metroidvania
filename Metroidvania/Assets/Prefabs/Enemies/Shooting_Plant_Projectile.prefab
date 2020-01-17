@@ -4968,6 +4968,9 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   shootForce: 15
   counterAttackDist: 5
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
   _rigidbody: {fileID: 2864662639065194048}
   shootEffect: {fileID: 889285115224855251, guid: 825014a6aef1ed1418006bd9fc79390d,
     type: 3}

@@ -86,13 +86,17 @@ public class Telekinesis : MonoBehaviour
 
     public void NotifyCounterAttackEnter( GameObject toCounter )
     {
-        counterAttackItem = toCounter;
-        canCounterAttack = true;
+        if ( !canCounterAttack && !state.isHoldingItemState && !state.isPullingItemState && !state.isAttackingState )
+        {
+            counterAttackItem = toCounter;
+            canCounterAttack = true;
+        }
     }
 
 
     public void NotifyCounterAttackExit( GameObject toCounter )
     {
+        counterAttackItem = null;
         canCounterAttack = false;
     }
 

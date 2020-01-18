@@ -28,6 +28,7 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float lightOnIntensity = 1.5f;
     [SerializeField] private float lightOffIntensity = 0.5f;
     [SerializeField] private float tweenTime = 0.5f;
+    [SerializeField, MustBeAssigned] private GameObject counterAttackHint = null;
     [SerializeField, MustBeAssigned] private GameObject pullEffects = null;
     [SerializeField, MustBeAssigned] private ParticleSystem onOverItemParticles = null;
     [SerializeField, MustBeAssigned] private GameObject itemHighlight = null;
@@ -90,14 +91,19 @@ public class Telekinesis : MonoBehaviour
         {
             counterAttackItem = toCounter;
             canCounterAttack = true;
+            counterAttackHint.SetActive( true );
         }
     }
 
 
     public void NotifyCounterAttackExit( GameObject toCounter )
     {
-        counterAttackItem = null;
-        canCounterAttack = false;
+        if ( counterAttackItem == toCounter )
+        {
+            counterAttackItem = null;
+            canCounterAttack = false;
+            counterAttackHint.SetActive( false );
+        }
     }
 
 

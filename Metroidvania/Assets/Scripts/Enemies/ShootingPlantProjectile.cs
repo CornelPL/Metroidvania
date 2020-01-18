@@ -26,7 +26,7 @@ public class ShootingPlantProjectile : EnemyProjectile
 
         if ( !isShot && _rigidbody.velocity.y <= 0.1f )
         {
-            Vector2 direction = player.position + Vector3.up * 2f - transform.position;
+            Vector2 direction = player.position + Vector3.up * 1f - transform.position;
             _rigidbody.AddForce( direction.normalized * shootForce, ForceMode2D.Impulse );
             _rigidbody.gravityScale = 0f;
 

@@ -8,18 +8,19 @@ public class Walker_Horizontal : MonoBehaviour
     [SerializeField, MustBeAssigned] private Rigidbody2D _rigidbody = null;
     [SerializeField, MustBeAssigned] private EnemyHealthManager healthManager = null;
     [SerializeField, MustBeAssigned] private Animator animator = null;
+    [Tooltip( "1 - right; -1 - left" )]
+    [SerializeField] private int direction = 1;
+
+    [Separator("Death")]
+
     [SerializeField, MustBeAssigned] private GameObject deadLeft = null;
     [SerializeField, MustBeAssigned] private GameObject deadRight = null;
     [SerializeField] private float deathKnockbackForce = 10f;
     [SerializeField] private float torqueOnDeath = 10f;
-    [Tooltip( "1 - right; -1 - left" )]
-    [SerializeField] private int direction = 1;
 
 
     public void OnDeath()
     {
-        this.enabled = false;
-
         Vector3 spawnPos = new Vector3( transform.position.x, transform.position.y + 0.5f, transform.position.z );
 
         Rigidbody2D inst = Instantiate( direction == 1 ? deadRight : deadLeft, spawnPos, transform.rotation, null ).GetComponent<Rigidbody2D>();

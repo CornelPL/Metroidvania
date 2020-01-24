@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using MyBox;
 
 public class Walker_Sight : MonoBehaviour
 {
@@ -14,7 +15,33 @@ public class Walker_Sight : MonoBehaviour
     [Tooltip( "1 - right; -1 - left" )]
     [SerializeField] private int direction = 1;
 
+    [Separator( "Death" )]
+
+    [SerializeField, MustBeAssigned] private GameObject deadLeft = null;
+    [SerializeField, MustBeAssigned] private GameObject deadRight = null;
+    [SerializeField] private float deathKnockbackForce = 10f;
+    [SerializeField] private float torqueOnDeath = 1f;
+
     private bool isPlayerInSight = false;
+
+
+    public void OnDeath()
+    {
+        Vector3 spawnPos = new Vector3( transform.position.x, transform.position.y + 0.5f, transform.position.z );
+
+        Rigidbody2D inst = Instantiate( direction == 1 ? deadRight : deadLeft, spawnPos, transform.rotation, null ).GetComponent<Rigidbody2D>();
+
+        Vector2 hitDirection = healthManager.hitDirection;
+        hitDirection.y += 1f;
+        hitDirection.Normalize();
+
+        inst.AddForce( hitDirection * deathKnockbackForce, ForceMode2D.Impulse );
+
+        float moveDirection = Mathf.Sign( _rigidbody.velocity.x );
+        inst.AddTorque( torqueOnDeath * moveDirection, ForceMode2D.Impulse );
+
+        Destroy( gameObject );
+    }
 
 
     private void Start()

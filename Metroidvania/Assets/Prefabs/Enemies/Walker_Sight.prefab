@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LightType: 3
-  m_BlendStyleIndex: 0
+  m_BlendStyleIndex: 1
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.83529425, g: 0, b: 1, a: 1}
-  m_Intensity: 0.5
-  m_LightVolumeOpacity: 0.1
+  m_Intensity: 0.3
+  m_LightVolumeOpacity: 0.05
   m_ApplyToSortingLayers: c9167502e5af804c00000000d75abb4b
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 1
@@ -206,7 +206,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 3745076070742842690, guid: d0f50c8529f995340bcbf951de843eee,
     type: 3}
-  m_Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -287,6 +287,12 @@ MonoBehaviour:
   healthManager: {fileID: 8628843287280416398}
   animator: {fileID: 1884719558664078766}
   direction: -1
+  deadLeft: {fileID: 5112575579231812992, guid: d8d25c6418076484ca87893ca661ea5a,
+    type: 3}
+  deadRight: {fileID: 5112575579231812992, guid: 983bad2ef95baba4bb07415f8b2e8f1a,
+    type: 3}
+  deathKnockbackForce: 10
+  torqueOnDeath: 1
 --- !u!114 &8628843287280416398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,48 +311,15 @@ MonoBehaviour:
   minPoints: 2
   maxPoints: 5
   spriteRenderer: {fileID: 8628843287280416394}
-  normalColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   colorChangeTime: 0.5
   OnDeath:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8628843287280416403}
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1717158258406937693}
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8628843287280416392}
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4131365460132817901}
-        m_MethodName: SetActive
-        m_Mode: 6
+        m_MethodName: OnDeath
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -379,9 +352,8 @@ MonoBehaviour:
     type: 3}
   deathEffect: {fileID: 7348761373615277433, guid: f71545d168475464597f395fe7923c5d,
     type: 3}
-  deathKnockbackForce: 10
-  torqueOnDeath: 10
   isBeingKnockbacked: 0
+  hitDirection: {x: 0, y: 0}
 --- !u!114 &1717158258406937693
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -533,7 +533,10 @@ public class Telekinesis : MonoBehaviour
         if ( item == closestItem )
         {
             closestItem.GetComponent<Item>().SetFree();
-            closestItem.GetComponent<Item>().OnHover( false );
+            if ( !state.isAttackingState )
+            {
+                closestItem.GetComponent<Item>().OnHover( false );
+            }
             closestItem = null;
         }
         else

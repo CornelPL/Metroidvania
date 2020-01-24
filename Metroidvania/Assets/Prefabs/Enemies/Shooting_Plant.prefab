@@ -5462,9 +5462,8 @@ MonoBehaviour:
     type: 3}
   deathEffect: {fileID: 7348761373615277433, guid: f71545d168475464597f395fe7923c5d,
     type: 3}
-  deathKnockbackForce: 10
-  torqueOnDeath: 10
   isBeingKnockbacked: 0
+  hitDirection: {x: 0, y: 0}
 --- !u!114 &2892628564616168894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5483,7 +5482,7 @@ MonoBehaviour:
   shootForce: 10
   playerLayerMask:
     serializedVersion: 2
-    m_Bits: 66560
+    m_Bits: 1024
   shootPosition: {fileID: 2352960285137053189}
   projectile: {fileID: 5999442577757334188, guid: b1e435e492d56354481361ab57fb57b3,
     type: 3}

@@ -31,6 +31,7 @@ public class Parallax : MonoBehaviour
     [SerializeField] private float speed = 1f;
 
     private List<Element> elements = new List<Element>();
+    private Vector3 lastCameraPosition = Vector3.zero;
 
 
     private void Awake()
@@ -42,16 +43,20 @@ public class Parallax : MonoBehaviour
     }
 
 
+    private void Start()
+    {
+        lastCameraPosition = cam.position;
+    }
+
+
     private void Update()
     {
         for ( int i = 0; i < elements.Count; i++ )
         {
             Element element = elements[ i ];
-            Vector2 distance = element.startPos - cam.position;
-            float xSign = -Mathf.Sign( distance.x );
-            float ySign = -Mathf.Sign( distance.y );
-            float xOffset = Mathf.Abs( distance.x ) * element.xSpeedRatio * speed * xSign;
-            float yOffset = Mathf.Abs( distance.y ) * element.ySpeedRatio * speed * ySign;
+            Vector2 distance = lastCameraPosition - cam.position;
+            float xOffset = distance.x * element.xSpeedRatio * speed;
+            float yOffset = distance.y * element.ySpeedRatio * speed;
             element.transform.position = new Vector3( element.startPos.x + xOffset, element.startPos.y + yOffset, element.startPos.z );
         }
     }

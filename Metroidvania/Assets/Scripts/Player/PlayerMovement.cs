@@ -4,6 +4,20 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody = null;
+    [SerializeField] private float movementSpeed = 5f;
+    [SerializeField] private float movementSpeedUp = 5f;
+    [SerializeField] private float movementSlowDown = 5f;
+    [SerializeField] private float jumpSpeed = 20f;
+    [SerializeField] private float coyoteTime = 0.1f;
+    [SerializeField] private float maxFallingSpeed = 50f;
+
+    [Header("Dash")]
+    [SerializeField] private float dashSpeed = 10f;
+    [SerializeField] private float dashTime = 0.5f;
+
+    [Space]
+    [SerializeField] private SlamSkill slam = null;
+
 
     private InputController input;
     private PlayerState state;
@@ -17,18 +31,6 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashingRight = false;
     private bool dashedInAir = false;
 
-    [SerializeField] private float movementSpeed = 5f;
-    [SerializeField] private float movementSpeedUp = 5f;
-    [SerializeField] private float movementSlowDown = 5f;
-    [SerializeField] private float jumpSpeed = 20f;
-    [SerializeField] private float coyoteTime = 0.1f;
-
-    [Header("Dash")]
-    [SerializeField] private float dashSpeed = 10f;
-    [SerializeField] private float dashTime = 0.5f;
-
-    [Space]
-    [SerializeField] private SlamSkill slam = null;
 
     private int LeanTweenID = -1;
 
@@ -201,6 +203,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyMovement()
     {
+        if ( verticalSpeed < -maxFallingSpeed ) verticalSpeed = -maxFallingSpeed;
         if (state.isSlammingState) verticalSpeed = -slamSpeed;
         if (state.isKnockbackedState) return;
         _rigidbody.velocity = new Vector2(horizontalSpeed, verticalSpeed);

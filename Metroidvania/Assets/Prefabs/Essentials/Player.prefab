@@ -1472,6 +1472,7 @@ MonoBehaviour:
   movementSlowDown: 100
   jumpSpeed: 27
   coyoteTime: 0.05
+  maxFallingSpeed: 35
   dashSpeed: 30
   dashTime: 0.25
   slam: {fileID: 3445858120292024893}

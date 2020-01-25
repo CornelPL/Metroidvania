@@ -25,7 +25,7 @@ public class Walker_Horizontal : MonoBehaviour
 
         Rigidbody2D inst = Instantiate( direction == 1 ? deadRight : deadLeft, spawnPos, transform.rotation, null ).GetComponent<Rigidbody2D>();
 
-        Vector2 hitDirection = healthManager.hitDirection;
+        Vector2 hitDirection = -healthManager.hitDirection;
         hitDirection.y += 1f;
         hitDirection.Normalize();
 

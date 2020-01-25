@@ -1488,7 +1488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 10
-  radius: 0.5
+  radius: 1.5
   pullSpeed: 20
   maxPullSpeed: 50
   shootPower: 40
@@ -1599,7 +1599,7 @@ MonoBehaviour:
     m_Bits: 2048
   rocksLayer:
     serializedVersion: 2
-    m_Bits: 16640
+    m_Bits: 4210944
 --- !u!114 &3445858120292024893
 MonoBehaviour:
   m_ObjectHideFlags: 0

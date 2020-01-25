@@ -172,13 +172,13 @@ MonoBehaviour:
   _rigidbody: {fileID: 492946502777295297}
   healthManager: {fileID: 492946502777295296}
   animator: {fileID: 2243348780040284707}
+  direction: 1
   deadLeft: {fileID: 5112575579231812992, guid: a2030a0fa5e43db47acc9f0fe8454a4b,
     type: 3}
   deadRight: {fileID: 3538367600929282755, guid: 796e00dbe6952ea45b247c35cef7f09c,
     type: 3}
   deathKnockbackForce: 10
   torqueOnDeath: 1
-  direction: 1
 --- !u!114 &492946502777295296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,10 +192,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsDropForce: 10
-  initialHP: 3
+  initialHP: 20
   point: {fileID: 3365028966441827137, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
-  minPoints: 3
-  maxPoints: 10
+  minPoints: 2
+  maxPoints: 5
   spriteRenderer: {fileID: 492946502777295300}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}

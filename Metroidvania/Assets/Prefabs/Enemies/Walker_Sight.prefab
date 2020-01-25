@@ -306,10 +306,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsDropForce: 10
-  initialHP: 4
+  initialHP: 10
   point: {fileID: 3365028966441827137, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
-  minPoints: 2
-  maxPoints: 5
+  minPoints: 3
+  maxPoints: 7
   spriteRenderer: {fileID: 8628843287280416394}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}

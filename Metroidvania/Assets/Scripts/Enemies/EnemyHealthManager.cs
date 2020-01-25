@@ -28,9 +28,10 @@ public class EnemyHealthManager : HealthManager
     private void DropPoints()
     {
         int count = Random.Range(minPoints, maxPoints);
+        Vector2 pos = new Vector2( transform.position.x, transform.position.y + 0.5f );
         for (int i = 0; i < count; i++)
         {
-            GameObject inst = Instantiate(point, transform.position, transform.rotation);
+            GameObject inst = Instantiate(point, pos, transform.rotation);
             Vector2 dropForce = Random.insideUnitCircle * pointsDropForce;
             dropForce.y = Mathf.Abs(dropForce.y);
             inst.GetComponent<Rigidbody2D>().AddForce(dropForce, ForceMode2D.Impulse);
@@ -66,7 +67,7 @@ public class EnemyHealthManager : HealthManager
         ChangeColorOnDamage();
         EnergyController.instance.AddEnergy( EnergyGain.OnHit );
 
-        if ( currentHP < 0)
+        if ( currentHP <= 0)
         {
             Death( direction );
         }

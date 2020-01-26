@@ -32,6 +32,7 @@ public class Item : MonoBehaviour
     private float maxPullSpeed = 0f;
     private float pullingTime = 1f;
     private float gravityScaleCopy = 0f;
+    private float previousDistance = 0f;
     private Vector2 calculatedVelocity = Vector2.zero;
     protected List<Collider2D> collidersToIgnore = new List<Collider2D>();
 
@@ -182,13 +183,25 @@ public class Item : MonoBehaviour
     {
         float currentDistance = Vector2.Distance( transform.position, itemHolder.position );
         float nextDistance = Vector2.Distance( (Vector2)transform.position + calculatedVelocity * Time.fixedDeltaTime, itemHolder.position );
-        return nextDistance > currentDistance;
+
+        if ( nextDistance - currentDistance > previousDistance )
+        {
+            previousDistance = 0;
+            return true;
+        }
+        else
+        {
+            previousDistance = nextDistance - currentDistance;
+            return false;
+        }
     }
 
 
     protected virtual void FinishPulling()
     {
         PlayerState.instance.isHoldingItemState = true;
+
+        itemHolder.GetComponent<HoldingItemPlacePosition>().Knockback( _rigidbody.velocity.normalized );
 
         _rigidbody.velocity = Vector2.zero;
         _rigidbody.angularVelocity = 0f;

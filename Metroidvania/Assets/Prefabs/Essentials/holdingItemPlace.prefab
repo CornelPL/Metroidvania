@@ -192,7 +192,8 @@ MonoBehaviour:
   target: {fileID: 0}
   smoothSpeed: 0.2
   range: 1.5
-  offset: {x: 0, y: 0, z: -0.1}
+  knockbackForce: 0.5
+  knockbackFade: 0.9
 --- !u!114 &6263694413781084336
 MonoBehaviour:
   m_ObjectHideFlags: 0

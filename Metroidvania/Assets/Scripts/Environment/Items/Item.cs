@@ -32,6 +32,7 @@ public class Item : MonoBehaviour
     private float maxPullSpeed = 0f;
     private float pullingTime = 1f;
     private float gravityScaleCopy = 0f;
+    private Vector2 calculatedVelocity = Vector2.zero;
     protected List<Collider2D> collidersToIgnore = new List<Collider2D>();
 
     #endregion
@@ -112,7 +113,7 @@ public class Item : MonoBehaviour
     }
 
 
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         if ( isPulling )
         {
@@ -140,16 +141,20 @@ public class Item : MonoBehaviour
     {
         pullingTime += Time.deltaTime;
 
-        UpdateVelocity();
+        CalculateVelocity();
 
         if ( IsItemOnPlace() )
         {
             FinishPulling();
         }
+        else
+        {
+            UpdateVelocity();
+        }
     }
 
 
-    protected virtual void UpdateVelocity()
+    protected virtual void CalculateVelocity()
     {
         Vector2 direction = itemHolder.position - transform.position;
         direction.Normalize();
@@ -158,18 +163,26 @@ public class Item : MonoBehaviour
 
         if ( speed < maxPullSpeed )
         {
-            speed += pullSpeedUp * pullingTime;
+            speed += pullSpeedUp * pullingTime * pullingTime;
+            if ( speed > maxPullSpeed )
+                speed = maxPullSpeed;
         }
 
-        _rigidbody.velocity = direction * speed;
+        calculatedVelocity = direction * speed;
+    }
+
+
+    protected virtual void UpdateVelocity()
+    {
+        _rigidbody.velocity = calculatedVelocity;
     }
 
 
     protected virtual bool IsItemOnPlace()
     {
-        float distance = Vector2.Distance( transform.position, itemHolder.position );
-
-        return distance < 1f;
+        float currentDistance = Vector2.Distance( transform.position, itemHolder.position );
+        float nextDistance = Vector2.Distance( (Vector2)transform.position + calculatedVelocity * Time.fixedDeltaTime, itemHolder.position );
+        return nextDistance > currentDistance;
     }
 
 

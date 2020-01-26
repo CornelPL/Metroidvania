@@ -1490,7 +1490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 10
   radius: 1.5
-  pullSpeed: 20
+  pullSpeed: 2
   maxPullSpeed: 50
   shootPower: 40
   slowmoMaxTime: 1

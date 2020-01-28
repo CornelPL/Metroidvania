@@ -122,8 +122,13 @@ public class Shooting_Plant : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawRay(transform.position, Vector2.up * range);
-        Gizmos.DrawRay(transform.position, Vector2.left * range);
-        Gizmos.DrawRay(transform.position, Vector2.right * range);
+        Gizmos.DrawRay( transform.position, Vector2.up * range );
+        Gizmos.DrawRay( transform.position, Vector2.left * range );
+        Gizmos.DrawRay( transform.position, Vector2.right * range );
+
+        float projectileHeight = 8f * Mathf.Pow( shootForce / projectile.GetComponent<Rigidbody2D>().mass, 2 ) / 25f / -Physics2D.gravity.y;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay( shootPosition.position, Vector2.up * projectileHeight );
     }
 }

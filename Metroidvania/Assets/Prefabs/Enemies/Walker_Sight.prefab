@@ -54,6 +54,8 @@ MonoBehaviour:
   m_UseNormalMap: 1
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.5
@@ -143,6 +145,7 @@ GameObject:
   - component: {fileID: 8628843287280416398}
   - component: {fileID: 1717158258406937693}
   - component: {fileID: 1884719558664078766}
+  - component: {fileID: 6351852884611412511}
   m_Layer: 15
   m_Name: Walker_Sight
   m_TagString: Enemy
@@ -180,6 +183,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -328,8 +332,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls:
@@ -344,8 +346,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   currentHP: 0
   _rigidbody: {fileID: 8628843287280416399}
   splashEffect: {fileID: 3867317853530762858, guid: e5deca7c11769484ea158b208a42f9cd,
@@ -371,8 +371,6 @@ MonoBehaviour:
   OnHit:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!95 &1884719558664078766
 Animator:
   serializedVersion: 3
@@ -392,3 +390,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6351852884611412511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8628843287280416404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: c35d84dac9167502e5af804c00000000d75abb4bfbe1705e
+  m_ShapePath:
+  - {x: -0.8661194, y: 0.013031006, z: 0}
+  - {x: 0.8661194, y: 0.010429382, z: 0}
+  - {x: 0.6415405, y: 0.1186676, z: 0}
+  - {x: 0.48306274, y: 0.32835388, z: 0}
+  - {x: 0.09170532, y: 0.5251694, z: 0}
+  - {x: -0.46594238, y: 0.5147476, z: 0}
+  - {x: -0.7644806, y: 0.33877563, z: 0}
+  m_ShapePathHash: -433949401
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -190346

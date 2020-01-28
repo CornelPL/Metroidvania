@@ -54,6 +54,8 @@ MonoBehaviour:
   m_UseNormalMap: 1
   m_LightOrder: 1
   m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0.8
+  m_ShadowVolumeIntensity: 0.5
   m_PointLightInnerAngle: 320
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 1
@@ -118,6 +120,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -198,6 +201,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4938,6 +4942,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

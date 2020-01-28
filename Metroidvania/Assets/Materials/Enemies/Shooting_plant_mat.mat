@@ -103,6 +103,7 @@ Material:
     - _Metallic: 0
     - _Mode: 2
     - _NormalMapSaturation: 1
+    - _OcclusionInfluence: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Size: 1

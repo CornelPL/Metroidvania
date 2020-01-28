@@ -5232,6 +5232,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5296,6 +5297,7 @@ GameObject:
   - component: {fileID: 2892628564616168894}
   - component: {fileID: 5532662623717214547}
   - component: {fileID: 3365030044466742236}
+  - component: {fileID: 2469791976005584286}
   m_Layer: 15
   m_Name: Shooting_Plant
   m_TagString: Enemy
@@ -5338,6 +5340,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5460,13 +5463,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   currentHP: 0
   _rigidbody: {fileID: 2892628564616168880}
   splashEffect: {fileID: 3867317853530762858, guid: e5deca7c11769484ea158b208a42f9cd,
@@ -5556,8 +5555,40 @@ MonoBehaviour:
   OnHit:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+--- !u!114 &2469791976005584286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2892628564616168893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 0
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: c35d84dac9167502e5af804c00000000d75abb4bfbe1705e
+  m_ShapePath:
+  - {x: -1.009079, y: 0.8307953, z: 0}
+  - {x: -0.5739441, y: 0.42227936, z: 0}
+  - {x: -0.083480835, y: 0.3068695, z: 0}
+  - {x: 0.5456848, y: 0.40854645, z: 0}
+  - {x: 0.95069885, y: 0.801178, z: 0}
+  - {x: 0.99298096, y: 1.237587, z: 0}
+  - {x: 0.9463043, y: 1.798523, z: 0}
+  - {x: 0.38757324, y: 1.9176636, z: 0}
+  - {x: 0.41470337, y: 3.4733734, z: 0}
+  - {x: -0.469635, y: 3.4504776, z: 0}
+  - {x: -0.3862915, y: 1.9268112, z: 0}
+  - {x: -0.9449768, y: 1.7344742, z: 0}
+  m_ShapePathHash: 755642549
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -187880
 --- !u!1 &3070231850548312023
 GameObject:
   m_ObjectHideFlags: 0
@@ -5613,6 +5644,8 @@ MonoBehaviour:
   m_UseNormalMap: 1
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -5648,16 +5681,16 @@ MonoBehaviour:
   minInOuterRadius: 0
   maxInOuterRadius: 10
   fadeInIntensity: 1
-  minInIntensity: 1
-  maxInIntensity: 2.5
+  minInIntensity: 0.5
+  maxInIntensity: 1
   fadeOut: 1
   fadeOutTime: 0.1
   fadeOutOuterRadius: 0
   minOutOuterRadius: 0
   maxOutOuterRadius: 10
   fadeOutIntensity: 1
-  minOutIntensity: 1
-  maxOutIntensity: 2.5
+  minOutIntensity: 0.5
+  maxOutIntensity: 1
   fadeOnStart: 0
   destroyOnEnd: 0
 --- !u!1 &3415483715537954221
@@ -5715,6 +5748,8 @@ MonoBehaviour:
   m_UseNormalMap: 1
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 125
   m_PointLightOuterAngle: 246
   m_PointLightInnerRadius: 0
@@ -10556,6 +10591,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15368,6 +15404,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -20180,6 +20217,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -25025,6 +25063,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3716825582172408312}
   - component: {fileID: 8175003228730933033}
   - component: {fileID: 2321661403722877107}
+  - component: {fileID: 5397722523276639349}
   m_Layer: 22
   m_Name: Sprite
   m_TagString: Platform
@@ -46,6 +47,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -107,6 +109,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.000183, y: 0.8350487}
   m_EdgeRadius: 0
+--- !u!114 &5397722523276639349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2350017506524612975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: c35d84dac9167502e5af804c00000000d75abb4bfbe1705e
+  m_ShapePath:
+  - {x: -1.5011749, y: -0.5720291, z: 0}
+  - {x: 1.9457092, y: -0.41036987, z: 0}
+  - {x: 1.9591675, y: 0.6393814, z: 0}
+  - {x: -1.9591522, y: 0.6056442, z: 0}
+  - {x: -2.0001678, y: -0.13395691, z: 0}
+  m_ShapePathHash: -1068506673
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -141212
 --- !u!1 &5037256148032667763
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,11 +176,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5037256148032667759}
     m_Modifications:
-    - target: {fileID: 638782903279524913, guid: fdc0070a79eecd5429da7280ff75088b,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyStopMark
-      objectReference: {fileID: 0}
     - target: {fileID: 638782903279524911, guid: fdc0070a79eecd5429da7280ff75088b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -207,6 +231,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 638782903279524913, guid: fdc0070a79eecd5429da7280ff75088b,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyStopMark
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdc0070a79eecd5429da7280ff75088b, type: 3}
 --- !u!4 &1904178875041172071 stripped
@@ -222,11 +251,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5037256148032667759}
     m_Modifications:
-    - target: {fileID: 638782903279524913, guid: fdc0070a79eecd5429da7280ff75088b,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyStopMark (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 638782903279524911, guid: fdc0070a79eecd5429da7280ff75088b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -281,6 +305,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 638782903279524913, guid: fdc0070a79eecd5429da7280ff75088b,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyStopMark (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdc0070a79eecd5429da7280ff75088b, type: 3}

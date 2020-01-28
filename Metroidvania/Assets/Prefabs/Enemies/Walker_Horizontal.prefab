@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 492946502777295301}
   - component: {fileID: 492946502777295296}
   - component: {fileID: 1114128916411736821}
+  - component: {fileID: 6651559029077225708}
   m_Layer: 15
   m_Name: Walker_Horizontal
   m_TagString: Enemy
@@ -53,6 +54,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -225,13 +227,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   currentHP: 0
   _rigidbody: {fileID: 492946502777295297}
   splashEffect: {fileID: 3867317853530762858, guid: e5deca7c11769484ea158b208a42f9cd,
@@ -257,8 +255,34 @@ MonoBehaviour:
   OnHit:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+--- !u!114 &6651559029077225708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492946502777295322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: c35d84dac9167502e5af804c00000000d75abb4bfbe1705e
+  m_ShapePath:
+  - {x: -0.65834045, y: 0.042060852, z: 0}
+  - {x: 0.71092224, y: 0.052581787, z: 0}
+  - {x: 0.38279724, y: 0.54599, z: 0}
+  - {x: -0.06939697, y: 0.70022583, z: 0}
+  - {x: -0.37786865, y: 0.6195984, z: 0}
+  - {x: -0.623291, y: 0.34780884, z: 0}
+  m_ShapePathHash: 524321181
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -185692
 --- !u!1 &2565052289928348827
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +337,8 @@ MonoBehaviour:
   m_UseNormalMap: 1
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.5

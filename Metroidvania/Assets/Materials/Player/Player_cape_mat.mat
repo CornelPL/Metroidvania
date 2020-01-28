@@ -60,6 +60,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 08481f2ee9759b04f8c5aa8eb9cac140, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Occlusion:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -73,6 +77,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_1E426024: 1
+    - Vector1_AADE1DE1: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _Brightness: 0

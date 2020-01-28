@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Clouds
-  m_Shader: {fileID: -6465566751694194690, guid: b73392e23b7a85a4fb041455148b1f19,
+  m_Name: armor_part_mat
+  m_Shader: {fileID: -6465566751694194690, guid: a074ff4d05958c14d86ab1bef7249d6a,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -20,8 +20,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 6270428bc6189b34a998d584c8b2632c, type: 3}
+        m_Texture: {fileID: 2800000, guid: a677d57e9a684a840b4bc02b9b3a7dd0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -32,13 +36,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Occlusion:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_15C80EBE: 0
-    - Vector1_6902E969: -0.1
-    - Vector1_8F9CA1F6: 40
-    - Vector1_E8431569: 4
+    - Vector1_1E426024: 1
+    - Vector1_AADE1DE1: 1
+    - _Brightness: 0
+    - _EnableExternalAlpha: 0
     m_Colors:
-    - Vector2_69F236CF: {r: 1, g: 1, b: 0, a: 0}
-    - Vector2_BC65366A: {r: 0, g: 0, b: 0, a: 0}
-    - Vector2_DD39DAB6: {r: 0, g: 0, b: 0, a: 0}
-    - Vector2_DF7A38B7: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

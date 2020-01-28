@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Player_left_mat
-  m_Shader: {fileID: 4800000, guid: 3bd9da53be43792408b8f793e8460392, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: a074ff4d05958c14d86ab1bef7249d6a,
+    type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -81,6 +82,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 3ee2cb2dea1d60748904c8974aebaa34, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Occlusion:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -95,10 +100,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 1
+    - Vector1_1E426024: 1
+    - Vector1_AADE1DE1: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BlendAmount: 0
-    - _Brightness: 1
+    - _Brightness: 0
     - _BumpAmt: 10
     - _BumpScale: 0.5
     - _Cull: 0

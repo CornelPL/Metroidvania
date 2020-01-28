@@ -3,7 +3,7 @@ using MyBox;
 
 public class ExplosionLight : MonoBehaviour
 {
-    [SerializeField] private UnityEngine.Experimental.Rendering.LWRP.Light2D _light = null;
+    [SerializeField] private UnityEngine.Experimental.Rendering.Universal.Light2D _light = null;
 
     [Separator( "Fade In" )]
     [SerializeField] private bool fadeIn = false;

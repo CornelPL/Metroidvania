@@ -24,7 +24,7 @@ public class Telekinesis : MonoBehaviour
     [SerializeField, MustBeAssigned] private ItemGenerator itemGenerator = null;
 
     [Separator( "Effects" )]
-    [SerializeField, MustBeAssigned] private Light2D _light = null;
+    [SerializeField, MustBeAssigned] private UnityEngine.Experimental.Rendering.Universal.Light2D _light = null;
     [SerializeField] private float lightOnIntensity = 1.5f;
     [SerializeField] private float lightOffIntensity = 0.5f;
     [SerializeField] private float tweenTime = 0.5f;

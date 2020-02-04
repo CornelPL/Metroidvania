@@ -45,20 +45,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LightType: 3
-  m_BlendStyleIndex: 0
+  m_BlendStyleIndex: 1
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 0.5330188, b: 0.9414786, a: 1}
-  m_Intensity: 1
-  m_LightVolumeOpacity: 0.01
-  m_ApplyToSortingLayers: 00000000
+  m_Intensity: 0
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: c35d84dac9167502e5af804c00000000d75abb4b
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 1
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 1
+  m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
+  m_PointLightOuterRadius: 0
   m_PointLightDistance: 0.5
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
@@ -85,21 +87,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _light: {fileID: 4667272331767010317}
   fadeIn: 1
-  fadeInTime: 0.1
+  fadeInTime: 0.05
   fadeInOuterRadius: 1
   minInOuterRadius: 0
-  maxInOuterRadius: 4
+  maxInOuterRadius: 10
   fadeInIntensity: 1
   minInIntensity: 0
-  maxInIntensity: 10
+  maxInIntensity: 5
   fadeOut: 1
-  fadeOutTime: 0.2
+  fadeOutTime: 0.08
   fadeOutOuterRadius: 1
-  minOutOuterRadius: 2
-  maxOutOuterRadius: 4
+  minOutOuterRadius: 10
+  maxOutOuterRadius: 10
   fadeOutIntensity: 1
   minOutIntensity: 0
-  maxOutIntensity: 10
+  maxOutIntensity: 5
   fadeOnStart: 1
   destroyOnEnd: 0
 --- !u!1 &3378649692927822735
@@ -4865,6 +4867,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9677,6 +9680,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14489,6 +14493,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14561,7 +14566,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8304175956328360584}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -19351,6 +19356,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

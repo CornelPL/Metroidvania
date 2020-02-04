@@ -37,6 +37,7 @@ public class InputController : MonoBehaviour
     public bool down { get; private set; }
 
     public bool lmbDown { get; private set; }
+    public bool lmbHold { get; private set; }
     public bool lmbUp { get; private set; }
     public bool rmb { get; private set; }
 
@@ -82,6 +83,7 @@ public class InputController : MonoBehaviour
         down = Input.GetKeyDown(downKey);
 
         lmbDown = Input.GetKeyDown(lmbKey);
+        lmbHold = Input.GetKey(lmbKey);
         lmbUp = Input.GetKeyUp(lmbKey);
         rmb = Input.GetKeyDown(rmbKey);
 

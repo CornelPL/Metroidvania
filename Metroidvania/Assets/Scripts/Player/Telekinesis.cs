@@ -424,7 +424,7 @@ public class Telekinesis : MonoBehaviour
         closestItemGravityScale = item.GetComponent<Rigidbody2D>().gravityScale;
         isCameraLeaning = true;
 
-        while ( !input.lmbUp && t < slowmoMaxTime )
+        while ( input.lmbHold && t < slowmoMaxTime )
         {
             LeanCameraTowardsCursor( t );
             ShowArc( item.transform );

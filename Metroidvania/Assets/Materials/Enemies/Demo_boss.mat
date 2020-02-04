@@ -37,6 +37,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Occlusion:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_1CEDAF8A: 0.2
     - _AlphaClip: 0
@@ -45,6 +49,8 @@ Material:
     - _Cull: 2
     - _Cutoff: 0.5
     - _DstBlend: 10
+    - _NormalMapSaturation: 1
+    - _OcclusionInfluence: 1
     - _QueueOffset: 0
     - _SampleGI: 0
     - _SrcBlend: 5

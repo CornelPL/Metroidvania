@@ -34,9 +34,6 @@ public class PlayerState : MonoBehaviour
     [SerializeField] private Collider2D normalCollider = null;
     [SerializeField] private Collider2D invulnerableCollider = null;
     [SerializeField] private Transform holdingItemPosition = null;
-    [SerializeField] private SpriteRenderer spriteRenderer = null;
-    [SerializeField] private Material rightMaterial = null;
-    [SerializeField] private Material leftMaterial = null;
     [SerializeField] private Animator animator = null;
 
 
@@ -97,7 +94,6 @@ public class PlayerState : MonoBehaviour
     {
         isFacingRight = isRight;
         animator.SetBool( "isFacingRight", isRight );
-        spriteRenderer.material = isRight ? rightMaterial : leftMaterial;
         holdingItemPosition.localPosition *= new Vector2( -1f, 1f );
     }
 

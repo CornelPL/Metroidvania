@@ -525,6 +525,10 @@ MonoBehaviour:
   isDestinationPlayer: 0
   moveDistance: 15
   movementSpeed: 7
+  rayToWallLength: 2.5
+  wallsMask:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!1101 &-5515863915496418384
 AnimatorStateTransition:
   m_ObjectHideFlags: 3
@@ -652,6 +656,10 @@ MonoBehaviour:
   isDestinationPlayer: 1
   moveDistance: 0
   movementSpeed: 10
+  rayToWallLength: 2.5
+  wallsMask:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!1101 &-4895258733894405643
 AnimatorStateTransition:
   m_ObjectHideFlags: 3
@@ -873,9 +881,9 @@ AnimatorStateMachine:
   m_EntryTransitions:
   - {fileID: -1252749250139981425}
   m_StateMachineTransitions:
-  - first: {fileID: -610296431130728599}
-    second: []
   - first: {fileID: 5896753549205325645}
+    second: []
+  - first: {fileID: -610296431130728599}
     second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 40, y: 130, z: 0}
@@ -1085,6 +1093,10 @@ MonoBehaviour:
   isDestinationPlayer: 0
   moveDistance: 10
   movementSpeed: 5
+  rayToWallLength: 2.5
+  wallsMask:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!1101 &-3054168945702239338
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1712,49 +1724,49 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: charge
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isStunned
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isShooting
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: rageEnd
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isArmored
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: direction
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: -1
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: phase
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 1
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

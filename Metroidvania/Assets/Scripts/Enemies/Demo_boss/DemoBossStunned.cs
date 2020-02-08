@@ -11,6 +11,7 @@ public class DemoBossStunned : StateMachineBehaviour
 
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
+        t = 0f;
         boss = animator.GetComponent<DemoBoss>();
     }
 

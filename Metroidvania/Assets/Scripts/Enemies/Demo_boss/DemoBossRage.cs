@@ -14,6 +14,8 @@ public class DemoBossRage : StateMachineBehaviour
 
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
+        t = 0f;
+
         boss = animator.GetComponent<DemoBoss>();
         boss.SetDirection();
         direction = boss.direction;

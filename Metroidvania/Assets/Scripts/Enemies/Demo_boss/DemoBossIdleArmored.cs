@@ -11,6 +11,7 @@ public class DemoBossIdleArmored : StateMachineBehaviour
 
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
+        t = 0f;
         boss = animator.GetComponent<DemoBoss>();
     }
 
@@ -23,6 +24,7 @@ public class DemoBossIdleArmored : StateMachineBehaviour
         }
         else
         {
+            boss.SetDirection();
             animator.SetTrigger( "charge" );
         }
     }

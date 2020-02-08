@@ -5,6 +5,8 @@ public class DemoBossMove : StateMachineBehaviour
     [SerializeField] private bool isDestinationPlayer = false;
     [SerializeField] private float moveDistance = 10f;
     [SerializeField] private float movementSpeed = 5f;
+    [SerializeField] private float rayToWallLength = 1.5f;
+    [SerializeField] private LayerMask wallsMask = 0;
 
 
     private float destination;
@@ -38,6 +40,10 @@ public class DemoBossMove : StateMachineBehaviour
         if ( (direction == 1 && boss.transform.position.x < destination) || (direction == -1 && boss.transform.position.x > destination) )
         {
             rigidbody.velocity = new Vector2( movementSpeed * direction, rigidbody.velocity.y );
+            if ( Physics2D.Raycast( (Vector2)boss.transform.position + Vector2.up, Vector2.right * direction, rayToWallLength, wallsMask ) )
+            {
+                StopMoving( animator );
+            }
         }
         else
         {

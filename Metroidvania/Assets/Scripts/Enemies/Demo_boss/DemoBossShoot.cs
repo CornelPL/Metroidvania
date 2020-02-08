@@ -8,7 +8,6 @@ public class DemoBossShoot : StateMachineBehaviour
 
 
     private DemoBoss boss;
-    private float t = 0f;
     private bool shooted = false;
 
 

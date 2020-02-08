@@ -12,6 +12,8 @@ public class DemoBossArmorUp : StateMachineBehaviour
 
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
+        t = 0f;
+
         animator.SetBool( "isShooting", false );
 
         boss = animator.GetComponent<DemoBoss>();

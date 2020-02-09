@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 using Cinemachine;
+using MyBox;
 
 public class DemoBoss : MonoBehaviour
 {
-    [Header( "General" )]
+    [Separator( "General" )]
     [SerializeField] private int secondPhaseHP = 10;
     [SerializeField] private int thirdPhaseHP = 5;
     [SerializeField] private int touchDamage = 1;
@@ -14,25 +13,28 @@ public class DemoBoss : MonoBehaviour
     [SerializeField] private BossHealthManager healthManager = null;
     [SerializeField] private Animator _animator = null;
 
-    [Header( "Shooting" )]
+    [Separator( "Shooting" )]
     [SerializeField] private Transform shootPosition = null;
     [SerializeField] private Transform projectile = null;
     [SerializeField] private float forceVariation = 0.2f;
     [SerializeField] private float angleVariation = 0.2f;
 
-    [Header( "Armoring" )]
+    [Separator( "Armoring" )]
     public ParticleSystem[] armoringParticles = null;
     public GameObject forceField = null;
 
-    [Header( "Charge" )]
+    [Separator( "Charge" )]
     [SerializeField] private int chargeDamage = 2;
     [SerializeField] private float chargeKnockbackMultiplier = 2f;
-    [SerializeField] private UnityEvent OnStun = null;
     [SerializeField] private Vector2Event EarthquakeEvent = null;
 
-    [Header( "Rage" )]
+    [Separator( "Rage" )]
     public ParticleSystem[] rageParticles = null;
     public CinemachineImpulseSource OnRageImpulse = null;
+
+    [Separator( "Effects" )]
+    [SerializeField] private GameObject hitWallEffects;
+    [SerializeField] private Vector2 hitWallEffectsPos;
 
     public bool wasShooting = false;
     public Transform player;
@@ -82,12 +84,6 @@ public class DemoBoss : MonoBehaviour
     }
 
 
-    public void InvokeEarthquake()
-    {
-        EarthquakeEvent.Broadcast( gameObject, transform.position );
-    }
-
-
     public void ShootProjectile()
     {
         Rigidbody2D rb = Instantiate( projectile, shootPosition.position, transform.rotation ).GetComponent<Rigidbody2D>();
@@ -126,7 +122,12 @@ public class DemoBoss : MonoBehaviour
     private void StopCharging()
     {
         _animator.SetBool( "isStunned", true );
-        OnStun.Invoke();
+
+        EarthquakeEvent.Broadcast( gameObject, transform.position );
+
+        float angle = direction == 1 ? 180f : 0f;
+        Vector2 pos = new Vector2( hitWallEffectsPos.x * direction, hitWallEffectsPos.y );
+        Instantiate( hitWallEffects, (Vector2)transform.position + pos, Quaternion.AngleAxis( angle, Vector3.forward ), null );
     }
 
 

@@ -13,6 +13,8 @@ public class DemoBossIdle : StateMachineBehaviour
     {
         boss = animator.GetComponent<DemoBoss>();
         boss.currentSequence = 0;
+
+        t = 0f;
     }
 
 

@@ -2,7 +2,7 @@
 
 public class DemoBossStunned : StateMachineBehaviour
 {
-    [SerializeField] private float stunTime = 1f;
+    [SerializeField] private float invulnerableTime = 1f;
 
 
     private DemoBoss boss;
@@ -18,13 +18,13 @@ public class DemoBossStunned : StateMachineBehaviour
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
-        if ( stunTime > t )
+        if ( invulnerableTime > t )
         {
             t += Time.deltaTime;
         }
         else
         {
-            animator.SetBool( "isStunned", false );
+            animator.SetTrigger( "isVulnerable" );
         }
     }
 }

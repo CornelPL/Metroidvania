@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using MyBox;
 
 
@@ -14,10 +13,6 @@ public class Item : MonoBehaviour
     [SerializeField] private GameObject itemHighlight = null;
     [SerializeField] private int baseDamage = 10;
     [SerializeField] private float knockbackForce = 100f;
-    [SerializeField] private UnityEvent OnStartPulling = null;
-    [SerializeField] private UnityEvent OnPullingCompleted = null;
-    [SerializeField] private UnityEvent OnRelease = null;
-    [SerializeField] private UnityEvent OnMakeItem = null;
 
     #endregion
 
@@ -40,7 +35,7 @@ public class Item : MonoBehaviour
 
     public virtual void MakeItem()
     {
-        OnMakeItem.Invoke();
+        GetComponent<Collider2D>().isTrigger = true;
         _rigidbody.velocity = Vector2.zero;
     }
 
@@ -49,7 +44,6 @@ public class Item : MonoBehaviour
     {
         transform.SetParent( null );
         _rigidbody.simulated = true;
-        OnRelease.Invoke();
     }
 
 
@@ -60,8 +54,6 @@ public class Item : MonoBehaviour
         maxPullSpeed = ms;
 
         isPulling = true;
-
-        OnStartPulling.Invoke();
 
         _rigidbody.bodyType = RigidbodyType2D.Dynamic;
         _rigidbody.gravityScale = 0f;
@@ -211,8 +203,6 @@ public class Item : MonoBehaviour
         transform.position = itemHolder.position;
 
         pullingTime = 1f;
-
-        OnPullingCompleted.Invoke();
 
         AbortPulling();
     }

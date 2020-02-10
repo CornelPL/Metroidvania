@@ -4,26 +4,13 @@ using MyBox;
 public class ShootingPlantProjectile : EnemyProjectile
 {
     [SerializeField] private float shootForce = 100f;
-    [SerializeField] private float counterAttackDist = 5f;
-    [SerializeField] private LayerMask playerLayerMask = 0;
-    [SerializeField, MustBeAssigned] private Rigidbody2D _rigidbody = null;
     [SerializeField, MustBeAssigned] private GameObject shootEffect = null;
 
     private bool isShot = false;
-    private bool notified = false;
-    private bool canNotify = true; // so the same projectile can't be counterattacked twice
-    private Transform player;
 
 
-    public void SetPlayer( Transform p )
+    protected override void Update()
     {
-        player = p;
-    }
-
-
-    private void Update()
-    {
-
         if ( !isShot && _rigidbody.velocity.y <= 0.1f )
         {
             Vector2 direction = player.position + Vector3.up * 1f - transform.position;
@@ -36,28 +23,9 @@ public class ShootingPlantProjectile : EnemyProjectile
 
             isShot = true;
         }
-        else if ( isShot && canNotify )
+        else if ( isShot && canNotify && canBeCounterattacked )
         {
-            RaycastHit2D hit = Physics2D.Raycast( transform.position, _rigidbody.velocity, counterAttackDist, playerLayerMask );
-
-            if ( !notified && hit )
-            {
-                notified = true;
-                player.GetComponent<Telekinesis>().NotifyCounterAttackEnter( gameObject );
-            }
-            else if ( notified && !hit )
-            {
-                canNotify = false;
-                player.GetComponent<Telekinesis>().NotifyCounterAttackExit( gameObject );
-            }
+            CheckCounterattack();
         }
-    }
-
-
-    protected override void OnCollisionEnter2D( Collision2D collision )
-    {
-        base.OnCollisionEnter2D( collision );
-
-        player.GetComponent<Telekinesis>().NotifyCounterAttackExit( gameObject );
     }
 }

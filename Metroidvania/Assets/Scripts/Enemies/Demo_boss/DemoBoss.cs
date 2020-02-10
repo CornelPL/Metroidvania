@@ -35,10 +35,9 @@ public class DemoBoss : MonoBehaviour
     [SerializeField] private GameObject hitWallEffects = null;
     [SerializeField] private Vector2 hitWallEffectsPos = Vector2.zero;
 
-    public bool wasShooting = false;
-    public Transform player;
-    public int direction = 1;
-
+    [HideInInspector] public bool wasShooting = false;
+    [HideInInspector] public Transform player;
+    [HideInInspector] public int direction = 1;
     [HideInInspector] public int currentSequence = 0;
     [HideInInspector] public bool isCharging = false;
     [HideInInspector] public bool isMoving = false;
@@ -126,6 +125,8 @@ public class DemoBoss : MonoBehaviour
         float force = Mathf.Sqrt( -Physics2D.gravity.y * rb.gravityScale * distance / Mathf.Sin( 2f * angle ) );
         force = Random.Range( force * (1f - forceVariation), force * (1f + forceVariation) );
         rb.AddForce( dir * force, ForceMode2D.Impulse );
+
+        rb.GetComponent<EnemyProjectile>().SetPlayer( player );
     }
 
 

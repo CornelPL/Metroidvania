@@ -406,8 +406,9 @@ public class Telekinesis : MonoBehaviour
 
     private void CounterAttack()
     {
-        counterAttackItem.GetComponent<Item>().enabled = true;
-        counterAttackItem.GetComponent<Item>().MakeItem();
+        Item item = counterAttackItem.GetComponent<Item>();
+        item.enabled = true;
+        item.MakeItem();
         StartCoroutine( ShootingSequence( counterAttackItem ) );
     }
 

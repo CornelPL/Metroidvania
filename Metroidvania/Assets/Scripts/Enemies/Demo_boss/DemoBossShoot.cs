@@ -5,6 +5,8 @@ public class DemoBossShoot : StateMachineBehaviour
     [SerializeField] private int minProjectiles = 4;
     [SerializeField] private int maxProjectiles = 6;
     [SerializeField] private int sequences = 3;
+    [SerializeField] private float clipLength = 8f;
+    [SerializeField] private float shootFrame = 3f;
 
 
     private DemoBoss boss;
@@ -19,7 +21,7 @@ public class DemoBossShoot : StateMachineBehaviour
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
-        if ( stateInfo.normalizedTime >= 3f / 8f && !shooted )
+        if ( stateInfo.normalizedTime >= shootFrame / clipLength && !shooted )
         {
             shooted = true;
 

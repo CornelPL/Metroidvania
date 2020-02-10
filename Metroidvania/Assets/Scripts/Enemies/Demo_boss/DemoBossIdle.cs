@@ -14,6 +14,8 @@ public class DemoBossIdle : StateMachineBehaviour
         boss = animator.GetComponent<DemoBoss>();
         boss.currentSequence = 0;
 
+        boss.SetDirection();
+
         t = 0f;
     }
 
@@ -23,6 +25,7 @@ public class DemoBossIdle : StateMachineBehaviour
         if ( idleTime > t )
         {
             t += Time.deltaTime;
+            boss.SetDirection();
         }
         else
         {

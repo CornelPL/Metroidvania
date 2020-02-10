@@ -47,8 +47,12 @@ public class DemoBoss : MonoBehaviour
 
     public void SetDirection()
     {
-        direction = player.position.x < transform.position.x ? -1 : 1;
-        _animator.SetInteger( "direction", direction );
+        int newDirection = player.position.x < transform.position.x ? -1 : 1;
+        if ( newDirection != direction )
+        {
+            direction = newDirection;
+            _animator.SetInteger( "direction", direction );
+        }
     }
 
 

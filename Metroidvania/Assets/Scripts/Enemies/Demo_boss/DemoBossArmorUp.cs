@@ -19,6 +19,8 @@ public class DemoBossArmorUp : StateMachineBehaviour
         boss = animator.GetComponent<DemoBoss>();
         boss.forceField.SetActive( false );
 
+        boss.idleTime = 0f;
+
         foreach ( ParticleSystem p in boss.armoringParticles )
         {
             p.Play();

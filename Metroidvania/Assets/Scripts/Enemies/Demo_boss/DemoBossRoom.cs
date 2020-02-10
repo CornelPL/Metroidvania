@@ -76,8 +76,8 @@ public class DemoBossRoom : MonoBehaviour
                 }
                 else
                 {
-                    currentEnemies[ i ].RemoveAt( i );
-                    i--;
+                    currentEnemies[ i ].RemoveAt( j );
+                    j--;
                 }
             }
         }

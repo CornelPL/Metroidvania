@@ -42,7 +42,14 @@ public class DemoBoss : MonoBehaviour
     [HideInInspector] public int currentSequence = 0;
     [HideInInspector] public bool isCharging = false;
     [HideInInspector] public bool isMoving = false;
+    [HideInInspector] public float idleTime = 0f;
     private int phase = 1;
+
+
+    public void IncreasePhase()
+    {
+        phase++;
+    }
 
 
     public void SetDirection()

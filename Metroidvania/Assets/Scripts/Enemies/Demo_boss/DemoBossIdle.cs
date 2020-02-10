@@ -16,7 +16,12 @@ public class DemoBossIdle : StateMachineBehaviour
 
         boss.SetDirection();
 
-        t = 0f;
+        t = boss.idleTime;
+
+        if ( t > idleTime )
+        {
+            t = 0f;
+        }
     }
 
 
@@ -31,6 +36,12 @@ public class DemoBossIdle : StateMachineBehaviour
         {
             ChooseAction( animator );
         }
+    }
+
+
+    public override void OnStateExit( Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex )
+    {
+        boss.idleTime = t;
     }
 
 

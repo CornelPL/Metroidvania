@@ -51,6 +51,7 @@ public class DemoBossRage : StateMachineBehaviour
             }
 
             animator.SetTrigger( "rageEnd" );
+            boss.IncreasePhase();
         }
     }
 }

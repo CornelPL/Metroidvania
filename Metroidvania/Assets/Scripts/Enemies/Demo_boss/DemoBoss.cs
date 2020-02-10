@@ -10,7 +10,7 @@ public class DemoBoss : MonoBehaviour
     [SerializeField] private int touchDamage = 1;
     [SerializeField] private BossHealthManager healthManager = null;
     [SerializeField] private Animator _animator = null;
-    [SerializeField] private DemoBossRoom room = null;
+    public DemoBossRoom room = null;
 
     [Separator( "Shooting" )]
     [SerializeField] private Transform shootPosition = null;

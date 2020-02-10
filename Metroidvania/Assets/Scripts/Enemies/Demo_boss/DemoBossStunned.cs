@@ -5,14 +5,14 @@ public class DemoBossStunned : StateMachineBehaviour
     [SerializeField] private float invulnerableTime = 1f;
 
 
-    private DemoBoss boss;
     private float t = 0f;
+    private bool spawnedEnemies = false;
 
 
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
+        spawnedEnemies = false;
         t = 0f;
-        boss = animator.GetComponent<DemoBoss>();
     }
 
 
@@ -25,6 +25,12 @@ public class DemoBossStunned : StateMachineBehaviour
         else
         {
             animator.SetTrigger( "isVulnerable" );
+        }
+
+        if ( t > invulnerableTime / 2f && !spawnedEnemies )
+        {
+            spawnedEnemies = true;
+            animator.GetComponent<DemoBoss>().room.SpawnEnemies( 2 );
         }
     }
 }

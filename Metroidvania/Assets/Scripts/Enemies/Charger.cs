@@ -192,6 +192,8 @@ public class Charger : MonoBehaviour
         {
             SetDirection( -direction );
         }
+
+        healthManager.isBeingKnockbacked = false;
     }
 
 

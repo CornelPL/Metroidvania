@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using MyBox;
 
 [System.Serializable]
 public class Enemy
@@ -12,19 +13,29 @@ public class Enemy
 
 public class DemoBossRoom : MonoBehaviour
 {
+    [Separator("Enemies")]
     [SerializeField] private int minEnemiesSpawn = 2;
     [SerializeField] private int maxEnemiesSpawn = 5;
     [SerializeField] private int maxEnemies = 10;
+    [SerializeField] private Transform enemiesSpawnPoint = null;
+    [SerializeField] private float minShootForce = 2f;
+    [SerializeField] private float maxShootForce = 10f;
+    [SerializeField] private float minAngle = 0f;
+    [SerializeField] private float maxAngle = 60f;
+    [SerializeField] private List<Enemy> enemies = null;
+
+    [Separator("Spikes")]
     [SerializeField] private int minSpikes = 3;
     [SerializeField] private int maxSpikes = 8;
     [SerializeField] private float spikesWidth = 2f;
     [SerializeField] private Transform spawnPoint1 = null;
     [SerializeField] private Transform spawnPoint2 = null;
-    [SerializeField] private List<Enemy> enemies = null;
     [SerializeField] private GameObject spike = null;
+    [SerializeField] private DemoBoss boss = null;
 
 
     private List<List<GameObject>> currentEnemies = new List<List<GameObject>>();
+    private Vector2 pos;
 
 
     public void Earthquake()
@@ -49,6 +60,47 @@ public class DemoBossRoom : MonoBehaviour
                 {
                     currentEnemies[ i ][ j ].GetComponent<EnemyHealthManager>().TakeDamage( Vector2.zero, 9999 );
                 }
+            }
+        }
+    }
+
+
+    public void SpawnEnemies( int maxCount )
+    {
+        pos = enemiesSpawnPoint.position;
+        int count;
+        if ( maxCount < minEnemiesSpawn )
+        {
+            count = maxCount;
+        }
+        else if ( maxCount < maxEnemiesSpawn )
+        {
+            count = Random.Range( minEnemiesSpawn, maxCount );
+        }
+        else
+        {
+            count = Random.Range( minEnemiesSpawn, maxEnemiesSpawn );
+        }
+
+        for ( int i = 0; i < count; i++ )
+        {
+            int enemyIndex = ChooseEnemy();
+
+            if ( enemyIndex != -1 )
+            {
+                GameObject e = Instantiate( enemies[ enemyIndex ].prefab, pos, Quaternion.identity, null );
+
+                currentEnemies[ enemyIndex ].Add( e );
+
+                float angle = Random.Range( minAngle, maxAngle );
+                if ( boss.direction == 1 )
+                {
+                    angle = 180f - angle;
+                }
+                Vector2 direction = MyMath.Angles.AngleToVector2( angle );
+                float force = Random.Range( minShootForce, maxShootForce );
+                e.GetComponent<EnemyHealthManager>().isBeingKnockbacked = true;
+                e.GetComponent<Rigidbody2D>().AddForce( direction * force, ForceMode2D.Impulse );
             }
         }
     }
@@ -83,38 +135,6 @@ public class DemoBossRoom : MonoBehaviour
         }
 
         return count;
-    }
-
-
-    private void SpawnEnemies( int maxCount )
-    {
-        int count;
-        if ( maxCount < minEnemiesSpawn )
-        {
-            count = maxCount;
-        }
-        else if ( maxCount < maxEnemiesSpawn )
-        {
-            count = Random.Range( minEnemiesSpawn, maxCount );
-        }
-        else
-        {
-            count = Random.Range( minEnemiesSpawn, maxEnemiesSpawn );
-        }
-
-        for ( int i = 0; i < count; i++ )
-        {
-            Vector2 pos = GeneratePosition();
-
-            int enemyIndex = ChooseEnemy();
-
-            if ( enemyIndex != -1 )
-            {
-                GameObject e = Instantiate( enemies[ enemyIndex ].prefab, pos, Quaternion.identity, null );
-
-                currentEnemies[ enemyIndex ].Add( e );
-            }
-        }
     }
 
 

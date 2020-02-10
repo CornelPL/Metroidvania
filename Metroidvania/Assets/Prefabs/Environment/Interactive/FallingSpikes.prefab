@@ -49,6 +49,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -171,4 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   gravityScale: 4
+  fallDelay: 0.5
   _rigidbody: {fileID: 8799853118207417109}
+  fallParticles: {fileID: 294328952878463128, guid: 0d14daf1197688e45844c7e69c7bd63e,
+    type: 3}

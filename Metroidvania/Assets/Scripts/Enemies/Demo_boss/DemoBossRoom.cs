@@ -137,7 +137,7 @@ public class DemoBossRoom : MonoBehaviour
 
             previousPos = pos;
 
-            Instantiate( spike, pos, Quaternion.identity, null );
+            Instantiate( spike, pos, Quaternion.identity, null ).GetComponent<FallingSpikes>().StartFalling();
         }
     }
 

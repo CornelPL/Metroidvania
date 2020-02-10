@@ -4,19 +4,26 @@ public class FallingSpikes : MonoBehaviour
 {
     [SerializeField] private int damage = 20;
     [SerializeField] private float gravityScale = 8f;
+    [SerializeField] private float fallDelay = 1f;
     [SerializeField] private Rigidbody2D _rigidbody = null;
+    [SerializeField] private GameObject fallParticles = null;
 
     private bool isFalling = false;
 
 
+    public void StartFalling()
+    {
+        isFalling = true;
+        Instantiate( fallParticles, transform.position, Quaternion.identity, null );
+        Invoke( nameof( DoFall ), fallDelay );
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !isFalling)
         {
-            // TODO: play particles and then drop down spikes
-            _rigidbody.bodyType = RigidbodyType2D.Dynamic;
-            _rigidbody.gravityScale = gravityScale;
-            isFalling = true;
+            StartFalling();
         }
     }
 
@@ -31,5 +38,12 @@ public class FallingSpikes : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+
+    private void DoFall()
+    {
+        _rigidbody.bodyType = RigidbodyType2D.Dynamic;
+        _rigidbody.gravityScale = gravityScale;
     }
 }

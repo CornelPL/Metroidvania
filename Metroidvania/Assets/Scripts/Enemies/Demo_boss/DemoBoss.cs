@@ -8,10 +8,9 @@ public class DemoBoss : MonoBehaviour
     [SerializeField] private int secondPhaseHP = 10;
     [SerializeField] private int thirdPhaseHP = 5;
     [SerializeField] private int touchDamage = 1;
-    [SerializeField] private float decisionTime = 1f;
-    [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private BossHealthManager healthManager = null;
     [SerializeField] private Animator _animator = null;
+    [SerializeField] private DemoBossRoom room = null;
 
     [Separator( "Shooting" )]
     [SerializeField] private Transform shootPosition = null;
@@ -33,8 +32,8 @@ public class DemoBoss : MonoBehaviour
     public CinemachineImpulseSource OnRageImpulse = null;
 
     [Separator( "Effects" )]
-    [SerializeField] private GameObject hitWallEffects;
-    [SerializeField] private Vector2 hitWallEffectsPos;
+    [SerializeField] private GameObject hitWallEffects = null;
+    [SerializeField] private Vector2 hitWallEffectsPos = Vector2.zero;
 
     public bool wasShooting = false;
     public Transform player;
@@ -128,6 +127,8 @@ public class DemoBoss : MonoBehaviour
         float angle = direction == 1 ? 180f : 0f;
         Vector2 pos = new Vector2( hitWallEffectsPos.x * direction, hitWallEffectsPos.y );
         Instantiate( hitWallEffects, (Vector2)transform.position + pos, Quaternion.AngleAxis( angle, Vector3.forward ), null );
+
+        room.Earthquake();
     }
 
 

@@ -11,6 +11,7 @@ public class Charger : MonoBehaviour
     [SerializeField] private float chargeSpeed = 6f;
     [SerializeField] private float playerKnockbackMultiplier = 2f;
     [SerializeField] private float stunTime = 1f;
+    [SerializeField] private float breathEffectSpawnChance = 30f;
     [SerializeField] private Vector2 sightOffset = Vector2.zero;
     [SerializeField] private LayerMask playerLayerMask = 0;
     [SerializeField] private LayerMask playerAndObstaclesLayerMask = 0;
@@ -34,8 +35,8 @@ public class Charger : MonoBehaviour
 
     public void SpawnBreathEffect()
     {
-        float rand = Random.Range( 0f, 1f );
-        if ( rand > 0.5f )
+        float rand = Random.Range( 0f, 100f );
+        if ( rand < breathEffectSpawnChance )
         {
             Vector2 pos = breathEffectPosition;
             float angle = -120f;

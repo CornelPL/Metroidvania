@@ -7,21 +7,25 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Distortion mat
+  m_Name: Distortion mat 1
   m_Shader: {fileID: -6465566751694194690, guid: 6e0692c55e707bb40a61fae7a877cf38,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - CloudTexture:
+        m_Texture: {fileID: 2800000, guid: 928e7ddd8fb139147bb1d6c993cad7fd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c8bd1a075dc3fa442834eb8b84771df3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -33,6 +37,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - CloudBrightness: 1
+    - CloudPower: 1
     - Vector1_979CEC30: 1
     m_Colors:
+    - CloudColor: {r: 1, g: 0, b: 0.8970642, a: 1}
+    - CloudDirection: {r: 1, g: 0, b: 0, a: 0}
+    - CloudTiling: {r: 2, g: 1, b: 0, a: 0}
     - Color_A03110F3: {r: 0, g: 0, b: 0, a: 0}

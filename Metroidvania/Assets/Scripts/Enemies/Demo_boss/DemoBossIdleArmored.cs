@@ -5,13 +5,16 @@ public class DemoBossIdleArmored : StateMachineBehaviour
     [SerializeField] private float idleTime = 1f;
 
 
-    private DemoBoss boss;
+    private DemoBoss boss = null;
     private float t = 0f;
 
 
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
-        boss = animator.GetComponent<DemoBoss>();
+        if ( boss == null )
+        {
+            boss = animator.GetComponent<DemoBoss>();
+        }
 
         t = boss.idleTime;
 

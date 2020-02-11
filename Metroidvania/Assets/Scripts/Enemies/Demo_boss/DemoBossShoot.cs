@@ -9,12 +9,16 @@ public class DemoBossShoot : StateMachineBehaviour
     [SerializeField] private float shootFrame = 3f;
 
 
-    private DemoBoss boss;
+    private DemoBoss boss = null;
     private bool shooted = false;
 
 
     public override void OnStateEnter( Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex )
     {
+        if ( boss == null )
+        {
+            boss = animator.GetComponent<DemoBoss>();
+        }
         shooted = false;
     }
 
@@ -25,7 +29,6 @@ public class DemoBossShoot : StateMachineBehaviour
         {
             shooted = true;
 
-            boss = animator.GetComponent<DemoBoss>();
             boss.SetDirection();
 
             int num = Random.Range( minProjectiles, maxProjectiles );

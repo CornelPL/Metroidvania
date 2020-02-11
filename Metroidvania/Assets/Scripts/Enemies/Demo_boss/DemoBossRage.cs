@@ -8,7 +8,7 @@ public class DemoBossRage : StateMachineBehaviour
 
     private int direction;
     private int currentProjectile = 0;
-    private DemoBoss boss;
+    private DemoBoss boss = null;
     private float t = 0f;
 
 
@@ -16,7 +16,10 @@ public class DemoBossRage : StateMachineBehaviour
     {
         t = 0f;
 
-        boss = animator.GetComponent<DemoBoss>();
+        if ( boss == null )
+        {
+            boss = animator.GetComponent<DemoBoss>();
+        }
         boss.SetDirection();
         direction = boss.direction;
 

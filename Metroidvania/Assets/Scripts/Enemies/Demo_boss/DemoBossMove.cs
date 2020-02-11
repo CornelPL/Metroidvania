@@ -11,14 +11,17 @@ public class DemoBossMove : StateMachineBehaviour
 
     private float destination;
     private int direction;
-    private DemoBoss boss;
-    private Rigidbody2D rigidbody;
+    private DemoBoss boss = null;
+    private Rigidbody2D rigidbody = null;
 
 
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
-        boss = animator.GetComponent<DemoBoss>();
-        rigidbody = boss.GetComponent<Rigidbody2D>();
+        if ( boss == null )
+        {
+            boss = animator.GetComponent<DemoBoss>();
+            rigidbody = boss.GetComponent<Rigidbody2D>();
+        }
         boss.SetDirection();
         direction = boss.direction;
 

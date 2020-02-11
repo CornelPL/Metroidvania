@@ -6,7 +6,7 @@ public class DemoBossArmorUp : StateMachineBehaviour
     [SerializeField] private int phase = 1;
 
 
-    private DemoBoss boss;
+    private DemoBoss boss = null;
     private float t = 0f;
 
 
@@ -16,7 +16,10 @@ public class DemoBossArmorUp : StateMachineBehaviour
 
         animator.SetBool( "isShooting", false );
 
-        boss = animator.GetComponent<DemoBoss>();
+        if ( boss == null )
+        {
+            boss = animator.GetComponent<DemoBoss>();
+        }
         boss.forceField.SetActive( false );
 
         boss.idleTime = 0f;

@@ -38,19 +38,19 @@ public class PlayerHealthManager : MonoBehaviour
 
     private void Update()
     {
-        if (input.healDown && EnergyController.instance.isContainerFull && currentHP < maxHP && state.isGroundedState && !state.isRunningState && !state.isKnockbackedState)
+        if ( input.healDown && EnergyController.instance.isContainerFull && currentHP < maxHP && state.isGroundedState && !state.isRunningState && !state.isKnockbackedState )
         {
             state.isHealingState = true;
         }
-        if (input.healUp)
+        if ( input.healUp )
         {
             state.isHealingState = false;
             healingTime = 0f;
         }
 
-        if (state.isHealingState)
+        if ( state.isHealingState )
         {
-            if (healingTime < healChargeTime)
+            if ( healingTime < healChargeTime )
             {
                 healingTime += Time.deltaTime;
             }
@@ -68,13 +68,13 @@ public class PlayerHealthManager : MonoBehaviour
 
     private void Death()
     {
-        Debug.Log("DEAD");
+        Debug.Log( "DEAD" );
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D( Collision2D collision )
     {
-        if (collision.gameObject.CompareTag("Spikes"))
+        if ( collision.gameObject.CompareTag( "Spikes" ) )
         {
             Death();
         }
@@ -83,44 +83,44 @@ public class PlayerHealthManager : MonoBehaviour
 
     private void UpdateBars()
     {
-        for (int i = 0; i < bars.Length; i++)
+        for ( int i = 0; i < bars.Length; i++ )
         {
-            bars[i].enabled = i < currentHP ? true : false;
+            bars[ i ].enabled = i < currentHP ? true : false;
         }
     }
 
 
     private void UpdateBarsBackgrounds()
     {
-        for (int i = 0; i < barsBackgrounds.Length; i++)
+        for ( int i = 0; i < barsBackgrounds.Length; i++ )
         {
-            barsBackgrounds[i].enabled = i < maxHP ? true : false;
+            barsBackgrounds[ i ].enabled = i < maxHP ? true : false;
         }
     }
 
 
-    private IEnumerator Knockback(float xPos, float knockbackMultiplier)
+    private IEnumerator Knockback( float xPos, float knockbackMultiplier )
     {
         PlayerState.instance.isKnockbackedState = true;
-        PlayerState.instance.EnableInvulnerability();
+        PlayerState.instance.SetInvulnerable( true );
         _rigidbody.velocity = Vector2.zero;
-        _rigidbody.AddForce(new Vector2(0.5f * Mathf.Sign(transform.position.x - xPos), 1f) * knockbackForce * knockbackMultiplier, ForceMode2D.Impulse);
+        _rigidbody.AddForce( new Vector2( 0.5f * Mathf.Sign( transform.position.x - xPos ), 1f ) * knockbackForce * knockbackMultiplier, ForceMode2D.Impulse );
 
-        yield return new WaitForSeconds(knockbackTime);
+        yield return new WaitForSeconds( knockbackTime );
         PlayerState.instance.isKnockbackedState = false;
 
-        PlayerState.instance.DisableInvulnerability(invulnerabilityTime);
+        PlayerState.instance.SetInvulnerable( false, invulnerabilityTime );
     }
 
 
-    public void TakeDamage(int damage, float xPos, float knockbackMultiplier = 1f)
+    public void TakeDamage( int damage, float xPos, float knockbackMultiplier = 1f )
     {
         currentHP -= damage;
         UpdateBars();
 
-        StartCoroutine(Knockback(xPos, knockbackMultiplier));
+        StartCoroutine( Knockback( xPos, knockbackMultiplier ) );
 
-        if (currentHP < 0)
+        if ( currentHP < 0 )
         {
             Death();
         }

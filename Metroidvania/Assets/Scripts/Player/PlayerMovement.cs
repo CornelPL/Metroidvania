@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private float maxFallingSpeed = 50f;
 
-    [Header("Dash")]
+    [Header( "Dash" )]
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float dashTime = 0.5f;
 
@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!state.isDashingState && !state.isSlammingState && !state.isKnockbackedState && !state.isHealingState)
+        if ( !state.isDashingState && !state.isSlammingState && !state.isKnockbackedState && !state.isHealingState )
         {
             CheckMovement();
 
@@ -63,13 +63,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckMovement()
     {
-        if (input.right)
+        if ( input.right )
         {
-            if (horizontalSpeed < 0f )
+            if ( horizontalSpeed < 0f )
             {
                 horizontalSpeed *= -1f;
             }
-            else if (horizontalSpeed < movementSpeed)
+            else if ( horizontalSpeed < movementSpeed )
             {
                 horizontalSpeed += movementSpeedUp * Time.deltaTime;
             }
@@ -78,13 +78,13 @@ public class PlayerMovement : MonoBehaviour
                 horizontalSpeed = movementSpeed;
             }
         }
-        else if (input.left)
+        else if ( input.left )
         {
             if ( horizontalSpeed > 0f )
             {
                 horizontalSpeed *= -1f;
             }
-            else if (horizontalSpeed > -movementSpeed)
+            else if ( horizontalSpeed > -movementSpeed )
             {
                 horizontalSpeed -= movementSpeedUp * Time.deltaTime;
             }
@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (horizontalSpeed > 0f )
+            if ( horizontalSpeed > 0f )
             {
                 horizontalSpeed -= movementSlowDown * Time.deltaTime;
                 if ( horizontalSpeed < 0f ) horizontalSpeed = 0f;
@@ -111,44 +111,44 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckJump()
     {
-        if (!(LeanTweenID > 0 && LeanTween.isTweening(LeanTweenID)))
+        if ( !(LeanTweenID > 0 && LeanTween.isTweening( LeanTweenID )) )
         {
             verticalSpeed = _rigidbody.velocity.y;
         }
 
-        if (input.jumpDown)
+        if ( input.jumpDown )
         {
-            if (state.isGroundedState || (Time.time - state.lastTimeGrounded < coyoteTime))
+            if ( state.isGroundedState || (Time.time - state.lastTimeGrounded < coyoteTime) )
             {
                 state.SetJumpingState();
 
                 verticalSpeed = jumpSpeed;
             }
-            else if ((state.isJumpingState || state.isFallingState) && state.hasDoubleJump && !doubleJumped)
+            else if ( (state.isJumpingState || state.isFallingState) && state.hasDoubleJump && !doubleJumped )
             {
                 state.SetJumpingState();
 
-                if (LeanTweenID > 0 && LeanTween.isTweening(LeanTweenID))
+                if ( LeanTweenID > 0 && LeanTween.isTweening( LeanTweenID ) )
                 {
-                    LeanTween.cancel(LeanTweenID);
+                    LeanTween.cancel( LeanTweenID );
                     LeanTweenID = -1;
                 }
                 verticalSpeed = jumpSpeed;
                 doubleJumped = true;
             }
         }
-        else if (input.jumpUp && verticalSpeed > 0f)
+        else if ( input.jumpUp && verticalSpeed > 0f )
         {
-            LeanTweenID = LeanTween.value(verticalSpeed, 0f, 0.1f)
-                .setOnUpdate((float v) => { verticalSpeed = v; })
-                .setOnComplete(() => { LeanTweenID = -1; }).id;
+            LeanTweenID = LeanTween.value( verticalSpeed, 0f, 0.1f )
+                .setOnUpdate( ( float v ) => { verticalSpeed = v; } )
+                .setOnComplete( () => { LeanTweenID = -1; } ).id;
         }
     }
 
 
     private void CheckSlam()
     {
-        if(input.down && (state.isJumpingState || state.isFallingState) && state.hasSlam)
+        if ( input.down && (state.isJumpingState || state.isFallingState) && state.hasSlam )
         {
             slam.OnSlamStart();
         }
@@ -157,39 +157,39 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckDash()
     {
-        if (((input.dashRight && canDashRight) || (input.dashLeft && canDashLeft)) && state.hasDash)
+        if ( ((input.dashRight && canDashRight) || (input.dashLeft && canDashLeft)) && state.hasDash )
         {
             isDashingThroughWall = true;
             isDashingRight = input.dashRight ? true : false;
-            StartCoroutine(Dash(input.dashRight ? 1 : -1));
+            StartCoroutine( Dash( input.dashRight ? 1 : -1 ) );
         }
-        else if ((input.dashRight || input.dashLeft) && state.hasDash && !dashedInAir)
+        else if ( (input.dashRight || input.dashLeft) && state.hasDash && !dashedInAir )
         {
             isDashingThroughWall = false;
             dashedInAir = state.isGroundedState ? false : true;
             isDashingRight = input.dashRight ? true : false;
-            StartCoroutine(Dash(input.dashRight ? 1 : -1));
+            StartCoroutine( Dash( input.dashRight ? 1 : -1 ) );
         }
     }
 
 
-    IEnumerator Dash(int direction)
+    IEnumerator Dash( int direction )
     {
         state.isDashingState = true;
         verticalSpeed = 0f;
         float gravityScaleCopy = _rigidbody.gravityScale;
         _rigidbody.gravityScale = 0f;
-        state.EnableInvulnerability();
+        state.SetInvulnerable( true );
         float t = dashTime;
 
         // better shrink player
-        transform.localScale = new Vector3(0.3f, 0.3f, 1f);
+        transform.localScale = new Vector3( 0.3f, 0.3f, 1f );
 
-        while (state.isDashingState && t > 0f)
+        while ( state.isDashingState && t > 0f )
         {
             horizontalSpeed = direction * dashSpeed;
 
-            if (!isDashingThroughWall) t -= Time.deltaTime;
+            if ( !isDashingThroughWall ) t -= Time.deltaTime;
 
             yield return null;
         }
@@ -197,43 +197,43 @@ public class PlayerMovement : MonoBehaviour
         state.isDashingState = false;
         _rigidbody.gravityScale = gravityScaleCopy;
         transform.localScale = Vector3.one;
-        state.DisableInvulnerability(dashTime);
+        state.SetInvulnerable( false, dashTime );
     }
 
 
     private void ApplyMovement()
     {
         if ( verticalSpeed < -maxFallingSpeed ) verticalSpeed = -maxFallingSpeed;
-        if (state.isSlammingState) verticalSpeed = -slamSpeed;
-        if (state.isKnockbackedState) return;
-        _rigidbody.velocity = new Vector2(horizontalSpeed, verticalSpeed);
+        if ( state.isSlammingState ) verticalSpeed = -slamSpeed;
+        if ( state.isKnockbackedState ) return;
+        _rigidbody.velocity = new Vector2( horizontalSpeed, verticalSpeed );
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D( Collision2D collision )
     {
-        if (collision.collider.CompareTag("Platform"))
+        if ( collision.collider.CompareTag( "Platform" ) )
         {
             return;
         }
 
         state.isDashingState = false;
-        if (state.isDashingState && state.hasUpgradedDash && collision.collider.CompareTag("DestroyableWall"))
+        if ( state.isDashingState && state.hasUpgradedDash && collision.collider.CompareTag( "DestroyableWall" ) )
         {
             collision.collider.GetComponent<CustomDestroy>().Destroy();
         }
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D( Collider2D collider )
     {
-        if (collider.CompareTag("Trigger"))
+        if ( collider.CompareTag( "Trigger" ) )
         {
-            if (collider.GetComponent<DashTrigger>().isRight)
+            if ( collider.GetComponent<DashTrigger>().isRight )
             {
-                if (state.isDashingState)
+                if ( state.isDashingState )
                 {
-                    if (!isDashingRight)
+                    if ( !isDashingRight )
                         isDashingThroughWall = true;
                     else
                         state.isDashingState = false;
@@ -243,9 +243,9 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                if (state.isDashingState)
+                if ( state.isDashingState )
                 {
-                    if (isDashingRight)
+                    if ( isDashingRight )
                         isDashingThroughWall = true;
                     else
                         state.isDashingState = false;
@@ -257,23 +257,23 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void OnTriggerExit2D(Collider2D collider)
+    private void OnTriggerExit2D( Collider2D collider )
     {
-        if (collider.CompareTag("Trigger"))
+        if ( collider.CompareTag( "Trigger" ) )
         {
             canDashLeft = canDashRight = false;
         }
     }
 
 
-    public void OnGrounded(GameObject go = null)
+    public void OnGrounded( GameObject go = null )
     {
         doubleJumped = false;
         dashedInAir = false;
 
-        if (state.isSlammingState)
+        if ( state.isSlammingState )
         {
-            slam.OnSlamEnd(go);
+            slam.OnSlamEnd( go );
         }
     }
 }

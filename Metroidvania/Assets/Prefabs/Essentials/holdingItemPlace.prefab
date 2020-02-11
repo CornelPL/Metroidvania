@@ -47,6 +47,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -101,8 +102,6 @@ MonoBehaviour:
   OnScaledUp:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   scaleDown: 1
   scaleDownTime: 0
   minDownScale: {x: 0, y: 0, z: 1}
@@ -110,8 +109,6 @@ MonoBehaviour:
   OnScaledDown:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   scaleOnStart: 0
   autoScaleDown: 1
   useUnscaledTime: 0
@@ -212,11 +209,13 @@ MonoBehaviour:
   m_Color: {r: 0.7980986, g: 0.514151, b: 1, a: 1}
   m_Intensity: 2
   m_LightVolumeOpacity: 0.02
-  m_ApplyToSortingLayers: 00000000e5af804cd75abb4bc9167502
+  m_ApplyToSortingLayers: e5af804cd75abb4bc916750200000000
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 1
   m_LightOrder: 1
   m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0.8
+  m_ShadowVolumeIntensity: 0.5
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -4940,6 +4939,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9702,6 +9702,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15022,6 +15023,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19777,6 +19779,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19870,6 +19873,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24630,6 +24634,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -25211,16 +25216,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3040402542867065606}
     m_Modifications:
-    - target: {fileID: 842172234368831388, guid: 1777696c5f0cadc47a65a707fe825ad4,
-        type: 3}
-      propertyPath: m_Name
-      value: ItemHighlight
-      objectReference: {fileID: 0}
-    - target: {fileID: 842172234368831388, guid: 1777696c5f0cadc47a65a707fe825ad4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 842172234368831387, guid: 1777696c5f0cadc47a65a707fe825ad4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -25274,6 +25269,16 @@ PrefabInstance:
     - target: {fileID: 842172234368831387, guid: 1777696c5f0cadc47a65a707fe825ad4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 842172234368831388, guid: 1777696c5f0cadc47a65a707fe825ad4,
+        type: 3}
+      propertyPath: m_Name
+      value: ItemHighlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 842172234368831388, guid: 1777696c5f0cadc47a65a707fe825ad4,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

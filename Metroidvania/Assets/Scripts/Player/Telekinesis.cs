@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Experimental.Rendering.LWRP;
 using MyBox;
 
 public class Telekinesis : MonoBehaviour
@@ -18,6 +17,7 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float leanWeight = 0.1f;
     [SerializeField] private float leanTime = 0.5f;
     [SerializeField] private float zeroOffsetWeight = 0.5f;
+    [SerializeField] private float invulnerableTime = 0.5f;
     [SerializeField, MustBeAssigned] private CinemachineCameraOffset cameraOffset = null;
     [SerializeField, MustBeAssigned] private Transform holdingItemPlace = null;
     [SerializeField, MustBeAssigned] private GameObject rockToSpawn = null;
@@ -72,6 +72,7 @@ public class Telekinesis : MonoBehaviour
     private bool isCursorInRange = false;
     private bool isCursorOver = false;
     private bool isCameraLeaning = false;
+    private bool isCounterattacking = false;
     private bool arePullEffectsActive = false;
     private bool canCounterAttack = false;
     private GameObject counterAttackItem = null;
@@ -409,6 +410,7 @@ public class Telekinesis : MonoBehaviour
         Item item = counterAttackItem.GetComponent<Item>();
         item.enabled = true;
         item.MakeItem();
+        isCounterattacking = true;
         StartCoroutine( ShootingSequence( counterAttackItem ) );
     }
 
@@ -434,6 +436,12 @@ public class Telekinesis : MonoBehaviour
             yield return null;
         }
 
+        if ( isCounterattacking )
+        {
+            isCounterattacking = false;
+            state.SetInvulnerable( true );
+            state.SetInvulnerable( false, invulnerableTime );
+        }
         isCameraLeaning = false;
         StartCoroutine( ZeroCameraOffset() );
         t = 0f;

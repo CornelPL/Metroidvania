@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class PlayerState : MonoBehaviour
 {
     public static PlayerState instance = null;
 
-    [Header("States")]
+    [Header( "States" )]
 
     public bool isFacingRight = false;
     public bool isPullingItemState = false;
@@ -17,10 +18,9 @@ public class PlayerState : MonoBehaviour
     public bool isSlammingState = false;
     public bool isDashingState = false;
     public bool isKnockbackedState = false;
-    public bool isInvulnerableState = false;
     public bool isHealingState = false;
 
-    [Header("Skills")]
+    [Header( "Skills" )]
 
     public bool hasDoubleJump = false;
     public bool hasDash = false;
@@ -29,15 +29,15 @@ public class PlayerState : MonoBehaviour
     public bool canModifyStableItems = false;
     public bool canSpawnItems = false;
 
-    [Header("Helpers")]
+    [Header( "Helpers" )]
 
     [SerializeField] private Collider2D normalCollider = null;
     [SerializeField] private Collider2D invulnerableCollider = null;
+    [SerializeField] private AutoColor shieldColor = null;
     [SerializeField] private Transform holdingItemPosition = null;
     [SerializeField] private Animator animator = null;
 
 
-    private float t = 0f;
     private Vector2 currentPos;
     private Vector2 previousPos;
     [HideInInspector] public float lastTimeGrounded = 0f;
@@ -45,10 +45,10 @@ public class PlayerState : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if ( instance == null )
             instance = this;
-        else if (instance != this)
-            Destroy(this);
+        else if ( instance != this )
+            Destroy( this );
     }
 
 
@@ -65,27 +65,15 @@ public class PlayerState : MonoBehaviour
         previousPos = currentPos;
 
         isFallingState = velocity.y < -0.1f ? true : false;
-        isRunningState = Mathf.Abs(velocity.x) > 0.1f ? true : false;
+        isRunningState = Mathf.Abs( velocity.x ) > 0.1f ? true : false;
 
-        if (velocity.x > 0.1f && !isFacingRight)
+        if ( velocity.x > 0.1f && !isFacingRight )
         {
             RotatePlayer( true );
         }
-        else if (velocity.x < -0.1f && isFacingRight)
+        else if ( velocity.x < -0.1f && isFacingRight )
         {
             RotatePlayer( false );
-        }
-
-        if (isInvulnerableState)
-        {
-            if (t > 0f)
-                t -= Time.deltaTime;
-            else
-            {
-                normalCollider.enabled = true;
-                invulnerableCollider.enabled = false;
-                isInvulnerableState = false;
-            }
         }
     }
 
@@ -98,33 +86,42 @@ public class PlayerState : MonoBehaviour
     }
 
 
-    public void EnableInvulnerability()
+    public void SetInvulnerable( bool b, float after = 0f )
     {
-        normalCollider.enabled = false;
-        invulnerableCollider.enabled = true;
-        isInvulnerableState = true;
-        t = 999f;
+        StartCoroutine( SetInvulnerability( b, after ) );
     }
 
 
-    public void DisableInvulnerability(float after = 0f)
+    private IEnumerator SetInvulnerability( bool b, float after = 0f )
     {
-        t = after;
+        yield return new WaitForSeconds( after );
+        if ( b )
+        {
+            shieldColor.FadeIn();
+        }
+        else
+        {
+            shieldColor.FadeOut();
+            yield return new WaitForSeconds( shieldColor.fadeOutTime );
+        }
+
+        normalCollider.enabled = !b;
+        invulnerableCollider.enabled =  b;
     }
 
 
-    public void SetGroundedState(bool b)
+    public void SetGroundedState( bool b )
     {
         isGroundedState = b;
         lastTimeGrounded = Time.time;
-        animator.SetBool("isGrounded", b);
+        animator.SetBool( "isGrounded", b );
 
-        if (b)
+        if ( b )
         {
             isJumpingState = false;
             isFallingState = false;
-            animator.SetBool("isJumping", false);
-            animator.SetBool("isFalling", false);
+            animator.SetBool( "isJumping", false );
+            animator.SetBool( "isFalling", false );
         }
     }
 
@@ -132,6 +129,6 @@ public class PlayerState : MonoBehaviour
     public void SetJumpingState()
     {
         isJumpingState = true;
-        animator.SetBool("isJumping", true);
+        animator.SetBool( "isJumping", true );
     }
 }

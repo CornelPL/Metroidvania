@@ -22,7 +22,7 @@ public class SlamSkill : MonoBehaviour
     public void OnSlamStart()
     {
         state.isSlammingState = true;
-        state.EnableInvulnerability();
+        state.SetInvulnerable( true );
     }
 
 
@@ -39,7 +39,7 @@ public class SlamSkill : MonoBehaviour
 
     private void Slam()
     {
-        state.DisableInvulnerability( 0.5f );
+        state.SetInvulnerable( false, 0.5f );
         earthquakeEvent.Broadcast( gameObject, transform.position );
 
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll( transform.position, slamRange, slamMask );

@@ -12,12 +12,13 @@ public class AutoColor : MonoBehaviour
 
     [Separator( "Fade Out" )]
     [SerializeField] private bool fadeOut = false;
-    [SerializeField, ConditionalField( nameof( fadeOut ) )] private float fadeOutTime = 1f;
+    [ConditionalField( nameof( fadeOut ) )] public float fadeOutTime = 1f;
     [SerializeField, ConditionalField( nameof( fadeOut ) )] private float minFadeOutA = 0f;
     [SerializeField, ConditionalField( nameof( fadeOut ) )] private float maxFadeOutA = 1f;
 
     [Separator( "Bools" )]
     [SerializeField] private bool fadeOnStart = false;
+    [SerializeField] private bool autoFadeOut = false;
     [SerializeField] private bool isImage = false;
     [SerializeField] private bool destroyOnEnd = false;
 
@@ -77,7 +78,7 @@ public class AutoColor : MonoBehaviour
                 .setOnUpdate( ( float v ) => { _renderer.color = new Color( rendererColor.r, rendererColor.g, rendererColor.b, v ); } );
         }
 
-        if ( fadeOut )
+        if ( fadeOut && autoFadeOut )
         {
             tween.setOnComplete( () => { FadeOut(); } );
         }

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using MyBox;
 using System.Collections.Generic;
 
@@ -117,7 +116,6 @@ public class Charger : MonoBehaviour
     {
         if ( isCharging )
         {
-            Debug.Log( "halko" );
             animator.SetBool( "isStunned", true );
         }
         else if ( collision.collider.CompareTag( "Wall" ) )

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using MyBox;
+using System.Collections.Generic;
 
 public class Charger : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class Charger : MonoBehaviour
     [SerializeField, MustBeAssigned] private EnemyHealthManager healthManager = null;
     [SerializeField, MustBeAssigned] private ParticleSystem breathEffect = null;
     [SerializeField, MustBeAssigned] private Vector2 breathEffectPosition = Vector2.zero;
+    [SerializeField, MustBeAssigned] private List<GameObject> deathParts = null;
+    [SerializeField] private float deathPartsForce = 10f;
+    [SerializeField] private float torqueOnDeath = 1f;
     [SerializeField] private int direction = 1;
 
     private bool isCharging = false;
@@ -48,7 +52,21 @@ public class Charger : MonoBehaviour
 
     public void OnDeath()
     {
-        // TODO: spawn death parts
+        Vector2 spawnPos = new Vector2( transform.position.x, transform.position.y + 0.5f );
+
+        for ( int i = 0; i < deathParts.Count; i++ )
+        {
+            Rigidbody2D inst = Instantiate( deathParts[ i ], spawnPos, Quaternion.identity, null ).GetComponent<Rigidbody2D>();
+
+            Vector2 dir = Random.insideUnitCircle;
+            dir.y = Mathf.Abs( dir.y );
+
+            inst.AddForce( dir * deathPartsForce, ForceMode2D.Impulse );
+
+            inst.AddTorque( torqueOnDeath, ForceMode2D.Impulse );
+
+            Destroy( gameObject );
+        }
     }
 
 

@@ -21,7 +21,7 @@ public class Walker_Horizontal : MonoBehaviour
 
     public void OnDeath()
     {
-        Vector3 spawnPos = new Vector3( transform.position.x, transform.position.y + 0.5f, transform.position.z );
+        Vector2 spawnPos = new Vector2( transform.position.x, transform.position.y + 0.5f);
 
         Rigidbody2D inst = Instantiate( direction == 1 ? deadRight : deadLeft, spawnPos, transform.rotation, null ).GetComponent<Rigidbody2D>();
 

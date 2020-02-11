@@ -91,7 +91,7 @@ Material:
     - Vector1_A0EF61F6: 5
     - Vector1_AADE1DE1: 1
     - Vector1_B93AFC3: 0
-    - _Brightness: 0
+    - _Brightness: 0.2
     - _BumpAmt: 10
     - _BumpScale: 0.5
     - _Cutoff: 0.5
@@ -103,6 +103,7 @@ Material:
     - _Metallic: 0
     - _Mode: 2
     - _NormalMapSaturation: 1
+    - _OcclusionInfluence: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Size: 1

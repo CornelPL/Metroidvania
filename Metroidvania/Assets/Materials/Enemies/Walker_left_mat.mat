@@ -95,7 +95,7 @@ Material:
     - Vector1_AADE1DE1: 1
     - _AlphaClip: 0
     - _Blend: 0
-    - _Brightness: 0
+    - _Brightness: 0.2
     - _BumpAmt: 10
     - _BumpScale: 0.5
     - _Cull: 2
@@ -109,6 +109,7 @@ Material:
     - _Metallic: 0
     - _Mode: 2
     - _NormalMapSaturation: 1
+    - _OcclusionInfluence: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueOffset: 0

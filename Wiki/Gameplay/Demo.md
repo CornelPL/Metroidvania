@@ -7,9 +7,6 @@
 	- great fight feeling
 		Pulling effects, shooting effects, everything can be thrown.
 		Counterattacking enemies
-			When enemy charges or does some special action hint with button shows up to counterattack. If player hits it in time he grabs enemy with gravity and can throw him away.
-			Special animations:
-				- counterattacking charger - when he charges player can press RMB to rotate him and pull his head from the body - the body "runs" further and player is holding his head
 	- exploration and environment storytelling
 		Exploration done with player's abilities. Slam and planks in soft wall.
 		

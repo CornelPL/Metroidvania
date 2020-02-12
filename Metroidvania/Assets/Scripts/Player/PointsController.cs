@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class PointsController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI pointsText = null;
 
-    private int points = 0;
+    [HideInInspector] public int points = 0;
+
+
+    public void RemovePoints( int count )
+    {
+        points -= count;
+        UpdatePoints();
+    }
 
 
     private void Start()
@@ -15,20 +21,20 @@ public class PointsController : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D( Collider2D collision )
     {
-        if (collision.CompareTag("Point"))
+        if ( collision.CompareTag( "Point" ) )
         {
             points++;
             UpdatePoints();
 
-            Destroy(collision.gameObject);
+            Destroy( collision.gameObject );
         }
     }
 
 
     private void UpdatePoints()
     {
-        pointsText.SetText(points.ToString());
+        pointsText.SetText( points.ToString() );
     }
 }

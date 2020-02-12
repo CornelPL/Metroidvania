@@ -1,53 +1,42 @@
 ﻿using UnityEngine;
 
-public class FightRoom : MonoBehaviour
+public class FightRoom : Room
 {
     [SerializeField] private Door[] doors = null;
-    [SerializeField] private Trigger[] fightTriggers = null;
     [SerializeField] private int enemiesCount = 5;
+
+
+    public override void OnPlayerEnter()
+    {
+        base.OnPlayerEnter();
+
+        for ( int i = 0; i < doors.Length; i++ )
+        {
+            doors[ i ].Close();
+        }
+    }
+
+
+    public override void OnPlayerExit()
+    {
+        base.OnPlayerExit();
+
+        for ( int i = 0; i < doors.Length; i++ )
+        {
+            doors[ i ].Open();
+        }
+    }
 
 
     public void RemoveEnemy()
     {
         enemiesCount--;
-        if (enemiesCount == 0)
+        if ( enemiesCount == 0 )
         {
-            SetFightRoomPassed();
+            for ( int i = 0; i < doors.Length; i++ )
+            {
+                doors[ i ].Open();
+            }
         }
-    }
-
-
-    public void CloseRoom()
-    {
-        foreach(Door door in doors)
-        {
-            door.Close();
-        }
-        SetFightTriggersActive(false);
-    }
-
-
-    private void OpenRoom()
-    {
-        foreach (Door door in doors)
-        {
-            door.Open();
-        }
-    }
-
-
-    private void SetFightTriggersActive(bool b)
-    {
-        foreach(Trigger trigger in fightTriggers)
-        {
-            trigger.gameObject.SetActive(b);
-        }
-    }
-
-
-    private void SetFightRoomPassed()
-    {
-        OpenRoom();
-        SetFightTriggersActive(false);
     }
 }

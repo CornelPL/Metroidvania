@@ -6,6 +6,7 @@ public class ChargerWalk : StateMachineBehaviour
 
     private Charger charger = null;
     private Rigidbody2D rigidbody = null;
+    private EnemyHealthManager healthManager = null;
 
 
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
@@ -14,12 +15,15 @@ public class ChargerWalk : StateMachineBehaviour
         {
             charger = animator.GetComponent<Charger>();
             rigidbody = animator.GetComponent<Rigidbody2D>();
+            healthManager = animator.GetComponent<EnemyHealthManager>();
         }
     }
 
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
+        if ( healthManager.isBeingKnockbacked ) return;
+
         if ( charger.CanSeePlayer() )
         {
             animator.SetBool( "isWalking", false );

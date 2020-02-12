@@ -19,6 +19,7 @@ public class PlayerState : MonoBehaviour
     public bool isDashingState = false;
     public bool isKnockbackedState = false;
     public bool isHealingState = false;
+    public bool isDeadState = false;
 
     [Header( "Skills" )]
 
@@ -41,6 +42,8 @@ public class PlayerState : MonoBehaviour
     private Vector2 currentPos;
     private Vector2 previousPos;
     [HideInInspector] public float lastTimeGrounded = 0f;
+    [HideInInspector] public Transform savePoint = null;
+    [HideInInspector] public Room room = null;
 
 
     private void Awake()

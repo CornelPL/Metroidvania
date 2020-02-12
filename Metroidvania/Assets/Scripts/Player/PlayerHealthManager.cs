@@ -11,14 +11,20 @@ public class PlayerHealthManager : MonoBehaviour
     [SerializeField] private float knockbackTime = 0.5f;
     [SerializeField] private float invulnerabilityTime = 1f;
     [SerializeField] private float healChargeTime = 1f;
+    [SerializeField] private int pointsPercentLoseOnDeath = 30;
     [SerializeField, MustBeAssigned] private Rigidbody2D _rigidbody = null;
+    [SerializeField, MustBeAssigned] private PolygonCollider2D _collider = null;
+    [SerializeField, MustBeAssigned] private PointsController pointsController = null;
     [SerializeField, MustBeAssigned] private Image[] barsBackgrounds = null;
     [SerializeField, MustBeAssigned] private Image[] bars = null;
+    [SerializeField, MustBeAssigned] private Image fadeImage = null;
+    [SerializeField] private float fadeTime = 1f;
 
     private InputController input;
     private PlayerState state;
     private int currentHP;
     private float healingTime = 0f;
+    private float t = 0f;
 
 
     private void Awake()
@@ -66,9 +72,56 @@ public class PlayerHealthManager : MonoBehaviour
     }
 
 
-    private void Death()
+    private IEnumerator Death()
     {
         Debug.Log( "DEAD" );
+        //yield return null;
+
+        SetDead( true );
+
+        pointsController.RemovePoints( pointsController.points * (pointsPercentLoseOnDeath / 100) );
+
+        // death particles
+
+        // Spawn those points on death point so player sees it (points flying from player)
+
+        t = 0f;
+        while ( t < fadeTime )
+        {
+            t += Time.deltaTime;
+            Color c = fadeImage.color;
+            fadeImage.color = new Color( c.r, c.g, c.b, Mathf.Clamp01( t ) );
+            yield return null;
+        }
+
+        transform.position = state.savePoint.position;
+        state.room.OnPlayerExit();
+
+        while ( t > 0f )
+        {
+            t -= Time.deltaTime;
+            Color c = fadeImage.color;
+            fadeImage.color = new Color( c.r, c.g, c.b, Mathf.Clamp01( t ) );
+            yield return null;
+        }
+
+        SetDead( false );
+    }
+
+
+    private void SetDead( bool b )
+    {
+        state.isDeadState = b;
+        _rigidbody.simulated = !b;
+        _collider.enabled = !b;
+        if ( b )
+        {
+            _rigidbody.velocity = Vector2.zero;
+        }
+        else
+        {
+            currentHP = maxHP;
+        }
     }
 
 
@@ -76,7 +129,7 @@ public class PlayerHealthManager : MonoBehaviour
     {
         if ( collision.gameObject.CompareTag( "Spikes" ) )
         {
-            Death();
+            StartCoroutine( Death() );
         }
     }
 
@@ -120,9 +173,9 @@ public class PlayerHealthManager : MonoBehaviour
 
         StartCoroutine( Knockback( xPos, knockbackMultiplier ) );
 
-        if ( currentHP < 0 )
+        if ( currentHP <= 0 )
         {
-            Death();
+            StartCoroutine( Death() );
         }
     }
 }

@@ -118,7 +118,7 @@ public class Telekinesis : MonoBehaviour
 
     private void Update()
     {
-        if ( TimeManager.instance.isGamePaused || state.isAttackingState )
+        if ( TimeManager.instance.isGamePaused || state.isAttackingState || state.isDeadState )
         {
             return;
         }

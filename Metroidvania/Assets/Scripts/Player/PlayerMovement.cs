@@ -46,6 +46,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if ( TimeManager.instance.isGamePaused || state.isDeadState )
+        {
+            return;
+        }
+
         if ( !state.isDashingState && !state.isSlammingState && !state.isKnockbackedState && !state.isHealingState )
         {
             CheckMovement();

@@ -81,7 +81,7 @@ public class PlayerHealthManager : MonoBehaviour
         int pointsLost = pointsController.points * pointsPercentLoseOnDeath / 100;
         pointsController.AddPoints( -pointsLost );
 
-        // death particles
+        // TODO: death particles
 
         Vector2 spawnPos = new Vector2( transform.position.x, transform.position.y + 1f );
         Instantiate( lostPoints, spawnPos, Quaternion.identity, null ).GetComponent<LostPoints>().points = pointsLost;

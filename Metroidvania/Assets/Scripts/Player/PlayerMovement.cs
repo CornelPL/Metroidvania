@@ -222,11 +222,11 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        state.isDashingState = false;
-        if ( state.isDashingState && state.hasUpgradedDash && collision.collider.CompareTag( "DestroyableWall" ) )
+        /*if ( state.isDashingState && state.hasUpgradedDash && collision.collider.CompareTag( "DestroyableWall" ) )
         {
             collision.collider.GetComponent<CustomDestroy>().Destroy();
         }
+        state.isDashingState = false;*/
     }
 
 

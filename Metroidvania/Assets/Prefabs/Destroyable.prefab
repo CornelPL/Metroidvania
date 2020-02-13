@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 2017084815067670717}
   - component: {fileID: 2017084815067670712}
   - component: {fileID: 2017084815067670719}
-  - component: {fileID: 2017084815067670716}
   - component: {fileID: 2017084815067670718}
   m_Layer: 12
   m_Name: Destroyable
-  m_TagString: Untagged
+  m_TagString: Destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017084815067670691}
-  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 44.836044, y: 13.674173, z: 1.0411773}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -48,6 +47,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -93,30 +93,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.3500004
---- !u!114 &2017084815067670716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2017084815067670691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5beb02e4155473441bfee2cc973ee02e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectsToInstantiate:
-  - {fileID: 6417654320457713547, guid: 33057ab5e8b0e0d47a77f04442e743c4, type: 3}
-  nMinObjects: 2
-  nMaxObjects: 5
-  minForce: 10
-  maxForce: 20
 --- !u!114 &2017084815067670718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,19 +111,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb150e4f3a4fbb64482a82e5b82dfdfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDestroy:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2017084815067670716}
-        m_MethodName: CustomDestroy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  destroyEffects: []
+  objectsToSpawnOnDestroy:
+  - {fileID: 3365028966441827137, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
+  numObjectsToSpawn:
+    Min: 3
+    Max: 10
+  inheritVelocity: 0
+  velocityPercentLoss: 80
+  minForce: 5
+  maxForce: 10
+  minAngle: 180
+  maxAngle: 360
+  spawnRange: {x: 0, y: 0}
+  minAngularVelocity: 0
+  maxAngularVelocity: 0

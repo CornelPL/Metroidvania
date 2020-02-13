@@ -47,6 +47,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -120,31 +121,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb150e4f3a4fbb64482a82e5b82dfdfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDestroy:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7198517643227437170}
-        m_MethodName: DestroyObject
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   destroyEffects: []
   objectsToSpawnOnDestroy:
   - {fileID: 889198975887940495, guid: f8d19b05942360b419279762745f63d9, type: 3}
-  - {fileID: 6536819811933395187, guid: 75b242375bd55a84a9c8614cc1b14b37, type: 3}
+  - {fileID: 542507678701872621, guid: 107640916ebda654192718ad431c38a6, type: 3}
   numObjectsToSpawn:
     Min: 2
-    Max: 5
-  spawnedItemVelocityLoss: 4
+    Max: 4
+  inheritVelocity: 1
+  velocityPercentLoss: 80
+  minForce: 10
+  maxForce: 20
+  minAngle: 180
+  maxAngle: 360
   spawnRange: {x: 1, y: 1}
-  angularVelocity:
-    Min: -355.40424
-    Max: 355.40424
+  minAngularVelocity: -360
+  maxAngularVelocity: 360

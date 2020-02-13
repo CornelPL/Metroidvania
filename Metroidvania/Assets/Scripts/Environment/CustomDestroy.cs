@@ -1,71 +1,84 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 using MyBox;
 
 public class CustomDestroy : MonoBehaviour
 {
-    [SerializeField] private UnityEvent OnDestroy = null;
     [SerializeField] private GameObject[] destroyEffects = null;
     [SerializeField] private GameObject[] objectsToSpawnOnDestroy = null;
-    [SerializeField, MinMaxRange(0, 10)] private RangedInt numObjectsToSpawn = new RangedInt(1, 3);
-    [SerializeField] private float spawnedItemVelocityLoss = 4f;
+    [SerializeField, MinMaxRange( 0, 20 )] private RangedInt numObjectsToSpawn = new RangedInt( 1, 3 );
+    [SerializeField] private bool inheritVelocity = false;
+    [SerializeField, ConditionalField( nameof( inheritVelocity ) )] private float velocityPercentLoss = 80f;
+    [SerializeField, ConditionalField( nameof( inheritVelocity ), true )] private float minForce = 10f;
+    [SerializeField, ConditionalField( nameof( inheritVelocity ), true )] private float maxForce = 20f;
+    [SerializeField, ConditionalField( nameof( inheritVelocity ), true )] private float minAngle = 180f;
+    [SerializeField, ConditionalField( nameof( inheritVelocity ), true )] private float maxAngle = 360f;
     [SerializeField] private Vector2 spawnRange = Vector2.zero;
-    [SerializeField, MinMaxRange( -1080f, 1080f )]
-    private RangedFloat angularVelocity = new RangedFloat(-360f, 360f);
+    [SerializeField] private float minAngularVelocity = 0f;
+    [SerializeField] private float maxAngularVelocity = 0f;
 
 
-    public void Destroy()
+    public void Destroy( Vector2 hitVelocity = default, Vector2 hitPosition = default )
     {
-        OnDestroy.Invoke();
+        SpawnDestroyEffects();
+
+        if ( objectsToSpawnOnDestroy.Length > 0 )
+        {
+            SpawnObjects( hitVelocity, hitPosition );
+        }
+
+        gameObject.SetActive( false );
     }
 
 
-    public void Destroy( Vector2 hitVelocity, Vector2 hitPosition = default )
+    private void SpawnObjects( Vector2 hitVelocity, Vector2 hitPosition )
     {
-        Destroy();
-
-        SpawnDestroyEffects();
-
-        if ( objectsToSpawnOnDestroy.Length == 0 )
-        {
-            return;
-        }
-
         int quantity = Random.Range( numObjectsToSpawn.Min, numObjectsToSpawn.Max );
 
-        for ( int a = 0; a < quantity; a++ )
+        for ( int i = 0; i < quantity; i++ )
         {
             int objectIndex = Random.Range( 0, objectsToSpawnOnDestroy.Length );
 
-            Vector3 tmpSpawnRange = transform.InverseTransformVector( spawnRange );
-            tmpSpawnRange.x = Random.Range( -tmpSpawnRange.x, tmpSpawnRange.x );
-            tmpSpawnRange.y = Random.Range( -tmpSpawnRange.y, tmpSpawnRange.y );
-
             Vector3 spawnPosition = hitPosition == Vector2.zero ? transform.position : (Vector3)hitPosition;
-            GameObject inst = Instantiate( objectsToSpawnOnDestroy[ objectIndex ], spawnPosition + tmpSpawnRange, transform.rotation );
+
+            if ( spawnRange != Vector2.zero )
+            {
+                Vector3 tmpSpawnRange = transform.InverseTransformVector( spawnRange );
+                tmpSpawnRange.x = Random.Range( -tmpSpawnRange.x, tmpSpawnRange.x );
+                tmpSpawnRange.y = Random.Range( -tmpSpawnRange.y, tmpSpawnRange.y );
+                spawnPosition += tmpSpawnRange;
+            }
+
+            GameObject inst = Instantiate( objectsToSpawnOnDestroy[ objectIndex ], spawnPosition, Quaternion.identity );
 
             Vector3 randomRotation = transform.eulerAngles;
             randomRotation.z = Random.Range( 0f, 360f );
             inst.transform.eulerAngles = randomRotation;
 
-            float velocityVariation = Random.Range( 0.7f, 1.3f );
-            inst.GetComponent<Rigidbody2D>().velocity = hitVelocity / spawnedItemVelocityLoss * velocityVariation;
-            inst.GetComponent<Rigidbody2D>().angularVelocity = Random.Range( angularVelocity.Min, angularVelocity.Max );
+            if ( inheritVelocity )
+            {
+                float velocityVariation = Random.Range( 0.7f, 1.3f );
+                inst.GetComponent<Rigidbody2D>().velocity = hitVelocity * velocityPercentLoss / 100f * velocityVariation;
+            }
+            else
+            {
+                float force = Random.Range( minForce, maxForce );
+                float angle = Random.Range( minAngle, maxAngle );
+                Vector2 direction = MyMath.Angles.AngleToVector2( angle );
+                direction = transform.TransformDirection( direction );
+
+                inst.GetComponent<Rigidbody2D>().AddForce( direction * force, ForceMode2D.Impulse );
+            }
+
+            inst.GetComponent<Rigidbody2D>().angularVelocity = Random.Range( minAngularVelocity, maxAngularVelocity );
         }
     }
 
 
-    public void DestroyObject()
-    {
-        Destroy( gameObject );
-    }
-
-
-    public void SpawnDestroyEffects()
+    private void SpawnDestroyEffects()
     {
         for ( int i = 0; i < destroyEffects.Length; i++ )
         {
-            GameObject inst = Instantiate( destroyEffects[ i ], transform.position, transform.rotation );
+            GameObject inst = Instantiate( destroyEffects[ i ], transform.position, transform.rotation, null );
         }
     }
 }

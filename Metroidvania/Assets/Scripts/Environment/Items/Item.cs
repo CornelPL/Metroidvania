@@ -127,6 +127,10 @@ public class Item : MonoBehaviour
         {
             go.GetComponent<CustomDestroy>().Destroy( _rigidbody.velocity, transform.position );
         }
+        else if ( go.CompareTag( "Destroyable" ) )
+        {
+            go.GetComponent<CustomDestroy>().Destroy();
+        }
     }
 
 

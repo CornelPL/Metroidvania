@@ -19,6 +19,7 @@ TagManager:
   - Platform
   - Boundary
   - Point
+  - Destroyable
   layers:
   - Default
   - TransparentFX

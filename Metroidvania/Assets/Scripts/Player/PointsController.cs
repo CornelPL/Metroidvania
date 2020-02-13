@@ -3,15 +3,30 @@ using TMPro;
 
 public class PointsController : MonoBehaviour
 {
+    public static PointsController instance = null;
+
     [SerializeField] private TextMeshProUGUI pointsText = null;
 
     [HideInInspector] public int points = 0;
 
 
-    public void RemovePoints( int count )
+    public void AddPoints( int count )
     {
-        points -= count;
+        points += count;
         UpdatePoints();
+    }
+
+
+    private void Awake()
+    {
+        if ( instance == null )
+        {
+            instance = this;
+        }
+        else if ( instance != this )
+        {
+            Destroy( this );
+        }
     }
 
 

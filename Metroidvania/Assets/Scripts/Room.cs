@@ -32,14 +32,20 @@ public class Room : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D( Collider2D collision )
+    private void OnTriggerEnter2D( Collider2D collider )
     {
-        OnPlayerEnter();
+        if ( collider.CompareTag( "Player" ) )
+        {
+            OnPlayerEnter();
+        }
     }
 
 
-    private void OnTriggerExit2D( Collider2D collision )
+    private void OnTriggerExit2D( Collider2D collider )
     {
-        OnPlayerExit();
+        if ( collider.CompareTag( "Player" ) )
+        {
+            OnPlayerExit();
+        }
     }
 }

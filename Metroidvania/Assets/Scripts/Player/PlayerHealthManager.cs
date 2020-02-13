@@ -14,7 +14,7 @@ public class PlayerHealthManager : MonoBehaviour
     [SerializeField] private int pointsPercentLoseOnDeath = 30;
     [SerializeField, MustBeAssigned] private Rigidbody2D _rigidbody = null;
     [SerializeField, MustBeAssigned] private PolygonCollider2D _collider = null;
-    [SerializeField, MustBeAssigned] private PointsController pointsController = null;
+    [SerializeField, MustBeAssigned] private GameObject lostPoints = null;
     [SerializeField, MustBeAssigned] private Image[] barsBackgrounds = null;
     [SerializeField, MustBeAssigned] private Image[] bars = null;
     [SerializeField, MustBeAssigned] private Image fadeImage = null;
@@ -22,6 +22,7 @@ public class PlayerHealthManager : MonoBehaviour
 
     private InputController input;
     private PlayerState state;
+    private PointsController pointsController;
     private int currentHP;
     private float healingTime = 0f;
     private float t = 0f;
@@ -39,6 +40,7 @@ public class PlayerHealthManager : MonoBehaviour
     {
         input = InputController.instance;
         state = PlayerState.instance;
+        pointsController = PointsController.instance;
     }
 
 
@@ -74,16 +76,15 @@ public class PlayerHealthManager : MonoBehaviour
 
     private IEnumerator Death()
     {
-        Debug.Log( "DEAD" );
-        //yield return null;
-
         SetDead( true );
 
-        pointsController.RemovePoints( pointsController.points * (pointsPercentLoseOnDeath / 100) );
+        int pointsLost = pointsController.points * pointsPercentLoseOnDeath / 100;
+        pointsController.AddPoints( -pointsLost );
 
         // death particles
 
-        // Spawn those points on death point so player sees it (points flying from player)
+        Vector2 spawnPos = new Vector2( transform.position.x, transform.position.y + 1f );
+        Instantiate( lostPoints, spawnPos, Quaternion.identity, null ).GetComponent<LostPoints>().points = pointsLost;
 
         t = 0f;
         while ( t < fadeTime )

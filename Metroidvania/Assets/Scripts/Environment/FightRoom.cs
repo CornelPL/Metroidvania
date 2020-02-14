@@ -6,9 +6,9 @@ public class FightRoom : Room
     [SerializeField] private int enemiesCount = 5;
 
 
-    public override void OnPlayerEnter()
+    public override void OnPlayerEnter( GameObject player )
     {
-        base.OnPlayerEnter();
+        base.OnPlayerEnter( player );
 
         for ( int i = 0; i < doors.Length; i++ )
         {

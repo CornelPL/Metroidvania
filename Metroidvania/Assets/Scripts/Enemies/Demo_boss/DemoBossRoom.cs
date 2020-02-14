@@ -11,7 +11,7 @@ public class Enemy
 }
 
 
-public class DemoBossRoom : MonoBehaviour
+public class DemoBossRoom : Room
 {
     [Separator("Enemies")]
     [SerializeField] private int minEnemiesSpawn = 2;
@@ -36,6 +36,17 @@ public class DemoBossRoom : MonoBehaviour
 
     private List<List<GameObject>> currentEnemies = new List<List<GameObject>>();
     private Vector2 pos;
+
+
+    public override void OnPlayerEnter( GameObject player )
+    {
+        base.OnPlayerEnter( player );
+
+        // TODO: spawn boss
+        boss.gameObject.SetActive( true );
+
+        boss.AssignPlayer( player.transform );
+    }
 
 
     public void Earthquake()

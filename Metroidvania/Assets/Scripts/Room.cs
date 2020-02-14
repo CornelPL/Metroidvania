@@ -11,7 +11,7 @@ public class Room : MonoBehaviour
     private bool isPlayerInRoom = false;
 
 
-    public virtual void OnPlayerEnter()
+    public virtual void OnPlayerEnter( GameObject player )
     {
         if ( isPlayerInRoom ) return;
 
@@ -36,7 +36,7 @@ public class Room : MonoBehaviour
     {
         if ( collider.CompareTag( "Player" ) )
         {
-            OnPlayerEnter();
+            OnPlayerEnter( collider.gameObject );
         }
     }
 

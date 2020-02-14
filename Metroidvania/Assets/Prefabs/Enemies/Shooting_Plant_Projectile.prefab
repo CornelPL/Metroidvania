@@ -4913,7 +4913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f84c5540758f1e947b8e3d5e1a08404f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 1
   counterattackChance: 100
   counterAttackDist: 4
   playerLayerMask:

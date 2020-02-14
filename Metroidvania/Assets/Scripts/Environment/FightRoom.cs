@@ -17,9 +17,9 @@ public class FightRoom : Room
     }
 
 
-    public override void OnPlayerExit()
+    public override void OnPlayerDeath()
     {
-        base.OnPlayerExit();
+        base.OnPlayerDeath();
 
         for ( int i = 0; i < doors.Length; i++ )
         {

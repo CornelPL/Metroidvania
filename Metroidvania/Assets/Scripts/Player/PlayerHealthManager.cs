@@ -96,7 +96,7 @@ public class PlayerHealthManager : MonoBehaviour
         }
 
         transform.position = state.savePoint.position;
-        state.room.OnPlayerExit();
+        state.room.OnPlayerDeath();
 
         while ( t > 0f )
         {

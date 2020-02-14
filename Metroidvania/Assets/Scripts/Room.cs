@@ -32,6 +32,12 @@ public class Room : MonoBehaviour
     }
 
 
+    public virtual void OnPlayerDeath()
+    {
+        OnPlayerExit();
+    }
+
+
     private void OnTriggerEnter2D( Collider2D collider )
     {
         if ( collider.CompareTag( "Player" ) )

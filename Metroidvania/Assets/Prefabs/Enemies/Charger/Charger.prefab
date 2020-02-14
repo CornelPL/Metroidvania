@@ -202,11 +202,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  sightRange: 12
-  movementSpeed: 2
-  chargeSpeed: 15
+  sightRange: 14
   playerKnockbackMultiplier: 2
-  stunTime: 2.5
+  breathEffectSpawnChance: 30
   sightOffset: {x: 0, y: 0.7}
   playerLayerMask:
     serializedVersion: 2
@@ -215,7 +213,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4539648
   animator: {fileID: 4891185637045821450}
-  _rigidbody: {fileID: 4173082080487236797}
   healthManager: {fileID: 4173082080487236799}
   breathEffect: {fileID: 4995222553929328711, guid: 55448da5eabb39b4084e13b85622b9f9,
     type: 3}
@@ -226,6 +223,7 @@ MonoBehaviour:
   deathPartsForce: 20
   torqueOnDeath: 1
   direction: 1
+  isCharging: 0
 --- !u!114 &4173082080487236799
 MonoBehaviour:
   m_ObjectHideFlags: 0

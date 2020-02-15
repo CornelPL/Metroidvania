@@ -5,10 +5,14 @@ public class FightRoom : Room
     [SerializeField] private Door[] doors = null;
     [SerializeField] private int enemiesCount = 5;
 
+    private bool isRoomPassed = false;
+
 
     public override void OnPlayerEnter( GameObject player )
     {
         base.OnPlayerEnter( player );
+
+        if ( isRoomPassed ) return;
 
         for ( int i = 0; i < doors.Length; i++ )
         {
@@ -37,6 +41,8 @@ public class FightRoom : Room
             {
                 doors[ i ].Open();
             }
+
+            isRoomPassed = true;
         }
     }
 }

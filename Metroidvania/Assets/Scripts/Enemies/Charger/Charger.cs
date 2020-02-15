@@ -57,8 +57,9 @@ public class Charger : MonoBehaviour
 
             inst.AddTorque( torqueOnDeath, ForceMode2D.Impulse );
 
-            Destroy( gameObject );
         }
+
+        gameObject.SetActive( false );
     }
 
 
@@ -121,6 +122,10 @@ public class Charger : MonoBehaviour
         else if ( collision.collider.CompareTag( "Wall" ) )
         {
             SetDirection( -direction );
+        }
+        else if ( collision.collider.CompareTag( "Spikes" ) )
+        {
+            OnDeath();
         }
 
         healthManager.isBeingKnockbacked = false;

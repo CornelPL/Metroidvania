@@ -34,7 +34,7 @@ public class Walker_Horizontal : MonoBehaviour
         float moveDirection = Mathf.Sign( _rigidbody.velocity.x );
         inst.AddTorque( torqueOnDeath * moveDirection, ForceMode2D.Impulse );
 
-        Destroy( gameObject );
+        gameObject.SetActive( false );
     }
 
 
@@ -84,6 +84,10 @@ public class Walker_Horizontal : MonoBehaviour
         if ( collision.collider.CompareTag( "Wall" ) )
         {
             ChangeDirection();
+        }
+        else if ( collision.collider.CompareTag( "Spikes" ) )
+        {
+            OnDeath();
         }
 
         if ( healthManager.isBeingKnockbacked )

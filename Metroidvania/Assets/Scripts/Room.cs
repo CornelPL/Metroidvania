@@ -6,6 +6,8 @@ public class Room : MonoBehaviour
 {
     [SerializeField] private bool setSavePoint = false;
     [SerializeField, ConditionalField( nameof( setSavePoint ) )] private Transform savePoint = null;
+    [SerializeField] private bool isBlacked = false;
+    [SerializeField, ConditionalField( nameof( isBlacked ) )] private Transform black = null;
 
 
     private bool isPlayerInRoom = false;
@@ -22,6 +24,12 @@ public class Room : MonoBehaviour
         if ( setSavePoint )
         {
             PlayerState.instance.savePoint = savePoint;
+        }
+
+        if ( isBlacked )
+        {
+            black.GetComponent<AutoColor>().FadeOut();
+            isBlacked = false;
         }
     }
 

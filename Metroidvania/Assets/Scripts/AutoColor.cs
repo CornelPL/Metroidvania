@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using MyBox;
 using UnityEngine.UI;
+using UnityEngine.U2D;
 
 public class AutoColor : MonoBehaviour
 {
@@ -20,10 +21,12 @@ public class AutoColor : MonoBehaviour
     [SerializeField] private bool fadeOnStart = false;
     [SerializeField] private bool autoFadeOut = false;
     [SerializeField] private bool isImage = false;
+    [SerializeField] private bool isSpriteShape = false;
     [SerializeField] private bool destroyOnEnd = false;
 
 
-    private SpriteRenderer _renderer;
+    private SpriteRenderer SRenderer;
+    private SpriteShapeRenderer SSRenderer;
     private Image _image;
 
 
@@ -33,9 +36,13 @@ public class AutoColor : MonoBehaviour
         {
             _image = GetComponent<Image>();
         }
+        else if ( isSpriteShape )
+        {
+            SSRenderer = GetComponent<SpriteShapeRenderer>();
+        }
         else
         {
-            _renderer = GetComponent<SpriteRenderer>();
+            SRenderer = GetComponent<SpriteRenderer>();
         }
 
         if ( fadeOnStart )
@@ -70,12 +77,19 @@ public class AutoColor : MonoBehaviour
             tween = LeanTween.value( gameObject, minFadeInA, maxFadeInA, fadeInTime )
                 .setOnUpdate( ( float v ) => { _image.color = new Color( imageColor.r, imageColor.g, imageColor.b, v ); } );
         }
-        else
+        else if ( isSpriteShape )
         {
-            Color rendererColor = _renderer.color;
+            Color rendererColor = SSRenderer.color;
 
             tween = LeanTween.value( gameObject, minFadeInA, maxFadeInA, fadeInTime )
-                .setOnUpdate( ( float v ) => { _renderer.color = new Color( rendererColor.r, rendererColor.g, rendererColor.b, v ); } );
+                .setOnUpdate( ( float v ) => { SSRenderer.color = new Color( rendererColor.r, rendererColor.g, rendererColor.b, v ); } );
+        }
+        else
+        {
+            Color rendererColor = SRenderer.color;
+
+            tween = LeanTween.value( gameObject, minFadeInA, maxFadeInA, fadeInTime )
+                .setOnUpdate( ( float v ) => { SRenderer.color = new Color( rendererColor.r, rendererColor.g, rendererColor.b, v ); } );
         }
 
         if ( fadeOut && autoFadeOut )
@@ -100,12 +114,19 @@ public class AutoColor : MonoBehaviour
             tween = LeanTween.value( gameObject, maxFadeOutA, minFadeOutA, fadeOutTime )
                 .setOnUpdate( ( float v ) => { _image.color = new Color( imageColor.r, imageColor.g, imageColor.b, v ); } );
         }
-        else
+        else if ( isSpriteShape )
         {
-            Color rendererColor = _renderer.color;
+            Color rendererColor = SSRenderer.color;
 
             tween = LeanTween.value( gameObject, maxFadeOutA, minFadeOutA, fadeOutTime )
-                .setOnUpdate( ( float v ) => { _renderer.color = new Color( rendererColor.r, rendererColor.g, rendererColor.b, v ); } );
+                .setOnUpdate( ( float v ) => { SSRenderer.color = new Color( rendererColor.r, rendererColor.g, rendererColor.b, v ); } );
+        }
+        else
+        {
+            Color rendererColor = SRenderer.color;
+
+            tween = LeanTween.value( gameObject, maxFadeOutA, minFadeOutA, fadeOutTime )
+                .setOnUpdate( ( float v ) => { SRenderer.color = new Color( rendererColor.r, rendererColor.g, rendererColor.b, v ); } );
         }
 
         if ( destroyOnEnd )

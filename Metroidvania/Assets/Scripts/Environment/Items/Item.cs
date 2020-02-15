@@ -129,7 +129,7 @@ public class Item : MonoBehaviour
         }
         else if ( go.CompareTag( "Destroyable" ) )
         {
-            go.GetComponent<CustomDestroy>().Destroy();
+            go.GetComponent<Destroyable>().GetHit();
         }
     }
 

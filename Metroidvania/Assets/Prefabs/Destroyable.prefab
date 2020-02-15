@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2017084815067670717}
   - component: {fileID: 2017084815067670712}
   - component: {fileID: 2017084815067670719}
-  - component: {fileID: 2017084815067670718}
+  - component: {fileID: 1209179787146944574}
   m_Layer: 12
   m_Name: Destroyable
   m_TagString: Destroyable
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2017084815067670712
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -99,7 +99,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.3500004
---- !u!114 &2017084815067670718
+--- !u!114 &1209179787146944574
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,21 +108,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2017084815067670691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb150e4f3a4fbb64482a82e5b82dfdfe, type: 3}
+  m_Script: {fileID: 11500000, guid: 65d82c04df8b05a4f910f5a3077af500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyEffects: []
-  objectsToSpawnOnDestroy:
-  - {fileID: 3365028966441827137, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
-  numObjectsToSpawn:
-    Min: 3
-    Max: 10
-  inheritVelocity: 0
-  velocityPercentLoss: 80
+  health: 3
+  minPointsToSpawn: 3
+  maxPointsToSpawn: 8
   minForce: 5
   maxForce: 10
   minAngle: 180
   maxAngle: 360
-  spawnRange: {x: 0, y: 0}
-  minAngularVelocity: 0
-  maxAngularVelocity: 0
+  point: {fileID: 3365028966441827137, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
+  getHitEffects: []
+  destroyEffects: []
+  sprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  spriteRenderer: {fileID: 2017084815067670712}

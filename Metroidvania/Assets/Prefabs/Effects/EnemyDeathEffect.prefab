@@ -9737,14 +9737,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LightType: 3
-  m_BlendStyleIndex: 0
+  m_BlendStyleIndex: 1
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.71467304, g: 0.31585974, b: 0.735849, a: 1}
-  m_Intensity: 2
-  m_LightVolumeOpacity: 1
-  m_ApplyToSortingLayers: 00000000d75abb4b
+  m_Color: {r: 1, g: 0.4575472, b: 0.9715917, a: 1}
+  m_Intensity: 0
+  m_LightVolumeOpacity: 0.05
+  m_ApplyToSortingLayers: 00000000d75abb4be5af804cc9167502
   m_LightCookieSprite: {fileID: 0}
-  m_UseNormalMap: 0
+  m_UseNormalMap: 1
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
   m_ShadowIntensity: 0
@@ -9752,9 +9752,9 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 2
-  m_PointLightDistance: 0
-  m_PointLightQuality: 0
+  m_PointLightOuterRadius: 0
+  m_PointLightDistance: 0.5
+  m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -9778,14 +9778,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light: {fileID: 4150075052382019955}
-  fadeIn: 0
-  fadeInTime: 1
-  fadeInOuterRadius: 0
+  fadeIn: 1
+  fadeInTime: 0.05
+  fadeInOuterRadius: 1
   minInOuterRadius: 0
-  maxInOuterRadius: 10
-  fadeInIntensity: 0
+  maxInOuterRadius: 8
+  fadeInIntensity: 1
   minInIntensity: 0
-  maxInIntensity: 10
+  maxInIntensity: 3
   fadeOut: 1
   fadeOutTime: 0.5
   fadeOutOuterRadius: 0
@@ -9793,7 +9793,7 @@ MonoBehaviour:
   maxOutOuterRadius: 10
   fadeOutIntensity: 1
   minOutIntensity: 0
-  maxOutIntensity: 2
+  maxOutIntensity: 3
   fadeOnStart: 1
   destroyOnEnd: 0
 --- !u!1 &4150075052483052455

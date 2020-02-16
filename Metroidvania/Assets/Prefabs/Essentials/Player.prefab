@@ -1187,6 +1187,7 @@ GameObject:
   - component: {fileID: 3432850370135696382}
   - component: {fileID: 5845602597293220103}
   - component: {fileID: 999434323144951175}
+  - component: {fileID: 6848133438918338375}
   m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
@@ -1296,6 +1297,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5845602597293220103}
+--- !u!114 &6848133438918338375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5378617878819047141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313340383f7d3b64990c3452fae1dad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   stepEffectSpawnPoint: {fileID: 949897202902543487}
   stepEffectsBase:
   - {fileID: 5434386557240064105}

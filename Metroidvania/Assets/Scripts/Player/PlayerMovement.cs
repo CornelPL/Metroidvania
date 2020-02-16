@@ -38,6 +38,18 @@ public class PlayerMovement : MonoBehaviour
     private int LeanTweenID = -1;
 
 
+    public void OnGrounded( GameObject go = null )
+    {
+        doubleJumped = false;
+        dashedInAir = false;
+
+        if ( state.isSlammingState )
+        {
+            slam.OnSlamEnd( go );
+        }
+    }
+
+
     private void Start()
     {
         input = InputController.instance;
@@ -285,18 +297,6 @@ public class PlayerMovement : MonoBehaviour
         if ( collider.CompareTag( "Trigger" ) )
         {
             canDashLeft = canDashRight = false;
-        }
-    }
-
-
-    public void OnGrounded( GameObject go = null )
-    {
-        doubleJumped = false;
-        dashedInAir = false;
-
-        if ( state.isSlammingState )
-        {
-            slam.OnSlamEnd( go );
         }
     }
 }

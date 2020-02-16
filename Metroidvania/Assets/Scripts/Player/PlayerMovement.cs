@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -10,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpSpeed = 20f;
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private float maxFallingSpeed = 50f;
+    [SerializeField] private GameObject[] jumpEffectsBase = null;
 
     [Header( "Dash" )]
     [SerializeField] private float dashSpeed = 10f;
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashingThroughWall = false;
     private bool isDashingRight = false;
     private bool dashedInAir = false;
+    private Queue<GameObject> jumpEffects = new Queue<GameObject>();
 
 
     private int LeanTweenID = -1;
@@ -41,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
         state = PlayerState.instance;
 
         slamSpeed = slam.slamSpeed;
+
+        for ( int i = 0; i < jumpEffectsBase.Length; i++ )
+        {
+            jumpEffects.Enqueue( jumpEffectsBase[ i ] );
+        }
     }
 
 
@@ -126,12 +134,14 @@ public class PlayerMovement : MonoBehaviour
             if ( state.isGroundedState || (Time.time - state.lastTimeGrounded < coyoteTime) )
             {
                 state.SetJumpingState();
+                SpawnJumpEffect();
 
                 verticalSpeed = jumpSpeed;
             }
             else if ( (state.isJumpingState || state.isFallingState) && state.hasDoubleJump && !doubleJumped )
             {
                 state.SetJumpingState();
+                SpawnJumpEffect();  // TODO: może bez GroundSmoke
 
                 if ( LeanTweenID > 0 && LeanTween.isTweening( LeanTweenID ) )
                 {
@@ -148,6 +158,14 @@ public class PlayerMovement : MonoBehaviour
                 .setOnUpdate( ( float v ) => { verticalSpeed = v; } )
                 .setOnComplete( () => { LeanTweenID = -1; } ).id;
         }
+    }
+
+
+    private void SpawnJumpEffect()
+    {
+        GameObject jumpEffect = jumpEffects.Dequeue();
+        jumpEffect.SetActive( true );
+        jumpEffects.Enqueue( jumpEffect );
     }
 
 

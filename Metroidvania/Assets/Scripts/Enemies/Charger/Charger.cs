@@ -12,7 +12,8 @@ public class Charger : MonoBehaviour
     [SerializeField] private LayerMask playerLayerMask = 0;
     [SerializeField] private LayerMask playerAndObstaclesLayerMask = 0;
     [SerializeField, MustBeAssigned] private Animator animator = null;
-    [SerializeField, MustBeAssigned] private EnemyHealthManager healthManager = null;
+    [SerializeField, MustBeAssigned] private GameObject hitWallEffect = null;
+    [SerializeField] private Vector2 hitWallEffectPos = Vector2.zero;
     [SerializeField, MustBeAssigned] private ParticleSystem breathEffect = null;
     [SerializeField, MustBeAssigned] private Vector2 breathEffectPosition = Vector2.zero;
     [SerializeField, MustBeAssigned] private List<GameObject> deathParts = null;
@@ -113,11 +114,15 @@ public class Charger : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D( Collision2D collision )
     {
         if ( isCharging )
         {
             animator.SetBool( "isStunned", true );
+
+            float angle = direction == 1 ? 180f : 0f;
+            Vector2 pos = new Vector2( hitWallEffectPos.x * direction, hitWallEffectPos.y );
+            Instantiate( hitWallEffect, (Vector2)transform.position + pos, Quaternion.AngleAxis( angle, Vector3.forward ), null );
         }
         else if ( collision.collider.CompareTag( "Wall" ) )
         {
@@ -127,8 +132,6 @@ public class Charger : MonoBehaviour
         {
             OnDeath();
         }
-
-        healthManager.isBeingKnockbacked = false;
     }
 
 
@@ -148,6 +151,6 @@ public class Charger : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawRay( (Vector2)transform.position + sightOffset, new Vector2(direction * sightRange, 0f));
+        Gizmos.DrawRay( (Vector2)transform.position + sightOffset, new Vector2( direction * sightRange, 0f ) );
     }
 }

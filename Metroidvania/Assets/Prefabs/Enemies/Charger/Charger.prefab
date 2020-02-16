@@ -247,7 +247,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4539648
   animator: {fileID: 4891185637045821450}
-  healthManager: {fileID: 4173082080487236799}
+  hitWallEffect: {fileID: 454710610316552961, guid: 412e06fccff6cc441a01baa7f7aac0bd,
+    type: 3}
+  hitWallEffectPos: {x: 0.95, y: 0.6}
   breathEffect: {fileID: 4995222553929328711, guid: 55448da5eabb39b4084e13b85622b9f9,
     type: 3}
   breathEffectPosition: {x: -1.2, y: 0.3}

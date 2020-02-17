@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using MyBox;
 
 public class PlayerState : MonoBehaviour
 {
@@ -37,6 +38,8 @@ public class PlayerState : MonoBehaviour
     [SerializeField] private AutoColor shieldColor = null;
     [SerializeField] private Transform holdingItemPosition = null;
     [SerializeField] private Animator animator = null;
+    [SerializeField, Layer] private int invulnerableLayer = 0;
+    [SerializeField, Layer] private int normalLayer = 0;
 
 
     private Vector2 currentPos;
@@ -108,7 +111,8 @@ public class PlayerState : MonoBehaviour
             yield return new WaitForSeconds( shieldColor.fadeOutTime );
         }
 
-        normalCollider.enabled = !b;
+        normalCollider.gameObject.layer = b ? invulnerableLayer : normalLayer;
+        //normalCollider.enabled = !b;
         invulnerableCollider.enabled =  b;
     }
 

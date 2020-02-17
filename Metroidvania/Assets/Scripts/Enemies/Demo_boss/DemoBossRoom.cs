@@ -32,6 +32,7 @@ public class DemoBossRoom : Room
     [SerializeField] private Transform spawnPoint2 = null;
     [SerializeField] private GameObject spike = null;
     [SerializeField] private DemoBoss boss = null;
+    [SerializeField] private GameObject wall = null;
 
 
     private List<List<GameObject>> currentEnemies = new List<List<GameObject>>();
@@ -42,10 +43,22 @@ public class DemoBossRoom : Room
     {
         base.OnPlayerEnter( player );
 
-        // TODO: spawn boss
+        // TODO: spawn boss and wall anim or sth
         boss.gameObject.SetActive( true );
+        wall.SetActive( true );
 
         boss.AssignPlayer( player.transform );
+    }
+
+
+    public override void OnPlayerExit()
+    {
+        base.OnPlayerExit();
+
+        boss.Restart();
+
+        boss.gameObject.SetActive( false );
+        wall.SetActive( false );
     }
 
 

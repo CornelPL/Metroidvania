@@ -4,7 +4,7 @@ using UnityEngine.Events;
 abstract public class HealthManager : MonoBehaviour
 {
     [SerializeField] protected float pointsDropForce = 10f;
-    [SerializeField] protected int initialHP = 100;
+    public int initialHP = 100;
     [SerializeField] protected GameObject point = null;
     [SerializeField] protected int minPoints = 0;
     [SerializeField] protected int maxPoints = 5;

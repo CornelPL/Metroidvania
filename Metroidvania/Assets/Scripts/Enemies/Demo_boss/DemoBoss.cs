@@ -45,6 +45,20 @@ public class DemoBoss : MonoBehaviour
     private int phase = 1;
 
 
+    public void Restart()
+    {
+        healthManager.currentHP = healthManager.initialHP;
+        wasShooting = false;
+        currentSequence = 0;
+        isCharging = false;
+        isMoving = false;
+        idleTime = 0f;
+        phase = 1;
+
+        _animator.Play( "Demo_boss_idle_left" );
+    }
+
+
     public void IncreasePhase()
     {
         phase++;

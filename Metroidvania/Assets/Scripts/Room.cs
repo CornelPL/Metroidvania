@@ -48,7 +48,7 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter2D( Collider2D collider )
     {
-        if ( collider.CompareTag( "Player" ) )
+        if ( collider.CompareTag( "Player" ) && collider.name != "Shield" )
         {
             OnPlayerEnter( collider.gameObject );
         }
@@ -57,7 +57,7 @@ public class Room : MonoBehaviour
 
     private void OnTriggerExit2D( Collider2D collider )
     {
-        if ( collider.CompareTag( "Player" ) )
+        if ( collider.CompareTag( "Player" ) && collider.name != "Shield" )
         {
             OnPlayerExit();
         }

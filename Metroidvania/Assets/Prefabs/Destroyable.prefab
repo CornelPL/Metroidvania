@@ -122,6 +122,6 @@ MonoBehaviour:
   getHitEffects: []
   destroyEffects: []
   sprites:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 922b91e75dc0fd740b6b344111502454, type: 3}
+  - {fileID: 21300000, guid: 922b91e75dc0fd740b6b344111502454, type: 3}
   spriteRenderer: {fileID: 2017084815067670712}

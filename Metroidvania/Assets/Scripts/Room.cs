@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using MyBox;
+using UnityEngine.Events;
 
 [RequireComponent( typeof( PolygonCollider2D ) )]
 public class Room : MonoBehaviour
@@ -8,6 +9,7 @@ public class Room : MonoBehaviour
     [SerializeField, ConditionalField( nameof( setSavePoint ) )] private Transform savePoint = null;
     [SerializeField] private bool isBlacked = false;
     [SerializeField, ConditionalField( nameof( isBlacked ) )] private Transform black = null;
+    [SerializeField] private UnityEvent OnExit = null;
 
 
     private bool isPlayerInRoom = false;
@@ -37,6 +39,8 @@ public class Room : MonoBehaviour
     public virtual void OnPlayerExit()
     {
         isPlayerInRoom = false;
+
+        OnExit.Invoke();
     }
 
 

@@ -4763,6 +4763,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4862,6 +4863,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4980,21 +4982,7 @@ MonoBehaviour:
   itemHighlight: {fileID: 3672287663949321903}
   baseDamage: 10
   knockbackForce: 100
-  OnStartPulling:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnPullingCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnRelease:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  isSpawned: 0
 --- !u!1 &8773064680071665000
 GameObject:
   m_ObjectHideFlags: 0
@@ -9700,6 +9688,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9755,16 +9744,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6417654320457713543}
     m_Modifications:
-    - target: {fileID: 842172234368831388, guid: 1777696c5f0cadc47a65a707fe825ad4,
-        type: 3}
-      propertyPath: m_Name
-      value: ItemHighlight
-      objectReference: {fileID: 0}
-    - target: {fileID: 842172234368831388, guid: 1777696c5f0cadc47a65a707fe825ad4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 842172234368831387, guid: 1777696c5f0cadc47a65a707fe825ad4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9818,6 +9797,16 @@ PrefabInstance:
     - target: {fileID: 842172234368831387, guid: 1777696c5f0cadc47a65a707fe825ad4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 842172234368831388, guid: 1777696c5f0cadc47a65a707fe825ad4,
+        type: 3}
+      propertyPath: m_Name
+      value: ItemHighlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 842172234368831388, guid: 1777696c5f0cadc47a65a707fe825ad4,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

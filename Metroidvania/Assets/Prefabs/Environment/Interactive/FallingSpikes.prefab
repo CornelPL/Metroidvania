@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42dea2b621f1492489a3a4c9537eccad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 1
   gravityScale: 4
   fallDelay: 0.5
   _rigidbody: {fileID: 8799853118207417109}

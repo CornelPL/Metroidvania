@@ -146,7 +146,7 @@ public class DemoBossRoom : Room
         {
             for ( int j = 0; j < currentEnemies[ i ].Count; j++ )
             {
-                if ( currentEnemies[ i ][ j ] != null )
+                if ( currentEnemies[ i ][ j ].activeSelf)
                 {
                     count++;
                 }

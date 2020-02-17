@@ -49,6 +49,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -149,21 +150,6 @@ MonoBehaviour:
   itemHighlight: {fileID: 6865195647261706837}
   baseDamage: 10
   knockbackForce: 100
-  OnStartPulling:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnPullingCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnRelease:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   isSpawned: 0
 --- !u!1001 &6118681320762099145
 PrefabInstance:
@@ -172,16 +158,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2148363521108985040}
     m_Modifications:
-    - target: {fileID: 842172234368831388, guid: 1777696c5f0cadc47a65a707fe825ad4,
+    - target: {fileID: 842172234368831384, guid: 1777696c5f0cadc47a65a707fe825ad4,
         type: 3}
-      propertyPath: m_Name
-      value: ItemHighlight
+      propertyPath: m_Intensity
+      value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 842172234368831388, guid: 1777696c5f0cadc47a65a707fe825ad4,
+    - target: {fileID: 842172234368831384, guid: 1777696c5f0cadc47a65a707fe825ad4,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: m_LightCookieSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a6ef11749eafcc54d90023a37413903c,
+        type: 3}
+    - target: {fileID: 842172234368831386, guid: 1777696c5f0cadc47a65a707fe825ad4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a6ef11749eafcc54d90023a37413903c,
+        type: 3}
     - target: {fileID: 842172234368831387, guid: 1777696c5f0cadc47a65a707fe825ad4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -237,20 +230,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 842172234368831386, guid: 1777696c5f0cadc47a65a707fe825ad4,
+    - target: {fileID: 842172234368831388, guid: 1777696c5f0cadc47a65a707fe825ad4,
+        type: 3}
+      propertyPath: m_Name
+      value: ItemHighlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 842172234368831388, guid: 1777696c5f0cadc47a65a707fe825ad4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1532578006444518418, guid: 1777696c5f0cadc47a65a707fe825ad4,
         type: 3}
       propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: a6ef11749eafcc54d90023a37413903c,
-        type: 3}
-    - target: {fileID: 842172234368831384, guid: 1777696c5f0cadc47a65a707fe825ad4,
-        type: 3}
-      propertyPath: m_Intensity
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 842172234368831384, guid: 1777696c5f0cadc47a65a707fe825ad4,
-        type: 3}
-      propertyPath: m_LightCookieSprite
       value: 
       objectReference: {fileID: 21300000, guid: a6ef11749eafcc54d90023a37413903c,
         type: 3}

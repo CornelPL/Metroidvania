@@ -46,6 +46,12 @@ public class PlayerHealthManager : MonoBehaviour
 
     private void Update()
     {
+        // TODO: LATER: DELETE
+        if ( Input.GetKeyDown( KeyCode.R ) )
+        {
+            StartCoroutine( Death() );
+        }
+
         if ( input.healDown && EnergyController.instance.isContainerFull && currentHP < maxHP && state.isGroundedState && !state.isRunningState && !state.isKnockbackedState )
         {
             state.isHealingState = true;

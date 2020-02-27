@@ -116,268 +116,289 @@ repeat: none
   orig: 600, 600
   offset: 0, 0
   index: -1
-03_shoot_left0004
+04_load_charge_left0000
   rotate: false
   xy: 1800, 600
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-04_load_charge_left0000
+04_load_charge_left0001
   rotate: false
   xy: 2400, 600
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-04_load_charge_left0001
+04_load_charge_left0002
   rotate: false
   xy: 3000, 600
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-04_load_charge_left0002
+04_load_charge_left0003
   rotate: false
   xy: 3600, 600
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-04_load_charge_left0003
+04_load_charge_left0004
   rotate: false
   xy: 4200, 600
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-04_load_charge_left0004
+05_charge_left0001
   rotate: false
   xy: 4800, 600
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-05_charge_left0001
+05_charge_left0002
   rotate: false
   xy: 5400, 600
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-05_charge_left0002
+05_charge_left0003
   rotate: false
   xy: 6000, 600
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-05_charge_left0003
+05_charge_left0004
   rotate: false
   xy: 6600, 600
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-05_charge_left0004
+06_stun_left0001
   rotate: false
   xy: 7200, 600
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-06_stun_left0001
+06_stun_left0002
   rotate: false
   xy: 0, 1200
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-06_stun_left0002
+06_stun_left0003
   rotate: false
   xy: 600, 1200
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-06_stun_left0003
+06_stun_left0004
   rotate: false
   xy: 1200, 1200
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-06_stun_left0004
+06_stun_left0005
   rotate: false
   xy: 1800, 1200
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-06_stun_left0005
+06_stun_left0006
   rotate: false
   xy: 2400, 1200
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-06_stun_left0006
+07_rage_left0001
   rotate: false
   xy: 3000, 1200
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-07_rage_left0001
+07_rage_left0002
   rotate: false
   xy: 3600, 1200
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-07_rage_left0002
+07_rage_left0003
   rotate: false
   xy: 4200, 1200
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-07_rage_left0003
+07_rage_left0004
   rotate: false
   xy: 4800, 1200
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-07_rage_left0004
+07_rage_left0005
   rotate: false
   xy: 5400, 1200
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-07_rage_left0005
+08_after_stun_left0001
   rotate: false
   xy: 6000, 1200
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-08_after_stun_left0001
+08_after_stun_left0002
   rotate: false
   xy: 6600, 1200
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-08_after_stun_left0002
+08_after_stun_left0003
   rotate: false
   xy: 7200, 1200
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-08_after_stun_left0003
+08_after_stun_left0004
   rotate: false
   xy: 0, 1800
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-08_after_stun_left0004
+09_idle_left0000
   rotate: false
   xy: 600, 1800
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-09_idle_left0000
+09_idle_left0001
   rotate: false
   xy: 1200, 1800
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-09_idle_left0001
+09_idle_left0002
   rotate: false
   xy: 1800, 1800
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-09_idle_left0002
+09_idle_left0003
   rotate: false
   xy: 2400, 1800
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-09_idle_left0003
+10_idle_armored_left0000
   rotate: false
   xy: 3000, 1800
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-10_idle_armored_left0000
+10_idle_armored_left0001
   rotate: false
   xy: 3600, 1800
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-10_idle_armored_left0001
+10_idle_armored_left0002
   rotate: false
   xy: 4200, 1800
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-10_idle_armored_left0002
+10_idle_armored_left0003
   rotate: false
   xy: 4800, 1800
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-10_idle_armored_left0003
+11_after_shoot_left0001
   rotate: false
   xy: 5400, 1800
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-11_after_shoot_left0001
+11_after_shoot_left0002
   rotate: false
   xy: 6000, 1800
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-11_after_shoot_left0002
+11_after_shoot_left0003
   rotate: false
   xy: 6600, 1800
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-11_after_shoot_left0003
+12_death_left0000
   rotate: false
   xy: 7200, 1800
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-12_death_left0000
+12_death_left0001
   rotate: false
   xy: 0, 2400
   size: 600, 600
   orig: 600, 600
   offset: 0, 0
   index: -1
-12_death_left0001
+13_weak_point_left0000
   rotate: false
   xy: 600, 2400
+  size: 600, 600
+  orig: 600, 600
+  offset: 0, 0
+  index: -1
+13_weak_point_left0001
+  rotate: false
+  xy: 1200, 2400
+  size: 600, 600
+  orig: 600, 600
+  offset: 0, 0
+  index: -1
+13_weak_point_left0002
+  rotate: false
+  xy: 1800, 2400
+  size: 600, 600
+  orig: 600, 600
+  offset: 0, 0
+  index: -1
+13_weak_point_left0003
+  rotate: false
+  xy: 2400, 2400
   size: 600, 600
   orig: 600, 600
   offset: 0, 0

@@ -33,7 +33,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 489427bbdf8e6f74195d5734dccf8d2b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Occlusion:
@@ -45,6 +45,8 @@ Material:
     - Vector1_AADE1DE1: 1
     - _Brightness: 0
     - _EnableExternalAlpha: 0
+    - _NormalMapSaturation: 1
+    - _OcclusionInfluence: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}

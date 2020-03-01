@@ -116,17 +116,21 @@ public class Charger : MonoBehaviour
 
     private void OnCollisionEnter2D( Collision2D collision )
     {
-        if ( isCharging )
+        float contactX = collision.GetContact( 0 ).normal.x;
+        if ( contactX < -0.5f || contactX > 0.5f )
         {
-            animator.SetBool( "isStunned", true );
+            if ( isCharging )
+            {
+                animator.SetBool( "isStunned", true );
 
-            float angle = direction == 1 ? 180f : 0f;
-            Vector2 pos = new Vector2( hitWallEffectPos.x * direction, hitWallEffectPos.y );
-            Instantiate( hitWallEffect, (Vector2)transform.position + pos, Quaternion.AngleAxis( angle, Vector3.forward ), null );
-        }
-        else if ( collision.collider.CompareTag( "Wall" ) )
-        {
-            SetDirection( -direction );
+                float angle = direction == 1 ? 180f : 0f;
+                Vector2 pos = new Vector2( hitWallEffectPos.x * direction, hitWallEffectPos.y );
+                Instantiate( hitWallEffect, (Vector2)transform.position + pos, Quaternion.AngleAxis( angle, Vector3.forward ), null );
+            }
+            else
+            {
+                SetDirection( -direction );
+            }
         }
         else if ( collision.collider.CompareTag( "Spikes" ) )
         {

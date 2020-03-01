@@ -102,7 +102,14 @@ public class DemoBoss : MonoBehaviour
              (phase == 2 && healthManager.currentHP <= thirdPhaseHP) ||
              (phase == 3 && healthManager.currentHP <= 0) )
         {
-            _animator.Play( "Demo_boss_armor_up" );
+            if ( direction == -1 )
+            {
+                _animator.Play( "Demo_boss_armor_up_left" );
+            }
+            else
+            {
+                _animator.Play( "Demo_boss_armor_up_right" );
+            }
         }
     }
 

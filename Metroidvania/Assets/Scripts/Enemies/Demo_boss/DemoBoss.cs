@@ -144,6 +144,12 @@ public class DemoBoss : MonoBehaviour
     }
 
 
+    private void Start()
+    {
+        _animator.SetInteger( "direction", direction );
+    }
+
+
     private void StopCharging()
     {
         _animator.SetBool( "isStunned", true );

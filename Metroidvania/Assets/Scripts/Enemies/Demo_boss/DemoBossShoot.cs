@@ -11,6 +11,7 @@ public class DemoBossShoot : StateMachineBehaviour
 
     private DemoBoss boss = null;
     private bool shooted = false;
+    private int direction = 1;
 
 
     public override void OnStateEnter( Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex )
@@ -19,17 +20,28 @@ public class DemoBossShoot : StateMachineBehaviour
         {
             boss = animator.GetComponent<DemoBoss>();
         }
+
         shooted = false;
+
+        direction = animator.GetInteger( "direction" );
     }
 
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
+        boss.SetDirection();
+
+        if ( direction != boss.direction )
+        {
+            boss.currentSequence = 0;
+            animator.SetBool( "isShooting", false );
+            boss.wasShooting = true;
+            animator.SetTrigger( "forceExitShoot" );
+        }
+
         if ( stateInfo.normalizedTime >= shootFrame / clipLength && !shooted )
         {
             shooted = true;
-
-            boss.SetDirection();
 
             int num = Random.Range( minProjectiles, maxProjectiles );
             for ( int i = 0; i < num; i++ )

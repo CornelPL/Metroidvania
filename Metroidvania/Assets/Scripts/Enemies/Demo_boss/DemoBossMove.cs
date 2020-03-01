@@ -42,7 +42,7 @@ public class DemoBossMove : StateMachineBehaviour
     {
         if ( (direction == 1 && boss.transform.position.x < destination) || (direction == -1 && boss.transform.position.x > destination) )
         {
-            rigidbody.velocity = new Vector2( movementSpeed * direction, rigidbody.velocity.y );
+            rigidbody.velocity = new Vector2( movementSpeed * direction, 0f );
             if ( Physics2D.Raycast( (Vector2)boss.transform.position + Vector2.up, Vector2.right * direction, rayToWallLength, wallsMask ) )
             {
                 StopMoving( animator );

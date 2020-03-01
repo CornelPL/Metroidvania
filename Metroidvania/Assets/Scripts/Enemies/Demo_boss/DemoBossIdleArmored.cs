@@ -30,10 +30,10 @@ public class DemoBossIdleArmored : StateMachineBehaviour
         if ( idleTime > t )
         {
             t += Time.deltaTime;
+            boss.SetDirection();
         }
         else
         {
-            boss.SetDirection();
             animator.SetTrigger( "charge" );
         }
     }

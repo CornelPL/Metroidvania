@@ -1,0 +1,76 @@
+
+Button_animations_normals_right.png
+size: 1200,200
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+01_Button_idle_right_normal0000
+  rotate: false
+  xy: 0, 0
+  size: 120, 200
+  orig: 120, 200
+  offset: 0, 0
+  index: -1
+01_Button_idle_right_normal0001
+  rotate: false
+  xy: 120, 0
+  size: 120, 200
+  orig: 120, 200
+  offset: 0, 0
+  index: -1
+01_Button_idle_right_normal0002
+  rotate: false
+  xy: 240, 0
+  size: 120, 200
+  orig: 120, 200
+  offset: 0, 0
+  index: -1
+01_Button_idle_right_normal0003
+  rotate: false
+  xy: 360, 0
+  size: 120, 200
+  orig: 120, 200
+  offset: 0, 0
+  index: -1
+01_Button_idle_right_normal0004
+  rotate: false
+  xy: 480, 0
+  size: 120, 200
+  orig: 120, 200
+  offset: 0, 0
+  index: -1
+02_Button_death_right_normal0000
+  rotate: false
+  xy: 600, 0
+  size: 120, 200
+  orig: 120, 200
+  offset: 0, 0
+  index: -1
+02_Button_death_right_normal0001
+  rotate: false
+  xy: 720, 0
+  size: 120, 200
+  orig: 120, 200
+  offset: 0, 0
+  index: -1
+02_Button_death_right_normal0002
+  rotate: false
+  xy: 840, 0
+  size: 120, 200
+  orig: 120, 200
+  offset: 0, 0
+  index: -1
+02_Button_death_right_normal0003
+  rotate: false
+  xy: 960, 0
+  size: 120, 200
+  orig: 120, 200
+  offset: 0, 0
+  index: -1
+02_Button_death_right_normal0004
+  rotate: false
+  xy: 1080, 0
+  size: 120, 200
+  orig: 120, 200
+  offset: 0, 0
+  index: -1

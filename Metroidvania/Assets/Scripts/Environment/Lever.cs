@@ -15,6 +15,7 @@ public class Lever : MonoBehaviour
         {
             door.Open();
             opened = true;
+            GetComponent<Animator>().SetTrigger( "Death" );
         }
     }
 }

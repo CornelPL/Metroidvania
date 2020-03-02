@@ -37,6 +37,7 @@ public class DemoBossRoom : Room
 
     private List<List<GameObject>> currentEnemies = new List<List<GameObject>>();
     private Vector2 pos;
+    private int orderInLayer = 0;
 
 
     public override void OnPlayerEnter( GameObject player )
@@ -125,6 +126,7 @@ public class DemoBossRoom : Room
                 float force = Random.Range( minShootForce, maxShootForce );
                 e.GetComponent<EnemyHealthManager>().isBeingKnockbacked = true;
                 e.GetComponent<Rigidbody2D>().AddForce( direction * force, ForceMode2D.Impulse );
+                e.GetComponent<SpriteRenderer>().sortingOrder = orderInLayer++;
             }
         }
     }

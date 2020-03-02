@@ -29,6 +29,7 @@ public class DemoBossVulnerable : StateMachineBehaviour
         else
         {
             animator.SetBool( "isStunned", false );
+            boss.SetDirection();
         }
     }
 }

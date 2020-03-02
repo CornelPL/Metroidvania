@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3920673257513735604}
-  - component: {fileID: 151962640521265212}
+  - component: {fileID: 1342732482}
   m_Layer: 31
   m_Name: Collider with enviro
   m_TagString: Untagged
@@ -61,8 +61,8 @@ Transform:
   m_Father: {fileID: 4173082080487236785}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &151962640521265212
-BoxCollider2D:
+--- !u!60 &1342732482
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -74,7 +74,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.12469298, y: 0.7451204}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -84,9 +84,14 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.7603244, y: 1.5048573}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.75931233, y: 1.487812}
+      - {x: -1.0155087, y: 1.4917285}
+      - {x: -1.005743, y: 0.098779045}
+      - {x: -0.7304745, y: -0.003663381}
+      - {x: 0.46817464, y: -0.003663381}
+      - {x: 0.7578068, y: 0.101922356}
 --- !u!1 &4173082080487236784
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,8 +174,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 891006991
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 3842236307659390873, guid: ba8141c1e6778f64181a719c63cd9ba2,
     type: 3}
@@ -348,7 +353,7 @@ MonoBehaviour:
   - {x: -0.8733697, y: 1.0115222, z: 0}
   m_ShapePathHash: -1054046966
   m_Mesh: {fileID: 0}
-  m_InstanceId: -4196
+  m_InstanceId: -4236
 --- !u!114 &6168724095869459366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,7 +561,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 0, b: 0.8460436, a: 1}
   m_Intensity: 0.5
   m_LightVolumeOpacity: 0.5
-  m_ApplyToSortingLayers: c9167502e5af804c00000000d75abb4b
+  m_ApplyToSortingLayers: 00000000e5af804cd75abb4bc916750277fd03350fb01b35
   m_LightCookieSprite: {fileID: 21300000, guid: 38d1c8089a91b6844b98f1e023a21d62,
     type: 3}
   m_UseNormalMap: 0
@@ -675,7 +680,7 @@ MonoBehaviour:
   m_Color: {r: 0.83529425, g: 0, b: 1, a: 1}
   m_Intensity: 0.5
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: c9167502e5af804c00000000d75abb4b
+  m_ApplyToSortingLayers: 00000000e5af804cd75abb4bc916750277fd03350fb01b35
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 1
   m_LightOrder: 0

@@ -35,7 +35,7 @@ TagManager:
   - StableItems
   - Destroyable
   - GroundCheck
-  - Wall
+  - 
   - Enemy
   - InvulnerablePlayer
   - Planks
@@ -62,6 +62,12 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 1283502053
+    locked: 0
+  - name: Ground
+    uniqueID: 889453943
+    locked: 0
+  - name: Enemies
+    uniqueID: 891006991
     locked: 0
   - name: Default
     uniqueID: 0

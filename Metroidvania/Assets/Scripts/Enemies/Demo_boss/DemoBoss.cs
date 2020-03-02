@@ -173,7 +173,8 @@ public class DemoBoss : MonoBehaviour
 
     private void OnCollisionEnter2D( Collision2D collision )
     {
-        if ( collision.collider.CompareTag( "Wall" ) )
+        float contactX = collision.GetContact( 0 ).normal.x;
+        if ( contactX < -0.5f || contactX > 0.5f )
         {
             if ( isMoving )
             {

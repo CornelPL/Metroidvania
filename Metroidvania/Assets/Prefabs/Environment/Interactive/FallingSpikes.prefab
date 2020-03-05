@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8799853118207417112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -174,5 +174,5 @@ MonoBehaviour:
   gravityScale: 4
   fallDelay: 0.5
   _rigidbody: {fileID: 8799853118207417109}
-  fallParticles: {fileID: 294328952878463128, guid: 0d14daf1197688e45844c7e69c7bd63e,
+  fallParticles: {fileID: 4587640700086246660, guid: 3235d3af77fcafe46af0be28917d5275,
     type: 3}

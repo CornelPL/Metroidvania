@@ -32,7 +32,7 @@ public class Destroyable : MonoBehaviour
         }
         else
         {
-            spriteRenderer.sprite = sprites[ health - 1 ];
+            //spriteRenderer.sprite = sprites[ health - 1 ];
         }
     }
 

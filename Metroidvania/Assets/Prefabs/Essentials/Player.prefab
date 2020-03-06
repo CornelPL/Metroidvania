@@ -251,7 +251,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1283502053
-  m_SortingLayer: -1
+  m_SortingLayer: -3
   m_SortingOrder: 999
   m_Sprite: {fileID: 21300000, guid: 9b3e3647f351f8343808f62d4bf8783f, type: 3}
   m_Color: {r: 0.9181861, g: 0.7311321, b: 1, a: 0.11764706}
@@ -1614,12 +1614,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.32997543, y: 2.372241}
-      - {x: -0.33172196, y: 2.36275}
-      - {x: -0.31908768, y: 0.09240055}
-      - {x: -0.14605302, y: 0.01574421}
-      - {x: 0.18896359, y: 0.022790909}
-      - {x: 0.32214767, y: 0.1433115}
+    - - {x: 0.3, y: 2.4}
+      - {x: -0.3, y: 2.4}
+      - {x: -0.3, y: 0.1}
+      - {x: -0.15, y: 0.014}
+      - {x: 0.15, y: 0.014}
+      - {x: 0.3, y: 0.1}
 --- !u!114 &6838834047338178266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1656,6 +1656,8 @@ MonoBehaviour:
   shieldColor: {fileID: 8375115587326742936}
   holdingItemPosition: {fileID: 3956272965029147024}
   animator: {fileID: 5845602597293220103}
+  invulnerableLayer: 0
+  normalLayer: 0
   lastTimeGrounded: 77.4
   savePoint: {fileID: 0}
   room: {fileID: 0}

@@ -84,7 +84,7 @@ public class CustomDestroy : MonoBehaviour
 
             if ( rotateDestroyEffects )
             {
-                float angle = Mathf.Atan2( _rigidbody.velocity.y, _rigidbody.velocity.x ) * Mathf.Rad2Deg;
+                float angle = Mathf.Atan2( _rigidbody.velocity.y, _rigidbody.velocity.x ) * Mathf.Rad2Deg + 90f;
                 effect.rotation = Quaternion.AngleAxis( angle, Vector3.forward );
             }
         }

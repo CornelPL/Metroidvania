@@ -44,6 +44,12 @@ public class DemoBossIdle : StateMachineBehaviour
 
     public override void OnStateExit( Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex )
     {
+        // Fixes boss isn't set beacuse OnStateEnter doesn't run on start
+        if ( boss == null )
+        {
+            boss = animator.GetComponent<DemoBoss>();
+        }
+
         boss.idleTime = t;
     }
 

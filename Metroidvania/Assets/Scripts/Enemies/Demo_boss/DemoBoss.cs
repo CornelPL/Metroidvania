@@ -37,7 +37,7 @@ public class DemoBoss : MonoBehaviour
 
     [HideInInspector] public bool wasShooting = false;
     [HideInInspector] public Transform player;
-    [HideInInspector] public int direction = 1;
+    [HideInInspector] public int direction = -1;
     [HideInInspector] public int currentSequence = 0;
     [HideInInspector] public bool isCharging = false;
     [HideInInspector] public bool isMoving = false;

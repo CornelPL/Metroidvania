@@ -37,7 +37,7 @@ public class FallingSpikes : MonoBehaviour
             collision.gameObject.GetComponent<PlayerHealthManager>().TakeDamage(damage, transform.position.x);
         }
 
-        Destroy(gameObject);
+        GetComponent<CustomDestroy>().Destroy();
     }
 
 

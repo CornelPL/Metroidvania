@@ -6,6 +6,8 @@ public class CustomDestroy : MonoBehaviour
     [SerializeField] private GameObject[] destroyEffects = null;
     [SerializeField] private GameObject[] objectsToSpawnOnDestroy = null;
     [SerializeField, MinMaxRange( 0, 20 )] private RangedInt numObjectsToSpawn = new RangedInt( 1, 3 );
+    [SerializeField] private bool rotateDestroyEffects = false;
+    [SerializeField, ConditionalField( nameof( rotateDestroyEffects ) )] private Rigidbody2D _rigidbody = null;
     [SerializeField] private bool inheritVelocity = false;
     [SerializeField, ConditionalField( nameof( inheritVelocity ) )] private float velocityPercentLoss = 80f;
     [SerializeField, ConditionalField( nameof( inheritVelocity ), true )] private float minForce = 10f;
@@ -78,7 +80,13 @@ public class CustomDestroy : MonoBehaviour
     {
         for ( int i = 0; i < destroyEffects.Length; i++ )
         {
-            GameObject inst = Instantiate( destroyEffects[ i ], transform.position, transform.rotation, null );
+            Transform effect = Instantiate( destroyEffects[ i ], transform.position, transform.rotation, null ).transform;
+
+            if ( rotateDestroyEffects )
+            {
+                float angle = Mathf.Atan2( _rigidbody.velocity.y, _rigidbody.velocity.x ) * Mathf.Rad2Deg;
+                effect.rotation = Quaternion.AngleAxis( angle, Vector3.forward );
+            }
         }
     }
 }

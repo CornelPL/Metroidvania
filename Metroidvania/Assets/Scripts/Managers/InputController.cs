@@ -6,21 +6,22 @@ public class InputController : MonoBehaviour
 {
     public static InputController instance = null;
 
-    [Separator("Movement")]
+    [Separator( "Movement" )]
     public KeyCode rightKey;
     public KeyCode leftKey;
     public KeyCode dashKey;
 
-    [Separator( "Air")]
+    [Separator( "Air" )]
     public KeyCode jumpKey;
+    public KeyCode jumpKey2;
     public KeyCode flyingKey;
     public KeyCode downKey;
 
-    [Separator( "Mouse")]
+    [Separator( "Mouse" )]
     public KeyCode lmbKey;
     public KeyCode rmbKey;
 
-    [Separator( "Other")]
+    [Separator( "Other" )]
     public KeyCode interactKey;
     public KeyCode healKey;
     public KeyCode spawnMenuKey;
@@ -58,39 +59,39 @@ public class InputController : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if ( instance == null )
             instance = this;
-        else if (instance != this)
-            Destroy(this);
+        else if ( instance != this )
+            Destroy( this );
     }
 
 
     private void Start()
     {
-        _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        _camera = GameObject.FindGameObjectWithTag( "MainCamera" ).GetComponent<Camera>();
     }
 
 
     private void Update()
     {
-        right = Input.GetKey(rightKey);
-        left = Input.GetKey(leftKey);
-        dashRight = right && Input.GetKeyDown(dashKey);
-        dashLeft = left && Input.GetKeyDown(dashKey);
+        right = Input.GetKey( rightKey );
+        left = Input.GetKey( leftKey );
+        dashRight = right && Input.GetKeyDown( dashKey );
+        dashLeft = left && Input.GetKeyDown( dashKey );
 
-        jumpDown = Input.GetKeyDown(jumpKey);
-        jumpUp = Input.GetKeyUp(jumpKey);
-        down = Input.GetKeyDown(downKey);
+        jumpDown = Input.GetKeyDown( jumpKey ) || Input.GetKeyDown( jumpKey2 );
+        jumpUp = Input.GetKeyUp( jumpKey ) || Input.GetKeyUp( jumpKey2 );
+        down = Input.GetKeyDown( downKey );
 
-        lmbDown = Input.GetKeyDown(lmbKey);
-        lmbHold = Input.GetKey(lmbKey);
-        lmbUp = Input.GetKeyUp(lmbKey);
-        rmb = Input.GetKeyDown(rmbKey);
+        lmbDown = Input.GetKeyDown( lmbKey );
+        lmbHold = Input.GetKey( lmbKey );
+        lmbUp = Input.GetKeyUp( lmbKey );
+        rmb = Input.GetKeyDown( rmbKey );
 
-        interact = Input.GetKeyDown(interactKey);
+        interact = Input.GetKeyDown( interactKey );
 
-        healDown = Input.GetKeyDown(healKey);
-        healUp = Input.GetKeyUp(healKey);
+        healDown = Input.GetKeyDown( healKey );
+        healUp = Input.GetKeyUp( healKey );
 
         spawnItem = Input.GetKeyDown( spawnItemKey );
         spawnMenu = Input.GetKeyDown( spawnMenuKey );
@@ -106,6 +107,6 @@ public class InputController : MonoBehaviour
             numKey = -1;
         }
 
-        cursorPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+        cursorPosition = _camera.ScreenToWorldPoint( Input.mousePosition );
     }
 }

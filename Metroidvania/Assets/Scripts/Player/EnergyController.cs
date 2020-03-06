@@ -46,6 +46,14 @@ public class EnergyController : MonoBehaviour
     {
         Mathf.Clamp( energy, 0, capacity );
         container.fillAmount = (float)energy / capacity;
+        if ( energy == capacity )
+        {
+            isContainerFull = true;
+        }
+        else
+        {
+            isContainerFull = false;
+        }
     }
 
 

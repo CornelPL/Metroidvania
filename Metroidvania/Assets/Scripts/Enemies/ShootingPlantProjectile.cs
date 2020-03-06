@@ -4,6 +4,7 @@ using MyBox;
 public class ShootingPlantProjectile : EnemyProjectile
 {
     [SerializeField] private float shootForce = 100f;
+    [SerializeField] private Vector3 aimOffset = Vector3.zero;
     [SerializeField, MustBeAssigned] private GameObject shootEffect = null;
 
     private bool isShot = false;
@@ -13,7 +14,7 @@ public class ShootingPlantProjectile : EnemyProjectile
     {
         if ( !isShot && _rigidbody.velocity.y <= 0.1f )
         {
-            Vector2 direction = player.position + Vector3.up * 1f - transform.position;
+            Vector2 direction = player.position + aimOffset - transform.position;
             _rigidbody.AddForce( direction.normalized * shootForce, ForceMode2D.Impulse );
             _rigidbody.gravityScale = 0f;
 

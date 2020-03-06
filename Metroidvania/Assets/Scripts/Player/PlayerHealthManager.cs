@@ -128,6 +128,7 @@ public class PlayerHealthManager : MonoBehaviour
         else
         {
             currentHP = maxHP;
+            UpdateBars();
         }
     }
 

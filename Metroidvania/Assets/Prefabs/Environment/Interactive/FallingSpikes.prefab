@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5243364683663961081}
   - component: {fileID: 8799853118207417115}
   - component: {fileID: 8799853118207417114}
+  - component: {fileID: 4158387393030848136}
   m_Layer: 0
   m_Name: FallingSpikes
   m_TagString: Untagged
@@ -176,3 +177,32 @@ MonoBehaviour:
   _rigidbody: {fileID: 8799853118207417109}
   fallParticles: {fileID: 4587640700086246660, guid: 3235d3af77fcafe46af0be28917d5275,
     type: 3}
+--- !u!114 &4158387393030848136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8799853118207417112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb150e4f3a4fbb64482a82e5b82dfdfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyEffects:
+  - {fileID: 6060602310375322860, guid: 568c5a579b4c6814fb1cff60b849b194, type: 3}
+  objectsToSpawnOnDestroy: []
+  numObjectsToSpawn:
+    Min: 1
+    Max: 3
+  rotateDestroyEffects: 1
+  _rigidbody: {fileID: 8799853118207417109}
+  inheritVelocity: 0
+  velocityPercentLoss: 80
+  minForce: 10
+  maxForce: 20
+  minAngle: 180
+  maxAngle: 360
+  spawnRange: {x: 0, y: 0}
+  minAngularVelocity: 0
+  maxAngularVelocity: 0

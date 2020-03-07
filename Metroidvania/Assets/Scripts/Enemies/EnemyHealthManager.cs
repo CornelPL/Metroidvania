@@ -11,6 +11,12 @@ public class EnemyHealthManager : HealthManager
     [HideInInspector] public Vector2 hitDirection = Vector2.zero;
 
 
+    private void OnDisable()
+    {
+        currentHP = initialHP;
+    }
+
+
     private void Death( Vector2 shootDirection )
     {
         DropPoints();

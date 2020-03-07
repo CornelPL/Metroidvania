@@ -35,6 +35,7 @@ public class DemoBossRoom : Room
     [SerializeField] private GameObject wall = null;
 
 
+    private List<Queue<GameObject>> inactiveEnemies = new List<Queue<GameObject>>();
     private List<List<GameObject>> currentEnemies = new List<List<GameObject>>();
     private Vector2 pos;
     private int orderInLayer = 0;
@@ -57,6 +58,7 @@ public class DemoBossRoom : Room
         base.OnPlayerExit();
 
         boss.Restart();
+        RestartEnemies();
 
         boss.gameObject.SetActive( false );
         wall.SetActive( false );
@@ -113,9 +115,17 @@ public class DemoBossRoom : Room
 
             if ( enemyIndex != -1 )
             {
-                GameObject e = Instantiate( enemies[ enemyIndex ].prefab, pos, Quaternion.identity, null );
+                GameObject enemy;
+                if ( inactiveEnemies[ enemyIndex ].Count > 0 )
+                {
+                    enemy = inactiveEnemies[ enemyIndex ].Dequeue();
+                }
+                else
+                {
+                    enemy = Instantiate( enemies[ enemyIndex ].prefab, pos, Quaternion.identity );
+                }
 
-                currentEnemies[ enemyIndex ].Add( e );
+                currentEnemies[ enemyIndex ].Add( enemy );
 
                 float angle = Random.Range( minAngle, maxAngle );
                 if ( boss.direction == 1 )
@@ -124,9 +134,9 @@ public class DemoBossRoom : Room
                 }
                 Vector2 direction = MyMath.Angles.AngleToVector2( angle );
                 float force = Random.Range( minShootForce, maxShootForce );
-                e.GetComponent<EnemyHealthManager>().isBeingKnockbacked = true;
-                e.GetComponent<Rigidbody2D>().AddForce( direction * force, ForceMode2D.Impulse );
-                e.GetComponent<SpriteRenderer>().sortingOrder = orderInLayer++;
+                enemy.GetComponent<EnemyHealthManager>().isBeingKnockbacked = true;
+                enemy.GetComponent<Rigidbody2D>().AddForce( direction * force, ForceMode2D.Impulse );
+                enemy.GetComponent<SpriteRenderer>().sortingOrder = orderInLayer++;
             }
         }
     }
@@ -137,6 +147,7 @@ public class DemoBossRoom : Room
         for ( int i = 0; i < enemies.Count; i++ )
         {
             currentEnemies.Add( new List<GameObject>() );
+            inactiveEnemies.Add( new Queue<GameObject>() );
         }
     }
 
@@ -154,13 +165,29 @@ public class DemoBossRoom : Room
                 }
                 else
                 {
-                    currentEnemies[ i ].RemoveAt( j );
-                    j--;
+                    inactiveEnemies[ i ].Enqueue( currentEnemies[ i ][ j ] );
+                    currentEnemies[ i ].RemoveAt( j-- );
                 }
             }
         }
 
         return count;
+    }
+
+
+    private void RestartEnemies()
+    {
+        for ( int i = 0; i < currentEnemies.Count; i++ )
+        {
+            for ( int j = 0; j < currentEnemies[ i ].Count; j++ )
+            {
+                GameObject currentEnemy = currentEnemies[ i ][ j ];
+
+                currentEnemy.SetActive( false );
+                inactiveEnemies[ i ].Enqueue( currentEnemy );
+                currentEnemies[ i ].RemoveAt( j-- );
+            }
+        }
     }
 
 

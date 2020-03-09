@@ -102,4 +102,22 @@ public class ExplosionLight : MonoBehaviour
             LeanTween.value( maxOutIntensity, minOutIntensity, fadeOutTime ).setOnUpdate( ( float v ) => { _light.intensity = v; } );
         }
     }
+
+
+    [ButtonMethod]
+    private void SetMaxIntensity()
+    {
+        _light.intensity = maxInIntensity;
+        _light.enabled = false;
+        _light.enabled = true;
+    }
+
+
+    [ButtonMethod]
+    private void SetMinIntensity()
+    {
+        _light.intensity = minInIntensity;
+        _light.enabled = false;
+        _light.enabled = true;
+    }
 }

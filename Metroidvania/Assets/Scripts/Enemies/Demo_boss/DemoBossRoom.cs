@@ -119,6 +119,8 @@ public class DemoBossRoom : Room
                 if ( inactiveEnemies[ enemyIndex ].Count > 0 )
                 {
                     enemy = inactiveEnemies[ enemyIndex ].Dequeue();
+                    enemy.SetActive( true );
+                    enemy.transform.position = pos;
                 }
                 else
                 {

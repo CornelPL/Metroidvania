@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float movementSpeedUp = 5f;
     [SerializeField] private float movementSlowDown = 5f;
     [SerializeField] private float jumpSpeed = 20f;
+    [SerializeField] private float jumpSlowTime = 0.2f;
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private float maxFallingSpeed = 50f;
     [SerializeField] private GameObject[] jumpEffectsBase = null;
@@ -153,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
             else if ( (state.isJumpingState || state.isFallingState) && state.hasDoubleJump && !doubleJumped )
             {
                 state.SetJumpingState();
-                SpawnJumpEffect();  // TODO: może bez GroundSmoke
+                SpawnJumpEffect();
 
                 if ( LeanTweenID > 0 && LeanTween.isTweening( LeanTweenID ) )
                 {
@@ -164,9 +165,9 @@ public class PlayerMovement : MonoBehaviour
                 doubleJumped = true;
             }
         }
-        else if ( input.jumpUp && verticalSpeed > 0f )
+        else if ( input.jumpUp && verticalSpeed > 10f )
         {
-            LeanTweenID = LeanTween.value( verticalSpeed, 0f, 0.1f )
+            LeanTweenID = LeanTween.value( verticalSpeed, 0f, jumpSlowTime )
                 .setOnUpdate( ( float v ) => { verticalSpeed = v; } )
                 .setOnComplete( () => { LeanTweenID = -1; } ).id;
         }

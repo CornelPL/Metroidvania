@@ -1679,6 +1679,7 @@ MonoBehaviour:
   movementSpeedUp: 50
   movementSlowDown: 100
   jumpSpeed: 27
+  jumpSlowTime: 0.15
   coyoteTime: 0.13
   maxFallingSpeed: 35
   jumpEffectsBase:

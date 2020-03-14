@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Door_mat
+  m_Name: Door_door_mat
   m_Shader: {fileID: -6465566751694194690, guid: a074ff4d05958c14d86ab1bef7249d6a,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _NORMALMAP
@@ -45,7 +45,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b1ad53546e07ec14f96ecb07a7f6918e, type: 3}
+        m_Texture: {fileID: 2800000, guid: b1532b55e4f90c24a961aeb82c5ce134, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -57,7 +57,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: f8253d29e5f934e44ac68485c0ac0d8d, type: 3}
+        m_Texture: {fileID: 2800000, guid: dfb7607effa1bf34fa07e49e71f20ad6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Occlusion:
@@ -94,7 +94,7 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 2
-    - _NormalMapSaturation: 1
+    - _NormalMapSaturation: 0.8
     - _OcclusionInfluence: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02

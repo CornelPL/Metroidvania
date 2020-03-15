@@ -25079,6 +25079,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3040402542867065606}
     m_Modifications:
+    - target: {fileID: 842172234368831384, guid: 1777696c5f0cadc47a65a707fe825ad4,
+        type: 3}
+      propertyPath: m_LightCookieSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4cd43efbe4b8e3549ae30f0c5142d57d,
+        type: 3}
     - target: {fileID: 842172234368831387, guid: 1777696c5f0cadc47a65a707fe825ad4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -25143,6 +25149,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1532578006444518418, guid: 1777696c5f0cadc47a65a707fe825ad4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4cd43efbe4b8e3549ae30f0c5142d57d,
+        type: 3}
+    - target: {fileID: 1532578006444518418, guid: 1777696c5f0cadc47a65a707fe825ad4,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1777696c5f0cadc47a65a707fe825ad4, type: 3}

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 849102266395513863}
-  m_Layer: 25
+  m_Layer: 14
   m_Name: Plants_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7453948150815817734}
   - component: {fileID: 8766353697813136266}
-  m_Layer: 25
+  m_Layer: 14
   m_Name: foreground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7485993331419501024}
   - component: {fileID: 4788217975028980948}
-  m_Layer: 25
+  m_Layer: 14
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

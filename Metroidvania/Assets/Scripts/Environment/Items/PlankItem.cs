@@ -5,9 +5,9 @@ public class PlankItem : Item
     private int durability = 3;
 
 
-    public override void StartPulling( Transform t, float s, float ms )
+    public override void StartPulling( Transform t, float s, float ms, Telekinesis tele )
     {
-        base.StartPulling( t, s, ms );
+        base.StartPulling( t, s, ms, tele );
 
         gameObject.layer = LayerMask.NameToLayer( "Planks" );
     }

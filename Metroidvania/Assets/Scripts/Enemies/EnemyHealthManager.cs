@@ -71,7 +71,7 @@ public class EnemyHealthManager : HealthManager
 
         SpawnEffect( direction, splashEffect );
         ChangeColorOnDamage();
-        EnergyController.instance.AddEnergy( EnergyGain.OnHit );
+        EnergyController.instance.AddEnergy( damage );
 
         if ( currentHP <= 0)
         {

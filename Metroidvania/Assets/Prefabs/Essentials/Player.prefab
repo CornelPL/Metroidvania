@@ -1714,11 +1714,16 @@ MonoBehaviour:
   leanTime: 0.2
   zeroOffsetWeight: 0.8
   invulnerableTime: 0.5
+  pullFromSurfaceCost: 10
   cameraOffset: {fileID: 0}
   holdingItemPlace: {fileID: 0}
   rockToSpawn: {fileID: 6417654320457713547, guid: 33057ab5e8b0e0d47a77f04442e743c4,
     type: 3}
   itemGenerator: {fileID: 767784458}
+  energyProjectile: {fileID: 5999442577757334188, guid: 3e5a0cfdcc8fd9a409c1bb3da9d95006,
+    type: 3}
+  energyShootPower: 25
+  timeBetweenEnergyShots: 0.3
   _light: {fileID: 5591806385418254259}
   lightOnIntensity: 1.5
   lightOffIntensity: 0.8

@@ -29,10 +29,16 @@ public class Item : MonoBehaviour
     private float gravityScaleCopy = 0f;
     private float previousDistance = 0f;
     private Vector2 calculatedVelocity = Vector2.zero;
+    private Telekinesis telekinesis = null;
     protected List<Collider2D> collidersToIgnore = new List<Collider2D>();
 
     #endregion
 
+
+    /// <summary>
+    /// A test class
+    /// </summary>
+    // <param name="t">Used to indicate status.</param>
     public virtual void MakeItem()
     {
         GetComponent<Collider2D>().isTrigger = true;
@@ -47,11 +53,12 @@ public class Item : MonoBehaviour
     }
 
 
-    public virtual void StartPulling( Transform t, float s, float ms )
+    public virtual void StartPulling( Transform t, float s, float ms, Telekinesis tele )
     {
         itemHolder = t;
         pullSpeedUp = s;
         maxPullSpeed = ms;
+        telekinesis = tele;
 
         isPulling = true;
 
@@ -69,6 +76,7 @@ public class Item : MonoBehaviour
         _collider.enabled = true;
         gameObject.layer = LayerMask.NameToLayer( "Items" );
         isPulling = false;
+        telekinesis.SetPullEffectsActive( false );
     }
 
 
@@ -118,6 +126,12 @@ public class Item : MonoBehaviour
     protected virtual void OnTriggerEnter2D( Collider2D collider )
     {
         GameObject go = collider.gameObject;
+
+        if ( go.CompareTag( "DestroyableEnvironment" ) )
+        {
+            // TODO: Destroy it
+            return;
+        }
 
         if ( go.CompareTag( "Enemy" ) )
         {

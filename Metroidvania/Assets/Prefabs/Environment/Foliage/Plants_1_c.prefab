@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 849102266395513863}
   m_Layer: 14
   m_Name: Plants_1_c
-  m_TagString: Untagged
+  m_TagString: DestroyableEnvironment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 4563460971861412230}
   m_Layer: 14
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: DestroyableEnvironment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

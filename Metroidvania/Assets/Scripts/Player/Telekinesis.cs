@@ -18,10 +18,16 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float leanTime = 0.5f;
     [SerializeField] private float zeroOffsetWeight = 0.5f;
     [SerializeField] private float invulnerableTime = 0.5f;
+    [SerializeField] public int pullFromSurfaceCost = 10;
     [SerializeField, MustBeAssigned] private CinemachineCameraOffset cameraOffset = null;
     [SerializeField, MustBeAssigned] private Transform holdingItemPlace = null;
-    [SerializeField, MustBeAssigned] private GameObject rockToSpawn = null;
+    [SerializeField, MustBeAssigned] private GameObject[] rocksToSpawn = null;
     [SerializeField, MustBeAssigned] private ItemGenerator itemGenerator = null;
+
+    [Separator( "Basic attack" )]
+    [SerializeField, MustBeAssigned] private GameObject energyProjectile = null;
+    [SerializeField] private float energyShootPower = 10f;
+    [SerializeField] private float timeBetweenEnergyShots = 0.5f;
 
     [Separator( "Effects" )]
     [SerializeField, MustBeAssigned] private UnityEngine.Experimental.Rendering.Universal.Light2D _light = null;
@@ -73,9 +79,11 @@ public class Telekinesis : MonoBehaviour
     private bool isCursorOver = false;
     private bool isCameraLeaning = false;
     private bool isCounterattacking = false;
-    private bool arePullEffectsActive = false;
     private bool canCounterAttack = false;
     private GameObject counterAttackItem = null;
+    private float lastEnergyShootTime = 0f;
+    private Queue<GameObject> inactiveEnergyProjectiles = new Queue<GameObject>();
+    private List<GameObject> activeEnergyProjectiles = new List<GameObject>();
 
     #endregion
 
@@ -108,6 +116,17 @@ public class Telekinesis : MonoBehaviour
     }
 
 
+    public void SetPullEffectsActive( bool on )
+    {
+        pullEffects.SetActive( on );
+
+        if ( !state.isHoldingItemState )
+        {
+            LeanTween.value( _light.gameObject, _light.intensity, on ? lightOnIntensity : lightOffIntensity, tweenTime ).setOnUpdate( ( float v ) => _light.intensity = v );
+        }
+    }
+
+
     private void Start()
     {
         input = InputController.instance;
@@ -121,11 +140,6 @@ public class Telekinesis : MonoBehaviour
         if ( TimeManager.instance.isGamePaused || state.isAttackingState || state.isDeadState )
         {
             return;
-        }
-
-        if ( arePullEffectsActive && !state.isPullingItemState )
-        {
-            SetPullEffectsActive( false );
         }
 
         isCursorInRange = CheckCursorInRange();
@@ -182,13 +196,21 @@ public class Telekinesis : MonoBehaviour
                 // TODO: no item to spawn EFFECT (vfx, sfx)
             }
         }
-        else if ( input.lmbDown && state.isHoldingItemState )
+        else if ( input.lmbDown )
         {
-            StartCoroutine( ShootingSequence() );
-        }
-        else if ( input.lmbDown && canCounterAttack && !state.isPullingItemState )
-        {
-            CounterAttack();
+            if ( state.isHoldingItemState )
+            {
+                StartCoroutine( ShootingSequence() );
+            }
+            else if ( canCounterAttack && !state.isPullingItemState )
+            {
+                CounterAttack();
+            }
+            else if ( Time.time - lastEnergyShootTime >= timeBetweenEnergyShots )
+            {
+                ShootEnergy();
+                lastEnergyShootTime = Time.time;
+            }
         }
 
         // Player acquired stabling items skill
@@ -245,12 +267,12 @@ public class Telekinesis : MonoBehaviour
         itemHighlight.SetActive( on );
         CustomCursor.Instance?.SetOver( on );
 
-        if ( on == false && onOverItemParticles.isPlaying )
+        if ( !on && onOverItemParticles.isPlaying )
         {
             onOverItemParticles.Stop();
             onOverItemParticles.Clear();
         }
-        else if ( on == true && !onOverItemParticles.isPlaying )
+        else if ( on && !onOverItemParticles.isPlaying )
         {
             onOverItemParticles.Play();
         }
@@ -370,7 +392,7 @@ public class Telekinesis : MonoBehaviour
 
         SetOverItemEffects( false );
 
-        closestItem.GetComponent<Item>().StartPulling( holdingItemPlace, pullSpeed, maxPullSpeed );
+        closestItem.GetComponent<Item>().StartPulling( holdingItemPlace, pullSpeed, maxPullSpeed, this );
 
         state.isPullingItemState = true;
 
@@ -380,12 +402,21 @@ public class Telekinesis : MonoBehaviour
 
     private void PullItemFromSurface()
     {
-        // TODO: select rockToSpawn from list of rocks
-        closestItem = Instantiate( rockToSpawn, input.cursorPosition, transform.rotation );
+        if ( EnergyController.instance.SubEnergy( pullFromSurfaceCost ) )
+        {
+            closestItem = Instantiate( 
+                rocksToSpawn[ Random.Range( 0, rocksToSpawn.Length ) ], 
+                input.cursorPosition, 
+                transform.rotation );
 
-        closestItem.GetComponent<Item>().OnHover( true );
+            closestItem.GetComponent<Item>().OnHover( true );
 
-        PullItem();
+            PullItem();
+        }
+        else
+        {
+            // TODO: not enough energy
+        }
     }
 
 
@@ -411,6 +442,7 @@ public class Telekinesis : MonoBehaviour
         item.enabled = true;
         item.MakeItem();
         isCounterattacking = true;
+        EnergyController.instance.AddEnergy( EnergyGain.OnCounterAttack );
         StartCoroutine( ShootingSequence( counterAttackItem ) );
     }
 
@@ -535,6 +567,53 @@ public class Telekinesis : MonoBehaviour
     }
 
 
+    private IEnumerator EnqueueEnergyProjectile( GameObject projectile )
+    {
+        yield return new WaitForSeconds( 0.1f );
+        inactiveEnergyProjectiles.Enqueue( projectile );
+    }
+
+
+    private void ShootEnergy()
+    {
+        GameObject proj = null;
+
+        for ( int i = 0; i < activeEnergyProjectiles.Count; i++ )
+        {
+            proj = activeEnergyProjectiles[ i ];
+            if ( !proj.activeSelf )
+            {
+                StartCoroutine( EnqueueEnergyProjectile( proj ) );
+                activeEnergyProjectiles.RemoveAt( i-- );
+            }
+        }
+
+        if ( inactiveEnergyProjectiles.Count == 0 )
+        {
+            proj = Instantiate( energyProjectile, holdingItemPlace.position, Quaternion.identity, null );
+        }
+        else
+        {
+            proj = inactiveEnergyProjectiles.Dequeue();
+            proj.transform.position = holdingItemPlace.position;
+        }
+
+        activeEnergyProjectiles.Add( proj );
+
+        Vector2 shootDirection = input.cursorPosition - (Vector2)holdingItemPlace.position;
+
+        float angle = Mathf.Atan2( shootDirection.y, shootDirection.x ) * Mathf.Rad2Deg;
+
+        // TODO: other shootEffects
+        Instantiate( shootEffects, holdingItemPlace.position, Quaternion.AngleAxis( angle, Vector3.forward ) );
+
+        proj.GetComponent<EnergyProjectile>().Shoot( shootDirection.normalized, energyShootPower );
+
+        state.isPullingItemState = false;
+        state.isHoldingItemState = false;
+    }
+
+
     private void ReleaseItem( GameObject item )
     {
         OnRelease.Invoke();
@@ -564,18 +643,5 @@ public class Telekinesis : MonoBehaviour
         state.isPullingItemState = false;
         state.isHoldingItemState = false;
         Destroy( closestItem );
-    }
-
-
-    private void SetPullEffectsActive( bool on )
-    {
-        arePullEffectsActive = on;
-
-        pullEffects.SetActive( on );
-
-        if ( !state.isHoldingItemState )
-        {
-            LeanTween.value( _light.gameObject, _light.intensity, on ? lightOnIntensity : lightOffIntensity, tweenTime ).setOnUpdate( ( float v ) => _light.intensity = v );
-        }
     }
 }

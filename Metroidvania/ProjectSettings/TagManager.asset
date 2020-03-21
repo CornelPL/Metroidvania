@@ -20,6 +20,7 @@ TagManager:
   - Boundary
   - Point
   - Destroyable
+  - DestroyableEnvironment
   layers:
   - Default
   - TransparentFX

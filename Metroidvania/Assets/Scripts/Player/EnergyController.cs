@@ -6,7 +6,8 @@ public enum EnergyGain
 {
     OnHit,
     OnKill,
-    OnKillBoss
+    OnKillBoss,
+    OnCounterAttack
 }
 
 public class EnergyController : MonoBehaviour
@@ -17,6 +18,7 @@ public class EnergyController : MonoBehaviour
     [SerializeField] private int capacity = 20;
     [SerializeField] private int energyGainOnHit = 2;
     [SerializeField] private int energyGainOnKill = 5;
+    [SerializeField] private int energyGainOnCounterAttack = 5;
 
     [HideInInspector] public int energy = 0;
     
@@ -44,7 +46,6 @@ public class EnergyController : MonoBehaviour
 
     public void UpdateContainer()
     {
-        Mathf.Clamp( energy, 0, capacity );
         container.fillAmount = (float)energy / capacity;
         if ( energy == capacity )
         {
@@ -59,35 +60,42 @@ public class EnergyController : MonoBehaviour
 
     public void AddEnergy( EnergyGain energyGain )
     {
-        if ( energy < capacity )
+        int energyToAdd = 0;
+        if ( energyGain == EnergyGain.OnHit )
         {
-            int energyToAdd;
-            if ( energyGain == EnergyGain.OnHit )
-            {
-                energyToAdd = energyGainOnHit;
-            }
-            else if ( energyGain == EnergyGain.OnKill )
-            {
-                energyToAdd = energyGainOnKill;
-            }
-            else
-            {
-                energyToAdd = capacity;
-            }
-
-            energy += energyToAdd;
-            UpdateContainer();
+            energyToAdd = energyGainOnHit;
         }
+        else if ( energyGain == EnergyGain.OnKill )
+        {
+            energyToAdd = energyGainOnKill;
+        }else if ( energyGain == EnergyGain.OnCounterAttack )
+        {
+            energyToAdd = energyGainOnCounterAttack;
+        }
+
+        AddEnergy( energyToAdd );
     }
 
 
-    public void SubEnergy( int energyToSub )
+    public void AddEnergy( int energyGain )
     {
-        if ( energy > 0 )
+        energy += energyGain;
+        Mathf.Clamp( energy, 0, capacity );
+        UpdateContainer();
+    }
+
+
+    public bool SubEnergy( int energyToSub )
+    {
+        if ( energyToSub > energy )
         {
-            energy -= energyToSub;
-            UpdateContainer();
+            return false;
         }
+
+        energy -= energyToSub;
+        UpdateContainer();
+
+        return true;
     }
 
 

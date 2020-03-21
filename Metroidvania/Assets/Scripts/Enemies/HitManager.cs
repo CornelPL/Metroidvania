@@ -9,10 +9,10 @@ public class HitManager : MonoBehaviour
     [SerializeField] private UnityEvent OnHit = null;
 
 
-    public void TakeHit( int damage, Vector2 direction, float knockbackForce )
+    public void TakeHit( int damage, Vector2 direction, float knockbackForce = 0f )
     {
         healthManager?.TakeDamage( direction, damage );
-        if ( canBeKnockbacked )
+        if ( canBeKnockbacked && knockbackForce != 0f )
         {
             healthManager.Knockback( direction, knockbackForce );
         }

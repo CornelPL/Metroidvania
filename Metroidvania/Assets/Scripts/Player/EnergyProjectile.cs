@@ -47,25 +47,23 @@ public class EnergyProjectile : MonoBehaviour
             return;
         }
 
-        GameObject go = collider.gameObject;
-
-        if ( go.CompareTag( "DestroyableEnvironment" ) )
+        if ( collider.CompareTag( "DestroyableEnvironment" ) )
         {
             // TODO: Destroy it
             return;
         }
 
-        if ( go.CompareTag( "Enemy" ) )
+        if ( collider.CompareTag( "Enemy" ) )
         {
-            go.GetComponent<HitManager>().TakeHit( baseDamage, _rigidbody.velocity.normalized );
+            collider.GetComponent<HitManager>().TakeHit( baseDamage, _rigidbody.velocity.normalized );
         }
-        else if ( go.CompareTag( "DestroyablePlanks" ) )
+        else if ( collider.CompareTag( "DestroyablePlanks" ) )
         {
-            go.GetComponent<CustomDestroy>().Destroy( _rigidbody.velocity, transform.position );
+            collider.GetComponent<CustomDestroy>().Destroy( _rigidbody.velocity, transform.position );
         }
-        else if ( go.CompareTag( "Destroyable" ) )
+        else if ( collider.CompareTag( "Destroyable" ) )
         {
-            go.GetComponent<Destroyable>().GetHit();
+            collider.GetComponent<Destroyable>().GetHit();
         }
 
         CustomDestroy();

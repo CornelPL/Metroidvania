@@ -30,12 +30,17 @@ public class EnemyProjectile : MonoBehaviour
     }
 
 
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnTriggerEnter2D( Collider2D collider )
     {
-        if ( !enabled ) return;
-        if (collision.gameObject.CompareTag("Player"))
+        if ( collider.CompareTag( "DestroyableEnvironment" ) )
         {
-            collision.collider.GetComponent<PlayerHealthManager>().TakeDamage(damage, transform.position.x);
+            // TODO: Destroy it
+            return;
+        }
+
+        if ( collider.gameObject.CompareTag( "Player" ) )
+        {
+            collider.GetComponent<PlayerHealthManager>().TakeDamage( damage, transform.position.x );
         }
 
         if ( notified )
@@ -43,7 +48,7 @@ public class EnemyProjectile : MonoBehaviour
             player.GetComponent<Telekinesis>().NotifyCounterAttackExit( gameObject );
         }
 
-        Destroy(gameObject);
+        Destroy( gameObject );
     }
 
 

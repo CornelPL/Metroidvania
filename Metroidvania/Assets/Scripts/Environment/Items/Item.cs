@@ -125,25 +125,23 @@ public class Item : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D( Collider2D collider )
     {
-        GameObject go = collider.gameObject;
-
-        if ( go.CompareTag( "DestroyableEnvironment" ) )
+        if ( collider.CompareTag( "DestroyableEnvironment" ) )
         {
             // TODO: Destroy it
             return;
         }
 
-        if ( go.CompareTag( "Enemy" ) )
+        if ( collider.CompareTag( "Enemy" ) )
         {
-            go.GetComponent<HitManager>().TakeHit( baseDamage, _rigidbody.velocity.normalized, knockbackForce );
+            collider.GetComponent<HitManager>().TakeHit( baseDamage, _rigidbody.velocity.normalized, knockbackForce );
         }
-        else if ( go.CompareTag( "DestroyablePlanks" ) )
+        else if ( collider.CompareTag( "DestroyablePlanks" ) )
         {
-            go.GetComponent<CustomDestroy>().Destroy( _rigidbody.velocity, transform.position );
+            collider.GetComponent<CustomDestroy>().Destroy( _rigidbody.velocity, transform.position );
         }
-        else if ( go.CompareTag( "Destroyable" ) )
+        else if ( collider.CompareTag( "Destroyable" ) )
         {
-            go.GetComponent<Destroyable>().GetHit();
+            collider.GetComponent<Destroyable>().GetHit();
         }
     }
 

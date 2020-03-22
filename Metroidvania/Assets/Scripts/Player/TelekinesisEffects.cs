@@ -28,8 +28,8 @@ public class TelekinesisEffects : MonoBehaviour
     {
         areOverItemEffectsActive = on;
 
-        if ( on )
-            onOverItemParticles.transform.position = closestItem.transform.position;
+        if ( on && closestItem != null )
+            onOverItemParticles.transform.position = closestItem.position;
 
         if ( !on && onOverItemParticles.isPlaying )
         {
@@ -51,6 +51,9 @@ public class TelekinesisEffects : MonoBehaviour
         {
             innerSurfaceHighlight.transform.position = input.cursorPosition;
             onOverItemParticles.transform.position = input.cursorPosition;
+            closestItem = null;
+            if ( !areOverItemEffectsActive )
+                SetOverItemEffects( true );
         }
 
         innerSurfaceHighlight.SetActive( on );
@@ -78,11 +81,7 @@ public class TelekinesisEffects : MonoBehaviour
 
     private void Update()
     {
-        if ( areOverItemEffectsActive )
-        {
-            onOverItemParticles.transform.position = closestItem.transform.position;
-        }
-        else if ( isInnerHighlightActive )
+        if ( isInnerHighlightActive )
         {
             innerSurfaceHighlight.transform.position = input.cursorPosition;
             onOverItemParticles.transform.position = input.cursorPosition;
@@ -90,6 +89,10 @@ public class TelekinesisEffects : MonoBehaviour
         else if ( isOuterHighlightActive )
         {
             outerSurfaceHighlight.transform.position = closestPoint;
+        }
+        else if ( areOverItemEffectsActive && closestItem != null)
+        {
+            onOverItemParticles.transform.position = closestItem.transform.position;
         }
     }
 }

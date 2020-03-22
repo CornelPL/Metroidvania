@@ -212,11 +212,11 @@ public class Telekinesis : MonoBehaviour
             {
                 CounterAttack();
             }
-            else if ( Time.time - lastEnergyShootTime >= timeBetweenEnergyShots )
-            {
-                ShootEnergy();
-                lastEnergyShootTime = Time.time;
-            }
+        }
+        else if ( input.lmbHold && !state.isAttackingState && Time.time - lastEnergyShootTime >= timeBetweenEnergyShots )
+        {
+            ShootEnergy();
+            lastEnergyShootTime = Time.time;
         }
 
         // Player acquired stabling items skill
@@ -261,9 +261,6 @@ public class Telekinesis : MonoBehaviour
         }
         else
         {
-            if ( effects.areOverItemEffectsActive )
-                effects.SetOverItemEffects( false );
-
             canGetItemFromSurface = FindRockySurface();
         }
     }
@@ -353,6 +350,8 @@ public class Telekinesis : MonoBehaviour
                     effects.SetOuterHighlight( true );
                     if ( effects.isInnerHighlightActive )
                         effects.SetInnerHighlight( false );
+                    if ( effects.areOverItemEffectsActive )
+                        effects.SetOverItemEffects( false );
                 }
             }
         }
@@ -485,6 +484,7 @@ public class Telekinesis : MonoBehaviour
         TimeManager.instance.TurnSlowmoOff();
         ShootItem( item );
         state.isAttackingState = false;
+        lastEnergyShootTime = Time.time;
     }
 
 

@@ -2,21 +2,33 @@
 
 public class ItemHighlight : MonoBehaviour
 {
+    [SerializeField] private float minScale = 1f;
+    [SerializeField] private float maxScale = 1.1f;
+    [SerializeField] private float changeSpeed = 10f;
+
+    private bool wasSmall = true;
     [SerializeField] private Telekinesis telekinesis = null;
 
 
     private void Update()
     {
-        // TODO:
-        if ( EnergyController.instance.energy >= telekinesis.pullFromSurfaceCost )
+        if ( wasSmall )
         {
-        //    // miganie paska z energią na biało ile jej zniknie
-        //    // pełne cząsteczki
-        //}
-        //else
-        //{
-        //    // miganie paska z energią na czerwono
-        //    // brak jakiejś części cząsteczek przy podłożu np.
+            transform.localScale += Vector3.one * Time.deltaTime * changeSpeed;
+
+            if ( transform.localScale.x > maxScale )
+            {
+                wasSmall = false;
+            }
+        }
+        else
+        {
+            transform.localScale -= Vector3.one * Time.deltaTime * changeSpeed;
+
+            if ( transform.localScale.x < minScale )
+            {
+                wasSmall = true;
+            }
         }
     }
 }

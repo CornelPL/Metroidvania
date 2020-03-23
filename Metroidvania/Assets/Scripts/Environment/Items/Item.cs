@@ -76,7 +76,6 @@ public class Item : MonoBehaviour
         _collider.enabled = true;
         gameObject.layer = LayerMask.NameToLayer( "Items" );
         isPulling = false;
-        telekinesis.SetPullEffectsActive( false );
     }
 
 

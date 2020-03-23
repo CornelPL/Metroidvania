@@ -4,6 +4,7 @@ using UnityEngine;
 public class BloodParticleSplash : MonoBehaviour
 {
     [SerializeField] private GameObject splashEffect = null;
+    [SerializeField] private float sizeMultiplier = 2f;
 
 
     private List<ParticleCollisionEvent> collisionEvents;
@@ -17,7 +18,8 @@ public class BloodParticleSplash : MonoBehaviour
 
     private void OnParticleCollision( GameObject other )
     {
-        int numCollisionEvents = GetComponent<ParticleSystem>().GetCollisionEvents( other, collisionEvents );
+        ParticleSystem particleSystem = GetComponent<ParticleSystem>();
+        int numCollisionEvents = particleSystem.GetCollisionEvents( other, collisionEvents );
 
         for ( int i = 0; i < numCollisionEvents; i++ )
         {
@@ -28,6 +30,7 @@ public class BloodParticleSplash : MonoBehaviour
             GameObject instantiated = Instantiate( splashEffect, collisionEvent.intersection, Quaternion.identity, null );
 
             ParticleSystem.MainModule main = instantiated.GetComponent<ParticleSystem>().main;
+            main.startSize = particleSystem.main.startSize.constantMax * sizeMultiplier;
 
             main.startRotation = angle * Mathf.Deg2Rad;
         }

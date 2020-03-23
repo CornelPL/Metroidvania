@@ -6,6 +6,8 @@ public class TelekinesisEffects : MonoBehaviour
     [SerializeField, MustBeAssigned] private ParticleSystem onOverItemParticles = null;
     [SerializeField, MustBeAssigned] private GameObject innerSurfaceHighlight = null;
     [SerializeField, MustBeAssigned] private GameObject outerSurfaceHighlight = null;
+    [SerializeField, MustBeAssigned] private GameObject pullEffects = null;
+    [SerializeField, MustBeAssigned] private ExplosionLight eyesLight = null;
 
     [HideInInspector] public bool isCursorOver = false;
     [HideInInspector] public bool areOverItemEffectsActive = false;
@@ -27,19 +29,10 @@ public class TelekinesisEffects : MonoBehaviour
     public void SetOverItemEffects( bool on )
     {
         areOverItemEffectsActive = on;
+        onOverItemParticles.gameObject.SetActive( on );
 
-        if ( on && closestItem != null )
+        if ( on )
             onOverItemParticles.transform.position = closestItem.position;
-
-        if ( !on && onOverItemParticles.isPlaying )
-        {
-            onOverItemParticles.Stop();
-            onOverItemParticles.Clear();
-        }
-        else if ( on && !onOverItemParticles.isPlaying )
-        {
-            onOverItemParticles.Play();
-        }
     }
 
 
@@ -50,10 +43,6 @@ public class TelekinesisEffects : MonoBehaviour
         if ( on )
         {
             innerSurfaceHighlight.transform.position = input.cursorPosition;
-            onOverItemParticles.transform.position = input.cursorPosition;
-            closestItem = null;
-            if ( !areOverItemEffectsActive )
-                SetOverItemEffects( true );
         }
 
         innerSurfaceHighlight.SetActive( on );
@@ -73,6 +62,21 @@ public class TelekinesisEffects : MonoBehaviour
     }
 
 
+    public void SetPullItemEffects( bool on )
+    {
+        pullEffects.SetActive( on );
+
+        if ( on )
+        {
+            eyesLight.FadeIn();
+        }
+        else
+        {
+            eyesLight.FadeOut();
+        }
+    }
+
+
     private void Start()
     {
         input = InputController.instance;
@@ -84,13 +88,12 @@ public class TelekinesisEffects : MonoBehaviour
         if ( isInnerHighlightActive )
         {
             innerSurfaceHighlight.transform.position = input.cursorPosition;
-            onOverItemParticles.transform.position = input.cursorPosition;
         }
         else if ( isOuterHighlightActive )
         {
             outerSurfaceHighlight.transform.position = closestPoint;
         }
-        else if ( areOverItemEffectsActive && closestItem != null)
+        else if ( areOverItemEffectsActive)
         {
             onOverItemParticles.transform.position = closestItem.transform.position;
         }

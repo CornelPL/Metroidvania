@@ -20,7 +20,7 @@ public class EnergyController : MonoBehaviour
     [SerializeField] private int energyGainOnKill = 5;
     [SerializeField] private int energyGainOnCounterAttack = 5;
 
-    [HideInInspector] public int energy = 0;
+    /*[HideInInspector]*/ public int energy = 0;
     
     [HideInInspector] public bool isContainerFull = false;
 

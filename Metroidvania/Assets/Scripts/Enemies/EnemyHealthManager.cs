@@ -4,7 +4,9 @@ using MyBox;
 public class EnemyHealthManager : HealthManager
 {
     [SerializeField, MustBeAssigned] private Rigidbody2D _rigidbody = null;
-    [SerializeField, MustBeAssigned] private GameObject splashEffect = null;
+    [SerializeField, MustBeAssigned] private GameObject smallHitEffect = null;
+    [SerializeField, MustBeAssigned] private int bigHitTreshold = 5;
+    [SerializeField, MustBeAssigned] private GameObject bigHitEffect = null;
     [SerializeField, MustBeAssigned] private GameObject deathEffect = null;
 
     [HideInInspector] public bool isBeingKnockbacked = false;
@@ -69,7 +71,15 @@ public class EnemyHealthManager : HealthManager
     {
         currentHP -= damage;
 
-        SpawnEffect( direction, splashEffect );
+        if ( damage < bigHitTreshold )
+        {
+            SpawnEffect( direction, smallHitEffect );
+        }
+        else
+        {
+            SpawnEffect( direction, bigHitEffect );
+        }
+
         ChangeColorOnDamage();
         EnergyController.instance.AddEnergy( damage );
 

@@ -31,13 +31,9 @@ public class Telekinesis : MonoBehaviour
 
     [Separator( "Effects" )]
     [SerializeField] private TelekinesisEffects effects = null;
-    [SerializeField, MustBeAssigned] private UnityEngine.Experimental.Rendering.Universal.Light2D _light = null;
-    [SerializeField] private float lightOnIntensity = 1.5f;
-    [SerializeField] private float lightOffIntensity = 0.5f;
-    [SerializeField] private float tweenTime = 0.5f;
     [SerializeField, MustBeAssigned] private GameObject counterAttackHint = null;
-    [SerializeField, MustBeAssigned] private GameObject pullEffects = null;
-    [SerializeField, MustBeAssigned] private GameObject shootEffects = null;
+    [SerializeField, MustBeAssigned] private GameObject itemShootEffects = null;
+    [SerializeField, MustBeAssigned] private GameObject energyShootEffects = null;
     [SerializeField, MustBeAssigned] private Vector2Event shockwaveEventSource = null;
     [SerializeField, MustBeAssigned] private FloatEvent shockwaveEventForce = null;
     [SerializeField] private float shockwaveForce = 5f;
@@ -114,22 +110,10 @@ public class Telekinesis : MonoBehaviour
     }
 
 
-    public void SetPullEffectsActive( bool on )
-    {
-        pullEffects.SetActive( on );
-
-        if ( !state.isHoldingItemState )
-        {
-            LeanTween.value( _light.gameObject, _light.intensity, on ? lightOnIntensity : lightOffIntensity, tweenTime ).setOnUpdate( ( float v ) => _light.intensity = v );
-        }
-    }
-
-
     private void Start()
     {
         input = InputController.instance;
         state = PlayerState.instance;
-        _light.intensity = lightOffIntensity;
     }
 
 
@@ -155,8 +139,13 @@ public class Telekinesis : MonoBehaviour
                 effects.SetInnerHighlight( false );
             if ( effects.isOuterHighlightActive )
                 effects.SetOuterHighlight( false );
+            if ( !state.isHoldingItemState && !state.isPullingItemState )
+            {
+                closestItem?.GetComponent<Item>().OnHover( false );
+                closestItem = null;
+            }
         }
-        
+
         if ( input.rmb )
         {
             if ( state.isHoldingItemState )
@@ -261,6 +250,7 @@ public class Telekinesis : MonoBehaviour
         }
         else
         {
+            effects.SetOverItemEffects( false );
             canGetItemFromSurface = FindRockySurface();
         }
     }
@@ -399,7 +389,7 @@ public class Telekinesis : MonoBehaviour
 
         state.isPullingItemState = true;
 
-        SetPullEffectsActive( true );
+        effects.SetPullItemEffects( true );
     }
 
 
@@ -560,7 +550,7 @@ public class Telekinesis : MonoBehaviour
 
         float angle = Mathf.Atan2( shootDirection.y, shootDirection.x ) * Mathf.Rad2Deg;
 
-        Instantiate( shootEffects, item.transform.position, Quaternion.AngleAxis( angle, Vector3.forward ));
+        Instantiate( itemShootEffects, item.transform.position, Quaternion.AngleAxis( angle, Vector3.forward ));
 
         item.GetComponent<Item>().Shoot( shootDirection.normalized, shootPower );
 
@@ -608,8 +598,7 @@ public class Telekinesis : MonoBehaviour
 
         float angle = Mathf.Atan2( shootDirection.y, shootDirection.x ) * Mathf.Rad2Deg;
 
-        // TODO: other shootEffects
-        Instantiate( shootEffects, holdingItemPlace.position, Quaternion.AngleAxis( angle, Vector3.forward ) );
+        Instantiate( energyShootEffects, holdingItemPlace.position, Quaternion.AngleAxis( angle, Vector3.forward ) );
 
         proj.GetComponent<EnergyProjectile>().Shoot( shootDirection.normalized, energyShootPower );
 
@@ -629,6 +618,7 @@ public class Telekinesis : MonoBehaviour
             {
                 closestItem.GetComponent<Item>().OnHover( false );
             }
+            effects.SetPullItemEffects( false );
             closestItem = null;
         }
         else

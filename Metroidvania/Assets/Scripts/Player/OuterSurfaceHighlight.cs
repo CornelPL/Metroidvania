@@ -6,19 +6,23 @@ public class OuterSurfaceHighlight : MonoBehaviour
     [SerializeField] private GameObject energy = null;
     [SerializeField] private GameObject noEnergy = null;
 
+    private bool isEnergyActive = false;
+
 
     private void Update()
     {
         if ( EnergyController.instance.energy > telekinesis.pullFromSurfaceCost )
         {
-            if ( !energy.activeSelf )
+            if ( !isEnergyActive )
             {
+                isEnergyActive = true;
                 energy.SetActive( true );
                 noEnergy.SetActive( false );
             }
         }
-        else if ( !noEnergy.activeSelf )
+        else if ( isEnergyActive )
         {
+            isEnergyActive = false;
             energy.SetActive( false );
             noEnergy.SetActive( true );
         }

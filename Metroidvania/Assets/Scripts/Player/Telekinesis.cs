@@ -202,7 +202,7 @@ public class Telekinesis : MonoBehaviour
                 CounterAttack();
             }
         }
-        else if ( input.lmbHold && !state.isAttackingState && Time.time - lastEnergyShootTime >= timeBetweenEnergyShots )
+        else if ( input.lmbHold && !state.isAttackingState && !state.isHoldingItemState && !state.isPullingItemState && Time.time - lastEnergyShootTime >= timeBetweenEnergyShots )
         {
             ShootEnergy();
             lastEnergyShootTime = Time.time;
@@ -602,8 +602,8 @@ public class Telekinesis : MonoBehaviour
 
         proj.GetComponent<EnergyProjectile>().Shoot( shootDirection.normalized, energyShootPower );
 
-        state.isPullingItemState = false;
-        state.isHoldingItemState = false;
+        //state.isPullingItemState = false;     ??????????
+        //state.isHoldingItemState = false;     ??????????
     }
 
 

@@ -1,6 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+public enum FreezeFrames
+{
+    OnKill
+}
+
 public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance = null;
@@ -10,6 +15,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private float slowmoTimeScale = 0.1f;
     [SerializeField] private float timeChangeDecreaseSpeed = 2f;
     [SerializeField] private float timeChangeIncreaseSpeed = 5f;
+    [SerializeField] private int framesFreezeOnKill = 2;
 
     private IEnumerator runningCoroutine = null;
 
@@ -20,6 +26,30 @@ public class TimeManager : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(this);
+    }
+
+
+    public void Freeze( FreezeFrames frames )
+    {
+        int i = 0;
+
+        if ( frames == FreezeFrames.OnKill )
+        {
+            i = framesFreezeOnKill;
+        }
+
+        StartCoroutine( FreezeCoroutine( i ) );
+    }
+
+
+    private IEnumerator FreezeCoroutine( int frames )
+    {
+        Pause();
+        for ( int i = 0; i < frames; i++ )
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        Resume();
     }
 
 

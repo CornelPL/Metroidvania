@@ -26,6 +26,7 @@ public class BossHealthManager : HealthManager
     [SerializeField] private FloatEvent shockwaveEventForce = null;
     [SerializeField] private float shockwaveForce = 0.1f;
     [SerializeField] private float shockwaveTime = 0.7f;
+    [SerializeField] private DemoBoss demoBoss = null;
 
     [Header("Armor Parts")]
     [SerializeField] private GameObject[] armorParts = null;
@@ -179,6 +180,6 @@ public class BossHealthManager : HealthManager
     {
         currentHP -= damage;
         ChangeColorOnDamage();
-        OnTakeDamage.Invoke();
+        demoBoss.CheckPhaseHP();
     }
 }

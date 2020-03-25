@@ -13,7 +13,6 @@ abstract public class HealthManager : MonoBehaviour
     [SerializeField] protected Color damageColor = Color.white;
     [SerializeField] protected float colorChangeTime = 0.5f;
     [SerializeField] protected UnityEvent OnDeath = null;
-    [SerializeField] protected UnityEvent OnTakeDamage = null;
 
     public int currentHP;
 

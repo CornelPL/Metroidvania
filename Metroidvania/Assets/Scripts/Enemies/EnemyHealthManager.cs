@@ -24,6 +24,7 @@ public class EnemyHealthManager : HealthManager
         DropPoints();
         SpawnEffect( shootDirection, deathEffect );
         EnergyController.instance.AddEnergy( EnergyGain.OnKill );
+        TimeManager.instance.Freeze( FreezeFrames.OnKill );
 
         hitDirection = shootDirection;
 
@@ -71,16 +72,6 @@ public class EnemyHealthManager : HealthManager
     {
         currentHP -= damage;
 
-        if ( damage < bigHitTreshold )
-        {
-            SpawnEffect( direction, smallHitEffect );
-        }
-        else
-        {
-            SpawnEffect( direction, bigHitEffect );
-        }
-
-        ChangeColorOnDamage();
         EnergyController.instance.AddEnergy( damage );
 
         if ( currentHP <= 0)
@@ -89,7 +80,9 @@ public class EnemyHealthManager : HealthManager
         }
         else
         {
-            OnTakeDamage.Invoke();
+            SpawnEffect( direction, damage < bigHitTreshold ? smallHitEffect : bigHitEffect );
+
+            ChangeColorOnDamage();
         }
     }
 

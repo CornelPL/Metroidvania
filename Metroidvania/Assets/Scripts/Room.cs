@@ -10,9 +10,12 @@ public class Room : MonoBehaviour
     [SerializeField] private bool isBlacked = false;
     [SerializeField, ConditionalField( nameof( isBlacked ) )] private Transform black = null;
     [SerializeField] private UnityEvent OnExit = null;
+    [SerializeField] private GameObject[] adjacentRooms = null;
 
 
+    private PlayerState playerState = null;
     private bool isPlayerInRoom = false;
+    private bool deactivateLooped = false;
 
 
     public virtual void OnPlayerEnter( GameObject player )
@@ -21,11 +24,13 @@ public class Room : MonoBehaviour
 
         isPlayerInRoom = true;
 
-        PlayerState.instance.room = this;
+        playerState.room?.UnloadAdjacentRooms( gameObject );
+
+        playerState.room = this;
 
         if ( setSavePoint )
         {
-            PlayerState.instance.savePoint = savePoint;
+            playerState.savePoint = savePoint;
         }
 
         if ( isBlacked )
@@ -33,6 +38,14 @@ public class Room : MonoBehaviour
             black.GetComponent<AutoColor>().FadeOut();
             isBlacked = false;
         }
+
+        if ( !deactivateLooped )
+        {
+            UnloadAdjacentRooms();
+            deactivateLooped = true;
+        }
+
+        LoadAdjacentRooms();
     }
 
 
@@ -47,6 +60,16 @@ public class Room : MonoBehaviour
     public virtual void OnPlayerDeath()
     {
         OnPlayerExit();
+
+        UnloadAdjacentRooms();
+
+        gameObject.SetActive( false );
+    }
+
+
+    private void Start()
+    {
+        playerState = PlayerState.instance;
     }
 
 
@@ -64,6 +87,43 @@ public class Room : MonoBehaviour
         if ( collider.CompareTag( "Player" ) && collider.name != "Shield" )
         {
             OnPlayerExit();
+        }
+    }
+
+
+    private void LoadAdjacentRooms()
+    {
+        for ( int i = 0; i < adjacentRooms.Length; i++ )
+        {
+            GameObject adjacentRoom = adjacentRooms[ i ];
+            if ( !adjacentRoom.activeSelf )
+            {
+                adjacentRoom.SetActive( true );
+            }
+        }
+    }
+
+
+    private void UnloadAdjacentRooms( GameObject currentRoom = null )
+    {
+        for ( int i = 0; i < adjacentRooms.Length; i++ )
+        {
+            GameObject adjacentRoom = adjacentRooms[ i ];
+
+            if ( adjacentRoom.activeSelf && adjacentRoom != currentRoom )
+            {
+                if ( !deactivateLooped )
+                {
+                    Debug.Log( "hejka" );
+                    adjacentRoom.GetComponent<Room>()?.UnloadAdjacentRooms( playerState.room.gameObject );
+                }
+                adjacentRoom.SetActive( false );
+            }
+        }
+
+        if ( !deactivateLooped )
+        {
+            deactivateLooped = true;
         }
     }
 }

@@ -5452,9 +5452,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnTakeDamage:
-    m_PersistentCalls:
-      m_Calls: []
   currentHP: 30
   _rigidbody: {fileID: 2892628564616168880}
   smallHitEffect: {fileID: 3867317853530762858, guid: d22880be189e07f4abbe3dc128a5f297,
@@ -5564,7 +5561,7 @@ MonoBehaviour:
   m_UseRendererSilhouette: 0
   m_CastsShadows: 1
   m_SelfShadows: 0
-  m_ApplyToSortingLayers: c35d84dac9167502e5af804c00000000d75abb4bfbe1705e
+  m_ApplyToSortingLayers: c9167502e5af804c00000000d75abb4b77fd03350fb01b35
   m_ShapePath:
   - {x: -1.009079, y: 0.8307953, z: 0}
   - {x: -0.5739441, y: 0.42227936, z: 0}
@@ -5580,7 +5577,7 @@ MonoBehaviour:
   - {x: -0.9449768, y: 1.7344742, z: 0}
   m_ShapePathHash: 755642549
   m_Mesh: {fileID: 0}
-  m_InstanceId: -122206
+  m_InstanceId: 223434
 --- !u!1 &3070231850548312023
 GameObject:
   m_ObjectHideFlags: 0

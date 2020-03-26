@@ -426,20 +426,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnTakeDamage:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8628843287280416398}
-        m_MethodName: ChangeColorOnDamage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   currentHP: 0
   _rigidbody: {fileID: 8628843287280416399}
   smallHitEffect: {fileID: 3867317853530762858, guid: d22880be189e07f4abbe3dc128a5f297,
@@ -504,7 +490,7 @@ MonoBehaviour:
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
   m_SelfShadows: 0
-  m_ApplyToSortingLayers: c35d84dac9167502e5af804c00000000d75abb4bfbe1705e
+  m_ApplyToSortingLayers: c9167502e5af804c00000000d75abb4b77fd0335
   m_ShapePath:
   - {x: -0.8661194, y: 0.013031006, z: 0}
   - {x: 0.8661194, y: 0.010429382, z: 0}
@@ -515,4 +501,4 @@ MonoBehaviour:
   - {x: -0.7644806, y: 0.33877563, z: 0}
   m_ShapePathHash: -433949401
   m_Mesh: {fileID: 0}
-  m_InstanceId: -4568
+  m_InstanceId: 227352

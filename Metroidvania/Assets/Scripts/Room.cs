@@ -106,24 +106,32 @@ public class Room : MonoBehaviour
 
     private void UnloadAdjacentRooms( GameObject currentRoom = null )
     {
-        for ( int i = 0; i < adjacentRooms.Length; i++ )
-        {
-            GameObject adjacentRoom = adjacentRooms[ i ];
-
-            if ( adjacentRoom.activeSelf && adjacentRoom != currentRoom )
-            {
-                if ( !deactivateLooped )
-                {
-                    Debug.Log( "hejka" );
-                    adjacentRoom.GetComponent<Room>()?.UnloadAdjacentRooms( playerState.room.gameObject );
-                }
-                adjacentRoom.SetActive( false );
-            }
-        }
-
         if ( !deactivateLooped )
         {
             deactivateLooped = true;
+            for ( int i = 0; i < adjacentRooms.Length; i++ )
+            {
+                GameObject adjacentRoom = adjacentRooms[ i ];
+
+                if ( adjacentRoom.activeSelf && adjacentRoom != currentRoom )
+                {
+                    adjacentRoom.GetComponent<Room>()?.UnloadAdjacentRooms( playerState.room.gameObject );
+
+                    adjacentRoom.SetActive( false );
+                }
+            }
+        }
+        else
+        {
+            for ( int i = 0; i < adjacentRooms.Length; i++ )
+            {
+                GameObject adjacentRoom = adjacentRooms[ i ];
+
+                if ( adjacentRoom.activeSelf && adjacentRoom != currentRoom )
+                {
+                    adjacentRoom.SetActive( false );
+                }
+            }
         }
     }
 }

@@ -8,7 +8,6 @@ public class EnergyProjectile : MonoBehaviour
     #region Inspector variables
 
     [SerializeField, MustBeAssigned] protected Rigidbody2D _rigidbody = null;
-    [SerializeField, MustBeAssigned] private Collider2D _collider = null;
     [SerializeField, MustBeAssigned] private GameObject destroyEffect = null;
     [SerializeField] private int baseDamage = 10;
 

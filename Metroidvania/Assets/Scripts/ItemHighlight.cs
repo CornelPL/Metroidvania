@@ -7,7 +7,6 @@ public class ItemHighlight : MonoBehaviour
     [SerializeField] private float changeSpeed = 10f;
 
     private bool wasSmall = true;
-    [SerializeField] private Telekinesis telekinesis = null;
 
 
     private void Update()

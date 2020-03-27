@@ -38,7 +38,7 @@ public class DemoBossRage : StateMachineBehaviour
         }
         else if ( currentProjectile < projectilesCount )
         {
-            boss.OnRageImpulse.GenerateImpulse();
+            boss.OnRageImpulseSource.GenerateImpulse();
 
             boss.ShootProjectile();
 

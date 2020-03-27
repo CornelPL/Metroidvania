@@ -67,7 +67,7 @@ public class Room : MonoBehaviour
     }
 
 
-    private void Start()
+    protected virtual void Start()
     {
         playerState = PlayerState.instance;
     }

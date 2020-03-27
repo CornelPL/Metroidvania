@@ -19,9 +19,10 @@ public class Charger : MonoBehaviour
     [SerializeField, MustBeAssigned] private List<GameObject> deathParts = null;
     [SerializeField] private float deathPartsForce = 10f;
     [SerializeField] private float torqueOnDeath = 1f;
-    public int direction = 1;
 
-    public bool isCharging = false;
+    [HideInInspector] public int direction = 1;
+    [HideInInspector] public bool isCharging = false;
+
     private Transform player;
 
 

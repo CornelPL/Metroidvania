@@ -12,6 +12,10 @@ public class DemoBoss : MonoBehaviour
     [SerializeField] private Animator _animator = null;
     public DemoBossRoom room = null;
 
+    [Separator("Step")]
+    [SerializeField] private CinemachineImpulseSource StepImpulseSource = null;
+    [SerializeField] private SpawnStepEffect StepEffectSpawner = null;
+
     [Separator( "Shooting" )]
     [SerializeField] private Transform shootPosition = null;
     [SerializeField] private Transform projectile = null;
@@ -26,10 +30,11 @@ public class DemoBoss : MonoBehaviour
     [SerializeField] private int chargeDamage = 2;
     [SerializeField] private float chargeKnockbackMultiplier = 2f;
     [SerializeField] private Vector2Event EarthquakeEvent = null;
+    [SerializeField] private CinemachineImpulseSource EarthquakeImpulseSource = null;
 
     [Separator( "Rage" )]
     public ParticleSystem[] rageParticles = null;
-    public CinemachineImpulseSource OnRageImpulse = null;
+    public CinemachineImpulseSource OnRageImpulseSource = null;
 
     [Separator( "Effects" )]
     [SerializeField] private GameObject hitWallEffects = null;
@@ -151,6 +156,13 @@ public class DemoBoss : MonoBehaviour
     }
 
 
+    public void OnStep()
+    {
+        StepEffectSpawner.SpawnStepEffects();
+        StepImpulseSource.GenerateImpulse();
+    }
+
+
     private void Start()
     {
         _animator.SetInteger( "direction", direction );
@@ -162,6 +174,7 @@ public class DemoBoss : MonoBehaviour
         _animator.SetBool( "isStunned", true );
 
         EarthquakeEvent.Broadcast( gameObject, transform.position );
+        EarthquakeImpulseSource.GenerateImpulse();
 
         float angle = direction == 1 ? 180f : 0f;
         Vector2 pos = new Vector2( hitWallEffectsPos.x * direction, hitWallEffectsPos.y );

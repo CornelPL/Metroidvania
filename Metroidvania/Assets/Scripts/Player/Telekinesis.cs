@@ -25,15 +25,13 @@ public class Telekinesis : MonoBehaviour
     [SerializeField, MustBeAssigned] private ItemGenerator itemGenerator = null;
 
     [Separator( "Basic attack" )]
-    [SerializeField, MustBeAssigned] private GameObject energyProjectile = null;
-    [SerializeField] private float energyShootPower = 10f;
+    [SerializeField, MustBeAssigned] private EnergyShootController energyShootController = null;
     [SerializeField] private float timeBetweenEnergyShots = 0.5f;
 
     [Separator( "Effects" )]
     [SerializeField] private TelekinesisEffects effects = null;
     [SerializeField, MustBeAssigned] private GameObject counterAttackHint = null;
     [SerializeField, MustBeAssigned] private GameObject itemShootEffects = null;
-    [SerializeField, MustBeAssigned] private GameObject energyShootEffects = null;
     [SerializeField, MustBeAssigned] private Vector2Event shockwaveEventSource = null;
     [SerializeField, MustBeAssigned] private FloatEvent shockwaveEventForce = null;
     [SerializeField] private float shockwaveForce = 5f;
@@ -76,8 +74,6 @@ public class Telekinesis : MonoBehaviour
     private bool canCounterAttack = false;
     private GameObject counterAttackItem = null;
     private float lastEnergyShootTime = 0f;
-    private Queue<GameObject> inactiveEnergyProjectiles = new Queue<GameObject>();
-    private List<GameObject> activeEnergyProjectiles = new List<GameObject>();
 
     #endregion
 
@@ -130,9 +126,8 @@ public class Telekinesis : MonoBehaviour
         {
             FindItemsToPull();
         }
-        else if ( effects.isCursorOver )
+        else
         {
-            effects.SetCursorOver( false );
             if ( effects.areOverItemEffectsActive )
                 effects.SetOverItemEffects( false );
             if ( effects.isInnerHighlightActive )
@@ -202,9 +197,9 @@ public class Telekinesis : MonoBehaviour
                 CounterAttack();
             }
         }
-        else if ( input.lmbHold && !state.isAttackingState && !state.isHoldingItemState && !state.isPullingItemState && Time.time - lastEnergyShootTime >= timeBetweenEnergyShots )
+        else if ( input.lmbHold && !state.isAttackingState && !state.isHoldingItemState && !state.isPullingItemState && Time.time - lastEnergyShootTime >= timeBetweenEnergyShots && energyShootController.energy > 0 )
         {
-            ShootEnergy();
+            energyShootController.ShootEnergy();
             lastEnergyShootTime = Time.time;
         }
 
@@ -240,8 +235,6 @@ public class Telekinesis : MonoBehaviour
             if ( !effects.areOverItemEffectsActive )
             {
                 effects.SetOverItemEffects( true );
-                if ( !effects.isCursorOver )
-                    effects.SetCursorOver( true );
                 if ( effects.isInnerHighlightActive )
                     effects.SetInnerHighlight( false );
                 if ( effects.isOuterHighlightActive )
@@ -315,9 +308,6 @@ public class Telekinesis : MonoBehaviour
 
         if ( foundSurface )
         {
-            if ( !effects.isCursorOver )
-                effects.SetCursorOver( true );
-
             Vector2 closestPoint = collider.ClosestPoint( input.cursorPosition );
             Vector2 direction = closestPoint - input.cursorPosition;
             Vector2 normal = Physics2D.Raycast( input.cursorPosition, direction, Mathf.Infinity, rocksLayer ).normal;
@@ -345,9 +335,8 @@ public class Telekinesis : MonoBehaviour
                 }
             }
         }
-        else if ( effects.isCursorOver )
+        else
         {
-            effects.SetCursorOver( false );
             if ( effects.isInnerHighlightActive )
                 effects.SetInnerHighlight( false );
             if ( effects.isOuterHighlightActive )
@@ -472,6 +461,7 @@ public class Telekinesis : MonoBehaviour
         t = 0f;
         arcRenderer.enabled = false;
         TimeManager.instance.TurnSlowmoOff();
+        CustomCursor.Instance?.OnInteraction();
         ShootItem( item );
         state.isAttackingState = false;
         lastEnergyShootTime = Time.time;
@@ -558,52 +548,6 @@ public class Telekinesis : MonoBehaviour
         shockwaveEventForce.Broadcast( gameObject, shockwaveForce );
 
         ReleaseItem( item );
-    }
-
-
-    private IEnumerator EnqueueEnergyProjectile( GameObject projectile )
-    {
-        yield return new WaitForSeconds( 0.1f );
-        inactiveEnergyProjectiles.Enqueue( projectile );
-    }
-
-
-    private void ShootEnergy()
-    {
-        GameObject proj = null;
-
-        for ( int i = 0; i < activeEnergyProjectiles.Count; i++ )
-        {
-            proj = activeEnergyProjectiles[ i ];
-            if ( !proj.activeSelf )
-            {
-                StartCoroutine( EnqueueEnergyProjectile( proj ) );
-                activeEnergyProjectiles.RemoveAt( i-- );
-            }
-        }
-
-        if ( inactiveEnergyProjectiles.Count == 0 )
-        {
-            proj = Instantiate( energyProjectile, holdingItemPlace.position, Quaternion.identity, null );
-        }
-        else
-        {
-            proj = inactiveEnergyProjectiles.Dequeue();
-            proj.transform.position = holdingItemPlace.position;
-        }
-
-        activeEnergyProjectiles.Add( proj );
-
-        Vector2 shootDirection = input.cursorPosition - (Vector2)holdingItemPlace.position;
-
-        float angle = Mathf.Atan2( shootDirection.y, shootDirection.x ) * Mathf.Rad2Deg;
-
-        Instantiate( energyShootEffects, holdingItemPlace.position, Quaternion.AngleAxis( angle, Vector3.forward ) );
-
-        proj.GetComponent<EnergyProjectile>().Shoot( shootDirection.normalized, energyShootPower );
-
-        //state.isPullingItemState = false;     ??????????
-        //state.isHoldingItemState = false;     ??????????
     }
 
 

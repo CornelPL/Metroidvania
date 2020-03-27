@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7198517643227437135}
   - component: {fileID: 7198517643227437168}
   - component: {fileID: 7198517643227437169}
+  - component: {fileID: 7654525920727046649}
   - component: {fileID: 7198517643227437170}
   m_Layer: 14
   m_Name: DestroyablePlanks
@@ -109,6 +110,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 7.715577}
   m_EdgeRadius: 0
+--- !u!114 &7654525920727046649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7198517643227437171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a73a8e1b56a9e9b4c9a7800b655c9dc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 6
+  customDestroy: {fileID: 7198517643227437170}
 --- !u!114 &7198517643227437170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +143,8 @@ MonoBehaviour:
   numObjectsToSpawn:
     Min: 2
     Max: 4
+  rotateDestroyEffects: 0
+  _rigidbody: {fileID: 0}
   inheritVelocity: 1
   velocityPercentLoss: 80
   minForce: 10

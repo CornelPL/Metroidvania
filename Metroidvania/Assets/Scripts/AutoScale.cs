@@ -24,6 +24,8 @@ public class AutoScale : MonoBehaviour
     [SerializeField] private bool useUnscaledTime = false;
     [SerializeField] private bool destroyOnEnd = false;
 
+    private int tweenID = 0;
+
 
     private void Start()
     {
@@ -50,7 +52,14 @@ public class AutoScale : MonoBehaviour
 
     public void ScaleUp()
     {
+        if ( tweenID != 0 && LeanTween.isTweening( tweenID ) )
+        {
+            LeanTween.cancel( tweenID );
+        }
+
         LTDescr tween = LeanTween.value( gameObject, minUpScale, maxUpScale, scaleUpTime ).setOnUpdate( ( Vector3 v ) => { transform.localScale = v; } ).setOnComplete( () => OnScaledUp.Invoke() );
+
+        tweenID = tween.uniqueId;
 
         if ( useUnscaledTime )
         {
@@ -70,7 +79,14 @@ public class AutoScale : MonoBehaviour
 
     public void ScaleDown()
     {
+        if ( tweenID != 0 && LeanTween.isTweening( tweenID ) )
+        {
+            LeanTween.cancel( tweenID );
+        }
+
         LTDescr tween = LeanTween.value( gameObject, maxDownScale, minDownScale, scaleDownTime ).setOnUpdate( ( Vector3 v ) => { transform.localScale = v; } ).setOnComplete( () => OnScaledDown.Invoke() );
+
+        tweenID = tween.uniqueId;
 
         if ( useUnscaledTime )
         {

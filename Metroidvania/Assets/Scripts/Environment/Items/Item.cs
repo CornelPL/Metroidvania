@@ -136,7 +136,7 @@ public class Item : MonoBehaviour
         }
         else if ( collider.CompareTag( "DestroyablePlanks" ) )
         {
-            collider.GetComponent<CustomDestroy>().Destroy( _rigidbody.velocity, transform.position );
+            collider.GetComponent<DestroyablePlanks>().GetHit( baseDamage, _rigidbody.velocity, transform.position );
         }
         else if ( collider.CompareTag( "Destroyable" ) )
         {

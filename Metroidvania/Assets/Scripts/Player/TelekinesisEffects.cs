@@ -9,7 +9,6 @@ public class TelekinesisEffects : MonoBehaviour
     [SerializeField, MustBeAssigned] private GameObject pullEffects = null;
     [SerializeField, MustBeAssigned] private ExplosionLight eyesLight = null;
 
-    [HideInInspector] public bool isCursorOver = false;
     [HideInInspector] public bool areOverItemEffectsActive = false;
     [HideInInspector] public bool isInnerHighlightActive = false;
     [HideInInspector] public bool isOuterHighlightActive = false;
@@ -17,13 +16,6 @@ public class TelekinesisEffects : MonoBehaviour
     [HideInInspector] public Vector2 closestPoint = Vector2.zero;
 
     private InputController input = null;
-
-
-    public void SetCursorOver( bool on )
-    {
-        isCursorOver = on;
-        CustomCursor.Instance?.SetOver( on );
-    }
 
 
     public void SetOverItemEffects( bool on )

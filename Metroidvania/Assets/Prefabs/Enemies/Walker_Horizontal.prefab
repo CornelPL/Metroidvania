@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsDropForce: 10
-  initialHP: 20
+  initialHP: 10
   point: {fileID: 3365028966441827137, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
   minPoints: 2
   maxPoints: 5

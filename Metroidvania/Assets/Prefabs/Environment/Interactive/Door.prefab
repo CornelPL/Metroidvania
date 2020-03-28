@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 953977315}
   - component: {fileID: 953977316}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: Door_foreground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1614528685}
   - component: {fileID: 1614528686}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: Door_background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 180206889632675477}
   - component: {fileID: 1011021784081693995}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: Door_black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 863170043325526950}
   - component: {fileID: 863170043325526949}
   - component: {fileID: 94395375}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 60723348574382157}
   - component: {fileID: 149504623501379014}
   - component: {fileID: 5409647084534759433}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 4978787882812067389}
   - component: {fileID: 4978787882812067391}
   - component: {fileID: 4978787882812067390}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: onCloseEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5251,7 +5251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2799968021624744553}
   - component: {fileID: 3993832381782122645}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5324,7 +5324,7 @@ GameObject:
   - component: {fileID: 9046423402214340344}
   - component: {fileID: 9046423402214340346}
   - component: {fileID: 9046423402214340347}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: movingSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}

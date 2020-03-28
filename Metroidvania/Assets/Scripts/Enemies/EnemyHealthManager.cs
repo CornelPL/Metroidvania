@@ -63,7 +63,6 @@ public class EnemyHealthManager : HealthManager
 
         direction.y += 1.1f;
         direction.Normalize();
-        Debug.Log( "knockback with f = " + force + " in dir = " + direction );
 
         _rigidbody.AddForce(direction * force, ForceMode2D.Impulse);
     }

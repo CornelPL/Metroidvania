@@ -4921,6 +4921,8 @@ MonoBehaviour:
     m_Bits: 1024
   canBeCounterattacked: 1
   _rigidbody: {fileID: 2864662639065194048}
+  destroyEffect: {fileID: 8552119758405197819, guid: 7a03d342386c4b44b9809976464f851d,
+    type: 3}
   shootForce: 10
   aimOffset: {x: 0, y: 2, z: 0}
   shootEffect: {fileID: 889285115224855251, guid: 825014a6aef1ed1418006bd9fc79390d,
@@ -5036,7 +5038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 2864662639065194048}
   _collider: {fileID: 6118403492583044311}
-  destroyEffect: {fileID: 6060602310375322860, guid: 568c5a579b4c6814fb1cff60b849b194,
+  destroyEffect: {fileID: 8552119758405197819, guid: 7a03d342386c4b44b9809976464f851d,
     type: 3}
   itemHighlight: {fileID: 0}
   baseDamage: 15

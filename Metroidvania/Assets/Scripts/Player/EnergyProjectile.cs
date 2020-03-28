@@ -71,9 +71,7 @@ public class EnergyProjectile : MonoBehaviour
 
     protected virtual void CustomDestroy()
     {
-        Transform effect = Instantiate( destroyEffect, transform.position, transform.rotation ).transform;
-        float angle = Mathf.Atan2( _rigidbody.velocity.y, _rigidbody.velocity.x ) * Mathf.Rad2Deg;
-        effect.rotation = Quaternion.AngleAxis( angle, Vector3.forward );
+        Instantiate( destroyEffect, transform.position, transform.rotation );
 
         _rigidbody.velocity = Vector2.zero;
         collidersToIgnore.Clear();

@@ -4921,6 +4921,8 @@ MonoBehaviour:
     m_Bits: 1024
   canBeCounterattacked: 1
   _rigidbody: {fileID: 2864662639065194048}
+  destroyEffect: {fileID: 3902492919517145009, guid: bb705f9485955324f91d332f21ccf230,
+    type: 3}
 --- !u!96 &54894236058763658
 TrailRenderer:
   serializedVersion: 2
@@ -5032,7 +5034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 2864662639065194048}
   _collider: {fileID: 6118403492583044311}
-  destroyEffect: {fileID: 6060602310375322860, guid: 568c5a579b4c6814fb1cff60b849b194,
+  destroyEffect: {fileID: 3902492919517145009, guid: bb705f9485955324f91d332f21ccf230,
     type: 3}
   itemHighlight: {fileID: 0}
   baseDamage: 15

@@ -367,9 +367,9 @@ MonoBehaviour:
   sightRange: 10
   sightOffset: {x: 0, y: 0.5}
   boost: 2
-  playerLayerMask:
+  sightLayerMask:
     serializedVersion: 2
-    m_Bits: 268436480
+    m_Bits: 1280
   _rigidbody: {fileID: 8628843287280416399}
   healthManager: {fileID: 8628843287280416398}
   animator: {fileID: 1884719558664078766}
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsDropForce: 10
-  initialHP: 10
+  initialHP: 5
   point: {fileID: 3365028966441827137, guid: c93089eb76ac37d42ba7302321afb9dc, type: 3}
   minPoints: 3
   maxPoints: 7

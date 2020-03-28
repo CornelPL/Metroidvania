@@ -8,7 +8,7 @@ public class Walker_Sight : MonoBehaviour
     [SerializeField] private float sightRange = 5f;
     [SerializeField] private Vector2 sightOffset = Vector2.zero;
     [SerializeField] private float boost = 1.5f;
-    [SerializeField] private LayerMask playerLayerMask = 0;
+    [SerializeField] private LayerMask sightLayerMask = 0;
     [SerializeField] private Rigidbody2D _rigidbody = null;
     [SerializeField] private EnemyHealthManager healthManager = null;
     [SerializeField] private Animator animator = null;
@@ -75,14 +75,14 @@ public class Walker_Sight : MonoBehaviour
 
     private bool IsPlayerInSight()
     {
-        RaycastHit2D hitr = Physics2D.Raycast( (Vector2)transform.position + sightOffset, new Vector2( direction, 0f ), sightRange, playerLayerMask );
-        RaycastHit2D hitl = Physics2D.Raycast( (Vector2)transform.position + sightOffset, new Vector2( -direction, 0f ), sightRange, playerLayerMask );
+        RaycastHit2D hitr = Physics2D.Raycast( (Vector2)transform.position + sightOffset, new Vector2( direction, 0f ), sightRange, sightLayerMask );
+        RaycastHit2D hitl = Physics2D.Raycast( (Vector2)transform.position + sightOffset, new Vector2( -direction, 0f ), sightRange, sightLayerMask );
 
-        if ( hitr && !hitr.transform.CompareTag( "StopMark" ) )
+        if ( hitr && !hitr.transform.CompareTag( "StopMark" ) && !hitr.transform.CompareTag( "Ground" ) )
         {
             return true;
         }
-        else if ( hitl && !hitl.transform.CompareTag( "StopMark" ) )
+        else if ( hitl && !hitl.transform.CompareTag( "StopMark" ) && !hitl.transform.CompareTag( "Ground" ) )
         {
             ChangeDirection();
             return true;

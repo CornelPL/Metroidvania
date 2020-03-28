@@ -9,6 +9,7 @@ public class EnemyProjectile : MonoBehaviour
     [SerializeField] private LayerMask playerLayerMask = 0;
     [SerializeField] protected bool canBeCounterattacked = false;
     [SerializeField, MustBeAssigned] protected Rigidbody2D _rigidbody = null;
+    [SerializeField, MustBeAssigned] protected GameObject destroyEffect = null;
     protected Transform player;
     protected bool canNotify = true; // so the same projectile can't be counterattacked twice
     protected bool notified = false;
@@ -48,6 +49,7 @@ public class EnemyProjectile : MonoBehaviour
             player.GetComponent<Telekinesis>().NotifyCounterAttackExit( gameObject );
         }
 
+        Instantiate( destroyEffect, transform.position, transform.rotation );
         Destroy( gameObject );
     }
 

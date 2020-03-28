@@ -14,6 +14,12 @@ public class RockItem : Item
             return;
         }
 
+        if ( collider.CompareTag( "DestroyableEnvironment" ) )
+        {
+            // TODO: Destroy it
+            return;
+        }
+
         base.OnTriggerEnter2D( collider );
         
         CustomDestroy();

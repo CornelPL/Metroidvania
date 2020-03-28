@@ -29,10 +29,12 @@ public class Walker_Horizontal : MonoBehaviour
         hitDirection.y += 1f;
         hitDirection.Normalize();
 
-        inst.AddForce( hitDirection * deathKnockbackForce, ForceMode2D.Impulse);
+        float tmp = deathKnockbackForce * Random.Range( 0.9f, 1.1f );
+        inst.AddForce( hitDirection * tmp, ForceMode2D.Impulse);
 
         float moveDirection = Mathf.Sign( _rigidbody.velocity.x );
-        inst.AddTorque( torqueOnDeath * moveDirection, ForceMode2D.Impulse );
+        tmp = torqueOnDeath * Random.Range( 0.9f, 1.1f );
+        inst.AddTorque( moveDirection * tmp, ForceMode2D.Impulse );
 
         gameObject.SetActive( false );
     }

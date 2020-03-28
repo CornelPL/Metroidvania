@@ -21,11 +21,12 @@ public class Room : MonoBehaviour
     public virtual void OnPlayerEnter( GameObject player )
     {
         if ( isPlayerInRoom ) return;
-
         isPlayerInRoom = true;
 
-        playerState.room?.UnloadAdjacentRooms( gameObject );
-
+        if ( playerState.room != null && playerState.room != this )
+        {
+            playerState.room.UnloadAdjacentRooms( gameObject );
+        }
         playerState.room = this;
 
         if ( setSavePoint )

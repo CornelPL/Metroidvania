@@ -1,14 +1,59 @@
-# Sounds
-
-## Item:
-	Entering slowmo
-	Half or almost end slowmo
-	End slowmo
-	Pull
-	Pull end
-	Shoot
-	Destroy sounds for every item
-	
-## Enemies:
-	Charger:
-		- spot player
+Gracz:
+	- chodzenie po kamieniach
+	- wyskok (można spróbować z wysokim głosem postaci)
+	- lądowanie na kamieniach
+	- przy każdym z tych ruchów może być dodatkowy dźwięk peleryny
+	- TODO: otrzymanie obrażeń
+	- TODO: śmierć
+	- TODO: leczenie
+	- upadek punktów energii (powiedzmy, że to takie szklane kulki)
+	- zebranie punktów energii
+Telekinesis:
+	- dźwięk tej latającej kulki energii obok gracza
+	- słaby wystrzał kuli energii (LPM nie trzymając żadnych przedmiotów)
+	- jakby się udało, to dźwięk lecącej energii i dźwięk rozbicia się tej energii
+	- brak możliwości strzału (kiedy gracz wciśnie LPM ale nie ma energii lub przedmiotu do wystrzelenia)
+	- minimalnie inny dźwięk lub nawet ten sam kiedy gracz chce przyciągnąć przedmiot ale nie może tego zrobić)
+	- po wystrzale kulki energii pojawia się takie kółko pokazujące, że ta energia się ładuje; po załadowaniu jednej części jakiś dźwięk, że się załadowała
+	- możliwość przyciągnięcia przedmiotu (kiedy gracz najedzie na przedmiot i on się podświetli); może być jakby mocniejszy dźwięk tej latającej kulki energii albo jakiś prosty dodatek;
+	- przyciąganie przedmiotu (nie ma znaczenia co to za przedmiot)
+	- trzymanie tego przedmiotu (-"-)
+	- wystrzelenie przedmiotu (-"-, ale potężniejsze niż wystrzał kuli energii)
+	- wejście w slow motion podczas ataku
+	- bycie w slow motion
+	- wyjście ze slow motion
+Przeciwnicy:
+	- chyba nie będziemy się rozdrabniać na różnych przeciwników więc jakiś generic dźwięk otrzymania obrażeń i tak samo generic śmierci
+	- plusk krwi (pojedynczej kropli, więc raczej delikatny)
+	- poruszanie się stworków (takie kroczenie robaczków xD)
+	- taki stworek który przyspiesza w Twoją stronę jak Cię widzi - jakiś jakby syk oznaczający, że Cię zauważył
+	- roślina strzelająca
+		- wystrzał (spod niej wylatuje taki dym, strzela też w sumie energią)
+		- ładowanie tego wystrzału (roślina się powiększa i rozjaśnia)
+	- charger
+		- zauważenie gracza
+		- rozpoczęcie szarżowania na gracza
+		- bieg
+		- uderzenie w ścianę
+	- TODO: Boss:
+		-
+Enviro:
+	- rozwalenie dużych desek (takiej ściany drewnianej powiedzmy)
+	- paląca się pochodnia
+	- przejście przez krzaki
+	- uderzenie w kryształy
+	- rozwalenie kryształów
+	- poruszające się drzwi kamienne
+	- spadające kolce:
+		- dźwięk ostrzegający, że zaraz spadną (pęknięcie kamienia? posypanie się kamieni?)
+		- dźwięk ostrzegający, że spadają (oderwanie się kamienia)
+	- ambienty w jaskini:
+		- kapanie wody
+		- podmuch wiatru np.
+		- biegające szczury
+		- co Ci wpadnie do głowy i będziesz miał ochotę zrobić xd
+Przedmioty:
+	- deska, kamień:
+		- rozwalenie
+		- upadek na kamienie
+	- jakby Ci się udało to jakiś generic dźwięk na rozwalenie i upadek czegokolwiek innego xD chodzi o to, że sporo przedmiotów dodatkowych można podnosić i rzucać nimi jak np. martwi przeciwnicy, więc praktycznie się nie da do każdego stworzyć dźwięku

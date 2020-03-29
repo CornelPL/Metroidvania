@@ -4,9 +4,9 @@ namespace MyMath
 {
     public static class Angles
     {
-        /// <returns>
+        /// <summary>
 		/// Normalized vector where Vector2.right is 0 degrees and goes counterclockwise.
-		/// </returns>
+		/// </summary>
         public static Vector2 AngleToVector2( float angle )
         {
             float a = -(angle - 90f) * Mathf.Deg2Rad;
@@ -14,9 +14,9 @@ namespace MyMath
         }
 
 
-        /// <returns>
+        /// <summary>
 		/// Angle in degrees (0,360) where Vector2.right is 0 and goes counterclockwise
-		/// </returns>
+		/// </summary>
         public static float Vector2ToAngle( Vector2 vector )
         {
             float angle = Mathf.Atan2( -vector.y, vector.x ) * Mathf.Rad2Deg;

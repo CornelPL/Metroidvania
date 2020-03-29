@@ -146,7 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 3267184160927134353}
   _collider: {fileID: 8613796951371322556}
-  destroyEffect: {fileID: 0}
+  destroyEffect: {fileID: 7031418467571441834, guid: 688c270b64e10724f913644cb48583c8,
+    type: 3}
   itemHighlight: {fileID: 6865195647261706837}
   baseDamage: 10
   knockbackForce: 100
@@ -246,6 +247,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: a6ef11749eafcc54d90023a37413903c,
         type: 3}
+    - target: {fileID: 1532578006444518418, guid: 1777696c5f0cadc47a65a707fe825ad4,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1777696c5f0cadc47a65a707fe825ad4, type: 3}
 --- !u!1 &6865195647261706837 stripped

@@ -8,13 +8,13 @@ public class DestroyablePlanks : MonoBehaviour
     private int currentHealth;
 
 
-    public void GetHit( int damage, Vector2 hitVelocity = default, Vector2 hitPosition = default )
+    public void GetHit( int damage, Vector2 hitVelocity = default )
     {
         currentHealth -= damage;
         
         if ( currentHealth <= 0 )
         {
-            customDestroy.Destroy( hitVelocity, hitPosition );
+            customDestroy.Destroy( hitVelocity );
         }
         else
         {

@@ -136,21 +136,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb150e4f3a4fbb64482a82e5b82dfdfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyEffects: []
+  destroyEffects:
+  - {fileID: 7031418467571441834, guid: 688c270b64e10724f913644cb48583c8, type: 3}
+  - {fileID: 7031418467571441834, guid: 688c270b64e10724f913644cb48583c8, type: 3}
+  - {fileID: 7031418467571441834, guid: 688c270b64e10724f913644cb48583c8, type: 3}
+  rotateWithVelocity: 0
+  _rigidbody: {fileID: 0}
   objectsToSpawnOnDestroy:
   - {fileID: 889198975887940495, guid: f8d19b05942360b419279762745f63d9, type: 3}
-  - {fileID: 542507678701872621, guid: 107640916ebda654192718ad431c38a6, type: 3}
+  - {fileID: 6536819811933395187, guid: 75b242375bd55a84a9c8614cc1b14b37, type: 3}
+  - {fileID: 6536819811933395187, guid: 1b57434e34a85b54680f6b17391f0c03, type: 3}
   numObjectsToSpawn:
     Min: 2
     Max: 4
-  rotateDestroyEffects: 0
-  _rigidbody: {fileID: 0}
   inheritVelocity: 1
-  velocityPercentLoss: 80
+  velocityPercentLoss: 65
   minForce: 10
   maxForce: 20
   minAngle: 180
   maxAngle: 360
-  spawnRange: {x: 1, y: 1}
   minAngularVelocity: -360
   maxAngularVelocity: 360
+  spawnRange: {x: 0.5, y: 3}
+  rotateWithObject: 1

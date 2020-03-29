@@ -146,7 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 8914661687776227821}
   _collider: {fileID: 2407800232204244928}
-  destroyEffect: {fileID: 0}
+  destroyEffect: {fileID: 7031418467571441834, guid: 688c270b64e10724f913644cb48583c8,
+    type: 3}
   itemHighlight: {fileID: 695366530981955881}
   baseDamage: 10
   knockbackForce: 100

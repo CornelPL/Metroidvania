@@ -136,7 +136,7 @@ public class Item : MonoBehaviour
         }
         else if ( collider.CompareTag( "DestroyablePlanks" ) )
         {
-            collider.GetComponent<DestroyablePlanks>().GetHit( baseDamage, _rigidbody.velocity, transform.position );
+            collider.GetComponent<DestroyablePlanks>().GetHit( baseDamage, _rigidbody.velocity );
         }
         else if ( collider.CompareTag( "Destroyable" ) )
         {
@@ -225,9 +225,10 @@ public class Item : MonoBehaviour
 
     protected virtual void CustomDestroy()
     {
-        Transform effect = Instantiate( destroyEffect, transform.position, transform.rotation ).transform;
-        float angle = Mathf.Atan2( _rigidbody.velocity.y, _rigidbody.velocity.x ) * Mathf.Rad2Deg;
-        effect.rotation = Quaternion.AngleAxis( angle, Vector3.forward );
+        Instantiate( destroyEffect, transform.position, transform.rotation );
+        //Transform effect = Instantiate( destroyEffect, transform.position, transform.rotation ).transform;
+        //float angle = Mathf.Atan2( _rigidbody.velocity.y, _rigidbody.velocity.x ) * Mathf.Rad2Deg;
+        //effect.rotation = Quaternion.AngleAxis( angle, Vector3.forward );
         Destroy( gameObject );
     }
 }

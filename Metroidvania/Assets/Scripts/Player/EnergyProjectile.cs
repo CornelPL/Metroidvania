@@ -58,7 +58,7 @@ public class EnergyProjectile : MonoBehaviour
         }
         else if ( collider.CompareTag( "DestroyablePlanks" ) )
         {
-            collider.GetComponent<DestroyablePlanks>().GetHit( baseDamage, _rigidbody.velocity, transform.position );
+            collider.GetComponent<DestroyablePlanks>().GetHit( baseDamage, _rigidbody.velocity );
         }
         else if ( collider.CompareTag( "Destroyable" ) )
         {

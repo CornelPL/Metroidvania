@@ -11,29 +11,27 @@ public class Room : MonoBehaviour
         public GameObject gameObject;
         public Transform transform;
         public Vector2 startPosition;
+        public EnemyHealthManager healthManager;
     }
 
     [SerializeField] private bool setSavePoint = false;
     [SerializeField, ConditionalField( nameof( setSavePoint ) )] private Transform savePoint = null;
-    [SerializeField] private bool isBlacked = false;
-    [SerializeField, ConditionalField( nameof( isBlacked ) )] private Transform black = null;
+    [SerializeField] protected bool isBlacked = false;
+    [SerializeField, ConditionalField( nameof( isBlacked ) )] protected GameObject black = null;
     [SerializeField] private UnityEvent OnExit = null;
     [SerializeField] private GameObject[] adjacentRooms = null;
     [SerializeField] private Transform enemiesGroup = null;
 
-    private PlayerState playerState = null;
-    private bool isPlayerInRoom = false;
+    protected PlayerState playerState = null;
     private bool deactivateLooped = false;
     private float lastPlayerVisit = 0f;
     private List<EnemyInRoom> enemies = new List<EnemyInRoom>();
-    private const float timeToRespawnEnemies = 5f;
+    protected float timeToRespawnEnemies = 60f;
+    protected bool respawnEnemies = true;
 
 
     public virtual void OnPlayerEnter( GameObject player )
     {
-        if ( isPlayerInRoom ) return;
-        isPlayerInRoom = true;
-
         if ( playerState.room != null && playerState.room != this )
         {
             playerState.room.UnloadAdjacentRooms( gameObject );
@@ -43,6 +41,7 @@ public class Room : MonoBehaviour
         if ( setSavePoint )
         {
             playerState.savePoint = savePoint;
+            playerState.saveRoom = gameObject;
         }
 
         if ( isBlacked )
@@ -63,8 +62,6 @@ public class Room : MonoBehaviour
 
     public virtual void OnPlayerExit()
     {
-        isPlayerInRoom = false;
-
         OnExit.Invoke();
     }
 
@@ -83,24 +80,28 @@ public class Room : MonoBehaviour
     {
         playerState = PlayerState.instance;
 
+        if ( isBlacked )
+        {
+            black.SetActive( true );
+        }
+
         if ( enemiesGroup == null ) return;
 
-        Transform[] tmp = enemiesGroup.GetComponentsInChildren<Transform>();
-        for ( int i = 0; i < tmp.Length; i++ )
+        foreach ( Transform child in enemiesGroup )
         {
             EnemyInRoom enemy = new EnemyInRoom();
-            Transform child = tmp[ i ];
             enemy.transform = child;
             enemy.gameObject = child.gameObject;
             enemy.startPosition = enemy.transform.position;
+            enemy.healthManager = child.GetComponent<EnemyHealthManager>();
             enemies.Add( enemy );
         }
     }
 
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
-        if ( Time.time - lastPlayerVisit > timeToRespawnEnemies )
+        if ( respawnEnemies && Time.time - lastPlayerVisit > timeToRespawnEnemies )
         {
             for ( int i = 0; i < enemies.Count; i++ )
             {
@@ -108,6 +109,7 @@ public class Room : MonoBehaviour
 
                 enemy.transform.position = enemy.startPosition;
                 enemy.gameObject.SetActive( true );
+                enemy.healthManager.ResetHP();
             }
         }
     }

@@ -41,4 +41,10 @@ public class Door : MonoBehaviour
     {
         onCloseEffect.SetActive( true );
     }
+
+
+    private void OnEnable()
+    {
+        animator.SetTrigger( "open" );
+    }
 }

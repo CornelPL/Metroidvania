@@ -13,7 +13,7 @@ public class EnemyHealthManager : HealthManager
     [HideInInspector] public Vector2 hitDirection = Vector2.zero;
 
 
-    private void OnDisable()
+    public void ResetHP()
     {
         currentHP = initialHP;
     }
@@ -27,10 +27,9 @@ public class EnemyHealthManager : HealthManager
         TimeManager.instance.Freeze( FreezeFrames.OnKill );
 
         hitDirection = shootDirection;
+        ResetHP();
 
         OnDeath.Invoke();
-
-        this.enabled = false;
     }
 
 

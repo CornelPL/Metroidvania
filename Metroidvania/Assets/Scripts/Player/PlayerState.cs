@@ -46,6 +46,7 @@ public class PlayerState : MonoBehaviour
     private Vector2 previousPos;
     [HideInInspector] public float lastTimeGrounded = 0f;
     [HideInInspector] public Transform savePoint = null;
+    [HideInInspector] public GameObject saveRoom = null;
     [HideInInspector] public Room room = null;
 
 

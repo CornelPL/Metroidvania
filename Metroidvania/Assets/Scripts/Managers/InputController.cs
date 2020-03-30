@@ -55,6 +55,40 @@ public class InputController : MonoBehaviour
     public Vector2 cursorPosition;
 
     private Camera _camera;
+    private bool isInputActive = true;
+
+
+    public void SetInputActive( bool on )
+    {
+        isInputActive = on;
+
+        if ( !on )
+        {
+            right = false;
+            left = false;
+            dashRight = false;
+            dashLeft = false;
+
+            jumpDown = false;
+            jumpUp = false;
+            down = false;
+
+            lmbDown = false;
+            lmbHold = false;
+            lmbUp = false;
+            rmb = false;
+
+            interact = false;
+
+            healDown = false;
+            healUp = false;
+
+            spawnItem = false;
+            spawnMenu = false;
+
+            numKey = -1;
+        }
+    }
 
 
     private void Awake()
@@ -74,6 +108,8 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
+        if ( !isInputActive ) return;
+
         right = Input.GetKey( rightKey );
         left = Input.GetKey( leftKey );
         dashRight = right && Input.GetKeyDown( dashKey );

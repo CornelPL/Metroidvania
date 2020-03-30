@@ -76,41 +76,6 @@ public class Shooting_Plant : MonoBehaviour
     }
 
 
-    /*private void Shoot(Vector2 direction)
-    {
-        timeAfterLastShot = 0f;
-
-        float minAngle, maxAngle;
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-
-        if (projectilesCount % 2 == 0)
-        {
-            minAngle = angle - spread * ((projectilesCount - 1) / 2f);
-            maxAngle = angle + spread * ((projectilesCount - 1) / 2f);
-        }
-        else
-        {
-            minAngle = angle - spread * ((projectilesCount - 1) / 2);
-            maxAngle = angle + spread * ((projectilesCount - 1) / 2);
-        }
-
-        minAngle *= Mathf.Deg2Rad;
-        maxAngle *= Mathf.Deg2Rad;
-        angle = minAngle;
-
-        for (int i = 0; i < projectilesCount; i++)
-        {
-            Vector2 dir = new Vector2(-Mathf.Sin(angle), Mathf.Cos(angle));
-
-            GameObject proj = Instantiate(projectile, transform.position, transform.rotation);
-            proj.GetComponent<Rigidbody2D>().AddForce(dir * shootForce, ForceMode2D.Impulse);
-
-            angle += spread * Mathf.Deg2Rad;
-        }
-    }*/
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

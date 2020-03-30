@@ -78,11 +78,11 @@ public class Walker_Sight : MonoBehaviour
         RaycastHit2D hitr = Physics2D.Raycast( (Vector2)transform.position + sightOffset, new Vector2( direction, 0f ), sightRange, sightLayerMask );
         RaycastHit2D hitl = Physics2D.Raycast( (Vector2)transform.position + sightOffset, new Vector2( -direction, 0f ), sightRange, sightLayerMask );
 
-        if ( hitr && !hitr.transform.CompareTag( "StopMark" ) && !hitr.transform.CompareTag( "Ground" ) )
+        if ( hitr && hitr.transform.CompareTag( "Player" ) )
         {
             return true;
         }
-        else if ( hitl && !hitl.transform.CompareTag( "StopMark" ) && !hitl.transform.CompareTag( "Ground" ) )
+        else if ( hitl && hitl.transform.CompareTag( "Player" ) )
         {
             ChangeDirection();
             return true;

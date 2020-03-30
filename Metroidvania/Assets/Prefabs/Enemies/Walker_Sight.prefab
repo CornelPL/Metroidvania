@@ -369,7 +369,7 @@ MonoBehaviour:
   boost: 2
   sightLayerMask:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 268436736
   _rigidbody: {fileID: 8628843287280416399}
   healthManager: {fileID: 8628843287280416398}
   animator: {fileID: 1884719558664078766}

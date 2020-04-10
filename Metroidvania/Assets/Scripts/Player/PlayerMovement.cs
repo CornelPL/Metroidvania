@@ -58,10 +58,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator OnAttackInAirCoroutine()
     {
         isRunningCoroutine = true;
-        Debug.Log( "enter" );
         yield return new WaitForSeconds( attackInAirTime );
-        Debug.Log( "exit" );
-
         isRunningCoroutine = false;
     }
 

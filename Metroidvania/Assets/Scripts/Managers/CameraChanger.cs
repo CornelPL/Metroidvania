@@ -19,9 +19,9 @@ public class CameraChanger : MonoBehaviour
     {
         if ( collider.CompareTag( "Player" ) && collider.name != "Shield" )
         {
-            if ( playerState.currentVirtualCamera != null )
-                playerState.currentVirtualCamera.enabled = false;
-            cameraToSet.enabled = true;
+            if ( playerState.currentVirtualCamera != null && playerState.currentVirtualCamera != cameraToSet )
+                playerState.currentVirtualCamera.Priority = 10;
+            cameraToSet.Priority = 11;
             playerState.currentVirtualCamera = cameraToSet;
             collider.GetComponent<Telekinesis>().cameraOffset = cameraToSet.GetComponent<CinemachineCameraOffset>();
         }

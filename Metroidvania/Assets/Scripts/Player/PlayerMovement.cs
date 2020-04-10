@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpSlowTime = 0.2f;
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private float maxFallingSpeed = 50f;
+    [SerializeField] private float attackInAirTime = 0.3f;
     [SerializeField] private GameObject[] jumpEffectsBase = null;
 
     [Header( "Dash" )]
@@ -33,10 +34,36 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashingThroughWall = false;
     private bool isDashingRight = false;
     private bool dashedInAir = false;
+    private bool isRunningCoroutine = false;
+    private Coroutine coroutine = null;
     private Queue<GameObject> jumpEffects = new Queue<GameObject>();
 
 
     private int LeanTweenID = -1;
+
+
+    public void OnAttackInAir()
+    {
+        if ( state.isFallingState )
+        {
+            if ( isRunningCoroutine )
+            {
+                StopCoroutine( coroutine );
+            }
+            coroutine = StartCoroutine( OnAttackInAirCoroutine() );
+        }
+    }
+
+    
+    private IEnumerator OnAttackInAirCoroutine()
+    {
+        isRunningCoroutine = true;
+        Debug.Log( "enter" );
+        yield return new WaitForSeconds( attackInAirTime );
+        Debug.Log( "exit" );
+
+        isRunningCoroutine = false;
+    }
 
 
     public void OnGrounded( GameObject go = null )
@@ -139,7 +166,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if ( !(LeanTweenID > 0 && LeanTween.isTweening( LeanTweenID )) )
         {
-            verticalSpeed = _rigidbody.velocity.y;
+            if ( isRunningCoroutine )
+            {
+                verticalSpeed = 0f;
+            }
+            else
+            {
+                verticalSpeed = _rigidbody.velocity.y;
+            }
         }
 
         if ( input.jumpDown )

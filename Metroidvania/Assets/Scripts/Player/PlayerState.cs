@@ -48,6 +48,7 @@ public class PlayerState : MonoBehaviour
     [HideInInspector] public Transform savePoint = null;
     [HideInInspector] public GameObject saveRoom = null;
     [HideInInspector] public Room room = null;
+    [HideInInspector] public Cinemachine.CinemachineVirtualCamera currentVirtualCamera = null;
 
 
     private void Awake()
@@ -72,7 +73,7 @@ public class PlayerState : MonoBehaviour
         previousPos = currentPos;
 
         isFallingState = velocity.y < -0.1f ? true : false;
-        isRunningState = Mathf.Abs( velocity.x ) > 0.1f ? true : false;
+        isRunningState = Mathf.Abs( velocity.x ) > 0.05f ? true : false;
 
         if ( velocity.x > 0.1f && !isFacingRight )
         {

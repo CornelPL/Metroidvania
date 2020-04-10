@@ -67,7 +67,6 @@ public class FightRoom : Room
 
         if ( !isRoomPassed )
         {
-            black.SetActive( true );
             isBlacked = true;
             black.GetComponent<AutoColor>().FadeIn();
         }

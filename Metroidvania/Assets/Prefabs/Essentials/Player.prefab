@@ -11448,7 +11448,9 @@ MonoBehaviour:
   normalLayer: 10
   lastTimeGrounded: 77.4
   savePoint: {fileID: 0}
+  saveRoom: {fileID: 0}
   room: {fileID: 0}
+  currentVirtualCamera: {fileID: 0}
 --- !u!114 &6838834047338178268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11469,6 +11471,7 @@ MonoBehaviour:
   jumpSlowTime: 0.15
   coyoteTime: 0.13
   maxFallingSpeed: 35
+  attackInAirTime: 0.3
   jumpEffectsBase:
   - {fileID: 1813632782798267037}
   - {fileID: 8091773836177362534}
@@ -11509,6 +11512,7 @@ MonoBehaviour:
   - {fileID: 6417654320457713547, guid: c924003a300b0a94c87f643fef9a295a, type: 3}
   - {fileID: 6417654320457713547, guid: eb79a3bfd9693d94392bac87f6be554d, type: 3}
   itemGenerator: {fileID: 767784458}
+  playerMovement: {fileID: 6838834047338178268}
   energyShootController: {fileID: 7078607379371805440}
   timeBetweenEnergyShots: 0.3
   effects: {fileID: 3224671322086989935}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9574cd9fd624c47b731e243b62972c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _autoSaveEnabled: 1
+  _autoSaveEnabled: 0
   _cleanEmptyDirectoriesFeature: 0
-  _prepareOnPlaymode: 1
-  _checkForUpdates: 1
+  _prepareOnPlaymode: 0
+  _checkForUpdates: 0

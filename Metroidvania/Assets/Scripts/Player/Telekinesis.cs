@@ -18,11 +18,12 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private float leanTime = 0.5f;
     [SerializeField] private float zeroOffsetWeight = 0.5f;
     [SerializeField] private float invulnerableTime = 0.5f;
-    [SerializeField] public int pullFromSurfaceCost = 10;
-    [SerializeField, MustBeAssigned] private CinemachineCameraOffset cameraOffset = null;
+    public int pullFromSurfaceCost = 10;
+    public CinemachineCameraOffset cameraOffset = null;
     [SerializeField, MustBeAssigned] private Transform holdingItemPlace = null;
     [SerializeField, MustBeAssigned] private GameObject[] rocksToSpawn = null;
     [SerializeField, MustBeAssigned] private ItemGenerator itemGenerator = null;
+    [SerializeField, MustBeAssigned] private PlayerMovement playerMovement = null;
 
     [Separator( "Basic attack" )]
     [SerializeField, MustBeAssigned] private EnergyShootController energyShootController = null;
@@ -200,6 +201,7 @@ public class Telekinesis : MonoBehaviour
         else if ( input.lmbHold && !state.isAttackingState && !state.isHoldingItemState && !state.isPullingItemState && Time.time - lastEnergyShootTime >= timeBetweenEnergyShots && energyShootController.energy > 0 )
         {
             energyShootController.ShootEnergy();
+            playerMovement.OnAttackInAir();
             lastEnergyShootTime = Time.time;
         }
 

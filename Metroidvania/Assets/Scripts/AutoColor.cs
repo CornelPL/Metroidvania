@@ -32,19 +32,6 @@ public class AutoColor : MonoBehaviour
 
     private void Start()
     {
-        if ( isImage )
-        {
-            _image = GetComponent<Image>();
-        }
-        else if ( isSpriteShape )
-        {
-            SSRenderer = GetComponent<SpriteShapeRenderer>();
-        }
-        else
-        {
-            SRenderer = GetComponent<SpriteRenderer>();
-        }
-
         if ( fadeOnStart )
         {
             DoFade();
@@ -72,6 +59,7 @@ public class AutoColor : MonoBehaviour
 
         if ( isImage )
         {
+            if ( _image == null ) _image = GetComponent<Image>();
             Color imageColor = _image.color;
 
             tween = LeanTween.value( gameObject, minFadeInA, maxFadeInA, fadeInTime )
@@ -79,6 +67,7 @@ public class AutoColor : MonoBehaviour
         }
         else if ( isSpriteShape )
         {
+            if ( SSRenderer == null ) SSRenderer = GetComponent<SpriteShapeRenderer>();
             Color rendererColor = SSRenderer.color;
 
             tween = LeanTween.value( gameObject, minFadeInA, maxFadeInA, fadeInTime )
@@ -86,6 +75,7 @@ public class AutoColor : MonoBehaviour
         }
         else
         {
+            if ( SRenderer == null ) SRenderer = GetComponent<SpriteRenderer>();
             Color rendererColor = SRenderer.color;
 
             tween = LeanTween.value( gameObject, minFadeInA, maxFadeInA, fadeInTime )
@@ -109,6 +99,7 @@ public class AutoColor : MonoBehaviour
 
         if ( isImage )
         {
+            if ( _image == null ) _image = GetComponent<Image>();
             Color imageColor = _image.color;
 
             tween = LeanTween.value( gameObject, maxFadeOutA, minFadeOutA, fadeOutTime )
@@ -116,6 +107,7 @@ public class AutoColor : MonoBehaviour
         }
         else if ( isSpriteShape )
         {
+            if ( SSRenderer == null ) SSRenderer = GetComponent<SpriteShapeRenderer>();
             Color rendererColor = SSRenderer.color;
 
             tween = LeanTween.value( gameObject, maxFadeOutA, minFadeOutA, fadeOutTime )
@@ -123,6 +115,7 @@ public class AutoColor : MonoBehaviour
         }
         else
         {
+            if ( SRenderer == null ) SRenderer = GetComponent<SpriteRenderer>();
             Color rendererColor = SRenderer.color;
 
             tween = LeanTween.value( gameObject, maxFadeOutA, minFadeOutA, fadeOutTime )

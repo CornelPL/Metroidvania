@@ -103,7 +103,8 @@ public class Item : MonoBehaviour
 
     public virtual void OnHover( bool start )
     {
-        itemHighlight?.SetActive( start );
+        if ( itemHighlight != null )
+            itemHighlight.SetActive( start );
     }
 
 

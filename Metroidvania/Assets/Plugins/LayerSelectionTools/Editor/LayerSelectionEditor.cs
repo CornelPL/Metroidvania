@@ -298,7 +298,7 @@ namespace gbFactory.Tools
 
                 
             }
-            catch(Exception ex)
+            catch
             {
                 CreateFirstTime();
             }

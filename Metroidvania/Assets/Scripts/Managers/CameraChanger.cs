@@ -19,7 +19,8 @@ public class CameraChanger : MonoBehaviour
     {
         if ( collider.CompareTag( "Player" ) && collider.name != "Shield" )
         {
-            if ( playerState.currentVirtualCamera != null && playerState.currentVirtualCamera != cameraToSet )
+            if ( playerState.currentVirtualCamera == cameraToSet ) return;
+            if ( playerState.currentVirtualCamera != null )
                 playerState.currentVirtualCamera.Priority = 10;
             cameraToSet.Priority = 11;
             playerState.currentVirtualCamera = cameraToSet;

@@ -20,7 +20,7 @@ public class Charger : MonoBehaviour
     [SerializeField] private float deathPartsForce = 10f;
     [SerializeField] private float torqueOnDeath = 1f;
 
-    [HideInInspector] public int direction = 1;
+    public int direction = 1;
     [HideInInspector] public bool isCharging = false;
 
     private Transform player;
@@ -72,7 +72,7 @@ public class Charger : MonoBehaviour
     }
 
 
-    private void Start()
+    private void OnEnable()
     {
         animator.SetBool( "isFacingRight", direction == 1 ? true : false );
     }

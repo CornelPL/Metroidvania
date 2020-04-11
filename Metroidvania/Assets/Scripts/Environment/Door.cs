@@ -5,6 +5,7 @@ public class Door : MonoBehaviour
     [SerializeField] private Animator animator = null;
     [SerializeField] private ParticleSystem movingParticles = null;
     [SerializeField] private GameObject onCloseEffect = null;
+    [SerializeField] private bool openOnStart = true;
 
 
     public void Open()
@@ -45,6 +46,9 @@ public class Door : MonoBehaviour
 
     private void OnEnable()
     {
-        animator.SetTrigger( "open" );
+        if ( openOnStart )
+            animator.SetTrigger( "open" );
+        else
+            animator.SetTrigger( "close" );
     }
 }

@@ -11514,7 +11514,7 @@ MonoBehaviour:
   itemGenerator: {fileID: 767784458}
   playerMovement: {fileID: 6838834047338178268}
   energyShootController: {fileID: 7078607379371805440}
-  timeBetweenEnergyShots: 0.3
+  timeBetweenEnergyShots: 0.2
   effects: {fileID: 3224671322086989935}
   counterAttackHint: {fileID: 3423442261445340993}
   itemShootEffects: {fileID: 8304175956328360584, guid: 107bac4fab7850b43837de94e1d31ae7,

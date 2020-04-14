@@ -16,8 +16,10 @@ public class PlankItem : Item
 
     protected override void OnTriggerEnter2D( Collider2D collider )
     {
-        if ( !OnTriggerEnter2DSuccess( collider ) )
+        if ( !OnTriggerEnter2DHit( collider ) )
             return;
+
+        onTriggerEnterHitEvent.Invoke();
 
         if ( collider.CompareTag( "SoftWall" ) )
         {

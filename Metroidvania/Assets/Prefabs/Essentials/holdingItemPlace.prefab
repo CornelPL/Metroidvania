@@ -51,9 +51,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   smoothSpeed: 0.2
-  range: 1.5
   knockbackForce: 0.5
   knockbackFade: 0.9
+  randomOffsetWeight: 1
+  offsetToCursorWeight: 1.5
 --- !u!114 &6263694413781084336
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,14 +3,17 @@
 
 public class HoldingItemPlacePosition : MonoBehaviour
 {
-    public Transform target;
+    [SerializeField] private Transform target = null;
     [SerializeField] private float smoothSpeed = 0.2f;
-    [SerializeField] private float range = 2f;
     [SerializeField] private float knockbackForce = 2f;
     [SerializeField] private float knockbackFade = 0.9f;
+    [SerializeField] private float randomOffsetWeight = 2f;
+    [SerializeField] private float offsetToCursorWeight = 1.5f;
 
+    private Vector2 offset = Vector2.zero;
     private Vector2 randomOffset = Vector2.zero;
     private Vector2 knockbackVelocity = Vector2.zero;
+    private InputController input = null;
 
 
     public void Knockback( Vector2 direction )
@@ -19,20 +22,35 @@ public class HoldingItemPlacePosition : MonoBehaviour
     }
 
 
+    private void Start()
+    {
+        input = InputController.instance;
+    }
+
+
     private void Update()
     {
-        ChooseOffset();
-
+        SetOffsetToCursor();
+        SetRandomOffset();
         UpdatePosition();
     }
 
 
-    private void ChooseOffset()
+    private void SetOffsetToCursor()
+    {
+        offset = input.cursorPosition - (Vector2)target.position;
+        offset.Normalize();
+
+        offset *= offsetToCursorWeight;
+    }
+
+
+    private void SetRandomOffset()
     {
         randomOffset.x = Mathf.PerlinNoise( Time.time, 0f ) - 0.5f;
         randomOffset.y = Mathf.PerlinNoise( 0f, Time.time ) - 0.5f;
 
-        randomOffset *= range;
+        randomOffset *= randomOffsetWeight;
     }
 
 
@@ -40,8 +58,8 @@ public class HoldingItemPlacePosition : MonoBehaviour
     {
         knockbackVelocity *= knockbackFade;
 
-        float desireX = Mathf.SmoothStep( transform.position.x, target.position.x + randomOffset.x, smoothSpeed );
-        float desireY = Mathf.SmoothStep( transform.position.y, target.position.y + randomOffset.y, smoothSpeed );
+        float desireX = Mathf.SmoothStep( transform.position.x, target.position.x + offset.x + randomOffset.x, smoothSpeed );
+        float desireY = Mathf.SmoothStep( transform.position.y, target.position.y + offset.y + randomOffset.y, smoothSpeed );
         desireX += knockbackVelocity.x;
         desireY += knockbackVelocity.y;
 

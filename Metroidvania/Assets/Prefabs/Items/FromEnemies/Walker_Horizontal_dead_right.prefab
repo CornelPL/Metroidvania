@@ -187,7 +187,7 @@ MonoBehaviour:
   itemHighlight: {fileID: 8470793065299633352}
   baseDamage: 10
   knockbackForce: 100
-  onTriggerEnterSuccessEvent:
+  onTriggerEnterHitEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2442358127207230024}

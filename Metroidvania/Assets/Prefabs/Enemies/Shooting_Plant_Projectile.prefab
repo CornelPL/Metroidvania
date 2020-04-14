@@ -4840,7 +4840,7 @@ GameObject:
   - component: {fileID: 6118403492583044311}
   - component: {fileID: 8900000894598986894}
   - component: {fileID: 54894236058763658}
-  - component: {fileID: 2908805370928331528}
+  - component: {fileID: 1016701422482854587}
   m_Layer: 26
   m_Name: Shooting_Plant_Projectile
   m_TagString: Untagged
@@ -5024,7 +5024,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &2908805370928331528
+--- !u!114 &1016701422482854587
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5033,7 +5033,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5999442577757334188}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cdbccf1053cac84b9af377071130493, type: 3}
+  m_Script: {fileID: 11500000, guid: ffeb9d6086b2e3d438301b1eee7eb36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 2864662639065194048}
@@ -5041,6 +5041,20 @@ MonoBehaviour:
   destroyEffect: {fileID: 8552119758405197819, guid: 7a03d342386c4b44b9809976464f851d,
     type: 3}
   itemHighlight: {fileID: 0}
-  baseDamage: 15
+  baseDamage: 10
   knockbackForce: 100
+  onTriggerEnterHitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1016701422482854587}
+        m_MethodName: CustomDestroy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   isSpawned: 0

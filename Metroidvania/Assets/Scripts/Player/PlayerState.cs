@@ -36,7 +36,6 @@ public class PlayerState : MonoBehaviour
     [SerializeField] private Collider2D normalCollider = null;
     [SerializeField] private Collider2D invulnerableCollider = null;
     [SerializeField] private AutoColor shieldColor = null;
-    [SerializeField] private Transform holdingItemPosition = null;
     [SerializeField] private Animator animator = null;
     [SerializeField, Layer] private int invulnerableLayer = 0;
     [SerializeField, Layer] private int normalLayer = 0;
@@ -90,7 +89,6 @@ public class PlayerState : MonoBehaviour
     {
         isFacingRight = isRight;
         animator.SetBool( "isFacingRight", isRight );
-        holdingItemPosition.localPosition *= new Vector2( -1f, 1f );
     }
 
 

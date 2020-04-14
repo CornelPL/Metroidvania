@@ -14,11 +14,6 @@ public class CrateItem : Item
             return;
         }
 
-        if ( collidersToIgnore.Find( ( Collider2D x ) => x == collider ) )
-        {
-            return;
-        }
-
         base.OnTriggerEnter2D( collider );
 
         CustomDestroy();

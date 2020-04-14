@@ -1,18 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Saw : Item
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int durability = 5;
+    [SerializeField] private Collider2D colliderWithEnviro = null;
+
+
+    public override void Shoot( Vector2 direction, float power )
     {
-        
+        base.Shoot( direction, power );
+        colliderWithEnviro.enabled = true;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    protected override void OnTriggerEnter2D( Collider2D collider )
     {
-        
+        if ( !OnTriggerEnter2DHit( collider ) )
+            return;
+
+        onTriggerEnterHitEvent.Invoke();
+
+        durability--;
+        if ( durability == 0 ) CustomDestroy();
+    }
+
+
+    private void OnCollisionEnter2D( Collision2D collision )
+    {
+        if ( collision.collider == _collider )
+            return;
+
+        gameObject.layer = LayerMask.NameToLayer( "Items" );
+        isShooted = false;
+        _collider.isTrigger = false;
+        colliderWithEnviro.enabled = false;
     }
 }

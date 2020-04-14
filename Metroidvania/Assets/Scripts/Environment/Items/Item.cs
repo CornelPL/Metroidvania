@@ -8,12 +8,12 @@ public class Item : MonoBehaviour
     #region Inspector variables
 
     [SerializeField, MustBeAssigned] protected Rigidbody2D _rigidbody = null;
-    [SerializeField, MustBeAssigned] private Collider2D _collider = null;
+    [SerializeField, MustBeAssigned] protected Collider2D _collider = null;
     [SerializeField, MustBeAssigned] private GameObject destroyEffect = null;
     [SerializeField] private GameObject itemHighlight = null;
     [SerializeField] private int baseDamage = 10;
     [SerializeField] private float knockbackForce = 100f;
-    [SerializeField] private UnityEvent onTriggerEnterSuccessEvent = null;
+    [SerializeField] protected UnityEvent onTriggerEnterHitEvent = null;
 
     #endregion
 
@@ -31,7 +31,6 @@ public class Item : MonoBehaviour
     private float previousDistance = 0f;
     private Vector2 calculatedVelocity = Vector2.zero;
     private Telekinesis telekinesis = null;
-    protected List<Collider2D> collidersToIgnore = new List<Collider2D>();
 
     #endregion
 
@@ -90,15 +89,6 @@ public class Item : MonoBehaviour
         _collider.isTrigger = true;
 
         gameObject.layer = LayerMask.NameToLayer( "ShootItem" );
-
-        Collider2D[] overlapedColliders = Physics2D.OverlapCircleAll( transform.position, 0.5f );
-        foreach ( Collider2D collider in overlapedColliders )
-        {
-            if ( !collider.CompareTag( "Enemy" ) )
-            {
-                collidersToIgnore.Add( collider );
-            }
-        }
     }
 
 
@@ -126,18 +116,15 @@ public class Item : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D( Collider2D collider )
     {
-        if ( OnTriggerEnter2DSuccess( collider ) )
-            onTriggerEnterSuccessEvent.Invoke();
+        if ( OnTriggerEnter2DHit( collider ) )
+            onTriggerEnterHitEvent.Invoke();
     }
 
 
-    protected bool OnTriggerEnter2DSuccess( Collider2D collider )
+    protected bool OnTriggerEnter2DHit( Collider2D collider )
     {
         // TODO: is it needed?
         if ( !isShooted )
-            return false;
-
-        if ( collidersToIgnore.Find( ( Collider2D x ) => x == collider ) )
             return false;
 
         string tmpTag = collider.tag;
@@ -148,13 +135,13 @@ public class Item : MonoBehaviour
                 return false;
             case "Enemy":
                 collider.GetComponent<HitManager>().TakeHit( baseDamage, _rigidbody.velocity.normalized, knockbackForce );
-                return false;
+                return true;
             case "DestroyablePlanks":
                 collider.GetComponent<DestroyablePlanks>().GetHit( baseDamage, _rigidbody.velocity );
-                return false;
+                return true;
             case "Destroyable":
                 collider.GetComponent<Destroyable>().GetHit();
-                return false;
+                return true;
             default:
                 return true;
         }

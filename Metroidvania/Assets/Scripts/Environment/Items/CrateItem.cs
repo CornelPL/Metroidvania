@@ -25,7 +25,7 @@ public class CrateItem : Item
     }
 
 
-    protected override void CustomDestroy()
+    public override void CustomDestroy()
     {
         int item = Random.Range( 0, itemsToSpawnOnDestroy.Length );
         int i = Random.Range( minItemsToSpawn, maxItemsToSpawn );

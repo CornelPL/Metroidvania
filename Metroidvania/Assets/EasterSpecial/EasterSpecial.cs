@@ -2,7 +2,7 @@
 
 public class EasterSpecial : MonoBehaviour
 {
-    [SerializeField] private GameObject[] eggs;
+    [SerializeField] private GameObject[] eggs = null;
     [SerializeField] private TMPro.TMP_Text text = null;
     [SerializeField] private float fadeSpeed = 2f;
 

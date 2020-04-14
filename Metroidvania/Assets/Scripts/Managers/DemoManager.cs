@@ -3,7 +3,7 @@
 public class DemoManager : MonoBehaviour
 {
     [SerializeField] private Transform player = null;
-    [SerializeField] private Transform[] saves;
+    [SerializeField] private Transform[] saves = null;
 
     private PlayerState playerState;
 

@@ -151,6 +151,9 @@ MonoBehaviour:
   itemHighlight: {fileID: 6865195647261706837}
   baseDamage: 10
   knockbackForce: 100
+  onTriggerEnterSuccessEvent:
+    m_PersistentCalls:
+      m_Calls: []
   isSpawned: 0
 --- !u!1001 &6118681320762099145
 PrefabInstance:

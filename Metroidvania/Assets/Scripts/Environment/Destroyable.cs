@@ -12,8 +12,8 @@ public class Destroyable : MonoBehaviour
     [SerializeField] private GameObject point = null;
     [SerializeField] private GameObject[] getHitEffects = null;
     [SerializeField] private GameObject[] destroyEffects = null;
-    [SerializeField] private Sprite[] sprites = null;
-    [SerializeField] private SpriteRenderer spriteRenderer = null;
+    //[SerializeField] private Sprite[] sprites = null;
+    //[SerializeField] private SpriteRenderer spriteRenderer = null;
 
 
     public void GetHit()

@@ -9,27 +9,17 @@ public class PlankItem : Item
     {
         base.StartPulling( t, s, ms, tele );
 
+        // TODO: is it needed?
         gameObject.layer = LayerMask.NameToLayer( "Planks" );
     }
 
 
     protected override void OnTriggerEnter2D( Collider2D collider )
     {
-        if ( !isShooted )
-        {
+        if ( !OnTriggerEnter2DSuccess( collider ) )
             return;
-        }
 
-        if ( collidersToIgnore.Find( ( Collider2D x ) => x == collider ) )
-        {
-            return;
-        }
-
-        base.OnTriggerEnter2D( collider );
-
-        GameObject go = collider.gameObject;
-
-        if ( go.CompareTag( "SoftWall" ) )
+        if ( collider.CompareTag( "SoftWall" ) )
         {
             durability--;
             if ( durability == 0 ) CustomDestroy();
@@ -38,7 +28,7 @@ public class PlankItem : Item
             gameObject.layer = LayerMask.NameToLayer( "PlanksGround" );
             transform.rotation = Quaternion.identity;
         }
-        else if ( !go.CompareTag( "Player" ) )
+        else if ( !collider.CompareTag( "Player" ) )
         {
             CustomDestroy();
         }

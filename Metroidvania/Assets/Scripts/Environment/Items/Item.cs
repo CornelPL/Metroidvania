@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using MyBox;
-
+using UnityEngine.Events;
 
 public class Item : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class Item : MonoBehaviour
     [SerializeField] private GameObject itemHighlight = null;
     [SerializeField] private int baseDamage = 10;
     [SerializeField] private float knockbackForce = 100f;
+    [SerializeField] private UnityEvent onTriggerEnterSuccessEvent = null;
 
     #endregion
 
@@ -125,23 +126,37 @@ public class Item : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D( Collider2D collider )
     {
-        if ( collider.CompareTag( "DestroyableEnvironment" ) )
-        {
-            // TODO: Destroy it
-            return;
-        }
+        if ( OnTriggerEnter2DSuccess( collider ) )
+            onTriggerEnterSuccessEvent.Invoke();
+    }
 
-        if ( collider.CompareTag( "Enemy" ) )
+
+    protected bool OnTriggerEnter2DSuccess( Collider2D collider )
+    {
+        // TODO: is it needed?
+        if ( !isShooted )
+            return false;
+
+        if ( collidersToIgnore.Find( ( Collider2D x ) => x == collider ) )
+            return false;
+
+        string tmpTag = collider.tag;
+        switch ( tmpTag )
         {
-            collider.GetComponent<HitManager>().TakeHit( baseDamage, _rigidbody.velocity.normalized, knockbackForce );
-        }
-        else if ( collider.CompareTag( "DestroyablePlanks" ) )
-        {
-            collider.GetComponent<DestroyablePlanks>().GetHit( baseDamage, _rigidbody.velocity );
-        }
-        else if ( collider.CompareTag( "Destroyable" ) )
-        {
-            collider.GetComponent<Destroyable>().GetHit();
+            case "DestroyableEnvironment":
+                // TODO: Destroy this enviro
+                return false;
+            case "Enemy":
+                collider.GetComponent<HitManager>().TakeHit( baseDamage, _rigidbody.velocity.normalized, knockbackForce );
+                return false;
+            case "DestroyablePlanks":
+                collider.GetComponent<DestroyablePlanks>().GetHit( baseDamage, _rigidbody.velocity );
+                return false;
+            case "Destroyable":
+                collider.GetComponent<Destroyable>().GetHit();
+                return false;
+            default:
+                return true;
         }
     }
 
@@ -224,7 +239,7 @@ public class Item : MonoBehaviour
     }
 
 
-    protected virtual void CustomDestroy()
+    public virtual void CustomDestroy()
     {
         Instantiate( destroyEffect, transform.position, transform.rotation );
         //Transform effect = Instantiate( destroyEffect, transform.position, transform.rotation ).transform;

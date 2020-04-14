@@ -4824,7 +4824,7 @@ GameObject:
   - component: {fileID: 6417654320457713544}
   - component: {fileID: 6417654320457713545}
   - component: {fileID: 8632387716685488110}
-  - component: {fileID: 2231386555100820547}
+  - component: {fileID: 522121209317798646}
   m_Layer: 9
   m_Name: Rock_1_a_throwable
   m_TagString: Item
@@ -4961,7 +4961,7 @@ PolygonCollider2D:
       - {x: 0.2484088, y: -0.39870712}
       - {x: 0.4368968, y: -0.29703787}
       - {x: 0.5326457, y: -0.097156666}
---- !u!114 &2231386555100820547
+--- !u!114 &522121209317798646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4970,7 +4970,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6417654320457713547}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cdbccf1053cac84b9af377071130493, type: 3}
+  m_Script: {fileID: 11500000, guid: ffeb9d6086b2e3d438301b1eee7eb36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 6417654320457713545}
@@ -4980,6 +4980,20 @@ MonoBehaviour:
   itemHighlight: {fileID: 3672287663949321903}
   baseDamage: 10
   knockbackForce: 100
+  onTriggerEnterSuccessEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 522121209317798646}
+        m_MethodName: CustomDestroy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   isSpawned: 0
 --- !u!1 &8773064680071665000
 GameObject:

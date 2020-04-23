@@ -198,10 +198,10 @@ public class Telekinesis : MonoBehaviour
                 CounterAttack();
             }
         }
-        else if ( input.lmbHold && !state.isAttackingState && !state.isHoldingItemState && !state.isPullingItemState && Time.time - lastEnergyShootTime >= timeBetweenEnergyShots && energyShootController.energy > 0 )
+        else if ( input.lmbHold && !state.isAttackingState && !state.isHoldingItemState && !state.isPullingItemState && Time.time - lastEnergyShootTime >= timeBetweenEnergyShots /*&& energyShootController.energy > 0*/ )
         {
             energyShootController.ShootEnergy();
-            playerMovement.OnAttackInAir();
+            //playerMovement.OnAttackInAir();
             lastEnergyShootTime = Time.time;
         }
 

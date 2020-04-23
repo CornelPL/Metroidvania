@@ -60,12 +60,12 @@ public class EnergyShootController : MonoBehaviour
 
         proj.GetComponent<EnergyProjectile>().Shoot( shootDirection.normalized, energyShootPower );
 
-        energy--;
+        /*energy--;
         energyFill.fillAmount -= 0.2f;
         if ( areEnergyObjectsHidden )
         {
             ShowEnergyObjects();
-        }
+        }*/
 
         CustomCursor.Instance?.OnInteraction();
     }

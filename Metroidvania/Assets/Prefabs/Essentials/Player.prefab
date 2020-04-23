@@ -10240,7 +10240,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1270569687
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 928e7ddd8fb139147bb1d6c993cad7fd, type: 3}
   m_Color: {r: 0.9928219, g: 0.504717, b: 1, a: 0}
@@ -11211,7 +11211,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1584456187
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 998
   m_Sprite: {fileID: 21300000, guid: 70057ff9e78c7e84db5c268d7b71e358, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11442,7 +11442,6 @@ MonoBehaviour:
   normalCollider: {fileID: 7657262229719900732}
   invulnerableCollider: {fileID: 5509086513687338469}
   shieldColor: {fileID: 8375115587326742936}
-  holdingItemPosition: {fileID: 3956272965029147024}
   animator: {fileID: 5845602597293220103}
   invulnerableLayer: 16
   normalLayer: 10
@@ -11471,7 +11470,7 @@ MonoBehaviour:
   jumpSlowTime: 0.15
   coyoteTime: 0.13
   maxFallingSpeed: 35
-  attackInAirTime: 0.3
+  attackInAirTime: 0.1
   jumpEffectsBase:
   - {fileID: 1813632782798267037}
   - {fileID: 8091773836177362534}
@@ -11514,7 +11513,7 @@ MonoBehaviour:
   itemGenerator: {fileID: 767784458}
   playerMovement: {fileID: 6838834047338178268}
   energyShootController: {fileID: 7078607379371805440}
-  timeBetweenEnergyShots: 0.2
+  timeBetweenEnergyShots: 0.3
   effects: {fileID: 3224671322086989935}
   counterAttackHint: {fileID: 3423442261445340993}
   itemShootEffects: {fileID: 8304175956328360584, guid: 107bac4fab7850b43837de94e1d31ae7,
@@ -17236,7 +17235,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1584456187
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 999
   m_Sprite: {fileID: 21300000, guid: 59677a6f4f256bd4d93539f470fa2d15, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

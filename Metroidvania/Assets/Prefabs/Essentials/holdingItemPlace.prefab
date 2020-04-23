@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  smoothSpeed: 0.2
+  smoothSpeed: 0.3
   knockbackForce: 0.5
   knockbackFade: 0.9
   randomOffsetWeight: 1

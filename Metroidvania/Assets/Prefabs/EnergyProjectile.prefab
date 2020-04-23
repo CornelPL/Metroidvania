@@ -4730,7 +4730,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1270569687
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: -10
   m_RenderMode: 0
   m_SortMode: 0
@@ -4925,7 +4925,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 2864662639065194048}
   destroyEffect: {fileID: 3902492919517145009, guid: bb705f9485955324f91d332f21ccf230,
     type: 3}
-  baseDamage: 2
+  baseDamage: 1
 --- !u!96 &54894236058763658
 TrailRenderer:
   serializedVersion: 2

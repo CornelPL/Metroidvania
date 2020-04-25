@@ -19,6 +19,9 @@ public class PlayerHealthManager : MonoBehaviour
     [SerializeField, MustBeAssigned] private Image[] bars = null;
     [SerializeField, MustBeAssigned] private Image fadeImage = null;
     [SerializeField] private float fadeTime = 1f;
+    [SerializeField] private PlaySound _takeDamageSound = null;
+    [SerializeField] private PlaySound _deathSound = null;
+    [SerializeField] private PlaySound _healSound = null;
 
     private InputController input;
     private PlayerState state;
@@ -55,10 +58,12 @@ public class PlayerHealthManager : MonoBehaviour
         if ( input.healDown && EnergyController.instance.isContainerFull && currentHP < maxHP && state.isGroundedState && !state.isRunningState && !state.isKnockbackedState )
         {
             state.isHealingState = true;
+            _healSound.Play();
         }
         if ( input.healUp )
         {
             state.isHealingState = false;
+            _healSound.Stop();
             healingTime = 0f;
         }
 
@@ -71,6 +76,7 @@ public class PlayerHealthManager : MonoBehaviour
             else
             {
                 state.isHealingState = false;
+                _healSound.Stop();
                 healingTime = 0f;
                 EnergyController.instance.EmptyContainer();
                 currentHP++;
@@ -88,6 +94,7 @@ public class PlayerHealthManager : MonoBehaviour
         pointsController.AddPoints( -pointsLost );
 
         // TODO: death particles
+        _deathSound.Play();
 
         Vector2 spawnPos = new Vector2( transform.position.x, transform.position.y + 1f );
         Instantiate( lostPoints, spawnPos, Quaternion.identity, null ).GetComponent<LostPoints>().points = pointsLost;
@@ -179,6 +186,8 @@ public class PlayerHealthManager : MonoBehaviour
     {
         currentHP -= damage;
         UpdateBars();
+
+        _takeDamageSound.Play();
 
         StartCoroutine( Knockback( xPos, knockbackMultiplier ) );
 

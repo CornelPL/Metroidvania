@@ -6,6 +6,7 @@ public class SpawnStepEffect : MonoBehaviour
     [SerializeField] private Transform stepEffectSpawnPoint = null;
     [SerializeField] private Transform stepEffectSpawnPoint2 = null;
     [SerializeField] private GameObject[] stepEffectsBase = null;
+    [SerializeField] private PlaySound _stepSounds = null;
 
     private Queue<GameObject> stepEffects = new Queue<GameObject>();
 
@@ -16,6 +17,11 @@ public class SpawnStepEffect : MonoBehaviour
         stepEffect.transform.position = stepEffectSpawnPoint.position;
         stepEffect.SetActive( true );
         stepEffects.Enqueue( stepEffect );
+
+        if ( _stepSounds != null )
+        {
+            _stepSounds.Play();
+        }
     }
 
 

@@ -39,6 +39,12 @@ public class Telekinesis : MonoBehaviour
     [SerializeField] private UnityEvent OnShoot = null;
     [SerializeField] private UnityEvent OnPull = null;
     [SerializeField] private UnityEvent OnRelease = null;
+    [SerializeField] private PlaySound _pullSound = null;
+    [SerializeField] private PlaySound _shootEnergySound = null;
+    [SerializeField] private PlaySound _shootItemSound = null;
+    [SerializeField] private PlaySound _slowmoEnterSound = null;
+    [SerializeField] private PlaySound _slowmoSound = null;
+    [SerializeField] private PlaySound _slowmoExitSound = null;
 
     [Separator( "Stable items" )]
     [SerializeField] private float stableItemFreezeTime = 5f;
@@ -201,6 +207,7 @@ public class Telekinesis : MonoBehaviour
         else if ( input.lmbHold && !state.isAttackingState && !state.isHoldingItemState && !state.isPullingItemState && Time.time - lastEnergyShootTime >= timeBetweenEnergyShots /*&& energyShootController.energy > 0*/ )
         {
             energyShootController.ShootEnergy();
+            _shootEnergySound.Play();
             //playerMovement.OnAttackInAir();
             lastEnergyShootTime = Time.time;
         }
@@ -376,6 +383,8 @@ public class Telekinesis : MonoBehaviour
     {
         OnPull.Invoke();
 
+        _pullSound.Play();
+
         closestItem.GetComponent<Item>().StartPulling( holdingItemPlace, pullSpeed, maxPullSpeed, this );
 
         state.isPullingItemState = true;
@@ -436,6 +445,9 @@ public class Telekinesis : MonoBehaviour
         state.isAttackingState = true;
         arcRenderer.enabled = true;
         TimeManager.instance.TurnSlowmoOn();
+        _slowmoEnterSound.Play();
+        _slowmoSound.Play();
+
         if ( item == null )
         {
             item = closestItem;
@@ -462,6 +474,9 @@ public class Telekinesis : MonoBehaviour
         StartCoroutine( ZeroCameraOffset() );
         t = 0f;
         arcRenderer.enabled = false;
+        _slowmoEnterSound.Stop();
+        _slowmoSound.Stop();
+        _slowmoExitSound.Play();
         TimeManager.instance.TurnSlowmoOff();
         CustomCursor.Instance?.OnInteraction();
         ShootItem( item );
@@ -538,6 +553,8 @@ public class Telekinesis : MonoBehaviour
     {
         OnShoot.Invoke();
 
+        _shootItemSound.Play();
+
         Vector2 shootDirection = input.cursorPosition - (Vector2)item.transform.position;
 
         float angle = Mathf.Atan2( shootDirection.y, shootDirection.x ) * Mathf.Rad2Deg;
@@ -556,6 +573,8 @@ public class Telekinesis : MonoBehaviour
     private void ReleaseItem( GameObject item )
     {
         OnRelease.Invoke();
+
+        _pullSound.Stop();
 
         if ( item == closestItem )
         {

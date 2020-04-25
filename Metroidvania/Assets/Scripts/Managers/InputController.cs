@@ -28,6 +28,8 @@ public class InputController : MonoBehaviour
     public KeyCode spawnItemKey;
     public List<KeyCode> numKeys;
 
+    public bool isInputActive = true;
+
     public bool right { get; private set; }
     public bool left { get; private set; }
     public bool dashRight { get; private set; }
@@ -55,7 +57,6 @@ public class InputController : MonoBehaviour
     public Vector2 cursorPosition;
 
     private Camera _camera;
-    private bool isInputActive = true;
 
 
     public void SetInputActive( bool on )

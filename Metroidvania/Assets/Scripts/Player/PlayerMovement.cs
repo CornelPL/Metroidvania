@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxFallingSpeed = 50f;
     [SerializeField] private float attackInAirTime = 0.3f;
     [SerializeField] private GameObject[] jumpEffectsBase = null;
+    [SerializeField] private PlaySound _jumpSound = null;
 
     [Header( "Dash" )]
     [SerializeField] private float dashSpeed = 10f;
@@ -179,6 +180,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 state.SetJumpingState();
                 SpawnJumpEffect();
+                _jumpSound.Play();
 
                 verticalSpeed = jumpSpeed;
             }
@@ -186,6 +188,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 state.SetJumpingState();
                 SpawnJumpEffect();
+                _jumpSound.Play();
 
                 if ( LeanTweenID > 0 && LeanTween.isTweening( LeanTweenID ) )
                 {

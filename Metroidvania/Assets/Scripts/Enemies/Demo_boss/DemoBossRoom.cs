@@ -13,6 +13,8 @@ public class Enemy
 
 public class DemoBossRoom : Room
 {
+    [SerializeField] private MusicManager _musicManager = null;
+
     [Separator("Enemies")]
     [SerializeField] private int minEnemiesSpawn = 2;
     [SerializeField] private int maxEnemiesSpawn = 5;
@@ -48,6 +50,8 @@ public class DemoBossRoom : Room
         // TODO: spawn boss and wall anim or sth
         boss.gameObject.SetActive( true );
         wall.SetActive( true );
+
+        _musicManager.StartBossMusic();
 
         boss.AssignPlayer( player.transform );
     }

@@ -15,6 +15,8 @@ public class EnemyProjectile : MonoBehaviour
     protected bool notified = false;
     private bool checkedChances = false;
 
+    public bool canDamage = true;
+
 
     public void SetPlayer( Transform p )
     {
@@ -41,6 +43,10 @@ public class EnemyProjectile : MonoBehaviour
 
         if ( collider.gameObject.CompareTag( "Player" ) )
         {
+            if ( !canDamage )
+            {
+                return;
+            }
             collider.GetComponent<PlayerHealthManager>().TakeDamage( damage, transform.position.x );
         }
 

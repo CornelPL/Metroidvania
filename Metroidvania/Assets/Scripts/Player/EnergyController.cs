@@ -47,7 +47,7 @@ public class EnergyController : MonoBehaviour
     public void UpdateContainer()
     {
         container.fillAmount = (float)energy / capacity;
-        if ( energy == capacity )
+        if ( energy >= capacity )
         {
             isContainerFull = true;
         }
@@ -80,7 +80,7 @@ public class EnergyController : MonoBehaviour
     public void AddEnergy( int energyGain )
     {
         energy += energyGain;
-        Mathf.Clamp( energy, 0, capacity );
+        energy = Mathf.Clamp( energy, 0, capacity );
         UpdateContainer();
     }
 

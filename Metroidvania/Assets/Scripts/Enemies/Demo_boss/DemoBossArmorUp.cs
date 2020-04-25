@@ -3,7 +3,6 @@
 public class DemoBossArmorUp : StateMachineBehaviour
 {
     [SerializeField] private float armoringTime = 2f;
-    [SerializeField] private int phase = 1;
 
 
     private DemoBoss boss = null;
@@ -47,7 +46,7 @@ public class DemoBossArmorUp : StateMachineBehaviour
     private void SetArmored( Animator animator )
     {
         animator.SetBool( "isArmored", true );
-        animator.SetInteger( "phase", phase++ );
+        //boss.IncreasePhase();
 
         foreach ( ParticleSystem p in boss.armoringParticles )
         {

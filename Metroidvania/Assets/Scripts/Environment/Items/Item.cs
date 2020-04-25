@@ -42,6 +42,11 @@ public class Item : MonoBehaviour
     public virtual void MakeItem()
     {
         GetComponent<Collider2D>().isTrigger = true;
+        var projectile = GetComponent<EnemyProjectile>();
+        if ( projectile != null )
+        {
+            projectile.canDamage = false;
+        }
         _rigidbody.velocity = Vector2.zero;
     }
 

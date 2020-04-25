@@ -36,10 +36,10 @@ public class BossHealthManager : HealthManager
     [SerializeField] private float shootForce = 100f;
 
 
-    override protected void ChangeColorOnDamage()
+    /*override protected void ChangeColorOnDamage()
     {
         LeanTween.value( gameObject, hitBrightness, normalBrightness, brightnessChangeTime ).setOnUpdate( ( float v ) => { spriteRenderer.material.SetFloat( "_Brightness", v ); } );
-    }
+    }*/
 
 
     public void Death()
@@ -179,6 +179,7 @@ public class BossHealthManager : HealthManager
     override public void TakeDamage( Vector2 direction, int damage )
     {
         currentHP -= damage;
+        EnergyController.instance.AddEnergy( damage );
         ChangeColorOnDamage();
         demoBoss.CheckPhaseHP();
     }

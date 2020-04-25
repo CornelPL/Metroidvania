@@ -52,7 +52,7 @@ public class CanvasGroupController : MonoBehaviour
         while ( _t < _fadeTime )
         {
             _t += Time.unscaledDeltaTime;
-            _canvasGroup.alpha = 1f - _t;
+            _canvasGroup.alpha = 1f - (_t / _fadeTime);
 
             yield return _waitTime;
         }

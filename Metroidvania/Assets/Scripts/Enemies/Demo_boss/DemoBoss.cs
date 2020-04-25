@@ -59,6 +59,7 @@ public class DemoBoss : MonoBehaviour
         isMoving = false;
         idleTime = 0f;
         phase = 1;
+        _animator.SetInteger( "phase", 1 );
 
         _animator.Play( "Demo_boss_idle_left" );
     }
@@ -67,6 +68,7 @@ public class DemoBoss : MonoBehaviour
     public void IncreasePhase()
     {
         phase++;
+        _animator.SetInteger( "phase", phase );
     }
 
 
@@ -89,15 +91,15 @@ public class DemoBoss : MonoBehaviour
 
     public void HitInWeakPoint()
     {
-        if ( phase == 1 || phase == 2 )
-        {
+        /*if ( phase == 1 || phase == 2 )
+        {*/
             _animator.SetBool( "isStunned", false );
             _animator.SetBool( "isArmored", false );
-        }
+        /*}
         else
         {
             _animator.Play( "Demo_boss_death" );
-        }
+        }*/
     }
 
 

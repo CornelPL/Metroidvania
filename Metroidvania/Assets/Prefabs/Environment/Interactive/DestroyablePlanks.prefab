@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73a8e1b56a9e9b4c9a7800b655c9dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 6
+  maxHealth: 3
   customDestroy: {fileID: 7198517643227437170}
 --- !u!114 &7198517643227437170
 MonoBehaviour:
@@ -158,4 +158,3 @@ MonoBehaviour:
   minAngularVelocity: -360
   maxAngularVelocity: 360
   spawnRange: {x: 0.5, y: 3}
-  rotateWithObject: 1

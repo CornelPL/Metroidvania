@@ -35,33 +35,10 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashingThroughWall = false;
     private bool isDashingRight = false;
     private bool dashedInAir = false;
-    private bool isRunningCoroutine = false;
-    private Coroutine coroutine = null;
     private Queue<GameObject> jumpEffects = new Queue<GameObject>();
 
 
     private int LeanTweenID = -1;
-
-
-    public void OnAttackInAir()
-    {
-        if ( state.isFallingState )
-        {
-            if ( isRunningCoroutine )
-            {
-                StopCoroutine( coroutine );
-            }
-            coroutine = StartCoroutine( OnAttackInAirCoroutine() );
-        }
-    }
-
-    
-    private IEnumerator OnAttackInAirCoroutine()
-    {
-        isRunningCoroutine = true;
-        yield return new WaitForSeconds( attackInAirTime );
-        isRunningCoroutine = false;
-    }
 
 
     public void OnGrounded( GameObject go = null )
@@ -164,14 +141,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if ( !(LeanTweenID > 0 && LeanTween.isTweening( LeanTweenID )) )
         {
-            if ( isRunningCoroutine )
-            {
-                verticalSpeed = 0f;
-            }
-            else
-            {
-                verticalSpeed = _rigidbody.velocity.y;
-            }
+            verticalSpeed = _rigidbody.velocity.y;
         }
 
         if ( input.jumpDown )

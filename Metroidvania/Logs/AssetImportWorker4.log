@@ -1,0 +1,428 @@
+Using pre-set license
+Built from '2020.2/release' branch; Version is '2020.2.4f1 (becced5a802b) revision 12504301'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home; OS build 18363.1379; Version 1909; 64bit' Language: 'pl' Physical Memory: 7986 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+E:\Programy\Unity\2020.2.4f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker4
+-projectPath
+E:/Unity projects/Metroidvania/Metroidvania
+-logFile
+Logs/AssetImportWorker4.log
+-srvPort
+63485
+Successfully changed project path to: E:/Unity projects/Metroidvania/Metroidvania
+E:/Unity projects/Metroidvania/Metroidvania
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 135.23 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.2.4f1 (becced5a802b)
+[Subsystems] Discovering subsystems at path E:/Programy/Unity/2020.2.4f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/Unity projects/Metroidvania/Metroidvania/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 950M (ID=0x139a)
+    Vendor:   
+    VRAM:     4055 MB
+    Driver:   26.21.14.4259
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Initialize mono
+Mono path[0] = 'E:/Programy/Unity/2020.2.4f1/Editor/Data/Managed'
+Mono path[1] = 'E:/Programy/Unity/2020.2.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'E:/Programy/Unity/2020.2.4f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56044
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: E:/Programy/Unity/2020.2.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001132 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 101.05 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.112 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.005827 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 101.38 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.932 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Shader 'Hidden/InternalSpritesInspector': fallback shader 'Hidden/Sprite-Fallback' not found
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Hidden/InternalSpritesInspector': fallback shader 'Hidden/Sprite-Fallback' not found
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.40 seconds
+Refreshing native plugins compatible for Editor in 1.06 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3835 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 155.7 MB.
+System memory in use after: 155.8 MB.
+
+Unloading 42 unused Assets to reduce memory usage. Loaded Objects now: 4261.
+Total: 10.146800 ms (FindLiveObjects: 0.836800 ms CreateObjectMapping: 0.622100 ms MarkObjects: 8.389200 ms  DeleteObjects: 0.295300 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Plugins/Zenject/zenject.asmdef
+  artifactKey: Guid(0d8beb7f090555447a6cf5ce9e54dbb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/zenject.asmdef using Guid(0d8beb7f090555447a6cf5ce9e54dbb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f50045e1339df2ceae3d9dd6f3c299b') in 0.277456 seconds
+  Import took 0.288633 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.027957 seconds.
+  path: Assets/Plugins
+  artifactKey: Guid(99ae5f8ce77f019408446d181ceda1ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins using Guid(99ae5f8ce77f019408446d181ceda1ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed6b00e53a3c331bbca6517d7d8e48f0') in 0.008232 seconds
+  Import took 0.016150 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000353 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)
+  artifactKey: Guid(8090e28cdc25e434895a7603ed5b5594) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced) using Guid(8090e28cdc25e434895a7603ed5b5594) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f56e11c5c8f12c0418c7ef44a9eeb22') in 0.025860 seconds
+  Import took 0.033990 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000353 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras
+  artifactKey: Guid(e70ffae629cf5764fbc95aaeeb64884d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras using Guid(e70ffae629cf5764fbc95aaeeb64884d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e801444c6ff430e070f1e44f0649c53') in 0.008581 seconds
+  Import took 0.015497 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000407 seconds.
+  path: Assets/Plugins/Zero Rare
+  artifactKey: Guid(3b600192a346b4442964407d0c1c85dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zero Rare using Guid(3b600192a346b4442964407d0c1c85dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '91c4741db03c2ea4bfaf04ae5261423b') in 0.009659 seconds
+  Import took 0.063381 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000316 seconds.
+  path: Assets/Plugins/Zero Rare/Easy Notes
+  artifactKey: Guid(3ddb7c978f52a6f4d8911c78f54d4dda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zero Rare/Easy Notes using Guid(3ddb7c978f52a6f4d8911c78f54d4dda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5ec57fcff80f676cac93794484fc583') in 0.033270 seconds
+  Import took 0.042163 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000311 seconds.
+  path: Assets/Plugins/Zenject
+  artifactKey: Guid(de4922fe95b84ab4993b22fa6fd1d020) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject using Guid(de4922fe95b84ab4993b22fa6fd1d020) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2e8645c3ddf07ca8ce19ed4f91ce067') in 0.010160 seconds
+  Import took 0.018991 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9054.974462 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking
+  artifactKey: Guid(c269d209df5c19940a2cf8c1ae365768) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking using Guid(c269d209df5c19940a2cf8c1ae365768) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30f9951d389ac927315a2edbc01fcd99') in 0.018217 seconds
+  Import took 0.149889 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.317759 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/MemoryPoolMonitor
+  artifactKey: Guid(ca9d67cacb741b446be3472235157580) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/MemoryPoolMonitor using Guid(ca9d67cacb741b446be3472235157580) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c722dabd9d42563e74e71bfa65f2e42') in 0.011002 seconds
+  Import took 0.023017 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.320277 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests
+  artifactKey: Guid(f8d518813058ccd4c8ce2eb0a99748b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/IntegrationTests using Guid(f8d518813058ccd4c8ce2eb0a99748b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '499b8e59e1c1eaee4483d3c54a21da04') in 0.016550 seconds
+  Import took 0.025598 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.599779 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/Signals
+  artifactKey: Guid(3b5451f8192289f4d91b4764b30bf5e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/Signals using Guid(3b5451f8192289f4d91b4764b30bf5e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '38cd0a50a65174a849485fcdc02bf75b') in 0.101955 seconds
+  Import took 0.110092 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.858461 seconds.
+  path: Assets/Plugins/Zenject/Source
+  artifactKey: Guid(9180a9720c42cb94f9b30a7c0c938d90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/Source using Guid(9180a9720c42cb94f9b30a7c0c938d90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9fbec78457b977fcad464a5e3b80fb26') in 0.013336 seconds
+  Import took 0.077326 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.917648 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)
+  artifactKey: Guid(d8b365693e0817c4c89b4e9d5e611eb3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner) using Guid(d8b365693e0817c4c89b4e9d5e611eb3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aefb28560237fdc88de0e96c89f9adb8') in 0.011392 seconds
+  Import took 0.022162 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.708158 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Asteroids.unity
+  artifactKey: Guid(1fbbab4d6f8dcbd4eb46075a8f4a68e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Asteroids.unity using Guid(1fbbab4d6f8dcbd4eb46075a8f4a68e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f80b4224ecdb735b8583de0d31cc31f8') in 0.198234 seconds
+  Import took 0.207991 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 25.259534 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media/Imported/Materials/CampFire_Smoke.mat
+  artifactKey: Guid(edd0d4a6265d34cbea0dc848ce7114af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media/Imported/Materials/CampFire_Smoke.mat using Guid(edd0d4a6265d34cbea0dc848ce7114af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3f6f6ca26a3208bb9db9130da2bdacd') in 0.935628 seconds
+  Import took 0.944477 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 306.552718 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Resources/Installers/GameSettingsInstaller.asset
+  artifactKey: Guid(48da99ff693be7b4d89b133042973796) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Resources/Installers/GameSettingsInstaller.asset using Guid(48da99ff693be7b4d89b133042973796) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '64241873c599ffbb0befaef206961aad') in 0.378335 seconds
+  Import took 0.390361 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002935 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Resources/Installers/GameSettingsInstaller.asset
+  artifactKey: Guid(48da99ff693be7b4d89b133042973796) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Resources/Installers/GameSettingsInstaller.asset using Guid(48da99ff693be7b4d89b133042973796) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '64241873c599ffbb0befaef206961aad') in 0.015098 seconds
+  Import took 0.024556 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.364651 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Scripts
+  artifactKey: Guid(b800be3d93804944bb261ee1e63815c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Scripts using Guid(b800be3d93804944bb261ee1e63815c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c26d8a5e1cad77f7f2756c98ebbf684f') in 0.015074 seconds
+  Import took 0.062354 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.624656 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Scripts/Installers
+  artifactKey: Guid(a1b545d343661c54bbb60bc94fe13453) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Scripts/Installers using Guid(a1b545d343661c54bbb60bc94fe13453) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03de2cf7f05a7e5f1370608c167f2d14') in 0.117058 seconds
+  Import took 0.125563 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.079551 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Scripts/Installers/GameSettingsInstaller.cs
+  artifactKey: Guid(ed9935f795c01cc498910bae6d24d10a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Scripts/Installers/GameSettingsInstaller.cs using Guid(ed9935f795c01cc498910bae6d24d10a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd799ca8f94803c8a3a8ef76896a7b57') in 0.049109 seconds
+  Import took 0.058294 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005816 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.40 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.728 seconds
+Platform modules already initialized, skipping
+Shader 'Hidden/InternalSpritesInspector': fallback shader 'Hidden/Sprite-Fallback' not found
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader 'Hidden/InternalSpritesInspector': fallback shader 'Hidden/Sprite-Fallback' not found
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.59 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3706 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 153.7 MB.
+System memory in use after: 153.9 MB.
+
+Unloading 34 unused Assets to reduce memory usage. Loaded Objects now: 4343.
+Total: 6.091100 ms (FindLiveObjects: 1.299200 ms CreateObjectMapping: 0.381400 ms MarkObjects: 4.328400 ms  DeleteObjects: 0.079800 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005311 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.37 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.859 seconds
+Platform modules already initialized, skipping
+Shader 'Hidden/InternalSpritesInspector': fallback shader 'Hidden/Sprite-Fallback' not found
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Hidden/InternalSpritesInspector': fallback shader 'Hidden/Sprite-Fallback' not found
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Refreshing native plugins compatible for Editor in 2.69 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3706 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 154.1 MB.
+System memory in use after: 154.3 MB.
+
+Unloading 34 unused Assets to reduce memory usage. Loaded Objects now: 4347.
+Total: 4.766000 ms (FindLiveObjects: 0.346600 ms CreateObjectMapping: 0.171900 ms MarkObjects: 4.155900 ms  DeleteObjects: 0.089900 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006455 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.92 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.505 seconds
+Platform modules already initialized, skipping
+Shader 'Hidden/InternalSpritesInspector': fallback shader 'Hidden/Sprite-Fallback' not found
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader 'Hidden/InternalSpritesInspector': fallback shader 'Hidden/Sprite-Fallback' not found
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.36 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3706 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 154.1 MB.
+System memory in use after: 154.3 MB.
+
+Unloading 34 unused Assets to reduce memory usage. Loaded Objects now: 4351.
+Total: 4.893400 ms (FindLiveObjects: 0.430700 ms CreateObjectMapping: 0.241200 ms MarkObjects: 4.127000 ms  DeleteObjects: 0.093000 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 545.296813 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media
+  artifactKey: Guid(c5cb7331a4436e74d9a3528bd7b6132b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media using Guid(c5cb7331a4436e74d9a3528bd7b6132b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '817f5f2e5e877b07462af653c37e90b6') in 0.034934 seconds
+  Import took 0.044739 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.509406 seconds.
+  path: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media/Imported
+  artifactKey: Guid(48f6a1e1e8f9eef4a8767261db8c5e40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media/Imported using Guid(48f6a1e1e8f9eef4a8767261db8c5e40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7de1b8777e83a39bc21f832d3cca0d39') in 0.010849 seconds
+  Import took 0.113998 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 37.380515 seconds.
+  path: Assets/Plugins/Zenject/Source/Util
+  artifactKey: Guid(3f550a9d7385fce4e9bc4a0e5fa52daf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/Source/Util using Guid(3f550a9d7385fce4e9bc4a0e5fa52daf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '182ad3c230f30bbe2cc825ef9ee161a3') in 0.011526 seconds
+  Import took 0.020173 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.991394 seconds.
+  path: Assets/Plugins/Zenject/Source/Providers
+  artifactKey: Guid(bd5ba0ff0ad7f874f8938a3266c21d4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/Source/Providers using Guid(bd5ba0ff0ad7f874f8938a3266c21d4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '408931305a18617a05a2441222da950d') in 0.089533 seconds
+  Import took 0.097426 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.460015 seconds.
+  path: Assets/Plugins/Zenject/Source/Internal
+  artifactKey: Guid(dd4fbc001f8bada428bbe3af6b6b21e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/Source/Internal using Guid(dd4fbc001f8bada428bbe3af6b6b21e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e42e59d272bf6ea0f83d79f3a37099a') in 0.011712 seconds
+  Import took 0.020968 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.554634 seconds.
+  path: Assets/Plugins/Zenject/Source/Internal/Assert.cs
+  artifactKey: Guid(2968c9f42475ea146aec3ced9cbd99ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Zenject/Source/Internal/Assert.cs using Guid(2968c9f42475ea146aec3ced9cbd99ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a0612a5e05466ad945a3cfb84d04095') in 0.097966 seconds
+  Import took 0.124294 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 85.462434 seconds.
+  path: Assets/Scenes
+  artifactKey: Guid(ecb2e50db8eb46748a85d653ab0ef4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes using Guid(ecb2e50db8eb46748a85d653ab0ef4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29f2bbc649c49688fbe0fa5384a5e6c9') in 0.013646 seconds
+  Import took 0.100956 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.116154 seconds.
+  path: Assets/Scenes/Demo.unity
+  artifactKey: Guid(99a463db67c7a374391e4284f99ab52d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Demo.unity using Guid(99a463db67c7a374391e4284f99ab52d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccd0af1d7449a6fa4d039861f635a71f') in 0.025469 seconds
+  Import took 0.033593 seconds .
+

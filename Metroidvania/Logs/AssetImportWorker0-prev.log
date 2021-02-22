@@ -15,11 +15,11 @@ E:/Unity projects/Metroidvania/Metroidvania
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-61695
+55462
 Successfully changed project path to: E:/Unity projects/Metroidvania/Metroidvania
 E:/Unity projects/Metroidvania/Metroidvania
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 83.08 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 148.55 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.4f1 (becced5a802b)
 [Subsystems] Discovering subsystems at path E:/Programy/Unity/2020.2.4f1/Editor/Data/Resources/UnitySubsystems
@@ -36,19 +36,376 @@ Initialize mono
 Mono path[0] = 'E:/Programy/Unity/2020.2.4f1/Editor/Data/Managed'
 Mono path[1] = 'E:/Programy/Unity/2020.2.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'E:/Programy/Unity/2020.2.4f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56488
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56592
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: E:/Programy/Unity/2020.2.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001087 seconds.
+Registered in 0.001211 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 81.86 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 75.51 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.030 seconds
+- Completed reload, in  1.079 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.003088 seconds.
+Registered in 0.003471 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 84.83 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.881 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Shader 'Hidden/InternalSpritesInspector': fallback shader 'Hidden/Sprite-Fallback' not found
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader 'Hidden/InternalSpritesInspector': fallback shader 'Hidden/Sprite-Fallback' not found
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/InternalSpritesInspector' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.20 seconds
+Refreshing native plugins compatible for Editor in 0.82 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3250 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 140.6 MB.
+System memory in use after: 140.7 MB.
+
+Unloading 37 unused Assets to reduce memory usage. Loaded Objects now: 3681.
+Total: 10.902300 ms (FindLiveObjects: 0.744500 ms CreateObjectMapping: 0.509900 ms MarkObjects: 9.355800 ms  DeleteObjects: 0.288400 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Materials/Environment/Rocks/Platform_small_mat.mat
+  artifactKey: Guid(56ec4442dde6468408de20d5cbe1c02a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Environment/Rocks/Platform_small_mat.mat using Guid(56ec4442dde6468408de20d5cbe1c02a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '17e64499d6f8116f8927a6cb2de2d570') in 2.765686 seconds
+  Import took 2.817004 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.023790 seconds.
+  path: Assets/Materials/Environment/Rocks/Rocks_1_mat.mat
+  artifactKey: Guid(d27184212cacd96408fab7ed8d70aae9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Environment/Rocks/Rocks_1_mat.mat using Guid(d27184212cacd96408fab7ed8d70aae9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83993ae68886b0232d06e1e4f1eaa272') in 0.137184 seconds
+  Import took 0.310018 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000479 seconds.
+  path: Assets/Materials/Environment/Rocks/Stalactites_mat.mat
+  artifactKey: Guid(2e3e63f3945ce104b968e5300aa6bf2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Environment/Rocks/Stalactites_mat.mat using Guid(2e3e63f3945ce104b968e5300aa6bf2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6cf63362f1b746ff4dab3ac8297cce3c') in 0.104986 seconds
+  Import took 0.187123 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000411 seconds.
+  path: Assets/Materials/Environment/Rocks/Rocks_line_ceiling_mat.mat
+  artifactKey: Guid(54839061eef0f3b408dd9d561a490521) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Environment/Rocks/Rocks_line_ceiling_mat.mat using Guid(54839061eef0f3b408dd9d561a490521) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f84b7a00abf932b2bac8cb291e07322f') in 0.057044 seconds
+  Import took 0.120677 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 42.632250 seconds.
+  path: Assets/Sprites/arc sprite.png
+  artifactKey: Guid(6cd292de16db4ac44baf9600340f196b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/arc sprite.png using Guid(6cd292de16db4ac44baf9600340f196b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f3a73e714822576acd66c748a209df7') in 0.502888 seconds
+  Import took 0.543089 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000420 seconds.
+  path: Assets/Sprites/Enemies/Charger.png
+  artifactKey: Guid(c8bd1a075dc3fa442834eb8b84771df3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Enemies/Charger.png using Guid(c8bd1a075dc3fa442834eb8b84771df3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7f10b6a9b3e8e0788e20d9c0b660479') in 0.192690 seconds
+  Import took 0.219502 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000584 seconds.
+  path: Assets/Sprites/Enemies/Animations/Charger/Charger_animations_right.png
+  artifactKey: Guid(2d019ecf78bf9f04898c0b892b6fdda4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Enemies/Animations/Charger/Charger_animations_right.png using Guid(2d019ecf78bf9f04898c0b892b6fdda4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c50b5958f45ffa95cdb0b14dfb53c58') in 0.295667 seconds
+  Import took 0.343584 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000720 seconds.
+  path: Assets/Sprites/Enemies/Animations/Charger/Charger_animations_left.png
+  artifactKey: Guid(ba8141c1e6778f64181a719c63cd9ba2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Enemies/Animations/Charger/Charger_animations_left.png using Guid(ba8141c1e6778f64181a719c63cd9ba2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d726de5a1846c075bb75956b6c27245') in 0.226739 seconds
+  Import took 0.254217 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000429 seconds.
+  path: Assets/Sprites/Enemies/Animations/Button/Button_animations_right.png
+  artifactKey: Guid(6018c84a0f9bd8243a793f256d70da50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Enemies/Animations/Button/Button_animations_right.png using Guid(6018c84a0f9bd8243a793f256d70da50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '738000056271e8b0cfa64bf609afe5a6') in 0.124848 seconds
+  Import took 0.156849 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000709 seconds.
+  path: Assets/Sprites/Environment/Rocks/background_occlusion.png
+  artifactKey: Guid(928e7ddd8fb139147bb1d6c993cad7fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Environment/Rocks/background_occlusion.png using Guid(928e7ddd8fb139147bb1d6c993cad7fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2742dea2e77cb93004f8c9421582076') in 0.046582 seconds
+  Import took 0.087990 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000311 seconds.
+  path: Assets/Sprites/Armor part 2.png
+  artifactKey: Guid(b1b204944b613cb43b93b0118c1f99f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Armor part 2.png using Guid(b1b204944b613cb43b93b0118c1f99f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '831adb38c7cdf0f6be023a0f45d5903c') in 0.054481 seconds
+  Import took 0.079072 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000284 seconds.
+  path: Assets/Sprites/BloodSplashEffect.png
+  artifactKey: Guid(58515d0177e887c44a44f40cba2445c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/BloodSplashEffect.png using Guid(58515d0177e887c44a44f40cba2445c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf869767bb8a7b57312b06c4f6f47b6c') in 0.140889 seconds
+  Import took 0.165294 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000611 seconds.
+  path: Assets/Sprites/Armor part.png
+  artifactKey: Guid(a677d57e9a684a840b4bc02b9b3a7dd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Armor part.png using Guid(a677d57e9a684a840b4bc02b9b3a7dd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4fa733bf4c6ad8d74b232aa404627a9') in 0.094428 seconds
+  Import took 0.129345 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000422 seconds.
+  path: Assets/Sprites/Enemies/Animations/Button/Button_animations_left.png
+  artifactKey: Guid(f4207cd363b41ee439622618b8df4f26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Enemies/Animations/Button/Button_animations_left.png using Guid(f4207cd363b41ee439622618b8df4f26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4fe721704a76f27302ac9933c936518e') in 0.071986 seconds
+  Import took 0.108877 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000684 seconds.
+  path: Assets/Sprites/Armor part 4.png
+  artifactKey: Guid(6623dd8a6bddcbb4d87522d4afbfd872) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Armor part 4.png using Guid(6623dd8a6bddcbb4d87522d4afbfd872) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce80ab0d47a45f39e9f75643404013c9') in 0.026217 seconds
+  Import took 0.069881 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000406 seconds.
+  path: Assets/Sprites/Armor part 4 normal.png
+  artifactKey: Guid(6d2a8e5e337baa9478c26f3cf5dcc463) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Armor part 4 normal.png using Guid(6d2a8e5e337baa9478c26f3cf5dcc463) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c4074420d65214cd4ad436981a5ed32') in 0.075926 seconds
+  Import took 0.120769 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000527 seconds.
+  path: Assets/Sprites/Armor part 2 normal.png
+  artifactKey: Guid(a8e1d16c6959ad74d82d77be46db99c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Armor part 2 normal.png using Guid(a8e1d16c6959ad74d82d77be46db99c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dafbfe9c48278bcd4706747a99f753b0') in 0.182791 seconds
+  Import took 0.208947 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000441 seconds.
+  path: Assets/Sprites/Environment/Rocks/Caves_background.png
+  artifactKey: Guid(5e7ce030c397d9f4da8bfae68208688e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Environment/Rocks/Caves_background.png using Guid(5e7ce030c397d9f4da8bfae68208688e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fbf052c5e4f75a9a2a270a4142369396') in 0.042434 seconds
+  Import took 0.069674 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000518 seconds.
+  path: Assets/Sprites/Environment/Rocks/Background_rocks_3.png
+  artifactKey: Guid(1cddd41f2d227f340952e4852f96e1cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Environment/Rocks/Background_rocks_3.png using Guid(1cddd41f2d227f340952e4852f96e1cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e71e294885e76b15092b1219703c533') in 0.039004 seconds
+  Import took 0.064586 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000555 seconds.
+  path: Assets/EasterSpecial/Sprites/Bunny.png
+  artifactKey: Guid(1feb0e54042e6da4d9bb34541b31415b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/EasterSpecial/Sprites/Bunny.png using Guid(1feb0e54042e6da4d9bb34541b31415b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce7775e89eddd938cd507a44499e022d') in 0.027920 seconds
+  Import took 0.036045 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000379 seconds.
+  path: Assets/Sprites/Environment/Rocks/background.png
+  artifactKey: Guid(af5b44ee9052388488c16694b72af930) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Environment/Rocks/background.png using Guid(af5b44ee9052388488c16694b72af930) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6be43fb0b0d9f35aa0ae55c78e1561ab') in 0.078942 seconds
+  Import took 0.087853 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000381 seconds.
+  path: Assets/Sprites/Environment/Rocks/Background_rocks_3_normal.png
+  artifactKey: Guid(ef575f49ad5f00d4c82afc19682d3911) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Environment/Rocks/Background_rocks_3_normal.png using Guid(ef575f49ad5f00d4c82afc19682d3911) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7fd0f8f446735992ee169b1e78deafe4') in 0.082730 seconds
+  Import took 0.120048 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000482 seconds.
+  path: Assets/Sprites/Armor part normal.png
+  artifactKey: Guid(489427bbdf8e6f74195d5734dccf8d2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Armor part normal.png using Guid(489427bbdf8e6f74195d5734dccf8d2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85c8318564cc3e8f4d8204179374d192') in 0.111230 seconds
+  Import took 0.141393 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000446 seconds.
+  path: Assets/Sprites/Armor part 3.png
+  artifactKey: Guid(15674d7c20b909f46a0e37f35f8bc4b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Armor part 3.png using Guid(15674d7c20b909f46a0e37f35f8bc4b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'afe1eb221aaa531c3ae06f5c02f14a5b') in 0.060784 seconds
+  Import took 0.088182 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000477 seconds.
+  path: Assets/Sprites/Environment/Ground.png
+  artifactKey: Guid(3db4ac2222114b9478425149ad643578) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Environment/Ground.png using Guid(3db4ac2222114b9478425149ad643578) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc9da59b5ba314529b50e4b844ea96cd') in 0.100025 seconds
+  Import took 0.141608 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000635 seconds.
+  path: Assets/Sprites/Environment/Rocks/Background_rocks_1.png
+  artifactKey: Guid(d010bf86bea3fe244aa68e1b33681bd5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Environment/Rocks/Background_rocks_1.png using Guid(d010bf86bea3fe244aa68e1b33681bd5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '14557af1b021d6c1e1513e81094a364d') in 0.193739 seconds
+  Import took 0.206971 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000398 seconds.
+  path: Assets/Sprites/Armor part 3 normal.png
+  artifactKey: Guid(2479786b4a93d7c43b06cbe2f0e011ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Armor part 3 normal.png using Guid(2479786b4a93d7c43b06cbe2f0e011ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '891b38a3f114b147d32cb53456f5bcf9') in 0.081757 seconds
+  Import took 0.118738 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.195696 seconds.
+  path: Assets/Sprites/Enemies/Charger_death_part_1.png
+  artifactKey: Guid(0fed974963bddce41b8a8b22a2d9f754) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Enemies/Charger_death_part_1.png using Guid(0fed974963bddce41b8a8b22a2d9f754) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '958699d027b4bd322e37a3893853b9f3') in 0.117393 seconds
+  Import took 0.164675 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000465 seconds.
+  path: Assets/Sprites/Enemies/Charger_occlusion.png
+  artifactKey: Guid(5d7f7b93eac9f254e9cf2ed4f1d2112d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Enemies/Charger_occlusion.png using Guid(5d7f7b93eac9f254e9cf2ed4f1d2112d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a6661cd2acb3bb781e42aded113b5f5') in 0.263986 seconds
+  Import took 0.392147 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000477 seconds.
+  path: Assets/Sprites/Enemies/Charger_part.png
+  artifactKey: Guid(38d1c8089a91b6844b98f1e023a21d62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Enemies/Charger_part.png using Guid(38d1c8089a91b6844b98f1e023a21d62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88acdec7bc2226b4bf047d3793ac80df') in 0.088584 seconds
+  Import took 0.096525 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000315 seconds.
+  path: Assets/Sprites/Environment/Crystals_emission.png
+  artifactKey: Guid(cb4fc32e83a1fde4f8863ae7ddf45245) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Environment/Crystals_emission.png using Guid(cb4fc32e83a1fde4f8863ae7ddf45245) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6cebb01b0494a5a6a0f9d278b11d575c') in 0.196091 seconds
+  Import took 0.204754 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000396 seconds.
+  path: Assets/Sprites/UI/Cursor.png
+  artifactKey: Guid(3708bbf0eef1b884e9a681bf36e7ffaf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/UI/Cursor.png using Guid(3708bbf0eef1b884e9a681bf36e7ffaf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce769a9ca782dde1b8d15b83f799588a') in 0.063557 seconds
+  Import took 0.071332 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000305 seconds.
+  path: Assets/Sprites/Enemies/Charger_death_part_2_normal.png
+  artifactKey: Guid(3a38c03c2208a514ca3c4971d21d1e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Enemies/Charger_death_part_2_normal.png using Guid(3a38c03c2208a514ca3c4971d21d1e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f085b6aa060a7bb3ab4ab15f5c8a54a6') in 0.138019 seconds
+  Import took 0.167106 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000524 seconds.
+  path: Assets/Sprites/Enemies/Animations/Demo_boss/Demo_boss_animations_left.png
+  artifactKey: Guid(9d8a3c459b3cf4544adff31a93e50633) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Enemies/Animations/Demo_boss/Demo_boss_animations_left.png using Guid(9d8a3c459b3cf4544adff31a93e50633) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7fa064d1b4c91e5975623a9da0a7a8f1') in 0.478759 seconds
+  Import took 0.497101 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000497 seconds.
+  path: Assets/Sprites/Environment/Crystals.png
+  artifactKey: Guid(6ace742021d07cc409623ed4b940597b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Environment/Crystals.png using Guid(6ace742021d07cc409623ed4b940597b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e69622aa5c4b0d73bb648b61dd5cbcd1') in 0.151616 seconds
+  Import took 0.191960 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000410 seconds.
+  path: Assets/Plugins/Prototype & Game Jam Starter Kit/Sprites/Circle Small.png
+  artifactKey: Guid(a2f1a95063199434897bbf63cc317159) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Prototype & Game Jam Starter Kit/Sprites/Circle Small.png using Guid(a2f1a95063199434897bbf63cc317159) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e95bfdf5f95c4244da8b1ee24ce97f6') in 0.085628 seconds
+  Import took 0.131236 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000495 seconds.
+  path: Assets/Sprites/Enemies/Charger_death_part_1_normal.png
+  artifactKey: Guid(6d0242611ac75994db0625aad22692e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Enemies/Charger_death_part_1_normal.png using Guid(6d0242611ac75994db0625aad22692e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21e37ccff03ac904938075853a5a50ca') in 0.086969 seconds
+  Import took 0.121506 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000398 seconds.
+  path: Assets/Plugins/Prototype & Game Jam Starter Kit/Sprites/Circle Big.png
+  artifactKey: Guid(922b91e75dc0fd740b6b344111502454) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Prototype & Game Jam Starter Kit/Sprites/Circle Big.png using Guid(922b91e75dc0fd740b6b344111502454) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '653f634a333e16db5c824c6dc959f36a') in 0.042767 seconds
+  Import took 0.079877 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000618 seconds.
+  path: Assets/Plugins/Prototype & Game Jam Starter Kit/Sprites/Circle Medium.png
+  artifactKey: Guid(bd1af871939dd9d43a742dcc9cfea5df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Prototype & Game Jam Starter Kit/Sprites/Circle Medium.png using Guid(bd1af871939dd9d43a742dcc9cfea5df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69cc26238c53d205cfe566ac5f3c0167') in 0.024589 seconds
+  Import took 0.057244 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000389 seconds.
+  path: Assets/Sprites/Enemies/Charger_death_part_2.png
+  artifactKey: Guid(77103d5b54081754c888dfd343f12ea7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Enemies/Charger_death_part_2.png using Guid(77103d5b54081754c888dfd343f12ea7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62d6f4ea574e1a50b8b61882790c8e70') in 0.051059 seconds
+  Import took 0.077428 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

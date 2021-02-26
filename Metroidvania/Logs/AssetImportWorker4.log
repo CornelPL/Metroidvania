@@ -426,3 +426,12 @@ Received Import Request.
 Start importing Assets/Scenes/Demo.unity using Guid(99a463db67c7a374391e4284f99ab52d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccd0af1d7449a6fa4d039861f635a71f') in 0.025469 seconds
   Import took 0.033593 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 1686.534539 seconds.
+  path: Assets/Prefabs
+  artifactKey: Guid(a766e6a168674ff4aa6fd46b48f3c1c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs using Guid(a766e6a168674ff4aa6fd46b48f3c1c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '286844cba1cec5fe63a9aca70d0fa0bb') in 0.008930 seconds
+  Import took 0.018471 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
